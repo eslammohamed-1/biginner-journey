@@ -1,0 +1,250 @@
+{
+ "book": "01-terminal",
+ "chapter": 13,
+ "chapterFile": "ch13",
+ "title": "تخصيص الـ Shell: ملفات الإعدادات والـ Aliases والـ Prompt",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "01-terminal-ch13-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "على الماك، كل تابة جديدة في Terminal.app بتفتح Shell من نوع إيه؟",
+   "options": [
+    {
+     "text": "Login shell، فبتقرا ~/.zprofile ثم ~/.zshrc",
+     "why": "صح."
+    },
+    {
+     "text": "Non-login دايماً",
+     "why": "على الماك العكس."
+    },
+    {
+     "text": "مبتقراش أي ملف",
+     "why": "بتقرا."
+    },
+    {
+     "text": "بتقرا ~/.bashrc",
+     "why": "ده bash."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ده سلوك Terminal.app الافتراضي."
+  },
+  {
+   "id": "01-terminal-ch13-02",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب الملفات اللي zsh بيقراها في Login shell:",
+   "items": [
+    ".zshenv",
+    ".zprofile",
+    ".zshrc",
+    ".zlogin"
+   ],
+   "explanation": "اتنين بس بيهموك: .zprofile و .zshrc."
+  },
+  {
+   "id": "01-terminal-ch13-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "فين أحسن مكان لسطر `brew shellenv`؟",
+   "options": [
+    {
+     "text": "~/.zshenv",
+     "why": "بيتقري حتى في الـ Scripts، وكمان path_helper بيعيد ترتيب الـ PATH بعده."
+    },
+    {
+     "text": "~/.zprofile",
+     "why": "صح، بعد path_helper فالترتيب يفضل صح."
+    },
+    {
+     "text": "~/.bashrc",
+     "why": "zsh مبيقراهوش."
+    },
+    {
+     "text": "/etc/paths",
+     "why": "ملف نظام، متلعبش فيه."
+    }
+   ],
+   "correct": 1,
+   "explanation": "path_helper في /etc/zprofile بيشتغل قبل ~/.zprofile."
+  },
+  {
+   "id": "01-terminal-ch13-04",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعمل alias اسمه `ll` لـ `ls -lahG`.",
+   "accepted": [
+    "alias ll='ls -lahG'",
+    "alias ll=\"ls -lahG\""
+   ],
+   "hint": "alias name='command'.",
+   "explanation": "علشان يفضل، حطه في ~/.zshrc."
+  },
+  {
+   "id": "01-terminal-ch13-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "طبّق تعديلاتك على ~/.zshrc في الـ Shell الحالي من غير ما تفتح تابة جديدة.",
+   "accepted": [
+    "source ~/.zshrc",
+    ". ~/.zshrc",
+    "exec zsh"
+   ],
+   "hint": "الأمر اللي بينفّذ ملف جوه الـ Shell الحالي.",
+   "explanation": "source بيشغّل الملف في نفس الـ Shell، مش في Process جديد."
+  },
+  {
+   "id": "01-terminal-ch13-06",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عملت alias في الـ Terminal واشتغل، وبعد ما قفلت وفتحت اختفى.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أحطه في ~/.zshrc علشان يتقري مع كل Shell",
+     "why": "صح."
+    },
+    {
+     "text": "أعمله بـ sudo",
+     "why": "مالهاش علاقة."
+    },
+    {
+     "text": "أعمله export",
+     "why": "الـ alias مبيتعملوش export."
+    },
+    {
+     "text": "أحطه في /etc/hosts",
+     "why": "ده للـ DNS."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أي حاجة بتكتبها في الـ Terminal بتعيش في الـ Session دي بس."
+  },
+  {
+   "id": "01-terminal-ch13-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "متغير من غير export بيوصل للبرامج اللي بتشغّلها (زي node)؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيفضل جوه الـ Shell بس."
+    },
+    {
+     "text": "لأ، لازم export علشان يتورّث للبرامج (process.env)",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "export بيحوّله لمتغير بيئة."
+  },
+  {
+   "id": "01-terminal-ch13-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تضيف ~/.local/bin في أول الـ PATH:",
+   "template": "export PATH=\"$HOME/.local/bin:___\"",
+   "blanks": [
+    [
+     "$PATH",
+     "${PATH}"
+    ]
+   ],
+   "hint": "باقي الـ PATH القديم.",
+   "explanation": "لو نسيت $PATH هتمسح كل المسارات."
+  },
+  {
+   "id": "01-terminal-ch13-09",
+   "type": "mcq",
+   "level": "think",
+   "question": "عملت alias `gco` بس عايز تعدّي Argument في النص زي `gco <branch> --force`. الأنسب؟",
+   "options": [
+    {
+     "text": "دالة، لأن الـ alias مجرد استبدال نص ومبيقبلش Arguments في النص",
+     "why": "صح."
+    },
+    {
+     "text": "alias أطول",
+     "why": "مش هيحل."
+    },
+    {
+     "text": "export",
+     "why": "للمتغيرات."
+    },
+    {
+     "text": "source",
+     "why": "مش له علاقة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "alias للاختصار البسيط، والدالة لما تحتاج Arguments."
+  },
+  {
+   "id": "01-terminal-ch13-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "brew شغال في تابة ومش شغال في التانية.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "غالباً السطر في ملف بيتقري في حالة واحدة بس، أو تابة اتفتحت قبل التعديل، فأحطه في ~/.zprofile وأفتح تابة جديدة",
+     "why": "صح."
+    },
+    {
+     "text": "brew اتمسح",
+     "why": "لو اتمسح مش هيشتغل في أي تابة."
+    },
+    {
+     "text": "الماك محتاج restart",
+     "why": "مش ضروري."
+    },
+    {
+     "text": "أعمل alias brew",
+     "why": "حل ترقيعي."
+    }
+   ],
+   "correct": 0,
+   "explanation": "افهم مين بيقرا إيه وإمتى."
+  },
+  {
+   "id": "01-terminal-ch13-11",
+   "type": "command",
+   "level": "think",
+   "prompt": "اقرا الـ GitHub token من Keychain الماك وحطه في متغير بيئة.",
+   "accepted": [
+    "export GITHUB_TOKEN=\"$(security find-generic-password -s github-token -w)\"",
+    "export GITHUB_TOKEN=$(security find-generic-password -s github-token -w)"
+   ],
+   "hint": "security find-generic-password مع -s و -w.",
+   "explanation": "الأسرار متتكتبش في .zshrc نص صريح."
+  },
+  {
+   "id": "01-terminal-ch13-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في zsh، `%~` في الـ PROMPT معناها إيه؟",
+   "options": [
+    {
+     "text": "المجلد الحالي و ~ بدل الـ home",
+     "why": "صح."
+    },
+    {
+     "text": "اسم المستخدم",
+     "why": "ده %n."
+    },
+    {
+     "text": "اسم الجهاز",
+     "why": "ده %m."
+    },
+    {
+     "text": "علامة root",
+     "why": "ده %#."
+    }
+   ],
+   "correct": 0,
+   "explanation": "وفي bash نفس الفكرة بـ \\w في PS1."
+  }
+ ]
+}

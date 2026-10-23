@@ -1,0 +1,233 @@
+{
+ "book": "02-git",
+ "chapter": 9,
+ "chapterFile": "ch09",
+ "title": "GitHub والـ Remotes والدخول بأمان",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "02-git-ch09-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "يعني إيه origin؟",
+   "options": [
+    {
+     "text": "اسم مختصر لرابط الـ Remote، وتقدر تغيره",
+     "why": "صح."
+    },
+    {
+     "text": "اسم محجوز ومينفعش يتغير",
+     "why": "ده من الصح ولا غلط، غلط."
+    },
+    {
+     "text": "الـ Branch الأساسي",
+     "why": "ده main."
+    },
+    {
+     "text": "اسم حسابك",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "git remote rename origin old."
+  },
+  {
+   "id": "02-git-ch09-02",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض الـ Remotes وروابطهم.",
+   "accepted": [
+    "git remote -v"
+   ],
+   "hint": "verbose.",
+   "explanation": "fetch و push."
+  },
+  {
+   "id": "02-git-ch09-03",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اربط المشروع بـ Repo على GitHub برابط SSH git@github.com:sara/portfolio.git.",
+   "accepted": [
+    "git remote add origin git@github.com:sara/portfolio.git"
+   ],
+   "hint": "remote add.",
+   "explanation": "بعدها git push -u origin main."
+  },
+  {
+   "id": "02-git-ch09-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اختبر إن مفتاح SSH شغال مع GitHub.",
+   "accepted": [
+    "ssh -T git@github.com"
+   ],
+   "hint": "ssh -T.",
+   "explanation": "\"does not provide shell access\" يعني نجح."
+  },
+  {
+   "id": "02-git-ch09-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ssh -T قالك \"Hi sara! You've successfully authenticated, but GitHub does not provide shell access\". فيه مشكلة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ده معناه نجح."
+    },
+    {
+     "text": "لأ، ده نجاح",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "GitHub مبيدّيش Shell، بس المصادقة تمام."
+  },
+  {
+   "id": "02-git-ch09-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "أنهي مفتاح بتحطه على GitHub؟",
+   "options": [
+    {
+     "text": "id_ed25519.pub",
+     "why": "صح، العام."
+    },
+    {
+     "text": "id_ed25519",
+     "why": "الخاص، متطلعوش أبداً."
+    },
+    {
+     "text": "الاتنين",
+     "why": "لأ."
+    },
+    {
+     "text": "الباسورد",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الخاص سر زي الباسورد."
+  },
+  {
+   "id": "02-git-ch09-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ليه الباسورد العادي مبقاش ينفع مع git push على HTTPS؟",
+   "options": [
+    {
+     "text": "GitHub وقف Password authentication من 2021، ولازم Token أو gh أو SSH",
+     "why": "صح."
+    },
+    {
+     "text": "علشان الباسورد قصير",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان Git قديم",
+     "why": "لأ."
+    },
+    {
+     "text": "بينفع عادي",
+     "why": "مبقاش."
+    }
+   ],
+   "correct": 0,
+   "explanation": "gh auth login أسهل طريق."
+  },
+  {
+   "id": "02-git-ch09-08",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات إعداد SSH مع GitHub:",
+   "items": [
+    "ssh-keygen -t ed25519 -C \"email\"",
+    "ssh-add المفتاح (و --apple-use-keychain على الماك)",
+    "انسخ الـ .pub وضيفه في GitHub Settings",
+    "ssh -T git@github.com"
+   ],
+   "explanation": "بعدها روابط git@github.com هتشتغل."
+  },
+  {
+   "id": "02-git-ch09-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "git push طلع `Permission denied (publickey)`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أتأكد إن المفتاح اتضاف لـ ssh-agent والـ .pub على GitHub، وأجرب ssh -T",
+     "why": "صح."
+    },
+    {
+     "text": "أعمل chmod 777",
+     "why": "هيبوظ أكتر."
+    },
+    {
+     "text": "أغيّر الـ Repo لـ Public",
+     "why": "مالوش علاقة."
+    },
+    {
+     "text": "أمسح .git",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ssh -vT بيوريك التفاصيل."
+  },
+  {
+   "id": "02-git-ch09-10",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تغيّر رابط origin لرابط جديد:",
+   "template": "git remote ___ origin git@github.com:sara/new.git",
+   "blanks": [
+    [
+     "set-url"
+    ]
+   ],
+   "hint": "set + url.",
+   "explanation": "مفيد لما تغيّر اسم الـ Repo أو تنقل من HTTPS لـ SSH."
+  },
+  {
+   "id": "02-git-ch09-11",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "زميلك طلب منك ترسله الـ Token في Chat علشان يجرب.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أرفض، الـ Token سر، وكل واحد يعمل Token بتاعه",
+     "why": "صح."
+    },
+    {
+     "text": "أبعته وأمسحه بعدين",
+     "why": "اتسرّب خلاص."
+    },
+    {
+     "text": "أبعته في صورة",
+     "why": "نفس الخطر."
+    },
+    {
+     "text": "أحطه في README",
+     "why": "أسوأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مفيش Commit ولا لصق في Chat."
+  },
+  {
+   "id": "02-git-ch09-12",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل علشان Git على الماك يستخدم الـ Keychain يفتكر الـ Token:",
+   "template": "git config --global credential.helper ___",
+   "blanks": [
+    [
+     "osxkeychain"
+    ]
+   ],
+   "hint": "macOS keychain.",
+   "explanation": "أو gh auth login."
+  }
+ ]
+}

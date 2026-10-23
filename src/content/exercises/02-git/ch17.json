@@ -1,0 +1,255 @@
+{
+ "book": "02-git",
+ "chapter": 17,
+ "chapterFile": "ch17",
+ "title": "GitHub كمنصة: README و Pages و Actions و gh",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "02-git-ch17-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "في Markdown، إزاي تعمل لينك؟",
+   "options": [
+    {
+     "text": "`[text](url)`",
+     "why": "صح."
+    },
+    {
+     "text": "`(text)[url]`",
+     "why": "معكوسة."
+    },
+    {
+     "text": "`<link>text`",
+     "why": "لأ."
+    },
+    {
+     "text": "`![text](url)`",
+     "why": "ده صورة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "![]() صورة، و []() لينك."
+  },
+  {
+   "id": "02-git-ch17-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "GitHub Pages ينفع يشغّل Backend بـ Express؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "Pages مواقع ثابتة بس."
+    },
+    {
+     "text": "لأ، Static files بس (HTML/CSS/JS)",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "للـ Backend محتاج Hosting تاني."
+  },
+  {
+   "id": "02-git-ch17-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "مشروعك على Pages في /bankist/، وفيه `href=\"/style.css\"`. هيشتغل؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "هيدوّر في جذر الدومين."
+    },
+    {
+     "text": "لأ، هيدوّر على username.github.io/style.css، فاستخدم مسار نسبي `style.css`",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الموقع شغال بس الـ CSS مش ظاهر."
+  },
+  {
+   "id": "02-git-ch17-04",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "مشروع Vite على Pages باسم bankist. كمّل الإعداد في vite.config:",
+   "template": "base: \"___\"",
+   "blanks": [
+    [
+     "/bankist/"
+    ]
+   ],
+   "hint": "اسم الـ Repo بين /.",
+   "explanation": "من غيره الـ assets مش هتتحمل."
+  },
+  {
+   "id": "02-git-ch17-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في GitHub Actions، كل Job بيشتغل فين؟",
+   "options": [
+    {
+     "text": "على جهاز (Runner) جديد ونضيف",
+     "why": "صح."
+    },
+    {
+     "text": "على جهازك",
+     "why": "لأ."
+    },
+    {
+     "text": "على نفس الجهاز لكل الـ Jobs",
+     "why": "كل Job جهاز."
+    },
+    {
+     "text": "على GitHub Pages",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان كده needs ونقل artifacts."
+  },
+  {
+   "id": "02-git-ch17-06",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أجزاء ملف Workflow:",
+   "items": [
+    "name",
+    "on (الحدث زي push)",
+    "jobs",
+    "steps (uses أو run)"
+   ],
+   "explanation": "أي Exit code غير صفر = فشل."
+  },
+  {
+   "id": "02-git-ch17-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل Repo عام على GitHub من المشروع الحالي واربطه وارفعه بـ gh.",
+   "accepted": [
+    "gh repo create bankist --public --source=. --remote=origin --push",
+    "gh repo create bankist --public --source . --push",
+    "gh repo create bankist --public --source=. --push"
+   ],
+   "hint": "--public --source=. --push.",
+   "explanation": "gh = GitHub من الـ Terminal."
+  },
+  {
+   "id": "02-git-ch17-08",
+   "type": "command",
+   "level": "medium",
+   "prompt": "افتح PR من الـ Branch الحالي على main وخلّي gh يملا العنوان والوصف.",
+   "accepted": [
+    "gh pr create --fill --base main",
+    "gh pr create --fill"
+   ],
+   "hint": "--fill.",
+   "explanation": "gh pr checkout 12 تجيب PR حد تاني."
+  },
+  {
+   "id": "02-git-ch17-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الموقع اتنشر على Pages بس الصور والـ CSS مش ظاهرين.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أراجع المسارات: أخليها نسبية، أو أظبط base في Vite",
+     "why": "صح."
+    },
+    {
+     "text": "أعيد إنشاء الـ Repo",
+     "why": "مش المشكلة."
+    },
+    {
+     "text": "أخلي الـ Repo Private",
+     "why": "Pages المجاني محتاج Public."
+    },
+    {
+     "text": "أشيل الصور",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أشهر مشكلة مع Pages."
+  },
+  {
+   "id": "02-git-ch17-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "الـ Workflow محتاج API key علشان الـ Build.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أحطه في Repository Secrets وأستخدمه بـ `${{ secrets.NAME }}`",
+     "why": "صح."
+    },
+    {
+     "text": "أكتبه في ملف الـ YAML",
+     "why": "هيتسرّب."
+    },
+    {
+     "text": "أحطه في README",
+     "why": "أسوأ."
+    },
+    {
+     "text": "أعمل Commit لـ .env",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الأسرار في Actions."
+  },
+  {
+   "id": "02-git-ch17-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في YAML، إيه أهم قاعدة؟",
+   "options": [
+    {
+     "text": "المسافات (Indentation) هي اللي بتحدد الهيكل، ومن غير Tabs",
+     "why": "صح."
+    },
+    {
+     "text": "الأقواس المعووجة إجبارية",
+     "why": "لأ."
+    },
+    {
+     "text": "كل سطر بـ ;",
+     "why": "لأ."
+    },
+    {
+     "text": "الحروف مش حساسة",
+     "why": "حساسة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "\"YAML في سطرين\"."
+  },
+  {
+   "id": "02-git-ch17-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه الـ deploy Job في Workflow الـ Vite فيه `needs: build`؟",
+   "options": [
+    {
+     "text": "علشان ميبدأش غير لما الـ Build يخلص وينجح، لأن كل Job جهاز منفصل",
+     "why": "صح."
+    },
+    {
+     "text": "علشان يشتغلوا مع بعض",
+     "why": "needs بيرتبهم."
+    },
+    {
+     "text": "مش ضروري",
+     "why": "من غيره ممكن يشتغلوا بالتوازي."
+    },
+    {
+     "text": "علشان السرعة",
+     "why": "العكس."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الترتيب بين الـ Jobs."
+  }
+ ]
+}

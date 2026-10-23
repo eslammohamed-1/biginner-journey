@@ -1,0 +1,259 @@
+{
+ "book": "03-web",
+ "chapter": 8,
+ "chapterFile": "ch08",
+ "title": "الـ Status Codes: السيرفر بيقولك إيه بالأرقام",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "03-web-ch08-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Status code اللي بيبدأ بـ 4 معناه إيه؟",
+   "options": [
+    {
+     "text": "المشكلة في طلبك (Client)",
+     "why": "صح."
+    },
+    {
+     "text": "السيرفر وقع",
+     "why": "ده 5."
+    },
+    {
+     "text": "نجاح",
+     "why": "ده 2."
+    },
+    {
+     "text": "تحويل",
+     "why": "ده 3."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أول رقم = الفئة."
+  },
+  {
+   "id": "03-web-ch08-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الفرق بين 401 و 403؟",
+   "options": [
+    {
+     "text": "401 = مين انت؟ (محتاج Login)، و 403 = عارفك بس مش مسموحلك",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "مختلفين."
+    },
+    {
+     "text": "403 = Login",
+     "why": "العكس."
+    },
+    {
+     "text": "401 = مش موجود",
+     "why": "ده 404."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مثال الفندق."
+  },
+  {
+   "id": "03-web-ch08-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "304 معناه إن الصفحة اتنقلت؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "304 مش تحويل."
+    },
+    {
+     "text": "لأ، معناه \"متغيرتش، استخدم نسختك في الكاش\"",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "301/308 نهائي، و 302/307 مؤقت."
+  },
+  {
+   "id": "03-web-ch08-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "جالك 204. تعمل `await res.json()`؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مفيش Body."
+    },
+    {
+     "text": "لأ، 204 من غير Body فـ .json() هيرمي خطأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "201 بعد الإنشاء ومعاه Location."
+  },
+  {
+   "id": "03-web-ch08-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "502 Bad Gateway غالباً جاي من مين؟",
+   "options": [
+    {
+     "text": "من الـ Proxy أو Load balancer اللي قدام التطبيق",
+     "why": "صح، مش من التطبيق نفسه."
+    },
+    {
+     "text": "من المتصفح",
+     "why": "لأ."
+    },
+    {
+     "text": "من الـ DNS",
+     "why": "لأ."
+    },
+    {
+     "text": "من كودك في الـ Frontend",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "500 من التطبيق، و 502/504 من اللي قدامه."
+  },
+  {
+   "id": "03-web-ch08-06",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اطلع الـ Status code بس لـ https://httpbin.org/status/404.",
+   "accepted": [
+    "curl -s -o /dev/null -w '%{http_code}\\n' https://httpbin.org/status/404",
+    "curl -s -o /dev/null -w \"%{http_code}\" https://httpbin.org/status/404",
+    "curl -so /dev/null -w '%{http_code}' https://httpbin.org/status/404",
+    "curl -s -o /dev/null -w '%{http_code}' https://httpbin.org/status/404"
+   ],
+   "hint": "-o /dev/null و -w.",
+   "explanation": "مفيد في الـ Scripts."
+  },
+  {
+   "id": "03-web-ch08-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اتبع التحويلات واعرض الـ Headers بس لـ https://httpbin.org/redirect/2.",
+   "accepted": [
+    "curl -sIL https://httpbin.org/redirect/2",
+    "curl -IL https://httpbin.org/redirect/2",
+    "curl -s -I -L https://httpbin.org/redirect/2",
+    "curl -LI https://httpbin.org/redirect/2"
+   ],
+   "hint": "-I و -L.",
+   "explanation": "curl مبيتبعش التحويلات لوحده."
+  },
+  {
+   "id": "03-web-ch08-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ API بيرجعلك 429.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "بعتّ طلبات كتير، فأبطّأ وأشوف Retry-After",
+     "why": "صح."
+    },
+    {
+     "text": "أعمل Login تاني",
+     "why": "مش المشكلة."
+    },
+    {
+     "text": "السيرفر واقع",
+     "why": "لأ."
+    },
+    {
+     "text": "أبعت أسرع",
+     "why": "هيزود."
+    }
+   ],
+   "correct": 0,
+   "explanation": "429 Too Many Requests."
+  },
+  {
+   "id": "03-web-ch08-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "جالك 403 على Endpoint، وانت عامل Login.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "مش مسألة Login، حسابك معندوش صلاحية، فأتأكد من الـ Role أو الـ Scope",
+     "why": "صح."
+    },
+    {
+     "text": "أعمل Login تاني",
+     "why": "403 مش 401."
+    },
+    {
+     "text": "أمسح الكاش",
+     "why": "لأ."
+    },
+    {
+     "text": "أغيّر الـ Method",
+     "why": "ممكن يطلع 405."
+    }
+   ],
+   "correct": 0,
+   "explanation": "403 = صلاحية."
+  },
+  {
+   "id": "03-web-ch08-10",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: بعد إنشاء Resource بنجاح، الكود المناسب:",
+   "template": "HTTP/1.1 ___ Created",
+   "blanks": [
+    [
+     "201"
+    ]
+   ],
+   "hint": "2xx خاص بالإنشاء.",
+   "explanation": "ومعاه Location."
+  },
+  {
+   "id": "03-web-ch08-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب الفئات:",
+   "items": [
+    "1xx معلومة",
+    "2xx نجاح",
+    "3xx تحويل",
+    "4xx غلطة الـ Client",
+    "5xx غلطة السيرفر"
+   ],
+   "explanation": "أول سؤال في أي Debugging: الرقم كام؟"
+  },
+  {
+   "id": "03-web-ch08-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "غيّرت Redirect من 301 لـ 302 والناس لسه بتتحول للعنوان القديم. ليه؟",
+   "options": [
+    {
+     "text": "المتصفحات بتكاش الـ 301 جامد لأنه نهائي",
+     "why": "صح."
+    },
+    {
+     "text": "302 مش شغال",
+     "why": "شغال."
+    },
+    {
+     "text": "الـ DNS",
+     "why": "لأ."
+    },
+    {
+     "text": "السيرفر واقع",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خلي بالك: الـ 301 بيتكاش جامد."
+  }
+ ]
+}

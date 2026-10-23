@@ -1,0 +1,248 @@
+{
+ "book": "03-web",
+ "chapter": 1,
+ "chapterFile": "ch01",
+ "title": "الحكاية من الأول: الإنترنت اتولد ليه؟",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "03-web-ch01-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الإنترنت والويب اسمين لنفس الحاجة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الويب خدمة فوق الإنترنت."
+    },
+    {
+     "text": "لأ، الإنترنت هو الشبكة، والويب (HTML و URL و HTTP) خدمة فوقها",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الإيميل والألعاب كمان ماشيين على الإنترنت ومش ويب."
+  },
+  {
+   "id": "03-web-ch01-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "فكرة Packet switching معناها إيه؟",
+   "options": [
+    {
+     "text": "الرسالة بتتقطع لحتت، وكل حتة تمشي لوحدها وتتجمع في الآخر",
+     "why": "صح."
+    },
+    {
+     "text": "خط ثابت محجوز طول المكالمة",
+     "why": "ده Circuit switching بتاع التليفونات."
+    },
+    {
+     "text": "كل الرسايل بتعدي من سيرفر واحد",
+     "why": "الفكرة إن مفيش نقطة واحدة."
+    },
+    {
+     "text": "ضغط الرسالة",
+     "why": "مالوش علاقة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "وده بيخلي الشبكة تستحمل لو جزء منها وقع."
+  },
+  {
+   "id": "03-web-ch01-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في Packet switching، كل الـ Packets بتاعة رسالة واحدة لازم تمشي في نفس الطريق؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "كل Packet ممكن تاخد طريق."
+    },
+    {
+     "text": "لأ، كل واحدة ممكن تمشي في طريق مختلف",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "وبتتجمع بالترتيب عند الوصول (ده شغل TCP)."
+  },
+  {
+   "id": "03-web-ch01-04",
+   "type": "mcq",
+   "level": "easy",
+   "question": "يعني إيه Protocol؟",
+   "options": [
+    {
+     "text": "اتفاق على شكل الكلام وترتيبه بين طرفين",
+     "why": "صح."
+    },
+    {
+     "text": "برنامج",
+     "why": "الـ Protocol قواعد، البرامج بتطبقها."
+    },
+    {
+     "text": "جهاز",
+     "why": "لأ."
+    },
+    {
+     "text": "لغة برمجة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "HTTP و DNS و TCP كلهم Protocols."
+  },
+  {
+   "id": "03-web-ch01-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "مين بيبدأ الكلام في علاقة Client/Server؟",
+   "options": [
+    {
+     "text": "الـ Client بيبعت طلب، والـ Server مستني يرد",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Server بيبعت لوحده",
+     "why": "في الأساس الـ Client هو اللي بيبدأ."
+    },
+    {
+     "text": "الاتنين مع بعض",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Router",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "المتصفح Client، والموقع Server."
+  },
+  {
+   "id": "03-web-ch01-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Server لازم يبقى جهاز خاص غالي في Data center؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "أي جهاز بيشغّل برنامج مستني طلبات يبقى Server."
+    },
+    {
+     "text": "لأ، اللابتوب بتاعك بيبقى Server أول ما تشغّل مشروعك على localhost",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ Server برنامج قبل ما يبقى جهاز."
+  },
+  {
+   "id": "03-web-ch01-07",
+   "type": "mcq",
+   "level": "easy",
+   "question": "قواعد الإنترنت مكتوبة فين؟",
+   "options": [
+    {
+     "text": "في وثايق اسمها RFCs",
+     "why": "صح."
+    },
+    {
+     "text": "في كود Chrome",
+     "why": "Chrome بيطبقها."
+    },
+    {
+     "text": "في Wikipedia",
+     "why": "لأ."
+    },
+    {
+     "text": "محدش كاتبها",
+     "why": "مكتوبة ومنشورة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "زي RFC 9110 لـ HTTP."
+  },
+  {
+   "id": "03-web-ch01-08",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب التاريخ:",
+   "items": [
+    "كمبيوترات منفصلة (جزر)",
+    "ARPANET و Packet switching",
+    "TCP/IP لغة واحدة لكل الشبكات",
+    "الويب (HTML و HTTP و URL)"
+   ],
+   "explanation": "الويب جه متأخر فوق الإنترنت."
+  },
+  {
+   "id": "03-web-ch01-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "صاحبك بيقولك \"الإنترنت عندي شغال بس الويب لأ، الواتساب شغال والمواقع مش بتفتح\". ده منطقي؟",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أيوه، ممكن الشبكة شغالة بس فيه مشكلة في DNS أو المتصفح، لأن الويب خدمة فوق الإنترنت",
+     "why": "صح."
+    },
+    {
+     "text": "مستحيل",
+     "why": "ممكن جداً."
+    },
+    {
+     "text": "يبقى الراوتر بايظ أكيد",
+     "why": "لو بايظ الواتساب مش هيشتغل."
+    },
+    {
+     "text": "يبقى الماك بايظ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "فهم الطبقات بيساعدك تشخّص."
+  },
+  {
+   "id": "03-web-ch01-10",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: الإنترنت = شبكة الـ ___.",
+   "template": "Internet = network of ___",
+   "blanks": [
+    [
+     "networks",
+     "الشبكات"
+    ]
+   ],
+   "hint": "شبكة من شبكات.",
+   "explanation": "TCP/IP خلّى كل الشبكات تكلم بعض."
+  },
+  {
+   "id": "03-web-ch01-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه فهم الشبكة يفرق معاك كمبرمج JavaScript؟",
+   "options": [
+    {
+     "text": "علشان fetch و CORS والكاش والكوكيز كلها قواعد شبكة، ولما حاجة تبوظ لازم تعرف المشكلة في أنهي طبقة",
+     "why": "صح."
+    },
+    {
+     "text": "مش بيفرق",
+     "why": "بيفرق في كل Bug شبكة."
+    },
+    {
+     "text": "علشان تكتب Routers",
+     "why": "مش شغلتك."
+    },
+    {
+     "text": "علشان الـ CSS",
+     "why": "مالهاش علاقة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "\"طب وأنا كمبرمج JavaScript، ده يفرق معايا في إيه؟\"."
+  }
+ ]
+}

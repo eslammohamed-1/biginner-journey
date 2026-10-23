@@ -1,0 +1,29 @@
+---
+import HomeGrid from './HomeGrid';
+import { loadCatalog } from '../lib/catalog';
+
+const { books } = await loadCatalog();
+const base = import.meta.env.BASE_URL;
+---
+
+<div class="home-intro">
+	<p class="home-tagline">كتب المسارات الجانبية</p>
+	<p class="study-order">
+		الترتيب مهم. ابدأ من الكتاب 01 وكمّل بالترتيب لحد 08، لأن كل كتاب بيبني على اللي قبله.
+	</p>
+	<p>
+		<a class="start-link" href={`${base}01-terminal/`}>ابدأ بالكتاب الأول</a>
+	</p>
+</div>
+<HomeGrid
+	client:load
+	base={base}
+	books={books.map((book) => ({
+		number: book.number,
+		slug: book.slug,
+		title: book.title,
+		subtitle: book.subtitle,
+		description: book.description,
+		chapters: book.chapters,
+	}))}
+/>

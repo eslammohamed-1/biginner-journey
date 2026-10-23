@@ -1,0 +1,232 @@
+{
+ "book": "02-git",
+ "chapter": 14,
+ "chapterFile": "ch14",
+ "title": "الـ Stash والـ Tags والـ Releases",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "02-git-ch14-01",
+   "type": "command",
+   "level": "medium",
+   "prompt": "خبّي كل تعديلاتك حتى الملفات الجديدة برسالة \"wip: navbar dropdown\".",
+   "accepted": [
+    "git stash push -u -m \"wip: navbar dropdown\"",
+    "git stash -u -m \"wip: navbar dropdown\"",
+    "git stash push --include-untracked -m \"wip: navbar dropdown\""
+   ],
+   "hint": "push مع -u و -m.",
+   "explanation": "من غير -u الملفات الجديدة مش هتتخبى."
+  },
+  {
+   "id": "02-git-ch14-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إيه الفرق بين stash pop و stash apply؟",
+   "options": [
+    {
+     "text": "pop يرجّع ويمسح من القائمة، و apply يرجّع ويسيبه",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "مختلفين."
+    },
+    {
+     "text": "apply بيمسح",
+     "why": "العكس."
+    },
+    {
+     "text": "pop للملفات الجديدة بس",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "لو pop عمل Conflict الـ Stash مبيتمسحش."
+  },
+  {
+   "id": "02-git-ch14-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "git push العادي بيبعت الـ Tags؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الـ Tags لازم تتبعت لوحدها."
+    },
+    {
+     "text": "لأ، لازم `git push origin v1.0.0` أو --tags أو --follow-tags",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ Tag لافتة ثابتة."
+  },
+  {
+   "id": "02-git-ch14-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل Annotated tag v1.0.0 برسالة \"First public release\".",
+   "accepted": [
+    "git tag -a v1.0.0 -m \"First public release\""
+   ],
+   "hint": "-a و -m.",
+   "explanation": "Annotated للإصدارات."
+  },
+  {
+   "id": "02-git-ch14-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "ابعت Tag v1.0.0 لـ GitHub.",
+   "accepted": [
+    "git push origin v1.0.0",
+    "git push origin tag v1.0.0"
+   ],
+   "hint": "push origin tag.",
+   "explanation": "--tags يبعت الكل."
+  },
+  {
+   "id": "02-git-ch14-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "مكتبة طلعت من 2.4.1 لـ 3.0.0. ده معناه إيه غالباً؟",
+   "options": [
+    {
+     "text": "فيه تغيير بيكسر (Breaking change)",
+     "why": "صح، MAJOR."
+    },
+    {
+     "text": "إصلاح بسيط",
+     "why": "ده PATCH."
+    },
+    {
+     "text": "ميزة جديدة متوافقة",
+     "why": "ده MINOR."
+    },
+    {
+     "text": "مفيش فرق",
+     "why": "فيه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "MAJOR.MINOR.PATCH."
+  },
+  {
+   "id": "02-git-ch14-07",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب أجزاء SemVer:",
+   "items": [
+    "MAJOR",
+    "MINOR",
+    "PATCH"
+   ],
+   "explanation": "3.2.1: MAJOR=3."
+  },
+  {
+   "id": "02-git-ch14-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "أصلحت Bug في v1.4.2. الإصدار الجاي:",
+   "template": "v1.4.___",
+   "blanks": [
+    [
+     "3"
+    ]
+   ],
+   "hint": "PATCH بيزيد.",
+   "explanation": "لو ضفت ميزة: v1.5.0."
+  },
+  {
+   "id": "02-git-ch14-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عملت stash pop وحصل Conflict.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أحل الـ Conflict وأعمل add، والـ Stash لسه في القائمة فأمسحه بـ drop بعد ما أتأكد",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Stash ضاع",
+     "why": "مبيتمسحش في الـ Conflict."
+    },
+    {
+     "text": "أعمل reset --hard",
+     "why": "هتخسر الحل."
+    },
+    {
+     "text": "أعمل stash تاني",
+     "why": "هيلخبط."
+    }
+   ],
+   "correct": 0,
+   "explanation": "stash list تتأكد."
+  },
+  {
+   "id": "02-git-ch14-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "مديرك طلب Bug fix عاجل وانت في نص ميزة ومش جاهز تعمل Commit.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "git stash push -u وأروح main أصلّح، وبعدين أرجع وأعمل pop",
+     "why": "صح."
+    },
+    {
+     "text": "أعمل Commit \"wip\" على main",
+     "why": "بيوسّخ main."
+    },
+    {
+     "text": "أمسح شغلي",
+     "why": "لأ."
+    },
+    {
+     "text": "أنسخ الفولدر",
+     "why": "مش لازم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Stash مش مكان تخزين طويل."
+  },
+  {
+   "id": "02-git-ch14-11",
+   "type": "command",
+   "level": "think",
+   "prompt": "اعمل Release على GitHub لـ v1.0.0 بـ Notes أوتوماتيك من الـ Terminal.",
+   "accepted": [
+    "gh release create v1.0.0 --generate-notes"
+   ],
+   "hint": "gh release create.",
+   "explanation": "Release = Tag + صفحة و Notes."
+  },
+  {
+   "id": "02-git-ch14-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه \"الـ Stash مش مكان تخزين\"؟",
+   "options": [
+    {
+     "text": "لأنه محلي ومن غير اسم Branch وسهل تنساه أو تمسحه، فللشغل الطويل اعمل Branch",
+     "why": "صح."
+    },
+    {
+     "text": "لأنه بيتمسح بعد ساعة",
+     "why": "لأ."
+    },
+    {
+     "text": "لأنه بيتبعت لـ GitHub",
+     "why": "مبيتبعتش."
+    },
+    {
+     "text": "لأنه بطيء",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "git stash branch name يحوّله لـ Branch."
+  }
+ ]
+}

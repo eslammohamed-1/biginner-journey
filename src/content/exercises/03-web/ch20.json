@@ -1,0 +1,264 @@
+{
+ "book": "03-web",
+ "chapter": 20,
+ "chapterFile": "ch20",
+ "title": "الـ Console: تقرا الأخطاء وتكلم الصفحة",
+ "count": 13,
+ "exercises": [
+  {
+   "id": "03-web-ch20-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "أنهي مستوى رسايل مخفي افتراضياً في Console؟",
+   "options": [
+    {
+     "text": "Verbose",
+     "why": "صح."
+    },
+    {
+     "text": "Errors",
+     "why": "ظاهر."
+    },
+    {
+     "text": "Warnings",
+     "why": "ظاهر."
+    },
+    {
+     "text": "Info",
+     "why": "ظاهر."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Default levels ▾."
+  },
+  {
+   "id": "03-web-ch20-02",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض Array من Objects في جدول في Console (المتغير users).",
+   "accepted": [
+    "console.table(users)"
+   ],
+   "hint": "console + table.",
+   "explanation": "أوضح من log."
+  },
+  {
+   "id": "03-web-ch20-03",
+   "type": "command",
+   "level": "medium",
+   "prompt": "قيس وقت عملية بين نقطتين باسم \"load\".",
+   "accepted": [
+    "console.time(\"load\"); console.timeEnd(\"load\")",
+    "console.time('load'); console.timeEnd('load')"
+   ],
+   "hint": "time و timeEnd بنفس الاسم.",
+   "explanation": "مفيد للأداء."
+  },
+  {
+   "id": "03-web-ch20-04",
+   "type": "command",
+   "level": "easy",
+   "prompt": "انسخ الـ Object اللي في المتغير data للـ Clipboard من Console.",
+   "accepted": [
+    "copy(data)"
+   ],
+   "hint": "دالة خاصة بالـ Console.",
+   "explanation": "copy() أداة يومية."
+  },
+  {
+   "id": "03-web-ch20-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في الـ Stack trace، أول سطر تحت الرسالة إيه؟",
+   "options": [
+    {
+     "text": "المكان اللي الخطأ حصل فيه",
+     "why": "صح."
+    },
+    {
+     "text": "أول دالة اتنادت",
+     "why": "دي في الآخر."
+    },
+    {
+     "text": "ملف الـ HTML",
+     "why": "لأ."
+    },
+    {
+     "text": "مالوش معنى",
+     "why": "ليه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "والباقي = مين نده على مين."
+  },
+  {
+   "id": "03-web-ch20-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`net::ERR_CONNECTION_REFUSED` معناه السيرفر رد 403؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مفيش رد HTTP."
+    },
+    {
+     "text": "لأ، مفيش برنامج سامع على البورت ده",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "net::ERR_* = مفيش رد HTTP."
+  },
+  {
+   "id": "03-web-ch20-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "fetch بيعمل Reject لو السيرفر رد 404؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لأ."
+    },
+    {
+     "text": "لأ، شيك على res.ok",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ودي اتكررت كتير علشان مهمة."
+  },
+  {
+   "id": "03-web-ch20-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عملت console.log(obj) وبعدين غيّرت obj، ولما فتحت الـ Object في Console لقيت القيم الجديدة.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ Object بيتقري لما تفتحه، فأستخدم JSON.stringify أو structuredClone وقت اللوج",
+     "why": "صح."
+    },
+    {
+     "text": "Console بايظ",
+     "why": "ده سلوك معروف."
+    },
+    {
+     "text": "الكود اتنفذ مرتين",
+     "why": "لأ."
+    },
+    {
+     "text": "الكاش",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خلي بالك: الـ Object في اللوج بيتغير."
+  },
+  {
+   "id": "03-web-ch20-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ Console فيه 30 خطأ أحمر.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أبدأ بأول خطأ، لأن الباقي غالباً نتيجته",
+     "why": "صح."
+    },
+    {
+     "text": "آخر واحد",
+     "why": "مش دايماً."
+    },
+    {
+     "text": "أتجاهلهم",
+     "why": "لأ."
+    },
+    {
+     "text": "أمسح الـ Console",
+     "why": "هتخسر المعلومة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الخطأ الأول هو المهم."
+  },
+  {
+   "id": "03-web-ch20-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "حد بعتلك كود وقالك \"الزقه في Console وهتاخد هدية\".",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أرفض، ده Self-XSS، الكود هيشتغل بصلاحياتك على الموقع",
+     "why": "صح."
+    },
+    {
+     "text": "ألزقه",
+     "why": "خطر."
+    },
+    {
+     "text": "ألزقه في Incognito",
+     "why": "برضه خطر لو عامل Login."
+    },
+    {
+     "text": "أعدّله وألزقه",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Chrome بيحذرك وتكتب allow pasting."
+  },
+  {
+   "id": "03-web-ch20-11",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تجيب كل الروابط في الصفحة في Console:",
+   "template": "___('a')",
+   "blanks": [
+    [
+     "$$"
+    ]
+   ],
+   "hint": "زي querySelectorAll.",
+   "explanation": "$ واحد = querySelector."
+  },
+  {
+   "id": "03-web-ch20-12",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب كتالوج الأخطاء من \"السيرفر رد\" لـ \"مفيش رد\":",
+   "items": [
+    "500 (السيرفر رد بخطأ)",
+    "CORS error (السيرفر رد والمتصفح منع القراية)",
+    "net::ERR_CONNECTION_REFUSED (مفيش رد خالص)"
+   ],
+   "explanation": "الاسم بيقولك المحطة."
+  },
+  {
+   "id": "03-web-ch20-13",
+   "type": "mcq",
+   "level": "think",
+   "question": "`net::ERR_NAME_NOT_RESOLVED` بيقولك المشكلة في أنهي محطة؟",
+   "options": [
+    {
+     "text": "DNS",
+     "why": "صح."
+    },
+    {
+     "text": "TCP",
+     "why": "ده REFUSED أو TIMED_OUT."
+    },
+    {
+     "text": "TLS",
+     "why": "ده ERR_CERT أو SSL."
+    },
+    {
+     "text": "السيرفر",
+     "why": "مفيش وصول للسيرفر."
+    }
+   ],
+   "correct": 0,
+   "explanation": "نفس المحطات، نفس الأدوات."
+  }
+ ]
+}

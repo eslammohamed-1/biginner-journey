@@ -1,0 +1,243 @@
+{
+ "book": "02-git",
+ "chapter": 11,
+ "chapterFile": "ch11",
+ "title": "التعاون: Pull Requests و Forks و Issues",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "02-git-ch11-01",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات الـ Pull Request:",
+   "items": [
+    "git switch -c feature",
+    "Commits",
+    "git push -u origin feature",
+    "Open PR على GitHub",
+    "Review",
+    "Merge",
+    "امسح الـ Branch ونضّف"
+   ],
+   "explanation": "PR = Branch + طلب دمج + صفحة مراجعة."
+  },
+  {
+   "id": "02-git-ch11-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "المراجع طلب تعديلات. تقفل الـ PR وتفتح واحد جديد؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مش لازم."
+    },
+    {
+     "text": "لأ، تعمل Commits جديدة على نفس الـ Branch وتعمل push، والـ PR بيتحدث لوحده",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ PR مربوط بالـ Branch."
+  },
+  {
+   "id": "02-git-ch11-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إيه الفرق بين Fork و clone؟",
+   "options": [
+    {
+     "text": "Fork نسخة على GitHub في حسابك، و clone نسخة على جهازك",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "مختلفين."
+    },
+    {
+     "text": "Fork على جهازك",
+     "why": "لأ، على GitHub."
+    },
+    {
+     "text": "clone بيعمل حساب",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "غالباً بتعمل Fork وبعدين clone للـ Fork."
+  },
+  {
+   "id": "02-git-ch11-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ضيف الـ Repo الأصلي https://github.com/jonas/bankist.git كـ Remote اسمه upstream.",
+   "accepted": [
+    "git remote add upstream https://github.com/jonas/bankist.git"
+   ],
+   "hint": "remote add.",
+   "explanation": "origin = الـ Fork، و upstream = الأصلي."
+  },
+  {
+   "id": "02-git-ch11-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "\"Squash and merge\" بيعمل إيه؟",
+   "options": [
+    {
+     "text": "بيجمّع كل Commits الـ Branch في Commit واحد على main",
+     "why": "صح."
+    },
+    {
+     "text": "بيحطهم زي ما هم",
+     "why": "ده Merge commit أو Rebase."
+    },
+    {
+     "text": "بيمسحهم",
+     "why": "لأ."
+    },
+    {
+     "text": "بيعمل Revert",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بعد Squash امسح الـ Branch المحلي بـ -D."
+  },
+  {
+   "id": "02-git-ch11-06",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل جملة في وصف الـ PR تقفل Issue رقم 7 أوتوماتيك لما يتدمج:",
+   "template": "___ #7",
+   "blanks": [
+    [
+     "Closes",
+     "closes",
+     "Fixes",
+     "fixes",
+     "Resolves",
+     "resolves"
+    ]
+   ],
+   "hint": "كلمة بمعنى يقفل.",
+   "explanation": "GitHub بيربط الـ PR بالـ Issue."
+  },
+  {
+   "id": "02-git-ch11-07",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "فتحت PR فيه 40 ملف وتغييرات كتير، والمراجع مش بيرد.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أقسّمه لـ PRs صغيرة كل واحد بتغيير واحد",
+     "why": "صح، PR صغير = مراجعة حقيقية."
+    },
+    {
+     "text": "أدمجه لوحدي",
+     "why": "بتهرب من المراجعة."
+    },
+    {
+     "text": "أستنى",
+     "why": "مش حل."
+    },
+    {
+     "text": "أعمل force push",
+     "why": "مالوش علاقة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ PR الصغير بيتراجع أسرع وأدق."
+  },
+  {
+   "id": "02-git-ch11-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عايز تساهم في مشروع Open Source مش بتاعك ومعندكش صلاحية push.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أعمل Fork، و clone للـ Fork، و Branch، و push للـ Fork، وأفتح PR للأصلي",
+     "why": "صح."
+    },
+    {
+     "text": "أعمل push على الأصلي",
+     "why": "مفيش صلاحية."
+    },
+    {
+     "text": "أبعت الكود في إيميل",
+     "why": "مش الطريقة."
+    },
+    {
+     "text": "أعمل Issue بس",
+     "why": "كويس بس مش مساهمة كود."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Fork بيخليك تساهم من غير صلاحيات."
+  },
+  {
+   "id": "02-git-ch11-09",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في الـ Code review، الـ Suggestion إيه؟",
+   "options": [
+    {
+     "text": "اقتراح تعديل في سطر، تقدر تقبله Commit بزرار",
+     "why": "صح."
+    },
+    {
+     "text": "تعليق عام",
+     "why": "ده Comment."
+    },
+    {
+     "text": "رفض للـ PR",
+     "why": "ده Request changes."
+    },
+    {
+     "text": "موافقة",
+     "why": "ده Approve."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Comment و Approve و Request changes و Suggestions."
+  },
+  {
+   "id": "02-git-ch11-10",
+   "type": "command",
+   "level": "think",
+   "prompt": "حدّث main عندك من upstream وابعته للـ Fork بتاعك.",
+   "accepted": [
+    "git fetch upstream && git switch main && git merge upstream/main && git push origin main",
+    "git switch main && git pull upstream main && git push origin main"
+   ],
+   "hint": "fetch/pull من upstream وبعدين push لـ origin.",
+   "explanation": "أو زرار Sync fork على GitHub."
+  },
+  {
+   "id": "02-git-ch11-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه تعمل PR حتى لو شغال لوحدك؟",
+   "options": [
+    {
+     "text": "علشان تراجع تغييراتك مرة أخيرة، وتشغّل الـ Checks، ويبقى عندك سجل واضح ليه اتغير إيه",
+     "why": "صح."
+    },
+    {
+     "text": "مش مفيد خالص",
+     "why": "مفيد."
+    },
+    {
+     "text": "إجباري من GitHub",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان تكسب نقط",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "\"ليه PR حتى لو شغال لوحدك؟\"."
+  }
+ ]
+}

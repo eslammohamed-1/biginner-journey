@@ -1,0 +1,234 @@
+{
+ "book": "03-web",
+ "chapter": 15,
+ "chapterFile": "ch15",
+ "title": "الكاش والـ CDN: أسرع طلب هو اللي مبيتبعتش",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "03-web-ch15-01",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`Cache-Control: no-cache` معناها المتصفح ميخزنش؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ده no-store."
+    },
+    {
+     "text": "لأ، يخزن بس يسأل السيرفر قبل ما يستخدم (Revalidate)",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "no-store = متخزنش."
+  },
+  {
+   "id": "03-web-ch15-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "رد الـ 304 فيه الملف كامل؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "من غير Body."
+    },
+    {
+     "text": "لأ، بيقول \"استخدم نسختك\" من غير Body",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "علشان كده حجمه صغير."
+  },
+  {
+   "id": "03-web-ch15-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ملف اسمه `app-3f9a1c.js` آمن نديله كاش سنة؟",
+   "options": [
+    {
+     "text": "أيوه، لأن أي تغيير هيغيّر الـ Hash والاسم",
+     "why": "صح، Fingerprinting."
+    },
+    {
+     "text": "لأ",
+     "why": "ده بالظبط الحل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "immutable سنة للملفات، no-cache للـ HTML."
+  },
+  {
+   "id": "03-web-ch15-04",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب الـ Revalidation بـ ETag:",
+   "items": [
+    "السيرفر يرد بـ ETag: \"abc\"",
+    "المتصفح يخزن النسخة",
+    "المرة الجاية يبعت If-None-Match: \"abc\"",
+    "السيرفر يرد 304 لو متغيرش"
+   ],
+   "explanation": "أو Last-Modified + If-Modified-Since."
+  },
+  {
+   "id": "03-web-ch15-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرض الـ Headers بس لـ https://jsonplaceholder.typicode.com/posts/1 علشان تشوف ETag و Cache-Control.",
+   "accepted": [
+    "curl -sI https://jsonplaceholder.typicode.com/posts/1",
+    "curl -I https://jsonplaceholder.typicode.com/posts/1"
+   ],
+   "hint": "-I.",
+   "explanation": "etag و cache-control."
+  },
+  {
+   "id": "03-web-ch15-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الـ Header للملفات اللي فيها Hash:",
+   "template": "cache-control: public, max-age=31536000, ___",
+   "blanks": [
+    [
+     "immutable"
+    ]
+   ],
+   "hint": "مش هيتغير أبداً.",
+   "explanation": "المتصفح مش هيسأل خالص."
+  },
+  {
+   "id": "03-web-ch15-07",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عدّلت الـ CSS والتعديل مش ظاهر في المتصفح.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أفعّل Disable cache في Network وأعمل Reload، وأفكر في Fingerprinting",
+     "why": "صح."
+    },
+    {
+     "text": "السيرفر بايظ",
+     "why": "الكاش هو السبب غالباً."
+    },
+    {
+     "text": "أمسح الملف",
+     "why": "لأ."
+    },
+    {
+     "text": "أعيد تشغيل الماك",
+     "why": "مش لازم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "عدّلت الـ CSS والتعديل مش ظاهر."
+  },
+  {
+   "id": "03-web-ch15-08",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في Network، Size مكتوب `(memory cache)`. معناها؟",
+   "options": [
+    {
+     "text": "الملف جه من الذاكرة من غير أي طلب للشبكة",
+     "why": "صح."
+    },
+    {
+     "text": "اتحمّل من السيرفر",
+     "why": "لأ."
+    },
+    {
+     "text": "فشل",
+     "why": "لأ."
+    },
+    {
+     "text": "304",
+     "why": "ده بيظهر كـ 304."
+    }
+   ],
+   "correct": 0,
+   "explanation": "(disk cache) من الديسك."
+  },
+  {
+   "id": "03-web-ch15-09",
+   "type": "mcq",
+   "level": "medium",
+   "question": "بتعرف إزاي إن الرد جه من CDN Cache؟",
+   "options": [
+    {
+     "text": "Headers زي `age` و `cf-cache-status: HIT` و `x-cache`",
+     "why": "صح."
+    },
+    {
+     "text": "من الـ Status code بس",
+     "why": "لأ."
+    },
+    {
+     "text": "من حجم الصورة",
+     "why": "لأ."
+    },
+    {
+     "text": "مستحيل تعرف",
+     "why": "ممكن."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Age = عمر النسخة في الكاش."
+  },
+  {
+   "id": "03-web-ch15-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "صفحة index.html عليها max-age سنة، ونشرت نسخة جديدة والناس لسه شايفة القديمة.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "HTML لازم no-cache علشان يجيب أسماء الملفات الجديدة، والملفات بالـ Hash بس هي اللي تاخد سنة",
+     "why": "صح."
+    },
+    {
+     "text": "أغيّر اسم الدومين",
+     "why": "مبالغة."
+    },
+    {
+     "text": "أطلب من الناس يمسحوا الكاش",
+     "why": "مش حل."
+    },
+    {
+     "text": "أعمل 301",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الحيلة اللي بتحل كل حاجة."
+  },
+  {
+   "id": "03-web-ch15-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه \"إمتى النسخة تبقى قديمة\" هي أصعب مشكلة في الكاش؟",
+   "options": [
+    {
+     "text": "لأن لو الكاش طويل الناس تشوف قديم، ولو قصير تخسر السرعة، والحل Fingerprinting + Revalidation",
+     "why": "صح."
+    },
+    {
+     "text": "علشان الكاش غالي",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان المتصفحات مختلفة",
+     "why": "مش الأساس."
+    },
+    {
+     "text": "مش مشكلة",
+     "why": "مشكلة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Cache-Control بيقول للكاش يعمل إيه."
+  }
+ ]
+}

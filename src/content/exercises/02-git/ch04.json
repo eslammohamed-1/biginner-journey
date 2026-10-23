@@ -1,0 +1,228 @@
+{
+ "book": "02-git",
+ "chapter": 4,
+ "chapterFile": "ch04",
+ "title": "قراية التاريخ: log و diff و show",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "02-git-ch04-01",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض التاريخ سطر لكل Commit، كرسمة، لكل الـ Branches.",
+   "accepted": [
+    "git log --oneline --graph --all",
+    "git log --oneline --all --graph",
+    "git log --graph --oneline --all"
+   ],
+   "hint": "3 Flags.",
+   "explanation": "أكتر شكل مفيد."
+  },
+  {
+   "id": "02-git-ch04-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ log فتح في شاشة ومش بيخلص. تخرج إزاي؟",
+   "options": [
+    {
+     "text": "q",
+     "why": "صح، ده الـ Pager (less)."
+    },
+    {
+     "text": "Ctrl+Z",
+     "why": "بيوقفه في الخلفية."
+    },
+    {
+     "text": "Esc",
+     "why": "مش بيخرج من less."
+    },
+    {
+     "text": ":wq",
+     "why": "ده Vim."
+    }
+   ],
+   "correct": 0,
+   "explanation": "نفس less من كتاب الـ Terminal."
+  },
+  {
+   "id": "02-git-ch04-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "بعد `git add` لكل حاجة، `git diff` العادي هيطلع إيه؟",
+   "options": [
+    {
+     "text": "فاضي، لأنه بيقارن الورشة بالـ Staging وهما بقوا زي بعض",
+     "why": "صح."
+    },
+    {
+     "text": "كل التعديلات",
+     "why": "دي في --staged."
+    },
+    {
+     "text": "خطأ",
+     "why": "مش خطأ."
+    },
+    {
+     "text": "آخر Commit",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "git diff --staged يوريك اللي هيدخل الـ Commit."
+  },
+  {
+   "id": "02-git-ch04-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرض اللي هيدخل الـ Commit الجاي (الفرق بين الـ Staging وآخر Commit).",
+   "accepted": [
+    "git diff --staged",
+    "git diff --cached"
+   ],
+   "hint": "--staged أو اسمها القديم.",
+   "explanation": "--cached و --staged نفس الحاجة."
+  },
+  {
+   "id": "02-git-ch04-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "HEAD~1 و HEAD^ في تاريخ عادي من غير Merge؟",
+   "options": [
+    {
+     "text": "نفس الـ Commit (الأب)",
+     "why": "صح."
+    },
+    {
+     "text": "HEAD~1 أقدم",
+     "why": "نفس الحاجة هنا."
+    },
+    {
+     "text": "HEAD^ هو HEAD نفسه",
+     "why": "لأ."
+    },
+    {
+     "text": "واحد للـ Branch والتاني للـ Tag",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الفرق بيظهر مع الـ Merge commits."
+  },
+  {
+   "id": "02-git-ch04-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرض ملف `src/app.js` زي ما كان من 2 Commits فاتوا من غير ما تغيّر الورشة.",
+   "accepted": [
+    "git show HEAD~2:src/app.js",
+    "git show HEAD^^:src/app.js"
+   ],
+   "hint": "git show <commit>:<path>.",
+   "explanation": "ده بيعرض بس، مش بيرجّع الملف."
+  },
+  {
+   "id": "02-git-ch04-07",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "على zsh كتبت `git show HEAD^` فطلعلك `no matches found`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "zsh بيفهم ^ كرمز Glob، فأحطه بين quotes أو أستخدم HEAD~1",
+     "why": "صح."
+    },
+    {
+     "text": "Git بايظ",
+     "why": "zsh هو اللي اعترض."
+    },
+    {
+     "text": "أعمل git init",
+     "why": "مالوش علاقة."
+    },
+    {
+     "text": "الـ Commit مش موجود",
+     "why": "الرسالة من zsh."
+    }
+   ],
+   "correct": 0,
+   "explanation": "\"خلي بالك من ^ في zsh على الـ Mac\"."
+  },
+  {
+   "id": "02-git-ch04-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تلاقي Commits ساره في آخر أسبوعين على app.js:",
+   "template": "git log --oneline --since=\"2 weeks ago\" ___=Sara -- app.js",
+   "blanks": [
+    [
+     "--author"
+    ]
+   ],
+   "hint": "الكاتب.",
+   "explanation": "-- بتفصل الملفات."
+  },
+  {
+   "id": "02-git-ch04-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تدوّر على الـ Commit اللي ضاف أو شال كلمة `calcTotal` من الكود:",
+   "template": "git log ___ calcTotal",
+   "blanks": [
+    [
+     "-S"
+    ]
+   ],
+   "hint": "الـ pickaxe بحرف كبير.",
+   "explanation": "--grep للرسايل، و -S للكود نفسه."
+  },
+  {
+   "id": "02-git-ch04-10",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في ناتج diff، السطر اللي بيبدأ بـ `-` معناه إيه؟",
+   "options": [
+    {
+     "text": "السطر ده اتشال",
+     "why": "صح، و + اتضاف."
+    },
+    {
+     "text": "اتضاف",
+     "why": "ده +."
+    },
+    {
+     "text": "اتغير مكانه",
+     "why": "لأ."
+    },
+    {
+     "text": "تعليق",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أشهر لخبطة: الأحمر = القديم."
+  },
+  {
+   "id": "02-git-ch04-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب المقارنات من \"أقرب للورشة\" لـ \"أبعد\":",
+   "items": [
+    "git diff (ورشة ↔ Staging)",
+    "git diff --staged (Staging ↔ آخر Commit)",
+    "git diff HEAD~3 HEAD (بين Commits قديمة)"
+   ],
+   "explanation": "كل diff بيقارن مكانين."
+  },
+  {
+   "id": "02-git-ch04-12",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض إحصائية بس (أسماء الملفات وكام سطر) للتعديلات الحالية.",
+   "accepted": [
+    "git diff --stat"
+   ],
+   "hint": "--stat.",
+   "explanation": "--name-only أسماء بس."
+  }
+ ]
+}

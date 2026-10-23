@@ -1,0 +1,253 @@
+{
+ "book": "02-git",
+ "chapter": 8,
+ "chapterFile": "ch08",
+ "title": "الـ Merge وحل الـ Conflicts",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "02-git-ch08-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "علشان تدمج feature في main، تقف فين؟",
+   "options": [
+    {
+     "text": "على main، وبعدين git merge feature",
+     "why": "صح، اقف على المستقبِل."
+    },
+    {
+     "text": "على feature",
+     "why": "كده هتدمج main في feature."
+    },
+    {
+     "text": "مش فارق",
+     "why": "فارق."
+    },
+    {
+     "text": "على origin",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اقف على المستقبِل."
+  },
+  {
+   "id": "02-git-ch08-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Fast-forward بيعمل Merge Commit؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الـ Fast-forward مجرد زحلقة."
+    },
+    {
+     "text": "لأ، اللافتة بتتزحلق لقدام بس",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "3-way هو اللي بيعمل Merge Commit بأبين."
+  },
+  {
+   "id": "02-git-ch08-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إمتى بيحصل Fast-forward؟",
+   "options": [
+    {
+     "text": "لما main معملش أي Commits من ساعة ما feature اتفرّع",
+     "why": "صح."
+    },
+    {
+     "text": "دايماً",
+     "why": "لأ."
+    },
+    {
+     "text": "لما فيه Conflict",
+     "why": "Conflict مع 3-way."
+    },
+    {
+     "text": "لما تستخدم --no-ff",
+     "why": "--no-ff بيمنعه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "لو الاتنين اتحركوا = 3-way."
+  },
+  {
+   "id": "02-git-ch08-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ادمج feature بحيث يتعمل Merge Commit حتى لو ينفع Fast-forward.",
+   "accepted": [
+    "git merge --no-ff feature"
+   ],
+   "hint": "no fast-forward.",
+   "explanation": "بيسيب أثر واضح في التاريخ."
+  },
+  {
+   "id": "02-git-ch08-05",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات حل Conflict:",
+   "items": [
+    "git status تشوف الملفات اللي فيها Conflict",
+    "افتح الملف وعدّله واختار الصح",
+    "امسح علامات <<<<<<< و ======= و >>>>>>>",
+    "git add الملف",
+    "git commit"
+   ],
+   "explanation": "git add = \"اتحل\"."
+  },
+  {
+   "id": "02-git-ch08-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في علامات الـ Conflict، الجزء بين `<<<<<<< HEAD` و `=======` إيه؟",
+   "options": [
+    {
+     "text": "نسختك (الـ Branch اللي واقف عليه)",
+     "why": "صح."
+    },
+    {
+     "text": "النسخة الجاية",
+     "why": "دي بين ======= و >>>>>>>."
+    },
+    {
+     "text": "النسخة الأصلية",
+     "why": "مش ظاهرة افتراضياً."
+    },
+    {
+     "text": "تعليق",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "HEAD = انت."
+  },
+  {
+   "id": "02-git-ch08-07",
+   "type": "command",
+   "level": "easy",
+   "prompt": "الـ Merge باظ ومش عايز تكمّله. رجّع كل حاجة زي ما كانت.",
+   "accepted": [
+    "git merge --abort"
+   ],
+   "hint": "abort.",
+   "explanation": "خط الرجوع."
+  },
+  {
+   "id": "02-git-ch08-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "بعد ما عدّلت الملف وشلت العلامات، git status لسه بيقول \"both modified\".",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أعمل git add للملف علشان أقول لـ Git إنه اتحل",
+     "why": "صح."
+    },
+    {
+     "text": "أعمل merge تاني",
+     "why": "لأ."
+    },
+    {
+     "text": "أمسح الملف",
+     "why": "لأ."
+    },
+    {
+     "text": "أستنى",
+     "why": "مش هيتحل لوحده."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بعد git add تعمل commit."
+  },
+  {
+   "id": "02-git-ch08-09",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "Conflict في package-lock.json وفيه مئات السطور.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "آخد نسخة واحدة (مثلاً `git checkout --theirs -- package-lock.json`) وبعدين npm install يظبطه",
+     "why": "صح."
+    },
+    {
+     "text": "أحل كل سطر بإيدي",
+     "why": "مرهق ومش ضروري."
+    },
+    {
+     "text": "أمسح الملف",
+     "why": "هتخسر الـ lock."
+    },
+    {
+     "text": "أضيفه لـ .gitignore",
+     "why": "غلط."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ lock file بيتولد من package.json."
+  },
+  {
+   "id": "02-git-ch08-10",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان الـ Merge يرفض لو مش Fast-forward:",
+   "template": "git merge ___ feature",
+   "blanks": [
+    [
+     "--ff-only"
+    ]
+   ],
+   "hint": "fast-forward only.",
+   "explanation": "مفيد لـ git pull كمان."
+  },
+  {
+   "id": "02-git-ch08-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "إزاي تقلل الـ Conflicts من الأساس؟",
+   "options": [
+    {
+     "text": "Branches قصيرة العمر، وتعمل pull/merge من main كتير، وتتفق مع الفريق مين بيعدّل إيه",
+     "why": "صح."
+    },
+    {
+     "text": "متعملش Branches",
+     "why": "هيزود المشاكل."
+    },
+    {
+     "text": "force push",
+     "why": "بيبوظ."
+    },
+    {
+     "text": "تعمل Commit واحد كبير",
+     "why": "يزود الـ Conflicts."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Conflict مش غلطة، بس ينفع يقل."
+  },
+  {
+   "id": "02-git-ch08-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`git merge feature` وانت على main بيغيّر feature؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "feature مبيتغيرش."
+    },
+    {
+     "text": "لأ، main بس اللي بيتغير",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "المستقبِل هو اللي بيتحرك."
+  }
+ ]
+}

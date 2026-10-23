@@ -1,0 +1,256 @@
+{
+ "book": "02-git",
+ "chapter": 7,
+ "chapterFile": "ch07",
+ "title": "الـ Branches و HEAD",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "02-git-ch07-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Branch في Git إيه بالظبط؟",
+   "options": [
+    {
+     "text": "لافتة (مؤشر) على Commit",
+     "why": "صح."
+    },
+    {
+     "text": "نسخة كاملة من المشروع",
+     "why": "مش نسخة، عمل Branch لحظي."
+    },
+    {
+     "text": "فولدر جديد",
+     "why": "لأ."
+    },
+    {
+     "text": "Repo تاني",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان كده عمل Branch رخيص جداً."
+  },
+  {
+   "id": "02-git-ch07-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "يعني إيه HEAD؟",
+   "options": [
+    {
+     "text": "\"انت هنا\": عادة بيشاور على الـ Branch الحالي",
+     "why": "صح."
+    },
+    {
+     "text": "أول Commit",
+     "why": "لأ."
+    },
+    {
+     "text": "أحدث Commit في GitHub",
+     "why": "ده origin/main."
+    },
+    {
+     "text": "الـ Branch الأساسي",
+     "why": "مش لازم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "HEAD بيتحرك مع switch."
+  },
+  {
+   "id": "02-git-ch07-03",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعمل Branch اسمه feature/nav واتنقل عليه في أمر واحد.",
+   "accepted": [
+    "git switch -c feature/nav",
+    "git checkout -b feature/nav"
+   ],
+   "hint": "switch مع -c.",
+   "explanation": "-c = create."
+  },
+  {
+   "id": "02-git-ch07-04",
+   "type": "command",
+   "level": "easy",
+   "prompt": "ارجع للـ Branch اللي كنت عليه قبل كده.",
+   "accepted": [
+    "git switch -",
+    "git checkout -"
+   ],
+   "hint": "الشرطة لوحدها.",
+   "explanation": "زي cd -."
+  },
+  {
+   "id": "02-git-ch07-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "عملت Commit وانت على feature. إيه اللي اتحرك؟",
+   "options": [
+    {
+     "text": "لافتة feature بس (و HEAD معاها)",
+     "why": "صح."
+    },
+    {
+     "text": "كل الـ Branches",
+     "why": "الـ Branch الحالي بس."
+    },
+    {
+     "text": "main",
+     "why": "main مكانه."
+    },
+    {
+     "text": "ولا حاجة",
+     "why": "الـ Branch بيتحرك لقدام."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Branch بيتحرك لوحده مع كل Commit."
+  },
+  {
+   "id": "02-git-ch07-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`git branch -d` على Branch لسه مش متدمج هيعمل إيه؟",
+   "options": [
+    {
+     "text": "هيرفض ويحذرك، ولو متأكد تستخدم -D",
+     "why": "صح."
+    },
+    {
+     "text": "هيمسحه عادي",
+     "why": "-d آمن."
+    },
+    {
+     "text": "هيدمجه",
+     "why": "لأ."
+    },
+    {
+     "text": "هيمسح الـ Commits من كل حتة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "-d بأمان، و -D بالقوة."
+  },
+  {
+   "id": "02-git-ch07-07",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عملت `git switch --detach 38c2aec` وعملت Commits وعايز تحفظهم.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أعمل Branch عليهم بـ `git switch -c rescue`",
+     "why": "صح."
+    },
+    {
+     "text": "أرجع لـ main على طول",
+     "why": "الـ Commits هتبقى من غير لافتة."
+    },
+    {
+     "text": "أمسح .git",
+     "why": "كارثة."
+    },
+    {
+     "text": "أعمل push",
+     "why": "مفيش Branch."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Detached HEAD متخوفش، اعمل Branch."
+  },
+  {
+   "id": "02-git-ch07-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "بتعمل switch لـ Branch تاني وطلعلك `Your local changes would be overwritten`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أعمل Commit أو stash للتعديلات الأول",
+     "why": "صح."
+    },
+    {
+     "text": "أعمل switch -f",
+     "why": "هتخسر التعديلات."
+    },
+    {
+     "text": "أمسح الملفات",
+     "why": "مش لازم."
+    },
+    {
+     "text": "أعمل git init",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اتنقل وانت clean."
+  },
+  {
+   "id": "02-git-ch07-09",
+   "type": "command",
+   "level": "medium",
+   "prompt": "غيّر اسم الـ Branch من master لـ main.",
+   "accepted": [
+    "git branch -m master main",
+    "git branch -M master main"
+   ],
+   "hint": "-m = move.",
+   "explanation": "لو انت عليه: git branch -m main."
+  },
+  {
+   "id": "02-git-ch07-10",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل علشان تعرض الـ Branches ومعاها الـ Upstream:",
+   "template": "git branch ___",
+   "blanks": [
+    [
+     "-vv"
+    ]
+   ],
+   "hint": "verbose مرتين.",
+   "explanation": "بيوريك ahead/behind كمان."
+  },
+  {
+   "id": "02-git-ch07-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات تجربة في Branch والرجوع لو فشلت:",
+   "items": [
+    "git switch -c experiment",
+    "اشتغل واعمل Commits",
+    "git switch main",
+    "git branch -D experiment"
+   ],
+   "explanation": "main مفيهوش أي أثر للتجربة."
+  },
+  {
+   "id": "02-git-ch07-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه Git عمل الأمرين switch و restore بدل checkout؟",
+   "options": [
+    {
+     "text": "لأن checkout كان بيعمل حاجتين مختلفتين (يتنقل بين Branches ويرجّع ملفات) وده بيلخبط",
+     "why": "صح."
+    },
+    {
+     "text": "علشان checkout اتمسح",
+     "why": "لسه موجود."
+    },
+    {
+     "text": "علشان GitHub طلب كده",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان السرعة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "\"ليه أمرين جداد؟\"."
+  }
+ ]
+}

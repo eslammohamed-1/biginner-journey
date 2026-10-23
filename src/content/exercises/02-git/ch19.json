@@ -1,0 +1,267 @@
+{
+ "book": "02-git",
+ "chapter": 19,
+ "chapterFile": "ch19",
+ "title": "الإنقاذ: الغلطات الشائعة وحلها",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "02-git-ch19-01",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب بروتوكول أول 60 ثانية لما حاجة تبوظ:",
+   "items": [
+    "متعملش حاجة بسرعة",
+    "git status",
+    "نسخة احتياطي (Branch أو نسخ الفولدر)",
+    "git log --graph و reflog",
+    "طبّق الحل"
+   ],
+   "explanation": "متتخضش."
+  },
+  {
+   "id": "02-git-ch19-02",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عملت 3 Commits على main بدل Branch جديد (مفيش push).",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "git branch feature (لافتة جديدة على الـ Commits) وبعدين git reset --hard origin/main على main",
+     "why": "صح."
+    },
+    {
+     "text": "أعمل revert للتلاتة",
+     "why": "هتسيب تاريخ ملخبط ومش محتاج."
+    },
+    {
+     "text": "أمسح الـ Repo",
+     "why": "لأ."
+    },
+    {
+     "text": "أعمل push",
+     "why": "هتوصل main."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Branch غلط = لافتة جديدة + reset."
+  },
+  {
+   "id": "02-git-ch19-03",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "git push بيقول `src refspec main does not match any`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "لسه معملتش أي Commit (أو اسم الـ Branch مختلف)، فأعمل Commit أو أتأكد بـ git branch",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Remote غلط",
+     "why": "الرسالة عن الـ Branch المحلي."
+    },
+    {
+     "text": "أعمل force",
+     "why": "مش هيحل."
+    },
+    {
+     "text": "أمسح .git",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "لازم Commit علشان main يبقى موجود."
+  },
+  {
+   "id": "02-git-ch19-04",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "`refusing to merge unrelated histories`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ Repo المحلي و GitHub بدأوا لوحدهم (مثلاً README على GitHub)، فأعمل pull --allow-unrelated-histories مرة واحدة",
+     "why": "صح."
+    },
+    {
+     "text": "أعمل force push دايماً",
+     "why": "هتمسح اللي على GitHub."
+    },
+    {
+     "text": "أمسح GitHub",
+     "why": "مش ضروري."
+    },
+    {
+     "text": "مستحيل يتحل",
+     "why": "بيتحل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان كده بنعمل Repo فاضي على GitHub."
+  },
+  {
+   "id": "02-git-ch19-05",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "GitHub رفض: `File is 120.00 MB; this exceeds ... 100.00 MB`، ومسحت الملف في Commit جديد ولسه مرفوض.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الملف لسه في Commit قديم، فلازم أشيله من التاريخ (reset/amend أو rebase) قبل الـ push، أو Git LFS",
+     "why": "صح."
+    },
+    {
+     "text": "أستنى",
+     "why": "مش هيتحل."
+    },
+    {
+     "text": "أضغطه zip",
+     "why": "لسه في التاريخ القديم."
+    },
+    {
+     "text": "أعمل Repo جديد",
+     "why": "مش لازم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ده من الصح ولا غلط في الفصل."
+  },
+  {
+   "id": "02-git-ch19-06",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "غيّرت Logo.png لـ logo.png على الماك و Git مش شايف أي تغيير.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أستخدم `git mv Logo.png logo.png` لأن الماك مش حساس لحالة الحروف",
+     "why": "صح."
+    },
+    {
+     "text": "أعيد التسمية مرة تانية",
+     "why": "Git مش هيشوفها."
+    },
+    {
+     "text": "أمسح الملف",
+     "why": "هتخسر التاريخ."
+    },
+    {
+     "text": "أعمل clone",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الموقع على Linux هيقع لو الاسم مختلف."
+  },
+  {
+   "id": "02-git-ch19-07",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "git status بيعرض كل ملفات الماك (Desktop و Documents...).",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "عملت git init في الـ Home بالغلط، فأمسح ~/.git بعد ما أتأكد إنه مش مهم",
+     "why": "صح."
+    },
+    {
+     "text": "أضيف كل حاجة",
+     "why": "كارثة."
+    },
+    {
+     "text": "أعمل .gitignore بكل حاجة",
+     "why": "ترقيع."
+    },
+    {
+     "text": "أعيد تشغيل الماك",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "متعملش git init في الـ Home."
+  },
+  {
+   "id": "02-git-ch19-08",
+   "type": "mcq",
+   "level": "medium",
+   "question": "تعديلات عمرها ما اتعملها add ممكن ترجّعها بـ reflog؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الـ reflog للـ Commits."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "اللي عمره ما اتسجّل هو اللي يضيع."
+  },
+  {
+   "id": "02-git-ch19-09",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`git merge --abort` بيرجّعك فين؟",
+   "options": [
+    {
+     "text": "لحالة ما قبل الـ Merge",
+     "why": "صح."
+    },
+    {
+     "text": "لأول Commit",
+     "why": "لأ."
+    },
+    {
+     "text": "لـ origin/main",
+     "why": "لأ."
+    },
+    {
+     "text": "مبيعملش حاجة",
+     "why": "بيرجّع."
+    }
+   ],
+   "correct": 0,
+   "explanation": "في نص عملية: --continue أو --abort."
+  },
+  {
+   "id": "02-git-ch19-10",
+   "type": "command",
+   "level": "medium",
+   "prompt": "الـ Commits طالعة بإيميل غلط. صلّح الإعداد وآخر Commit.",
+   "accepted": [
+    "git config user.email \"me@example.com\" && git commit --amend --reset-author --no-edit",
+    "git config --global user.email \"me@example.com\" && git commit --amend --reset-author --no-edit"
+   ],
+   "hint": "config ثم amend مع --reset-author.",
+   "explanation": "للأقدم محتاج rebase."
+  },
+  {
+   "id": "02-git-ch19-11",
+   "type": "command",
+   "level": "easy",
+   "prompt": "خبّي .DS_Store من كل مشاريعك بإضافته للـ gitignore العام (افترض الملف ~/.gitignore_global).",
+   "accepted": [
+    "echo .DS_Store >> ~/.gitignore_global",
+    "echo \".DS_Store\" >> ~/.gitignore_global"
+   ],
+   "hint": "echo مع >>.",
+   "explanation": "ومتنساش core.excludesFile."
+  },
+  {
+   "id": "02-git-ch19-12",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: على main المشتركة، اللغي الـ Commit البايظ بأمان:",
+   "template": "git ___ 38c2aec",
+   "blanks": [
+    [
+     "revert"
+    ]
+   ],
+   "hint": "مش reset.",
+   "explanation": "على main المشتركة: revert مش reset و force."
+  }
+ ]
+}

@@ -1,0 +1,237 @@
+{
+ "book": "02-git",
+ "chapter": 1,
+ "chapterFile": "ch01",
+ "title": "ليه Git أصلاً؟",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "02-git-ch01-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "يعني إيه Version Control؟",
+   "options": [
+    {
+     "text": "تاريخ لمشروعك: ترجع لأي لحظة وتشوف إيه اتغير ومين وليه",
+     "why": "صح، ده تعريف الفصل."
+    },
+    {
+     "text": "برنامج بيعمل Backup للجهاز كله",
+     "why": "ده زي Time Machine، مش Version Control."
+    },
+    {
+     "text": "موقع لرفع الكود",
+     "why": "ده GitHub، استضافة مش نظام التاريخ نفسه."
+    },
+    {
+     "text": "طريقة لتسريع الكود",
+     "why": "مالوش علاقة بالأداء."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Version Control بيحل مشكلة \"الكود باظ الساعة 2 بالليل ومش فاكر غيرت إيه\"."
+  },
+  {
+   "id": "02-git-ch01-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "Git محتاج إنترنت علشان تعمل Commit؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "Git بيشتغل محلي بالكامل."
+    },
+    {
+     "text": "لأ، Git نظام موزّع والتاريخ كله على جهازك",
+     "why": "صح، الإنترنت للـ push و pull بس."
+    }
+   ],
+   "correct": 1,
+   "explanation": "كل نسخة فيها التاريخ كامل."
+  },
+  {
+   "id": "02-git-ch01-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Git بيخزن إيه في كل Commit؟",
+   "options": [
+    {
+     "text": "الفرق عن اللي قبله بس",
+     "why": "ده سوء فهم مشهور، Git بيفكر بـ Snapshots."
+    },
+    {
+     "text": "Snapshot كاملة للمشروع + رسالة + كاتب + تاريخ + الأب",
+     "why": "صح، والملفات اللي متغيرتش بيشاور على نسختها القديمة."
+    },
+    {
+     "text": "الملفات اللي اتغيرت بس من غير معلومات",
+     "why": "ناقص الرسالة والكاتب والأب."
+    },
+    {
+     "text": "نسخة zip",
+     "why": "مش zip."
+    }
+   ],
+   "correct": 1,
+   "explanation": "علشان كده الرجوع لأي Commit سريع."
+  },
+  {
+   "id": "02-git-ch01-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إيه الفرق بين Git و GitHub؟",
+   "options": [
+    {
+     "text": "Git برنامج على جهازك، و GitHub موقع بيستضيف الـ Repos ويضيف أدوات تعاون",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة بس GitHub أونلاين",
+     "why": "GitHub شركة وموقع، Git أداة مفتوحة."
+    },
+    {
+     "text": "GitHub هو اللي اخترع Git",
+     "why": "Git عمله Linus Torvalds سنة 2005."
+    },
+    {
+     "text": "Git مبيشتغلش من غير GitHub",
+     "why": "Git شغال لوحده، و GitHub اختياري."
+    }
+   ],
+   "correct": 0,
+   "explanation": "فيه بدائل لـ GitHub زي GitLab و Bitbucket."
+  },
+  {
+   "id": "02-git-ch01-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في نظام مركزي (Centralized) لو السيرفر وقع يحصل إيه؟ وفي Git؟",
+   "options": [
+    {
+     "text": "في المركزي مفيش تاريخ ولا Commits لحد ما يرجع، وفي Git كل نسخة فيها التاريخ كامل فتكمّل شغل",
+     "why": "صح."
+    },
+    {
+     "text": "الاتنين بيقفوا",
+     "why": "Git بيكمّل محلي."
+    },
+    {
+     "text": "الاتنين بيكملوا عادي",
+     "why": "المركزي معتمد على السيرفر."
+    },
+    {
+     "text": "Git بيقف والمركزي بيكمّل",
+     "why": "العكس."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ده سبب إن Git موزّع."
+  },
+  {
+   "id": "02-git-ch01-06",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اتأكد إن Git متسطب واعرف نسخته.",
+   "accepted": [
+    "git --version",
+    "git version"
+   ],
+   "hint": "Flag الـ version.",
+   "explanation": "لو طلع خطأ يبقى محتاج تسطبه."
+  },
+  {
+   "id": "02-git-ch01-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل Commit برسالة \"feat: add home page\" باستخدام الشكل الطويل للـ Flag.",
+   "accepted": [
+    "git commit --message \"feat: add home page\"",
+    "git commit --message=\"feat: add home page\"",
+    "git commit -m \"feat: add home page\""
+   ],
+   "hint": "-m اختصار لـ --message.",
+   "explanation": "الشكل القصير والطويل نفس الحاجة."
+  },
+  {
+   "id": "02-git-ch01-08",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب الأنظمة حسب تطورها التاريخي:",
+   "items": [
+    "Local (نسخ في فولدرات على جهازك)",
+    "Centralized (سيرفر واحد زي SVN)",
+    "Distributed (كل نسخة كاملة زي Git)"
+   ],
+   "explanation": "كل مرحلة حلّت مشكلة في اللي قبلها."
+  },
+  {
+   "id": "02-git-ch01-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "زميلك بيقولك \"أنا هسيب Git وأستخدم أزرار VS Code بس\". تقوله إيه؟",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الأزرار كويسة، بس تعلّم الـ Terminal علشان تفهم الأزرار بتعمل إيه وتعرف تصلّح لما حاجة تبوظ",
+     "why": "صح، ده رأي الفصل."
+    },
+    {
+     "text": "الأزرار ممنوعة",
+     "why": "مش ممنوعة."
+    },
+    {
+     "text": "الـ Terminal أبطأ دايماً ومالوش لزمة",
+     "why": "لما الدنيا تبوظ الـ Terminal هو اللي هيوريك الحقيقة."
+    },
+    {
+     "text": "Git مبيشتغلش في VS Code",
+     "why": "بيشتغل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "\"نتعلم من الـ Terminal عشان نفهم الأزرار، مش عشان نستغنى عنها\"."
+  },
+  {
+   "id": "02-git-ch01-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "كل Commit ليه Hash. ليه الـ Hash ده مفيد؟",
+   "options": [
+    {
+     "text": "اسم فريد للـ Commit بيتحسب من محتواه، فلو أي حاجة اتغيرت الـ Hash يتغير",
+     "why": "صح، وده بيضمن سلامة التاريخ."
+    },
+    {
+     "text": "رقم تسلسلي 1 و 2 و 3",
+     "why": "مش تسلسلي."
+    },
+    {
+     "text": "الباسورد بتاع الـ Repo",
+     "why": "مالوش علاقة."
+    },
+    {
+     "text": "اسم الكاتب مشفّر",
+     "why": "الـ Hash على كل المحتوى."
+    }
+   ],
+   "correct": 0,
+   "explanation": "تقدر تشاور على أي Commit بالـ Hash القصير."
+  },
+  {
+   "id": "02-git-ch01-11",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: Git بيحفظ ___ كاملة مش فروقات.",
+   "template": "Git stores ___ not diffs",
+   "blanks": [
+    [
+     "snapshots",
+     "Snapshots",
+     "snapshot"
+    ]
+   ],
+   "hint": "صورة للحظة.",
+   "explanation": "الفكرة الأساسية في الفصل."
+  }
+ ]
+}

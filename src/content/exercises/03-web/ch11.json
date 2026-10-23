@@ -1,0 +1,262 @@
+{
+ "book": "03-web",
+ "chapter": 11,
+ "chapterFile": "ch11",
+ "title": "HTTP/1.1 و 2 و 3: نفس اللغة، طرق أسرع",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "03-web-ch11-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "إيه اللي بيتغير بين HTTP/1.1 و 2 و 3؟",
+   "options": [
+    {
+     "text": "طريقة النقل، واللغة (Methods و Status و Headers) زي ما هي",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Status codes",
+     "why": "نفسها."
+    },
+    {
+     "text": "الـ Methods",
+     "why": "نفسها."
+    },
+    {
+     "text": "لازم تغيّر كودك",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "نفس اللغة، طرق أسرع."
+  },
+  {
+   "id": "03-web-ch11-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "مشكلة HTTP/1.1 مع صفحة فيها 100 ملف؟",
+   "options": [
+    {
+     "text": "طلب واحد لكل اتصال في نفس الوقت، فالمتصفح بيفتح ~6 اتصالات والباقي يستنى (Queueing)",
+     "why": "صح."
+    },
+    {
+     "text": "مبيدعمش الصور",
+     "why": "بيدعم."
+    },
+    {
+     "text": "مفيهوش Headers",
+     "why": "فيه."
+    },
+    {
+     "text": "بيشفّر ببطء",
+     "why": "مش السبب."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Head-of-line blocking."
+  },
+  {
+   "id": "03-web-ch11-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "HTTP/2 حل إيه؟",
+   "options": [
+    {
+     "text": "Multiplexing: Streams كتير على اتصال واحد، و HPACK لضغط الـ Headers",
+     "why": "صح."
+    },
+    {
+     "text": "شال TCP",
+     "why": "ده HTTP/3."
+    },
+    {
+     "text": "غيّر الأكواد",
+     "why": "لأ."
+    },
+    {
+     "text": "شال التشفير",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Binary frames."
+  },
+  {
+   "id": "03-web-ch11-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ليه HTTP/2 لسه بيتأثر لو Packet ضاعت؟",
+   "options": [
+    {
+     "text": "لأن TCP بيوقف كل الـ Streams لحد ما الـ Packet ترجع",
+     "why": "صح."
+    },
+    {
+     "text": "علشان HPACK",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان TLS",
+     "why": "لأ."
+    },
+    {
+     "text": "مبيتأثرش",
+     "why": "بيتأثر."
+    }
+   ],
+   "correct": 0,
+   "explanation": "HTTP/3 حلها بـ QUIC."
+  },
+  {
+   "id": "03-web-ch11-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرف نسخة HTTP اللي اتستخدمت مع https://example.com.",
+   "accepted": [
+    "curl -s -o /dev/null -w '%{http_version}\\n' https://example.com",
+    "curl -so /dev/null -w '%{http_version}' https://example.com",
+    "curl -s -o /dev/null -w '%{http_version}' https://example.com"
+   ],
+   "hint": "-w '%{http_version}'.",
+   "explanation": "أو عمود Protocol في DevTools."
+  },
+  {
+   "id": "03-web-ch11-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شوف لو السيرفر بيعلن عن HTTP/3 في الـ Headers.",
+   "accepted": [
+    "curl -sI https://example.com | grep -i alt-svc",
+    "curl -I https://example.com | grep -i alt-svc"
+   ],
+   "hint": "Header اسمه alt-svc.",
+   "explanation": "alt-svc: h3=\":443\"."
+  },
+  {
+   "id": "03-web-ch11-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "أول زيارة طلعت h2 وبعد Reload طلعت h3. فيه عطل؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ده طبيعي."
+    },
+    {
+     "text": "لأ، المتصفح عرف من alt-svc إن فيه h3 فاستخدمه المرة الجاية",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "أو من سجل DNS HTTPS."
+  },
+  {
+   "id": "03-web-ch11-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "مشروع قديم بيعمل Sprites ودمج كل الـ JS في ملف واحد ضخم علشان يقلل الطلبات، والسيرفر بقى HTTP/2.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أراجع الحيل دي، لأن مع HTTP/2 الطلبات الكتير مش مشكلة كبيرة، والملف الضخم بيضيّع الكاش",
+     "why": "صح."
+    },
+    {
+     "text": "أزود الدمج",
+     "why": "مش لازم."
+    },
+    {
+     "text": "أرجع HTTP/1.1",
+     "why": "لأ."
+    },
+    {
+     "text": "مفيش فرق",
+     "why": "فيه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الحيل القديمة بقت مضرة أحياناً."
+  },
+  {
+   "id": "03-web-ch11-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تجبر curl يستخدم HTTP/1.1:",
+   "template": "curl ___ -sI https://example.com",
+   "blanks": [
+    [
+     "--http1.1"
+    ]
+   ],
+   "hint": "--http + رقم.",
+   "explanation": "--http2 و --http3 لو مدعوم."
+  },
+  {
+   "id": "03-web-ch11-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب النسخ حسب الحل:",
+   "items": [
+    "HTTP/1.1: اتصالات متعددة",
+    "HTTP/2: Streams على اتصال TCP واحد",
+    "HTTP/3: Streams على QUIC فوق UDP"
+   ],
+   "explanation": "كل واحد حل مشكلة اللي قبله."
+  },
+  {
+   "id": "03-web-ch11-11",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "curl على الماك بيقول إنه مش داعم HTTP3.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "ده curl بتاع Apple، فأسطب curl من Homebrew لو محتاج h3",
+     "why": "صح."
+    },
+    {
+     "text": "الموقع مبيدعمش",
+     "why": "ممكن يدعم."
+    },
+    {
+     "text": "النت بطيء",
+     "why": "لأ."
+    },
+    {
+     "text": "أعيد تشغيل الماك",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "curl -V | grep HTTP3."
+  },
+  {
+   "id": "03-web-ch11-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "QUIC بيعمل إيه فوق UDP؟",
+   "options": [
+    {
+     "text": "بيضيف الترتيب والتأكيد والتشفير (TLS 1.3 جواه) لكل Stream لوحده",
+     "why": "صح."
+    },
+    {
+     "text": "مبيعملش حاجة",
+     "why": "بيعمل كتير."
+    },
+    {
+     "text": "بيلغي التشفير",
+     "why": "بالعكس."
+    },
+    {
+     "text": "بيرجّع TCP",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ضياع Packet بيوقف Stream واحد بس."
+  }
+ ]
+}

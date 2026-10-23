@@ -1,0 +1,22 @@
+{
+  "name": "biginner-journey",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1",
+    "check:exercises": "node --experimental-strip-types scripts/grade.test.ts"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@astrojs/preact": "^6.1.1",
+    "@astrojs/starlight": "^0.42.7",
+    "@fontsource/cairo": "^5.3.0",
+    "astro": "^7.4.2",
+    "preact": "^11.0.2"
+  }
+}

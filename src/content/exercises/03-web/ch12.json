@@ -1,0 +1,261 @@
+{
+ "book": "03-web",
+ "chapter": 12,
+ "chapterFile": "ch12",
+ "title": "HTTPS و TLS: القفل اللي جنب العنوان",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "03-web-ch12-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "TLS بيدّي إيه؟",
+   "options": [
+    {
+     "text": "تشفير وسلامة (محدش عدّل) وهوية (ده فعلاً الموقع)",
+     "why": "صح."
+    },
+    {
+     "text": "سرعة",
+     "why": "مش الهدف."
+    },
+    {
+     "text": "ضغط",
+     "why": "لأ."
+    },
+    {
+     "text": "كاش",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "HTTPS = HTTP جوه TLS."
+  },
+  {
+   "id": "03-web-ch12-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "التشفير لوحده من غير التحقق من الهوية بيحميك من Man-in-the-middle؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ممكن تشفّر مع المهاجم نفسه."
+    },
+    {
+     "text": "لأ، لازم الشهادة تثبت الهوية",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "التشفير + الهوية."
+  },
+  {
+   "id": "03-web-ch12-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "المفتاحين Public/Private بيستخدموا في إيه في TLS؟",
+   "options": [
+    {
+     "text": "في البداية بس علشان يتفقوا على مفتاح مشترك سريع",
+     "why": "صح."
+    },
+    {
+     "text": "في كل البيانات",
+     "why": "بطيء."
+    },
+    {
+     "text": "مش بيستخدموا",
+     "why": "بيستخدموا."
+    },
+    {
+     "text": "للكوكيز",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "المفتاح المشترك أسرع بكتير."
+  },
+  {
+   "id": "03-web-ch12-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "شهادة `*.example.com` بتغطي `api.example.com`؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح، * بتغطي مستوى واحد."
+    },
+    {
+     "text": "لأ",
+     "why": "بتغطيه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بس مش a.b.example.com."
+  },
+  {
+   "id": "03-web-ch12-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`curl -k` حل مناسب لخطأ الشهادة على موقع حقيقي؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيلغي الحماية."
+    },
+    {
+     "text": "لأ، للتجربة المحلية بس",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "صلّح الشهادة أو الـ CA."
+  },
+  {
+   "id": "03-web-ch12-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرض الشهادة بتاعة example.com بـ openssl.",
+   "accepted": [
+    "echo | openssl s_client -connect example.com:443 -servername example.com",
+    "openssl s_client -connect example.com:443 -servername example.com",
+    "echo | openssl s_client -connect example.com:443 -servername example.com 2>/dev/null"
+   ],
+   "hint": "s_client و -connect و -servername.",
+   "explanation": "-servername علشان SNI."
+  },
+  {
+   "id": "03-web-ch12-07",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب TLS 1.3 Handshake:",
+   "items": [
+    "ClientHello (مع المفتاح و SNI)",
+    "ServerHello + الشهادة (متشفرة)",
+    "المتصفح يتحقق من السلسلة",
+    "الطلب HTTP متشفّر"
+   ],
+   "explanation": "رحلة واحدة."
+  },
+  {
+   "id": "03-web-ch12-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الصفحة بتقولك `NET::ERR_CERT_DATE_INVALID`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الشهادة منتهية أو ساعة الجهاز غلط، فأتأكد من الساعة وأبلغ صاحب الموقع",
+     "why": "صح."
+    },
+    {
+     "text": "أكتب thisisunsafe",
+     "why": "بتتخطى حماية."
+    },
+    {
+     "text": "أمسح الكوكيز",
+     "why": "لأ."
+    },
+    {
+     "text": "DNS",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "كود الخطأ بيقولك المشكلة فين."
+  },
+  {
+   "id": "03-web-ch12-09",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "الموقع شغال في Chrome بس curl بيقول `certificate problem: unable to get local issuer certificate`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "السيرفر مش باعت الشهادة الوسيطة (Intermediate) كاملة، Chrome بيكمّلها وcurl لأ، فأصلّح الـ Chain على السيرفر",
+     "why": "صح."
+    },
+    {
+     "text": "curl بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "أستخدم -k دايماً",
+     "why": "خطر."
+    },
+    {
+     "text": "Chrome بيكدب",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مذكورة في مشاكل الفصل."
+  },
+  {
+   "id": "03-web-ch12-10",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل Header الـ HSTS:",
+   "template": "strict-transport-security: ___=31536000; includeSubDomains",
+   "blanks": [
+    [
+     "max-age"
+    ]
+   ],
+   "hint": "المدة بالثواني.",
+   "explanation": "سنة."
+  },
+  {
+   "id": "03-web-ch12-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "يعني إيه Mixed content؟",
+   "options": [
+    {
+     "text": "صفحة HTTPS بتحمّل ملف بـ HTTP، والمتصفح بيمنعه",
+     "why": "صح."
+    },
+    {
+     "text": "صفحة فيها صور وفيديو",
+     "why": "لأ."
+    },
+    {
+     "text": "موقع بلغتين",
+     "why": "لأ."
+    },
+    {
+     "text": "كوكيز من موقعين",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خلي كل الروابط https."
+  },
+  {
+   "id": "03-web-ch12-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه عمر الشهادات بيقصر (200 يوم ثم 47)؟",
+   "options": [
+    {
+     "text": "علشان لو مفتاح اتسرّب يبقى ضرره قصير، وبيجبر الناس على التجديد الأوتوماتيك",
+     "why": "صح."
+    },
+    {
+     "text": "علشان الشركات تكسب",
+     "why": "Let's Encrypt مجاني."
+    },
+    {
+     "text": "علشان أسرع",
+     "why": "لأ."
+    },
+    {
+     "text": "صدفة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Let's Encrypt والتجديد الأوتوماتيك."
+  }
+ ]
+}

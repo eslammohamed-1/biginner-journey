@@ -1,0 +1,266 @@
+{
+ "book": "01-terminal",
+ "chapter": 10,
+ "chapterFile": "ch10",
+ "title": "الشبكات والاتصال بالسيرفرات",
+ "count": 14,
+ "exercises": [
+  {
+   "id": "01-terminal-ch10-01",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرف الـ IP بتاع الماك على الواي فاي (en0).",
+   "accepted": [
+    "ipconfig getifaddr en0"
+   ],
+   "hint": "ipconfig مع getifaddr.",
+   "explanation": "على Linux: ip -br addr."
+  },
+  {
+   "id": "01-terminal-ch10-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ping فشل على موقع. ده معناه إن الموقع واقع أكيد؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مواقع كتير بتقفل ICMP."
+    },
+    {
+     "text": "لأ، سيرفرات كتير بتمنع ping، فجرّب curl",
+     "why": "صح، \"ping مش دليل\"."
+    }
+   ],
+   "correct": 1,
+   "explanation": "شخّص من تحت لفوق: IP ← ping ← dig ← curl."
+  },
+  {
+   "id": "01-terminal-ch10-03",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرف الـ HTTP status code بس لـ https://example.com من غير ما تطبع الـ Body.",
+   "accepted": [
+    "curl -s -o /dev/null -w '%{http_code}\\n' https://example.com",
+    "curl -s -o /dev/null -w \"%{http_code}\" https://example.com",
+    "curl -so /dev/null -w '%{http_code}' https://example.com",
+    "curl -s -o /dev/null -w '%{http_code}' https://example.com"
+   ],
+   "hint": "-o /dev/null و -w.",
+   "explanation": "مفيد في Scripts الفحص."
+  },
+  {
+   "id": "01-terminal-ch10-04",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض الـ Headers بس من https://example.com.",
+   "accepted": [
+    "curl -I https://example.com",
+    "curl -sI https://example.com",
+    "curl --head https://example.com"
+   ],
+   "hint": "Flag بحرف كبير.",
+   "explanation": "-I بيعمل HEAD request."
+  },
+  {
+   "id": "01-terminal-ch10-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل مفتاح SSH جديد من نوع Ed25519.",
+   "accepted": [
+    "ssh-keygen -t ed25519",
+    "ssh-keygen -t ed25519 -C \"me@laptop\""
+   ],
+   "patterns": [
+    "^ssh-keygen\\s+-t\\s+ed25519(\\s+-C\\s+.+)?$"
+   ],
+   "hint": "ssh-keygen مع -t.",
+   "explanation": "بيطلّع id_ed25519 (خاص) و id_ed25519.pub (عام)."
+  },
+  {
+   "id": "01-terminal-ch10-06",
+   "type": "mcq",
+   "level": "easy",
+   "question": "أنهي مفتاح بيتحط على السيرفر؟",
+   "options": [
+    {
+     "text": "اللي بينتهي بـ .pub",
+     "why": "صح، المفتاح العام."
+    },
+    {
+     "text": "المفتاح الخاص",
+     "why": "الخاص مبيخرجش من جهازك أبداً."
+    },
+    {
+     "text": "الاتنين",
+     "why": "الخاص لأ."
+    },
+    {
+     "text": "ولا واحد",
+     "why": "العام لازم يبقى في authorized_keys."
+    }
+   ],
+   "correct": 0,
+   "explanation": "المفتاح الخاص = مفتاح الشقة."
+  },
+  {
+   "id": "01-terminal-ch10-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`scp -p 2222` بتحدد البورت؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "في scp البورت بـ P كبيرة."
+    },
+    {
+     "text": "لأ، في scp البورت `-P` كبيرة، و `-p` بتحافظ على الوقت والصلاحيات",
+     "why": "صح، و ssh -p صغيرة."
+    }
+   ],
+   "correct": 1,
+   "explanation": "فخ مشهور بين ssh و scp."
+  },
+  {
+   "id": "01-terminal-ch10-08",
+   "type": "mcq",
+   "level": "think",
+   "question": "إيه الفرق بين `rsync -a src/ dst/` و `rsync -a src dst/`؟",
+   "options": [
+    {
+     "text": "الأولى بتنسخ محتوى src، والتانية بتعمل dst/src",
+     "why": "صح، الـ / في آخر المصدر."
+    },
+    {
+     "text": "مفيش فرق",
+     "why": "فيه فرق مهم."
+    },
+    {
+     "text": "التانية بتمسح dst",
+     "why": "لأ."
+    },
+    {
+     "text": "الأولى غلط",
+     "why": "صحيحة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "جرّب بـ --dry-run قبل أي rsync مهم."
+  },
+  {
+   "id": "01-terminal-ch10-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "ssh بيقولك `Permission denied (publickey)`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أتأكد إن المفتاح العام في authorized_keys على السيرفر، وصلاحيات المفتاح الخاص 600، وأجرب `ssh -v`",
+     "why": "صح."
+    },
+    {
+     "text": "أعمل chmod 777 على ~/.ssh",
+     "why": "ssh هيرفض أكتر."
+    },
+    {
+     "text": "أمسح known_hosts",
+     "why": "مش هي المشكلة."
+    },
+    {
+     "text": "أغيّر البورت",
+     "why": "الاتصال وصل، المشكلة في المفتاح."
+    }
+   ],
+   "correct": 0,
+   "explanation": "-v بيوريك أنهي مفاتيح اتجربت."
+  },
+  {
+   "id": "01-terminal-ch10-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "ssh طلّعلك `REMOTE HOST IDENTIFICATION HAS CHANGED!`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أتأكد الأول إن السيرفر فعلاً اتعمله إعادة تسطيب، وبعدين أشيل السطر القديم بـ `ssh-keygen -R host`",
+     "why": "صح، ومتتجاهلش التحذير من غير ما تتأكد."
+    },
+    {
+     "text": "أتجاهله وأكمّل على طول",
+     "why": "ممكن يبقى هجوم Man-in-the-middle."
+    },
+    {
+     "text": "أمسح كل ~/.ssh",
+     "why": "هتمسح مفاتيحك."
+    },
+    {
+     "text": "أغيّر الباسورد",
+     "why": "مش المشكلة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "التحذير ده حماية حقيقية."
+  },
+  {
+   "id": "01-terminal-ch10-11",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الأمر اللي بيوريك مين بيسمع (LISTEN) على بورتات TCP على الماك:",
+   "template": "lsof -nP -iTCP -sTCP:___",
+   "blanks": [
+    [
+     "LISTEN"
+    ]
+   ],
+   "hint": "الحالة اللي السيرفر بيستنى فيها اتصالات.",
+   "explanation": "على Linux: ss -tlnp."
+  },
+  {
+   "id": "01-terminal-ch10-12",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تضغط مجلد `site` لأرشيف:",
+   "template": "tar -___ site.tar.gz site",
+   "blanks": [
+    [
+     "czf",
+     "zcf",
+     "czvf",
+     "cvzf"
+    ]
+   ],
+   "hint": "create + gzip + file.",
+   "explanation": "c للعمل، x للفك، z للضغط، f اسم الملف."
+  },
+  {
+   "id": "01-terminal-ch10-13",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات الدخول على سيرفر بمفتاح لأول مرة:",
+   "items": [
+    "ssh-keygen -t ed25519",
+    "ssh-copy-id user@server",
+    "ssh user@server",
+    "ضيف Host في ~/.ssh/config علشان تختصر"
+   ],
+   "explanation": "بعد الـ config تقدر تكتب ssh prod بس."
+  },
+  {
+   "id": "01-terminal-ch10-14",
+   "type": "mcq",
+   "level": "medium",
+   "question": "سيرفر Node بيسمع على `127.0.0.1:3000`. موبايلك على نفس الواي فاي يقدر يفتحه؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "127.0.0.1 = الجهاز نفسه بس."
+    },
+    {
+     "text": "لأ، لازم يسمع على 0.0.0.0 (أو IP الشبكة)",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "0.0.0.0 مقابل 127.0.0.1 من صناديق الفصل."
+  }
+ ]
+}

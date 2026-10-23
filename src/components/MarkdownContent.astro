@@ -1,0 +1,44 @@
+---
+import Default from '@astrojs/starlight/components/MarkdownContent.astro';
+import ExerciseSection from './exercises/ExerciseSection';
+import BookProgress from './BookProgress';
+import { loadCatalog } from '../lib/catalog';
+
+const { id } = Astro.locals.starlightRoute;
+const catalog = await loadCatalog();
+const chapterMatch = id.match(/^(?<book>\d{2}-[a-z0-9-]+)\/(?<file>ch\d+)$/);
+const bookMatch = id.match(/^(?<book>\d{2}-[a-z0-9-]+)$/);
+
+const chapterKey = chapterMatch?.groups
+	? `${chapterMatch.groups.book}/${chapterMatch.groups.file}`
+	: undefined;
+const exerciseData = chapterKey ? catalog.byKey.get(chapterKey) : undefined;
+const bookEntry = bookMatch?.groups
+	? catalog.books.find((book) => book.slug === bookMatch.groups!.book)
+	: undefined;
+---
+
+{
+	bookEntry && (
+		<BookProgress client:load title={bookEntry.title} chapters={bookEntry.chapters} />
+	)
+}
+<Default><slot /></Default>
+{
+	exerciseData && (
+		<>
+			<ExerciseSection client:load data={exerciseData} />
+			<noscript>
+				<p class="ex-noscript">التصحيح وحفظ النتيجة محتاجين JavaScript.</p>
+			</noscript>
+		</>
+	)
+}
+{
+	chapterMatch && !exerciseData && (
+		<section class="ex-soon" aria-label="اتدرّب">
+			<h2>اتدرّب</h2>
+			<p>التمارين جاية قريب</p>
+		</section>
+	)
+}

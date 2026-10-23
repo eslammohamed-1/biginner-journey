@@ -1,0 +1,256 @@
+{
+ "book": "03-web",
+ "chapter": 7,
+ "chapterFile": "ch07",
+ "title": "HTTP: الطلب والرد سطر سطر",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "03-web-ch07-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "رسالة طلب HTTP بتتكون من إيه بالترتيب؟",
+   "options": [
+    {
+     "text": "Request line، Headers، سطر فاضي، Body",
+     "why": "صح."
+    },
+    {
+     "text": "Body ثم Headers",
+     "why": "العكس."
+    },
+    {
+     "text": "Headers بس",
+     "why": "ناقص."
+    },
+    {
+     "text": "Status line أولاً",
+     "why": "ده الرد."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الرد نفس الشكل بـ Status line."
+  },
+  {
+   "id": "03-web-ch07-02",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب أجزاء رسالة الطلب:",
+   "items": [
+    "Request line (Method + Target + Version)",
+    "Headers",
+    "سطر فاضي",
+    "Body"
+   ],
+   "explanation": "السطر الفاضي بيفصل الـ Headers عن الـ Body."
+  },
+  {
+   "id": "03-web-ch07-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "أنهي Method Idempotent بس مش Safe؟",
+   "options": [
+    {
+     "text": "DELETE",
+     "why": "صح، تكراره زي مرة بس بيغيّر."
+    },
+    {
+     "text": "GET",
+     "why": "Safe و Idempotent."
+    },
+    {
+     "text": "POST",
+     "why": "لا ده ولا ده."
+    },
+    {
+     "text": "HEAD",
+     "why": "Safe."
+    }
+   ],
+   "correct": 0,
+   "explanation": "PUT برضه Idempotent."
+  },
+  {
+   "id": "03-web-ch07-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ليه زرار الدفع ميتضغطش مرتين؟",
+   "options": [
+    {
+     "text": "لأن POST مش Idempotent، فكل ضغطة ممكن تعمل طلب جديد",
+     "why": "صح."
+    },
+    {
+     "text": "علشان GET بطيء",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان CORS",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان الكاش",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ولهذا Idempotency keys في الدفع."
+  },
+  {
+   "id": "03-web-ch07-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "fetch بيرمي Error لو السيرفر رد 404؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "fetch بيرفض على فشل الشبكة بس."
+    },
+    {
+     "text": "لأ، لازم تشيك على `res.ok`",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "أشهر غلطة مع fetch."
+  },
+  {
+   "id": "03-web-ch07-06",
+   "type": "mcq",
+   "level": "easy",
+   "question": "أسامي الـ Headers حساسة لحالة الحروف؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مش حساسة."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Content-Type و content-type واحد."
+  },
+  {
+   "id": "03-web-ch07-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تبعت JSON بـ fetch:",
+   "template": "fetch(url, { method: \"POST\", headers: { \"Content-Type\": \"application/json\" }, body: JSON.___(data) })",
+   "blanks": [
+    [
+     "stringify"
+    ]
+   ],
+   "hint": "تحويل Object لنص.",
+   "explanation": "من غيرها هيتبعت [object Object]."
+  },
+  {
+   "id": "03-web-ch07-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تتأكد إن الرد نجح:",
+   "template": "if (!res.___) throw new Error(res.status)",
+   "blanks": [
+    [
+     "ok"
+    ]
+   ],
+   "hint": "true لو 200-299.",
+   "explanation": "fetch مبيرفضش على 404/500."
+  },
+  {
+   "id": "03-web-ch07-09",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ابعت PATCH بـ curl لـ https://jsonplaceholder.typicode.com/posts/1 فيه {\"title\":\"New\"}.",
+   "accepted": [
+    "curl -X PATCH --json '{\"title\":\"New\"}' https://jsonplaceholder.typicode.com/posts/1",
+    "curl -X PATCH -H 'Content-Type: application/json' -d '{\"title\":\"New\"}' https://jsonplaceholder.typicode.com/posts/1",
+    "curl -X PATCH -H \"Content-Type: application/json\" -d '{\"title\":\"New\"}' https://jsonplaceholder.typicode.com/posts/1"
+   ],
+   "hint": "-X PATCH و --json.",
+   "explanation": "PATCH تعديل جزئي."
+  },
+  {
+   "id": "03-web-ch07-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "بعتّ فورم بـ fetch والسيرفر بيقولك الـ Body فاضي.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشيك إن Content-Type مظبوط وإني عامل JSON.stringify",
+     "why": "صح."
+    },
+    {
+     "text": "السيرفر واقع",
+     "why": "رد عليك."
+    },
+    {
+     "text": "أستخدم GET",
+     "why": "GET مفيهوش Body."
+    },
+    {
+     "text": "أمسح الكوكيز",
+     "why": "مش هي."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Content-Type بيقول شكل الـ Body."
+  },
+  {
+   "id": "03-web-ch07-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "يعني إيه HTTP Stateless؟",
+   "options": [
+    {
+     "text": "كل طلب مستقل والسيرفر مش فاكر اللي قبله، فالكوكيز والـ Tokens هي اللي بتعرّفه بيك",
+     "why": "صح."
+    },
+    {
+     "text": "مفيهوش Headers",
+     "why": "فيه."
+    },
+    {
+     "text": "مبيحفظش ملفات",
+     "why": "مش المعنى."
+    },
+    {
+     "text": "بيشتغل من غير سيرفر",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "فصل الكوكيز بيكمل الحكاية."
+  },
+  {
+   "id": "03-web-ch07-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "أنهي Method بيرجّع الـ Headers بس من غير Body؟",
+   "options": [
+    {
+     "text": "HEAD",
+     "why": "صح."
+    },
+    {
+     "text": "OPTIONS",
+     "why": "سؤال عن المسموح."
+    },
+    {
+     "text": "GET",
+     "why": "فيه Body."
+    },
+    {
+     "text": "PUT",
+     "why": "استبدال."
+    }
+   ],
+   "correct": 0,
+   "explanation": "curl -I بيعمل HEAD."
+  }
+ ]
+}

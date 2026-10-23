@@ -1,0 +1,255 @@
+{
+ "book": "03-web",
+ "chapter": 18,
+ "chapterFile": "ch18",
+ "title": "Network Panel (1): تقرا قايمة الطلبات",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "03-web-ch18-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "أول قاعدة في Network؟",
+   "options": [
+    {
+     "text": "افتحه قبل ما الصفحة تحمّل (أو ⌘R وهو مفتوح)",
+     "why": "صح."
+    },
+    {
+     "text": "افتحه بعد التحميل",
+     "why": "مش هيسجل اللي فات."
+    },
+    {
+     "text": "مفيش قواعد",
+     "why": "فيه."
+    },
+    {
+     "text": "لازم Incognito",
+     "why": "مش لازم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Record شغال."
+  },
+  {
+   "id": "03-web-ch18-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Preserve log مفيد إمتى؟",
+   "options": [
+    {
+     "text": "لما الصفحة بتعمل Redirect أو Login وتتنقل، علشان الطلبات القديمة متتمسحش",
+     "why": "صح."
+    },
+    {
+     "text": "دايماً بيبطّأ",
+     "why": "لأ."
+    },
+    {
+     "text": "للكاش",
+     "why": "ده Disable cache."
+    },
+    {
+     "text": "للشبكة البطيئة",
+     "why": "ده Throttling."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بيحفظ السجل بين الصفحات."
+  },
+  {
+   "id": "03-web-ch18-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الفلتر `-domain:google.com` بيعمل إيه؟",
+   "options": [
+    {
+     "text": "يوريك google.com بس",
+     "why": "الـ - بتعكس."
+    },
+    {
+     "text": "يخبي طلبات google.com",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Property filters."
+  },
+  {
+   "id": "03-web-ch18-04",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اكتب فلتر في Network يوريك الطلبات اللي رجعت 404 بس.",
+   "accepted": [
+    "status-code:404"
+   ],
+   "hint": "Property filter.",
+   "explanation": "method: و domain: كمان."
+  },
+  {
+   "id": "03-web-ch18-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اكتب فلتر يوريك طلبات POST بس.",
+   "accepted": [
+    "method:POST",
+    "method:post"
+   ],
+   "hint": "method:.",
+   "explanation": "مفيد في الفورمز."
+  },
+  {
+   "id": "03-web-ch18-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Status `(failed)` معناه إن السيرفر رد 500؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الأقواس = مفيش رد HTTP."
+    },
+    {
+     "text": "لأ، معناه مفيش رد HTTP أصلاً (شبكة/DNS/اتصال)",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "(canceled) و (blocked) نفس العيلة."
+  },
+  {
+   "id": "03-web-ch18-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لو Waiting for server response (TTFB) هي الأطول؟",
+   "options": [
+    {
+     "text": "المشكلة غالباً في السيرفر",
+     "why": "صح."
+    },
+    {
+     "text": "في الـ DNS",
+     "why": "ده DNS Lookup."
+    },
+    {
+     "text": "في النت",
+     "why": "ممكن جزئياً، بس الأساس السيرفر."
+    },
+    {
+     "text": "في الـ CSS",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Timing بالملي ثانية."
+  },
+  {
+   "id": "03-web-ch18-08",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب مراحل Timing:",
+   "items": [
+    "Queueing",
+    "DNS Lookup",
+    "Initial connection",
+    "SSL",
+    "Waiting (TTFB)",
+    "Content Download"
+   ],
+   "explanation": "نفس الرحلة في 3 أماكن."
+  },
+  {
+   "id": "03-web-ch18-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عايز تشوف موقعك على نت 4G بطيء من غير ما تنزل الشارع.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "Throttling: Slow 4G من Network",
+     "why": "صح."
+    },
+    {
+     "text": "أقفل الواي فاي",
+     "why": "ده Offline."
+    },
+    {
+     "text": "أطلب من حد",
+     "why": "مش لازم."
+    },
+    {
+     "text": "مستحيل",
+     "why": "ممكن."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Throttling تقليد مش حقيقة."
+  },
+  {
+   "id": "03-web-ch18-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عايز تلاقي طلب API اللي بيفشل وسط 200 طلب.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "فلتر Fetch/XHR وبعدين أرتّب بالـ Status أو أستخدم status-code:",
+     "why": "صح."
+    },
+    {
+     "text": "أقرأهم واحد واحد",
+     "why": "مضيعة."
+    },
+    {
+     "text": "أمسح الكاش",
+     "why": "لأ."
+    },
+    {
+     "text": "Console بس",
+     "why": "Network أوضح."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مثال عملي من الفصل."
+  },
+  {
+   "id": "03-web-ch18-11",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: عمود مش ظاهر افتراضياً وبيوريك h2 أو h3:",
+   "template": "___",
+   "blanks": [
+    [
+     "Protocol"
+    ]
+   ],
+   "hint": "النسخة.",
+   "explanation": "Right-click على الأعمدة."
+  },
+  {
+   "id": "03-web-ch18-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه أرقام Throttling مش \"حقيقة\"؟",
+   "options": [
+    {
+     "text": "لأنها تقليد بيأخّر على جهازك، ومش بيقلّد كل سلوك الشبكات الحقيقية (فقد Packets مثلاً)",
+     "why": "صح."
+    },
+    {
+     "text": "بتبقى أسرع",
+     "why": "مش المعنى."
+    },
+    {
+     "text": "مش شغالة",
+     "why": "شغالة."
+    },
+    {
+     "text": "بتأثر على السيرفر",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خلي بالك."
+  }
+ ]
+}

@@ -1,0 +1,257 @@
+{
+ "book": "03-web",
+ "chapter": 9,
+ "chapterFile": "ch09",
+ "title": "الـ Headers: الكلام اللي على الظرف",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "03-web-ch09-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "أنهي Header إجباري في HTTP/1.1؟",
+   "options": [
+    {
+     "text": "Host",
+     "why": "صح."
+    },
+    {
+     "text": "User-Agent",
+     "why": "اختياري."
+    },
+    {
+     "text": "Accept",
+     "why": "اختياري."
+    },
+    {
+     "text": "Cookie",
+     "why": "اختياري."
+    }
+   ],
+   "correct": 0,
+   "explanation": "سيرفر واحد ممكن يستضيف مواقع كتير."
+  },
+  {
+   "id": "03-web-ch09-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "العربي طالع في الصفحة كده `Ø§Ù„ØµÙØ­Ø©`. إيه العلاج؟",
+   "options": [
+    {
+     "text": "`Content-Type: text/html; charset=utf-8`",
+     "why": "صح."
+    },
+    {
+     "text": "أغيّر الخط",
+     "why": "الـ Encoding هو المشكلة."
+    },
+    {
+     "text": "أعمل gzip",
+     "why": "مالوش علاقة."
+    },
+    {
+     "text": "أستخدم HTTPS",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "charset=utf-8 علاج العربي البايظ."
+  },
+  {
+   "id": "03-web-ch09-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`Authorization: Basic` بيشفّر الباسورد؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "Base64 مش تشفير."
+    },
+    {
+     "text": "لأ، Base64 مجرد ترميز وأي حد يفكه، فلازم HTTPS",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Bearer للـ Tokens."
+  },
+  {
+   "id": "03-web-ch09-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في `Accept-Language: ar-EG,ar;q=0.9,en;q=0.8` الـ q معناها إيه؟",
+   "options": [
+    {
+     "text": "درجة التفضيل من 0 لـ 1",
+     "why": "صح."
+    },
+    {
+     "text": "الجودة بتاعة الصورة",
+     "why": "لأ."
+    },
+    {
+     "text": "Query",
+     "why": "لأ."
+    },
+    {
+     "text": "رقم النسخة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ar-EG الأول ثم ar ثم en."
+  },
+  {
+   "id": "03-web-ch09-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ابعت لـ https://httpbin.org/headers طلب فيه Header Accept-Language بـ ar-EG.",
+   "accepted": [
+    "curl -s https://httpbin.org/headers -H 'Accept-Language: ar-EG'",
+    "curl https://httpbin.org/headers -H \"Accept-Language: ar-EG\"",
+    "curl -H 'Accept-Language: ar-EG' https://httpbin.org/headers",
+    "curl -s -H 'Accept-Language: ar-EG' https://httpbin.org/headers"
+   ],
+   "hint": "-H.",
+   "explanation": "httpbin مراية لطلبك."
+  },
+  {
+   "id": "03-web-ch09-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اطلب صفحة مضغوطة واطبع حجم التحميل بس.",
+   "accepted": [
+    "curl -s --compressed URL -o /dev/null -w '%{size_download}\\n'",
+    "curl -s --compressed -o /dev/null -w '%{size_download}' URL",
+    "curl -s --compressed -o /dev/null -w '%{size_download}\\n' URL"
+   ],
+   "hint": "--compressed و size_download.",
+   "explanation": "قارنه من غير --compressed."
+  },
+  {
+   "id": "03-web-ch09-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لو السيرفر مفهمش Header معين، الطلب كله بيفشل؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الـ Headers المجهولة بتتجاهل."
+    },
+    {
+     "text": "لأ، بيتجاهله",
+     "why": "صح، والتصميم المفتوح ده خلّى HTTP يتطور."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ودي حكاية X-."
+  },
+  {
+   "id": "03-web-ch09-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "بتبني ميزة بتعتمد على User-Agent علشان تعرف لو المستخدم على Safari.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أتجنب ده، الـ User-Agent فوضى تاريخية، وأستخدم Feature detection",
+     "why": "صح."
+    },
+    {
+     "text": "أكمّل عادي",
+     "why": "هيبوظ."
+    },
+    {
+     "text": "أستخدم IP",
+     "why": "مالوش علاقة."
+    },
+    {
+     "text": "أسأل المستخدم",
+     "why": "مش عملي."
+    }
+   ],
+   "correct": 0,
+   "explanation": "حكاية Mozilla/5.0."
+  },
+  {
+   "id": "03-web-ch09-09",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "نشرت Screenshot من Network فيها Header Authorization: Bearer ...",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أعتبر الـ Token اتسرّب، وأعمل Logout/Revoke وأشيل الصورة",
+     "why": "صح."
+    },
+    {
+     "text": "عادي ده مشفّر",
+     "why": "الـ Token نفسه هو المفتاح."
+    },
+    {
+     "text": "محدش هيلاحظ",
+     "why": "خطر."
+    },
+    {
+     "text": "أغيّر الباسورد بس",
+     "why": "الـ Token ممكن يفضل شغال."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خلي بالك: الـ Tokens في الـ Screenshots."
+  },
+  {
+   "id": "03-web-ch09-10",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الـ Header اللي بيقول للمتصفح يمنع تخمين نوع المحتوى:",
+   "template": "X-Content-Type-Options: ___",
+   "blanks": [
+    [
+     "nosniff"
+    ]
+   ],
+   "hint": "متشمّش.",
+   "explanation": "من Headers الأمان المشهورة."
+  },
+  {
+   "id": "03-web-ch09-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب رحلة الضغط:",
+   "items": [
+    "المتصفح يبعت Accept-Encoding: gzip, br",
+    "السيرفر يختار br ويضغط",
+    "السيرفر يرد بـ Content-Encoding: br",
+    "المتصفح يفك ويعرض"
+   ],
+   "explanation": "Content negotiation."
+  },
+  {
+   "id": "03-web-ch09-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه الضغط بيوفر جامد في HTML و JSON؟",
+   "options": [
+    {
+     "text": "لأنهم نص فيه تكرار كتير (زي `<div class=`)، والضغط بيستغل التكرار",
+     "why": "صح."
+    },
+    {
+     "text": "لأنهم صغيرين",
+     "why": "مش السبب."
+    },
+    {
+     "text": "لأنهم مشفّرين",
+     "why": "لأ."
+    },
+    {
+     "text": "مش بيوفر",
+     "why": "بيوفر لحد 80-90%."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الصور غالباً مضغوطة أصلاً."
+  }
+ ]
+}

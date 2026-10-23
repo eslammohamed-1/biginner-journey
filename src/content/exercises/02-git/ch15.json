@@ -1,0 +1,262 @@
+{
+ "book": "02-git",
+ "chapter": 15,
+ "chapterFile": "ch15",
+ "title": "الـ Rebase والـ Cherry-pick بهدوء",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "02-git-ch15-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Rebase بيعمل إيه؟",
+   "options": [
+    {
+     "text": "بيعيد عمل Commits بتاعتك فوق قاعدة جديدة فالتاريخ يبقى خط",
+     "why": "صح."
+    },
+    {
+     "text": "بيدمج بـ Merge commit",
+     "why": "ده merge."
+    },
+    {
+     "text": "بيمسح Commits",
+     "why": "interactive بس ممكن."
+    },
+    {
+     "text": "بيعمل Tag",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "والـ Hashes بتتغير."
+  },
+  {
+   "id": "02-git-ch15-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "بعد الـ Rebase الـ Commits بتحتفظ بنفس الـ Hash؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بتتعمل من جديد."
+    },
+    {
+     "text": "لأ، Hashes جديدة",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "علشان كده متعملوش لحاجة متشاركة."
+  },
+  {
+   "id": "02-git-ch15-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "القاعدة الذهبية للـ Rebase؟",
+   "options": [
+    {
+     "text": "متعملش Rebase لـ Commits اتشاركت (زي main)",
+     "why": "صح."
+    },
+    {
+     "text": "اعمل Rebase دايماً قبل push --force",
+     "why": "لأ."
+    },
+    {
+     "text": "متعملش Rebase خالص",
+     "why": "ينفع على Branch بتاعك."
+    },
+    {
+     "text": "Rebase بس على main",
+     "why": "العكس."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Rebase لـ Branch بتاعك بس."
+  },
+  {
+   "id": "02-git-ch15-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "حدّث feature بحيث يبقى فوق آخر main.",
+   "accepted": [
+    "git switch feature && git rebase main",
+    "git checkout feature && git rebase main"
+   ],
+   "hint": "اقف على اللي هيتنقل.",
+   "explanation": "في الـ Rebase بتقف على الـ Branch اللي هيتنقل."
+  },
+  {
+   "id": "02-git-ch15-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "بعد Rebase لـ Branch بتاعك على GitHub، ابعته بأمان.",
+   "accepted": [
+    "git push --force-with-lease",
+    "git push --force-with-lease origin feature"
+   ],
+   "hint": "force بس بأمان.",
+   "explanation": "بيرفض لو حد ضاف Commits."
+  },
+  {
+   "id": "02-git-ch15-06",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات حل Conflict أثناء Rebase:",
+   "items": [
+    "افتح الملف وحل الـ Conflict",
+    "git add الملف",
+    "git rebase --continue",
+    "كرر لحد ما يخلص (أو --abort)"
+   ],
+   "explanation": "مفيش commit هنا، --continue هو اللي بيكمّل."
+  },
+  {
+   "id": "02-git-ch15-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في `git rebase -i HEAD~4`، `fixup` بيعمل إيه؟",
+   "options": [
+    {
+     "text": "يدمج الـ Commit في اللي قبله ويرمي رسالته",
+     "why": "صح."
+    },
+    {
+     "text": "يغيّر الرسالة",
+     "why": "ده reword."
+    },
+    {
+     "text": "يمسحه",
+     "why": "ده drop."
+    },
+    {
+     "text": "يسيبه",
+     "why": "ده pick."
+    }
+   ],
+   "correct": 0,
+   "explanation": "squash زيه بس بيسيبك تكتب رسالة."
+  },
+  {
+   "id": "02-git-ch15-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عندك Commits محلية وعايز تجيب الجديد من GitHub من غير Merge commit.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "git pull --rebase",
+     "why": "صح."
+    },
+    {
+     "text": "git pull --force",
+     "why": "مش موجود كده."
+    },
+    {
+     "text": "git reset --hard origin/main",
+     "why": "هتخسر شغلك."
+    },
+    {
+     "text": "git merge --no-ff",
+     "why": "هيعمل Merge commit."
+    }
+   ],
+   "correct": 0,
+   "explanation": "pull --rebase للـ Commits المحلية."
+  },
+  {
+   "id": "02-git-ch15-09",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "Bug fix اتعمل على Branch تاني (Commit 4f2a9c1) ومحتاجه على main بس من غير باقي الـ Branch.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "git switch main && git cherry-pick 4f2a9c1",
+     "why": "صح."
+    },
+    {
+     "text": "git merge الـ Branch كله",
+     "why": "هيجيب كل حاجة."
+    },
+    {
+     "text": "أكتبه تاني بإيدي",
+     "why": "ممكن بس cherry-pick أسهل."
+    },
+    {
+     "text": "git rebase main",
+     "why": "مش هو."
+    }
+   ],
+   "correct": 0,
+   "explanation": "cherry-pick لـ Commit واحد."
+  },
+  {
+   "id": "02-git-ch15-10",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان cherry-pick يضيف سطر \"cherry picked from\" في الرسالة:",
+   "template": "git cherry-pick ___ 4f2a9c1",
+   "blanks": [
+    [
+     "-x"
+    ]
+   ],
+   "hint": "حرف واحد.",
+   "explanation": "مفيد علشان تعرف أصل الـ Commit."
+  },
+  {
+   "id": "02-git-ch15-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "أثناء Rebase، ours و theirs معناهم إيه؟",
+   "options": [
+    {
+     "text": "بيتقلبوا: ours = القاعدة (main)، و theirs = Commits بتاعتك اللي بتتطبق",
+     "why": "صح."
+    },
+    {
+     "text": "زي الـ Merge بالظبط",
+     "why": "بيتقلبوا."
+    },
+    {
+     "text": "مالهمش معنى",
+     "why": "ليهم."
+    },
+    {
+     "text": "ours = GitHub",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "\"ours و theirs بيتقلبوا في الـ Rebase\"."
+  },
+  {
+   "id": "02-git-ch15-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`--force-with-lease` بيختلف عن `--force` في إيه؟",
+   "options": [
+    {
+     "text": "بيرفض لو حد ضاف Commits على الـ Remote من آخر fetch",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع",
+     "why": "لأ."
+    },
+    {
+     "text": "مبيعملش force",
+     "why": "بيعمل بأمان."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "متعودش على --force."
+  }
+ ]
+}

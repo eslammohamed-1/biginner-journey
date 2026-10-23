@@ -1,0 +1,267 @@
+{
+ "book": "01-terminal",
+ "chapter": 1,
+ "chapterFile": "ch01",
+ "title": "جوه الـ Terminal: إيه اللي بيحصل بجد؟",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "01-terminal-ch01-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "مين فيهم اللي بيفهم الأمر اللي انت كتبته ويقرر يعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ Terminal (Terminal.app أو iTerm2)",
+     "why": "الـ Terminal بيرسم الشاشة ويستقبل الزراير بس، مش بيفهم الأوامر."
+    },
+    {
+     "text": "الـ Shell (زي zsh)",
+     "why": "صح، الـ Shell هو اللي بيقرا السطر ويقطّعه ويوسّعه وبيشغّل البرنامج."
+    },
+    {
+     "text": "الـ TTY",
+     "why": "الـ TTY/PTY هو الخط اللي بيوصل الـ Terminal بالـ Shell والـ Kernel، مش بيفسّر حاجة."
+    },
+    {
+     "text": "الـ Kernel",
+     "why": "الـ Kernel بينفّذ الـ Processes، بس مش هو اللي بيقرا أوامرك النصية."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ Terminal واجهة، والـ Shell هو المترجم، والـ TTY الخط اللي بينهم."
+  },
+  {
+   "id": "01-terminal-ch01-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "غيّرت من Terminal.app لـ iTerm2. إيه اللي اتغيّر؟",
+   "options": [
+    {
+     "text": "الـ Shell اتغيّر من zsh لـ bash",
+     "why": "الـ Shell اختيار منفصل، iTerm2 بيشغّل نفس الـ Default Shell بتاعك."
+    },
+    {
+     "text": "الواجهة بس، والـ Shell لسه zsh زي ما هو",
+     "why": "صح، الاتنين مجرد Terminal بيشغّل نفس الـ Shell."
+    },
+    {
+     "text": "كل الأوامر بقت مختلفة",
+     "why": "الأوامر بتاعة الـ Shell والبرامج، مش بتاعة الـ Terminal."
+    },
+    {
+     "text": "الـ PATH اتمسح",
+     "why": "الـ PATH بيتظبط من ملفات إعدادات الـ Shell، مش له علاقة باسم الـ Terminal."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ Terminal والـ Shell حاجتين منفصلين، ودي أهم فكرة في الفصل."
+  },
+  {
+   "id": "01-terminal-ch01-03",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب اللي بيعمله الـ Shell من ساعة ما تدوس Enter:",
+   "items": [
+    "يقرا السطر",
+    "يقطّعه لكلمات (Tokens)",
+    "يعمل التوسيعات (المتغيرات والـ Globbing)",
+    "يجهّز الـ Redirection",
+    "يدوّر على الأمر (Alias ثم Function ثم Builtin ثم PATH)",
+    "fork/exec ويشغّل البرنامج",
+    "يحط الـ Exit Code في $?"
+   ],
+   "explanation": "ده الترتيب اللي في ملخص الفصل: قراية ← تقطيع ← توسيعات ← Redirection ← بحث ← fork/exec ← Exit Code."
+  },
+  {
+   "id": "01-terminal-ch01-04",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه `cd` لازم يكون Builtin جوه الـ Shell ومينفعش يبقى برنامج خارجي؟",
+   "options": [
+    {
+     "text": "علشان يبقى أسرع بس",
+     "why": "السرعة مش السبب الأساسي، فيه Builtins كتير لأسباب تانية."
+    },
+    {
+     "text": "لأن البرنامج الخارجي بيشتغل في Process ابن، والابن ميقدرش يغيّر مجلد أبوه (الـ Shell)",
+     "why": "صح، لو cd برنامج منفصل هيغيّر مجلده هو ويموت، والـ Shell يفضل مكانه."
+    },
+    {
+     "text": "لأن Apple منعت ده على الماك",
+     "why": "ده قانون في كل أنظمة Unix مش قرار من Apple."
+    },
+    {
+     "text": "علشان cd محتاج sudo",
+     "why": "cd مش محتاج أي صلاحيات خاصة."
+    }
+   ],
+   "correct": 1,
+   "explanation": "أي تغيير في حالة الـ Shell نفسه (المجلد الحالي، المتغيرات) لازم يحصل جوه الـ Shell، وعلشان كده cd و export Builtins."
+  },
+  {
+   "id": "01-terminal-ch01-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اكتب الأمر اللي يوريك كل الأماكن اللي الـ Shell ممكن يلاقي فيها `echo` (Builtin ولا ملف) بالترتيب.",
+   "accepted": [
+    "type -a echo",
+    "whence -a echo"
+   ],
+   "hint": "أداة type مع Flag معناه \"all\".",
+   "explanation": "`type -a echo` بيقولك إن echo Builtin، وكمان فيه /bin/echo. وده أدق من which."
+  },
+  {
+   "id": "01-terminal-ch01-06",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض محتوى الـ PATH بتاعك.",
+   "accepted": [
+    "echo $PATH",
+    "echo \"$PATH\"",
+    "print $PATH",
+    "echo $path"
+   ],
+   "hint": "الـ PATH متغير، فاطبعه بـ echo و $.",
+   "explanation": "الـ PATH لستة مجلدات مفصولة بـ : والـ Shell بيدوّر فيها بالترتيب."
+  },
+  {
+   "id": "01-terminal-ch01-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ PATH فيه `/opt/homebrew/bin` قبل `/usr/bin`، والاتنين فيهم `git`. لما تكتب `git` أنهي واحد هيشتغل؟",
+   "options": [
+    {
+     "text": "`/opt/homebrew/bin/git`",
+     "why": "صح، أول ملف يتلاقي في ترتيب الـ PATH هو اللي بيشتغل."
+    },
+    {
+     "text": "`/usr/bin/git` لأنه بتاع النظام",
+     "why": "النظام مش ليه أولوية خاصة، الترتيب هو اللي بيحكم."
+    },
+    {
+     "text": "الاتنين هيشتغلوا ورا بعض",
+     "why": "الـ Shell بيوقف عند أول ملف يلاقيه."
+    },
+    {
+     "text": "هيطلع خطأ لأن فيه اتنين بنفس الاسم",
+     "why": "مفيش تعارض، الأول بيكسب وخلاص."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ترتيب الـ PATH هو اللي بيقرر، وعلشان كده Homebrew بيتحط في الأول."
+  },
+  {
+   "id": "01-terminal-ch01-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عملت Script اسمه `deploy.sh` في المجلد الحالي، وكتبت `deploy.sh` فطلعلك `command not found`، مع إن الملف موجود قدامك في ls.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أكتبه `./deploy.sh` لأن المجلد الحالي مش في الـ PATH",
+     "why": "صح، الـ Shell بيدوّر في الـ PATH بس، والـ ./ بتقوله \"الملف ده من هنا\"."
+    },
+    {
+     "text": "أعيد تشغيل الماك",
+     "why": "مفيش حاجة هتتغير، المجلد الحالي لسه مش في الـ PATH."
+    },
+    {
+     "text": "أغيّر الـ Shell لـ bash",
+     "why": "bash بيدوّر في الـ PATH بنفس الطريقة."
+    },
+    {
+     "text": "أمسح الملف وأعمله تاني",
+     "why": "الملف سليم، المشكلة في طريقة الاستدعاء."
+    }
+   ],
+   "correct": 0,
+   "explanation": "المجلد الحالي مش في الـ PATH لأسباب أمان، فلازم ./ قبل اسم أي Script جنبك."
+  },
+  {
+   "id": "01-terminal-ch01-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "كتبت `./backup.sh` فطلعلك `Permission denied`، والملف ملكك.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أدّيله صلاحية التشغيل بـ `chmod +x backup.sh`",
+     "why": "صح، الملف محتاج صلاحية x علشان يشتغل كبرنامج."
+    },
+    {
+     "text": "أشغّله بـ sudo على طول",
+     "why": "sudo هنا مش حل، الملف ناقصه x حتى مع root."
+    },
+    {
+     "text": "أغيّر اسمه لـ backup",
+     "why": "الامتداد مالوش دعوة بصلاحية التشغيل."
+    },
+    {
+     "text": "أنقله لـ /usr/bin",
+     "why": "ده مش حل وكمان /usr/bin محمي بـ SIP على الماك."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Permission denied وانت بتشغل Script معناها غالباً إن صلاحية x ناقصة."
+  },
+  {
+   "id": "01-terminal-ch01-10",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الأمر علشان تشوف الـ PID والـ PPID (أبو الـ Process) للعمليات:",
+   "template": "ps -o pid,___,command",
+   "blanks": [
+    [
+     "ppid"
+    ]
+   ],
+   "hint": "Parent PID.",
+   "explanation": "عمود ppid بيوريك مين اللي شغّل العملية، فتشوف إن الـ Shell هو \"أبو\" أوامرك."
+  },
+  {
+   "id": "01-terminal-ch01-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Prompt بتاعك `ahmed@MacBook-Pro web %`. كلمة `web` بتمثل إيه؟",
+   "options": [
+    {
+     "text": "اسم الجهاز",
+     "why": "اسم الجهاز هو MacBook-Pro بعد الـ @."
+    },
+    {
+     "text": "آخر جزء من المجلد الحالي",
+     "why": "صح، في zsh ده %1~ يعني آخر جزء من المسار."
+    },
+    {
+     "text": "اسم المستخدم",
+     "why": "اسم المستخدم هو ahmed قبل الـ @."
+    },
+    {
+     "text": "اسم الـ Shell",
+     "why": "اسم الـ Shell مش ظاهر في الـ Prompt ده."
+    }
+   ],
+   "correct": 1,
+   "explanation": "والـ % في الآخر معناها مستخدم عادي، و # معناها root."
+  },
+  {
+   "id": "01-terminal-ch01-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "صح ولا غلط: `which` هي أدق طريقة تعرف بيها لو الأمر Builtin في أي Shell.",
+   "options": [
+    {
+     "text": "صح",
+     "why": "which بيدوّر في الـ PATH أساساً، وفي shells كتير مبيعرفش الـ Aliases والـ Builtins."
+    },
+    {
+     "text": "غلط",
+     "why": "صح، `type -a` هو الأدق لأنه بيعرف الـ Alias والـ Function والـ Builtin والملف."
+    }
+   ],
+   "correct": 1,
+   "explanation": "استخدم type -a أو command -v بدل which لما تكون عايز تعرف الأمر ده إيه بالظبط."
+  }
+ ]
+}

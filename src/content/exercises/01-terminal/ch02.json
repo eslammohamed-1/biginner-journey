@@ -1,0 +1,273 @@
+{
+ "book": "01-terminal",
+ "chapter": 2,
+ "chapterFile": "ch02",
+ "title": "تشريح أي أمر: إزاي تقرا وتفهم أي حاجة تتكتب",
+ "count": 13,
+ "exercises": [
+  {
+   "id": "01-terminal-ch02-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "في `ls -la ~/Downloads`، إيه هو الـ Argument؟",
+   "options": [
+    {
+     "text": "`ls`",
+     "why": "ده اسم الأمر نفسه."
+    },
+    {
+     "text": "`-la`",
+     "why": "دي Options بتغيّر طريقة الشغل."
+    },
+    {
+     "text": "`~/Downloads`",
+     "why": "صح، ده الحاجة اللي الأمر هيشتغل عليها."
+    },
+    {
+     "text": "مفيش Argument",
+     "why": "فيه، المجلد هو الـ Argument."
+    }
+   ],
+   "correct": 2,
+   "explanation": "أي أمر = Command + Options + Arguments."
+  },
+  {
+   "id": "01-terminal-ch02-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "`ls -la` بتساوي إيه؟",
+   "options": [
+    {
+     "text": "`ls -l -a`",
+     "why": "صح، الحروف القصيرة ينفع تتدمج ورا شرطة واحدة."
+    },
+    {
+     "text": "`ls --la`",
+     "why": "الشرطتين للـ Options الطويلة، و --la مش Option موجود."
+    },
+    {
+     "text": "`ls -l` بس",
+     "why": "الـ a مش بتتشال، هي Option تاني."
+    },
+    {
+     "text": "`ls -a` و بعدين `ls -l` كأمرين",
+     "why": "ده أمر واحد بـ Option اتنين."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الدمج بيشتغل مع الـ Options القصيرة اللي بحرف واحد."
+  },
+  {
+   "id": "01-terminal-ch02-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ليه `tar -xvfz a.tgz` مش زي `tar -xzvf a.tgz`؟",
+   "options": [
+    {
+     "text": "الترتيب مش بيفرق خالص في أي حالة",
+     "why": "بيفرق لما فيه Option بياخد قيمة."
+    },
+    {
+     "text": "لأن f بتاخد قيمة (اسم الملف)، فلازم تبقى آخر حرف، وإلا z هتتفهم كأنها اسم الملف",
+     "why": "صح، الـ Option اللي بياخد قيمة يبقى آخر حرف في المجموعة."
+    },
+    {
+     "text": "لأن z لازم تبقى أول حرف دايماً",
+     "why": "مفيش قاعدة كده، القاعدة على الـ Option اللي بياخد قيمة."
+    },
+    {
+     "text": "لأن tar على الماك مبيدعمش z",
+     "why": "bsdtar على الماك بيدعم z عادي."
+    }
+   ],
+   "correct": 1,
+   "explanation": "في `-xvfz` الـ tar هيفهم إن اسم الملف هو \"z\"."
+  },
+  {
+   "id": "01-terminal-ch02-04",
+   "type": "command",
+   "level": "easy",
+   "prompt": "افتح صفحة الـ manual بتاعة `ls`.",
+   "accepted": [
+    "man ls"
+   ],
+   "hint": "الـ manual اختصاره 3 حروف.",
+   "explanation": "man هو الأساس على الماك، واستخدم / للبحث و q للخروج."
+  },
+  {
+   "id": "01-terminal-ch02-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "دوّر في كل صفحات الـ man على أي أمر ليه علاقة بكلمة password.",
+   "accepted": [
+    "man -k password",
+    "apropos password"
+   ],
+   "hint": "man فيه Flag للبحث بالكلمة (keyword).",
+   "explanation": "`man -k` (زي apropos) بيدوّر في أوصاف كل الصفحات."
+  },
+  {
+   "id": "01-terminal-ch02-06",
+   "type": "command",
+   "level": "think",
+   "prompt": "عندك ملف اسمه `-rf` بالغلط في المجلد. امسحه بأمان من غير ما rm يفهمه Option.",
+   "accepted": [
+    "rm -- -rf",
+    "rm ./-rf",
+    "rm -i -- -rf",
+    "rm -i ./-rf"
+   ],
+   "hint": "فيه علامة بتقول \"بعد كده مفيش Options\".",
+   "explanation": "الـ `--` معناها نهاية الـ Options، و `./-rf` كمان بتشتغل لأنها مبتبدأش بشرطة."
+  },
+  {
+   "id": "01-terminal-ch02-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إيه معنى `-` لوحدها في أوامر كتير زي `cat -`؟",
+   "options": [
+    {
+     "text": "إلغي الأمر",
+     "why": "مش ليها المعنى ده."
+    },
+    {
+     "text": "غالباً stdin أو stdout بدل اسم ملف",
+     "why": "صح، دي العادة المشهورة."
+    },
+    {
+     "text": "كل الملفات",
+     "why": "ده الـ Glob * مش -."
+    },
+    {
+     "text": "المجلد اللي فات",
+     "why": "ده في `cd -` بس، ودي حالة خاصة."
+    }
+   ],
+   "correct": 1,
+   "explanation": "- لوحدها غالباً = stdin/stdout، و -- = نهاية الـ Options."
+  },
+  {
+   "id": "01-terminal-ch02-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "نسخت أمر من موقع `sed -i 's/a/b/' file` وشغلته على الماك، فطلعلك `invalid command code` .",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أفتكر إن أدوات الماك نسخ BSD، وفيها sed -i محتاج '' بعدها",
+     "why": "صح، BSD sed محتاج Argument للـ -i."
+    },
+    {
+     "text": "أعيد تسطيب الماك",
+     "why": "الأداة شغالة، بس نسختها BSD مش GNU."
+    },
+    {
+     "text": "أكتب الأمر بحروف كبيرة",
+     "why": "الحروف حساسة، وكده هتبوظه أكتر."
+    },
+    {
+     "text": "أشغله بـ sudo",
+     "why": "الصلاحيات مالهاش علاقة بالـ Syntax."
+    }
+   ],
+   "correct": 0,
+   "explanation": "كتير من الأوامر اللي على النت مكتوبة لـ GNU على Linux، والماك BSD."
+  },
+  {
+   "id": "01-terminal-ch02-09",
+   "type": "mcq",
+   "level": "think",
+   "question": "`ls -h` بيعمل إيه؟ و `grep -h`؟ ليه ده مهم؟",
+   "options": [
+    {
+     "text": "الاتنين بيطلعوا المساعدة",
+     "why": "ده الفخ نفسه، -h مش دايماً help."
+    },
+    {
+     "text": "في ls معناها أحجام مقروءة (human)، وفي grep معناها متطبعش اسم الملف، فـ -h مش دايماً help",
+     "why": "صح، ده فخ الـ -h في الفصل."
+    },
+    {
+     "text": "الاتنين بيعملوا نفس الحاجة: human readable",
+     "why": "grep مالوش أحجام أصلاً."
+    },
+    {
+     "text": "-h ممنوعة على الماك",
+     "why": "مش ممنوعة."
+    }
+   ],
+   "correct": 1,
+   "explanation": "نفس الحرف ممكن يبقى ليه معنى مختلف من أمر للتاني، ارجع للـ man."
+  },
+  {
+   "id": "01-terminal-ch02-10",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل الأمر علشان تفك الأرشيف جوه /opt:",
+   "template": "tar -xzvf backup.tar.gz ___ /opt",
+   "blanks": [
+    [
+     "-C"
+    ]
+   ],
+   "hint": "Option بحرف كبير معناه Change directory.",
+   "explanation": "`-C` بتقول لـ tar يغيّر المجلد قبل ما يفك."
+  },
+  {
+   "id": "01-terminal-ch02-11",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب أجزاء الأمر في الشكل المضمون اللي الفصل بيوصّي بيه:",
+   "items": [
+    "اسم الأمر",
+    "الـ Options",
+    "الـ Arguments"
+   ],
+   "explanation": "الـ Options الأول أضمن، لأن بعض الأدوات (خصوصاً BSD على الماك) بتوقف تقرا Options بعد أول Argument."
+  },
+  {
+   "id": "01-terminal-ch02-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في سطر SYNOPSIS زي `ls [OPTION]... [FILE]...` الأقواس المربعة والتلات نقط معناهم إيه؟",
+   "options": [
+    {
+     "text": "الحاجة اختيارية وينفع تتكرر",
+     "why": "صح، [ ] = اختياري، و ... = ينفع أكتر من واحد."
+    },
+    {
+     "text": "الحاجة إجبارية ولازم مرة واحدة",
+     "why": "ده عكس المعنى."
+    },
+    {
+     "text": "لازم تكتب الأقواس فعلاً",
+     "why": "الأقواس رموز توضيحية في الـ man، مش بتتكتب."
+    },
+    {
+     "text": "الحاجة ممنوعة على الماك",
+     "why": "مالهاش علاقة بالنظام."
+    }
+   ],
+   "correct": 0,
+   "explanation": "قراية الـ SYNOPSIS بتوفر عليك وقت كتير."
+  },
+  {
+   "id": "01-terminal-ch02-13",
+   "type": "mcq",
+   "level": "easy",
+   "question": "`ls -R` و `ls -r` نفس المعنى؟",
+   "options": [
+    {
+     "text": "أيوه، الحروف مش حساسة",
+     "why": "الحروف في الـ Options حساسة جداً."
+    },
+    {
+     "text": "لأ: -R يعني Recursive، و -r يعني عكس الترتيب",
+     "why": "صح، حرف كبير وصغير = Option مختلف."
+    }
+   ],
+   "correct": 1,
+   "explanation": "خلي بالك من حالة الحروف في الـ Options دايماً."
+  }
+ ]
+}

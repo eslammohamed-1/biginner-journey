@@ -1,0 +1,240 @@
+{
+ "book": "03-web",
+ "chapter": 23,
+ "chapterFile": "ch23",
+ "title": "المشروع النهائي: صفحة بايظة وانت المحقق",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "03-web-ch23-01",
+   "type": "command",
+   "level": "easy",
+   "prompt": "شغّل سيرفر Python للمشروع على البورت 8000.",
+   "accepted": [
+    "python3 -m http.server 8000",
+    "python3 -m http.server"
+   ],
+   "hint": "http.server.",
+   "explanation": "خلي الـ Terminal ده مفتوح."
+  },
+  {
+   "id": "03-web-ch23-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "python3 -m http.server بيرد على الملفات اللي مش موجودة إزاي؟",
+   "options": [
+    {
+     "text": "بصفحة HTML فيها 404",
+     "why": "صح، وده ممكن يعمل Unexpected token '<' لو كنت مستني JSON."
+    },
+    {
+     "text": "بـ JSON",
+     "why": "لأ."
+    },
+    {
+     "text": "مبيردش",
+     "why": "بيرد."
+    },
+    {
+     "text": "بـ 500",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ربط بين الأعراض والسبب."
+  },
+  {
+   "id": "03-web-ch23-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "تقدر تصلّح CORS على example.com من الكود بتاعك؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "CORS قرار السيرفر."
+    },
+    {
+     "text": "لأ، تتعامل مع الفشل في كودك بس",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "علاجه في الكود: تتعامل مع الفشل."
+  },
+  {
+   "id": "03-web-ch23-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "fetch بـ `body: {…}` من غير JSON.stringify، الـ Body هيبقى إيه؟",
+   "options": [
+    {
+     "text": "`[object Object]`",
+     "why": "صح."
+    },
+    {
+     "text": "JSON",
+     "why": "لأ."
+    },
+    {
+     "text": "فاضي",
+     "why": "لأ."
+    },
+    {
+     "text": "خطأ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "يبان في Payload."
+  },
+  {
+   "id": "03-web-ch23-05",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ script الأساسي مش شغال والـ Console بيقول 404 على app.js.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشوف المسار في `<script src>` وأقارنه بالملفات بـ ls",
+     "why": "صح."
+    },
+    {
+     "text": "أعيد كتابة الكود",
+     "why": "الملف مش لاقيه أصلاً."
+    },
+    {
+     "text": "CORS",
+     "why": "لأ."
+    },
+    {
+     "text": "الكاش",
+     "why": "مش غالباً."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ملف مش موجود."
+  },
+  {
+   "id": "03-web-ch23-06",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "Console بيقول `net::ERR_CONNECTION_REFUSED` على localhost:3001.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "السيرفر مش شغال، أتأكد بـ `nc -zv localhost 3001` و `lsof -i :3001` وأشغّله",
+     "why": "صح."
+    },
+    {
+     "text": "CORS",
+     "why": "لأ."
+    },
+    {
+     "text": "DNS",
+     "why": "localhost مش DNS."
+    },
+    {
+     "text": "403",
+     "why": "مفيش رد."
+    }
+   ],
+   "correct": 0,
+   "explanation": "تثبت السبب من الـ Terminal."
+  },
+  {
+   "id": "03-web-ch23-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اتأكد إن ملف data.json صحيح JSON من الـ Terminal.",
+   "accepted": [
+    "python3 -m json.tool data.json",
+    "python3 -m json.tool < data.json",
+    "jq . data.json"
+   ],
+   "hint": "python3 -m json.tool.",
+   "explanation": "هيقولك السطر اللي فيه الخطأ."
+  },
+  {
+   "id": "03-web-ch23-08",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب قواعد التحقيق:",
+   "items": [
+    "شوف الأعراض في Console",
+    "لاقي الطلب في Network",
+    "خمّن السبب",
+    "أثبته من الـ Terminal (curl / nc / lsof)",
+    "صلّح وأكّد",
+    "اكتب في التقرير"
+   ],
+   "explanation": "ده شغلك الحقيقي بعد كده."
+  },
+  {
+   "id": "03-web-ch23-09",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "صلّحت ملف وعملت Reload وجالك 304، والتعديل مش ظاهر.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أتأكد إن Disable cache شغال، وأراجع Last-Modified، وأعمل Hard reload",
+     "why": "صح."
+    },
+    {
+     "text": "الـ 304 معناه الملف اتنقل",
+     "why": "لأ."
+    },
+    {
+     "text": "السيرفر واقع",
+     "why": "لأ."
+    },
+    {
+     "text": "أمسح المشروع",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الكاش: Last-Modified و If-Modified-Since و 304."
+  },
+  {
+   "id": "03-web-ch23-10",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تشوف الـ Headers والـ Body لملف data.json من السيرفر المحلي:",
+   "template": "curl ___ http://localhost:8000/data.json",
+   "blanks": [
+    [
+     "-i"
+    ]
+   ],
+   "hint": "include headers.",
+   "explanation": "شوف Content-Type."
+  },
+  {
+   "id": "03-web-ch23-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه الكتاب بيطلب منك تكتب تقرير Debugging منظم؟",
+   "options": [
+    {
+     "text": "علشان تثبت لنفسك السبب الحقيقي، وتبقى عادة تنفعك في الشغل وفي الأسئلة للفريق",
+     "why": "صح."
+    },
+    {
+     "text": "للزينة",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان الكورس",
+     "why": "مش السبب."
+    },
+    {
+     "text": "مش مهم",
+     "why": "مهم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "إمتى تعرف إنك خلصت."
+  }
+ ]
+}

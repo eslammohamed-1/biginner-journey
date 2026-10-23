@@ -1,0 +1,271 @@
+{
+ "book": "01-terminal",
+ "chapter": 4,
+ "chapterFile": "ch04",
+ "title": "الـ Filesystem على الماك: كل حاجة ليها مكان",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "01-terminal-ch04-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "على الماك، المجلدات والديسكات الخارجية (الفلاشة) بتتركب فين؟",
+   "options": [
+    {
+     "text": "`D:`",
+     "why": "مفيش حروف ديسكات زي Windows."
+    },
+    {
+     "text": "`/Volumes`",
+     "why": "صح، كل ديسك أو .dmg بيتركّب في /Volumes."
+    },
+    {
+     "text": "`/mnt`",
+     "why": "ده المكان المعتاد على Linux."
+    },
+    {
+     "text": "`/dev`",
+     "why": "/dev فيه ملفات الأجهزة نفسها، مش مكان التركيب."
+    }
+   ],
+   "correct": 1,
+   "explanation": "شجرة واحدة من /، وأي ديسك بيبقى مجلد جواها."
+  },
+  {
+   "id": "01-terminal-ch04-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "Homebrew بيسطّب حاجاته فين على ماك Apple Silicon (M1 وبعده)؟",
+   "options": [
+    {
+     "text": "`/opt/homebrew`",
+     "why": "صح."
+    },
+    {
+     "text": "`/usr/local`",
+     "why": "ده مكانه على أجهزة Intel القديمة."
+    },
+    {
+     "text": "`/System`",
+     "why": "ده بتاع Apple ومقفول."
+    },
+    {
+     "text": "`~/Library`",
+     "why": "ده للإعدادات وبيانات البرامج."
+    }
+   ],
+   "correct": 0,
+   "explanation": "/opt/homebrew على Apple Silicon و /usr/local على Intel."
+  },
+  {
+   "id": "01-terminal-ch04-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`/etc` على الماك إيه بالظبط؟",
+   "options": [
+    {
+     "text": "مجلد عادي زي Linux",
+     "why": "على الماك هو Link."
+    },
+    {
+     "text": "Link لـ `/private/etc`",
+     "why": "صح، ونفس الكلام لـ /tmp و /var."
+    },
+    {
+     "text": "ملف إعدادات واحد",
+     "why": "ده مجلد فيه ملفات كتير."
+    },
+    {
+     "text": "مش موجود على الماك",
+     "why": "موجود كـ Link."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ls -ld /etc /tmp /var هيوريك الأسهم."
+  },
+  {
+   "id": "01-terminal-ch04-04",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض المجلدات `/etc` و `/tmp` و `/var` نفسهم (مش محتواهم) بالتفاصيل علشان تشوف إنهم Links.",
+   "accepted": [
+    "ls -ld /etc /tmp /var",
+    "ls -dl /etc /tmp /var",
+    "ls -l -d /etc /tmp /var"
+   ],
+   "hint": "ls -l مع Flag بيعرض المجلد نفسه.",
+   "explanation": "-d بتعرض الـ Link نفسه بدل ما تدخل جواه."
+  },
+  {
+   "id": "01-terminal-ch04-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "انت في `/Users/ahmed/projects/web`. أنهي مسار مطلق (Absolute)؟",
+   "options": [
+    {
+     "text": "`../a.txt`",
+     "why": "ده نسبي من مكانك."
+    },
+    {
+     "text": "`./a.txt`",
+     "why": "نسبي برضه."
+    },
+    {
+     "text": "`/Users/ahmed/a.txt`",
+     "why": "صح، المطلق بيبدأ بـ /."
+    },
+    {
+     "text": "`projects/a.txt`",
+     "why": "نسبي."
+    }
+   ],
+   "correct": 2,
+   "explanation": "أي مسار بيبدأ بـ / مطلق، والباقي نسبي من مكانك (و ~ بيتحول لمطلق)."
+  },
+  {
+   "id": "01-terminal-ch04-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "مسحت الملف الأصلي اللي عليه Hard link. إيه اللي يحصل للـ Hard link؟",
+   "options": [
+    {
+     "text": "بيفضل شغال لأنه اسم تاني لنفس الـ inode",
+     "why": "صح، البيانات بتتمسح لما آخر اسم يتمسح."
+    },
+    {
+     "text": "بيبوظ زي الـ Soft link",
+     "why": "ده سلوك الـ Soft link."
+    },
+    {
+     "text": "بيتمسح لوحده",
+     "why": "الـ Hard link مستقل كاسم."
+    },
+    {
+     "text": "بيتحول لـ Soft link",
+     "why": "مفيش تحويل تلقائي."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Hard link اسم تاني، والـ Soft link ملف فيه مسار."
+  },
+  {
+   "id": "01-terminal-ch04-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل Soft link اسمه `~/tools/node-current` بيشاور على `~/tools/node-v22.11`.",
+   "accepted": [
+    "ln -s ~/tools/node-v22.11 ~/tools/node-current",
+    "ln -sv ~/tools/node-v22.11 ~/tools/node-current"
+   ],
+   "hint": "ln مع Flag للـ symbolic. الهدف الأول وبعدين اسم الـ Link.",
+   "explanation": "الترتيب زي cp: الحاجة الموجودة الأول، والاسم الجديد تاني."
+  },
+  {
+   "id": "01-terminal-ch04-08",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرف المساحة الفاضية على الديسك بأرقام مقروءة.",
+   "accepted": [
+    "df -h",
+    "df -h ~",
+    "df -h /"
+   ],
+   "hint": "disk free مع human readable.",
+   "explanation": "df للمساحة الفاضية، و du لمين واكلها."
+  },
+  {
+   "id": "01-terminal-ch04-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الأمر علشان تعرف أكبر المجلدات في الـ home:",
+   "template": "du -h ___ 1 ~ | sort -h",
+   "blanks": [
+    [
+     "-d"
+    ]
+   ],
+   "hint": "depth.",
+   "explanation": "على الماك `-d 1`، وعلى Linux كمان ينفع `--max-depth=1`."
+  },
+  {
+   "id": "01-terminal-ch04-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "كتبت `ls ~/Desktop` في الـ Terminal فطلعلك `Operation not permitted`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أدّي الـ Terminal صلاحية Full Disk Access أو أوافق على طلب الوصول من System Settings",
+     "why": "صح، ده من حماية الماك (TCC) مش صلاحيات Unix."
+    },
+    {
+     "text": "أعمل chmod 777 على Desktop",
+     "why": "الصلاحيات مش هي المشكلة، و 777 فكرة وحشة."
+    },
+    {
+     "text": "أستخدم sudo",
+     "why": "حتى root بيتمنع هنا لحد ما تدي الإذن."
+    },
+    {
+     "text": "الملفات اتمسحت",
+     "why": "الملفات موجودة، الوصول بس ممنوع."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الماك بيحمي مجلدات زي Desktop و Downloads لحد ما تدي إذن للتطبيق."
+  },
+  {
+   "id": "01-terminal-ch04-11",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "عملت Soft link بمسار نسبي، ولما نقلت الـ Link لمجلد تاني بقى بيقول `No such file or directory`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ Soft link بيخزّن المسار نصاً، فالمسار النسبي بقى غلط من مكانه الجديد، فأعمله بمسار مطلق",
+     "why": "صح."
+    },
+    {
+     "text": "الملف الأصلي اتمسح أكيد",
+     "why": "مش شرط، المسار النسبي هو اللي اتكسر."
+    },
+    {
+     "text": "لازم أستخدم Finder Alias",
+     "why": "الـ Terminal مبيفهمش الـ Alias."
+    },
+    {
+     "text": "أعمل restart",
+     "why": "مش هيصلّح المسار."
+    }
+   ],
+   "correct": 0,
+   "explanation": "المسار في الـ Soft link بيتحسب من مكان الـ Link نفسه."
+  },
+  {
+   "id": "01-terminal-ch04-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "على الماك عملت `Report.txt` وبعدين `touch report.txt`. هيحصل إيه افتراضياً؟",
+   "options": [
+    {
+     "text": "هيلمس نفس الملف لأن الماك مش حساس لحالة الحروف افتراضياً",
+     "why": "صح، وده يفرق لما ترفع على سيرفر Linux حساس."
+    },
+    {
+     "text": "هيعمل ملف تاني",
+     "why": "ده اللي هيحصل على Linux."
+    },
+    {
+     "text": "هيطلع خطأ",
+     "why": "touch مش هيعترض."
+    },
+    {
+     "text": "هيمسح الأول",
+     "why": "touch مبيمسحش."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خلي بالك: كود شغال عندك ممكن يقع على السيرفر بسبب حالة الحروف."
+  }
+ ]
+}

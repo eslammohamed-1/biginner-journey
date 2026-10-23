@@ -1,0 +1,226 @@
+{
+ "book": "03-web",
+ "chapter": 4,
+ "chapterFile": "ch04",
+ "title": "الطبقات و TCP و UDP: إزاي الكلام يوصل سليم",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "03-web-ch04-01",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب الطبقات من تحت لفوق:",
+   "items": [
+    "Link (الواي فاي/الكابل)",
+    "Internet (IP)",
+    "Transport (TCP/UDP)",
+    "Application (HTTP و DNS)"
+   ],
+   "explanation": "كل طبقة بتلف اللي فوقها زي الظرف."
+  },
+  {
+   "id": "03-web-ch04-02",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات الـ TCP Handshake:",
+   "items": [
+    "SYN",
+    "SYN-ACK",
+    "ACK",
+    "البيانات (HTTP)"
+   ],
+   "explanation": "بيكلّف RTT قبل أول بيانات."
+  },
+  {
+   "id": "03-web-ch04-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "TCP بيضيف إيه على IP؟",
+   "options": [
+    {
+     "text": "ترقيم وتأكيد وإعادة إرسال وترتيب",
+     "why": "صح."
+    },
+    {
+     "text": "تشفير",
+     "why": "ده TLS."
+    },
+    {
+     "text": "أسماء المواقع",
+     "why": "ده DNS."
+    },
+    {
+     "text": "ضغط",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "IP بيوصّل من غير ضمان."
+  },
+  {
+   "id": "03-web-ch04-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "UDP بيضمن إن الرسايل توصل بالترتيب؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "UDP ابعت وخلاص."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "أحسن للصوت والألعاب والـ DNS."
+  },
+  {
+   "id": "03-web-ch04-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Router في النص بيقرا رسالة الـ HTTP علشان يعرف يوديها فين؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيبص على IP بس."
+    },
+    {
+     "text": "لأ، بيبص على عنوان الـ IP في الظرف بس",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "كل طبقة بتهتم بظرفها."
+  },
+  {
+   "id": "03-web-ch04-06",
+   "type": "mcq",
+   "level": "easy",
+   "question": "يعني إيه RTT؟",
+   "options": [
+    {
+     "text": "الوقت اللي الرسالة بتاخده رايح جاي",
+     "why": "صح."
+    },
+    {
+     "text": "سرعة التحميل",
+     "why": "ده Bandwidth."
+    },
+    {
+     "text": "حجم الصفحة",
+     "why": "لأ."
+    },
+    {
+     "text": "عدد الـ Routers",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أهم رقم في سرعة الويب."
+  },
+  {
+   "id": "03-web-ch04-07",
+   "type": "command",
+   "level": "easy",
+   "prompt": "ابعت 4 ping لـ example.com.",
+   "accepted": [
+    "ping -c 4 example.com",
+    "ping -c4 example.com"
+   ],
+   "hint": "-c للعدد.",
+   "explanation": "على الماك من غير -c مش هيقف."
+  },
+  {
+   "id": "03-web-ch04-08",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرف السكة لـ example.com بالأرقام بس ولحد 15 محطة.",
+   "accepted": [
+    "traceroute -n -m 15 example.com",
+    "traceroute -m 15 -n example.com"
+   ],
+   "hint": "-n و -m.",
+   "explanation": "بيستغل الـ TTL."
+  },
+  {
+   "id": "03-web-ch04-09",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اختبر إن البورت 443 مفتوح على example.com من غير ما تبعت بيانات.",
+   "accepted": [
+    "nc -zv example.com 443",
+    "nc -vz example.com 443"
+   ],
+   "hint": "nc مع -z.",
+   "explanation": "nc سكينة الشبكة السويسري."
+  },
+  {
+   "id": "03-web-ch04-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "ping على موقع فشل بس الموقع بيفتح في المتصفح.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "عادي، سيرفرات كتير بتمنع ICMP، فـ ping فاشل مش دليل",
+     "why": "صح."
+    },
+    {
+     "text": "المتصفح بيكدب",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ DNS بايظ",
+     "why": "لو بايظ مكانش هيفتح."
+    },
+    {
+     "text": "النت بطيء",
+     "why": "مش السبب."
+    }
+   ],
+   "correct": 0,
+   "explanation": "استخدم curl أو nc للتأكد."
+  },
+  {
+   "id": "03-web-ch04-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه HTTP/3 اختار يمشي على UDP مش TCP؟",
+   "options": [
+    {
+     "text": "علشان يبني فوقه QUIC اللي فيه ضمانات TCP من غير ما Packet ضايعة توقف كل حاجة",
+     "why": "صح."
+    },
+    {
+     "text": "علشان UDP أأمن",
+     "why": "QUIC هو اللي بيشفّر."
+    },
+    {
+     "text": "علشان UDP بيضمن الترتيب",
+     "why": "مبيضمنش."
+    },
+    {
+     "text": "صدفة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "QUIC أحسن ما في الاتنين."
+  },
+  {
+   "id": "03-web-ch04-12",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تكلم سيرفر ويب بإيدك وتشوف إن HTTP نص:",
+   "template": "printf 'GET / HTTP/1.1\\r\\nHost: example.com\\r\\nConnection: close\\r\\n\\r\\n' | ___ example.com 80",
+   "blanks": [
+    [
+     "nc"
+    ]
+   ],
+   "hint": "netcat.",
+   "explanation": "هتشوف الرد خام."
+  }
+ ]
+}

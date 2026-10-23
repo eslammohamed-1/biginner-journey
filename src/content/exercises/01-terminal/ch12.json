@@ -1,0 +1,287 @@
+{
+ "book": "01-terminal",
+ "chapter": 12,
+ "chapterFile": "ch12",
+ "title": "الـ Bash Scripting: خلّي الأوامر تشتغل لوحدها",
+ "count": 14,
+ "exercises": [
+  {
+   "id": "01-terminal-ch12-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "أول سطر مفضّل في Script bash يشتغل على الماك و Linux؟",
+   "options": [
+    {
+     "text": "`#!/usr/bin/env bash`",
+     "why": "صح، بيلاقي bash من الـ PATH (فيلاقي bash الحديث لو متسطب)."
+    },
+    {
+     "text": "`#!/bin/zsh`",
+     "why": "ده zsh مش bash."
+    },
+    {
+     "text": "`# bash`",
+     "why": "ده تعليق عادي."
+    },
+    {
+     "text": "`#!bash`",
+     "why": "مسار غير صحيح."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Shebang بيحدد مين اللي هيشغّل الملف."
+  },
+  {
+   "id": "01-terminal-ch12-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "`name = \"Ali\"` طريقة صحيحة لتعريف متغير في bash؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "المسافات بتخلي bash يفهم name كأمر."
+    },
+    {
+     "text": "لأ، لازم `name=\"Ali\"` من غير مسافات",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "من أشهر غلطات المبتدئين."
+  },
+  {
+   "id": "01-terminal-ch12-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ليه `[` محتاج مسافات حواليه؟",
+   "options": [
+    {
+     "text": "لأنه أمر حقيقي (test)، والمسافات بتفصل الأمر عن الـ Arguments",
+     "why": "صح."
+    },
+    {
+     "text": "علشان الشكل بس",
+     "why": "من غير مسافات هيطلع خطأ."
+    },
+    {
+     "text": "لأنه بيشتغل في zsh بس",
+     "why": "موجود في كل الـ Shells."
+    },
+    {
+     "text": "علشان الحساب",
+     "why": "الحساب بـ $(( ))."
+    }
+   ],
+   "correct": 0,
+   "explanation": "`[ -f file ]` مش `[-f file]`."
+  },
+  {
+   "id": "01-terminal-ch12-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اكتب شرط بيقول \"لو الملف `config.ini` موجود اطبع ok\".",
+   "accepted": [
+    "[[ -f config.ini ]] && echo ok",
+    "[ -f config.ini ] && echo ok",
+    "if [[ -f config.ini ]]; then echo ok; fi",
+    "if [ -f config.ini ]; then echo ok; fi",
+    "test -f config.ini && echo ok"
+   ],
+   "hint": "-f بتختبر ملف موجود.",
+   "explanation": "[[ ]] أأمن من [ ]."
+  },
+  {
+   "id": "01-terminal-ch12-05",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل اللوب اللي بتقرا ملف سطر سطر بأمان:",
+   "template": "while IFS= read ___ line; do echo \"> $line\"; done < urls.txt",
+   "blanks": [
+    [
+     "-r"
+    ]
+   ],
+   "hint": "raw، علشان الـ backslash ميتفكش.",
+   "explanation": "IFS= و -r بيحافظوا على السطر زي ما هو."
+  },
+  {
+   "id": "01-terminal-ch12-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تطبع كل الـ Arguments اللي اتبعتت للـ Script كل واحد لوحده بأمان:",
+   "template": "for arg in \"___\"; do echo \"$arg\"; done",
+   "blanks": [
+    [
+     "$@"
+    ]
+   ],
+   "hint": "كل الـ Arguments مع الـ quotes.",
+   "explanation": "\"$@\" بيحافظ على الـ Argument اللي فيه مسافات."
+  },
+  {
+   "id": "01-terminal-ch12-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "فعّل الوضع الصارم في أول الـ Script.",
+   "accepted": [
+    "set -euo pipefail",
+    "set -eu -o pipefail",
+    "set -e -u -o pipefail"
+   ],
+   "hint": "e و u و pipefail.",
+   "explanation": "-e يوقف عند أي فشل، -u يمنع المتغيرات الفاضية، pipefail يفشّل الـ Pipe."
+  },
+  {
+   "id": "01-terminal-ch12-08",
+   "type": "mcq",
+   "level": "medium",
+   "question": "من غير pipefail، لو أول أمر في Pipe فشل، الـ Exit code بتاع الـ Pipe يبقى إيه؟",
+   "options": [
+    {
+     "text": "بتاع آخر أمر، فممكن يطلع 0 مع إن أول أمر فشل",
+     "why": "صح."
+    },
+    {
+     "text": "دايماً 1",
+     "why": "لأ."
+    },
+    {
+     "text": "بتاع أول أمر",
+     "why": "ده مع pipefail."
+    },
+    {
+     "text": "الـ Script بيقف",
+     "why": "مش من غير -e و pipefail."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان كده pipefail مهم."
+  },
+  {
+   "id": "01-terminal-ch12-09",
+   "type": "mcq",
+   "level": "think",
+   "question": "`return \"done\"` جوه دالة bash هيشتغل؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "return بترجع رقم بس (Exit status)."
+    },
+    {
+     "text": "لأ، return للأرقام 0-255 بس، والنص بترجّعه بـ echo وتمسكه بـ $()",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "return مقابل echo من صناديق الفصل."
+  },
+  {
+   "id": "01-terminal-ch12-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "Script اتكتب على Windows، ولما شغلته طلع `bad interpreter: /bin/bash^M`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الملف فيه CRLF، فأشيل الـ \\r بـ `tr -d '\\r'` أو dos2unix",
+     "why": "صح."
+    },
+    {
+     "text": "أعمل chmod 777",
+     "why": "مش مشكلة صلاحيات."
+    },
+    {
+     "text": "أغيّر الـ Shebang لـ zsh",
+     "why": "الـ ^M هيفضل."
+    },
+    {
+     "text": "أسطب bash تاني",
+     "why": "bash سليم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ ^M هو \\r."
+  },
+  {
+   "id": "01-terminal-ch12-11",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "Script فيه `declare -A` بيقع على الماك بـ `invalid option`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "ده bash 3.2 القديم مفيهوش Associative arrays، فأشغّله بـ bash الحديث (#!/usr/bin/env bash بعد brew install bash)",
+     "why": "صح."
+    },
+    {
+     "text": "أشيل declare",
+     "why": "هتكسر المنطق."
+    },
+    {
+     "text": "أكتبه بـ sh",
+     "why": "sh أقل من كده."
+    },
+    {
+     "text": "أعيد تشغيل الماك",
+     "why": "مش هيغيّر نسخة bash."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اعرف بتكتب لأنهي bash."
+  },
+  {
+   "id": "01-terminal-ch12-12",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "`[ $name = \"Ali\" ]` بتطلع `too many arguments` لما الاسم فيه مسافة.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أحط المتغير بين quotes `[ \"$name\" = \"Ali\" ]` أو أستخدم [[ ]]",
+     "why": "صح."
+    },
+    {
+     "text": "أشيل الـ quotes من Ali",
+     "why": "مش هي المشكلة."
+    },
+    {
+     "text": "أستخدم -eq",
+     "why": "-eq للأرقام."
+    },
+    {
+     "text": "أعمل set -e",
+     "why": "مش هيحل المشكلة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الاسم اللي فيه مسافة بيتقسم لكلمتين."
+  },
+  {
+   "id": "01-terminal-ch12-13",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات إنك تشغّل أول Script:",
+   "items": [
+    "اكتب الـ Shebang في أول سطر",
+    "اكتب الأوامر واحفظ الملف",
+    "chmod +x hello.sh",
+    "./hello.sh"
+   ],
+   "explanation": "من غير chmod +x هيطلع Permission denied."
+  },
+  {
+   "id": "01-terminal-ch12-14",
+   "type": "fill",
+   "level": "think",
+   "prompt": "كمّل علشان الملفات المؤقتة تتمسح لما الـ Script يخلص بأي طريقة:",
+   "template": "tmp=$(mktemp -d); ___ 'rm -rf \"$tmp\"' EXIT",
+   "blanks": [
+    [
+     "trap"
+    ]
+   ],
+   "hint": "الأمر اللي بيمسك الـ Signals والأحداث.",
+   "explanation": "trap ... EXIT بيشتغل حتى لو الـ Script وقع."
+  }
+ ]
+}

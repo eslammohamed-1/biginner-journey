@@ -1,0 +1,12 @@
+---
+const { head, siteTitle, entry } = Astro.locals.starlightRoute;
+
+const tags = head.map((tag) => {
+	if (tag.tag === 'title' && tag.content === `${entry.data.title} | ${siteTitle}` && entry.data.title === siteTitle) {
+		return { ...tag, content: siteTitle };
+	}
+	return tag;
+});
+---
+
+{tags.map(({ tag: Tag, attrs, content }) => <Tag {...attrs} set:html={content} />)}

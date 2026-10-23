@@ -1,0 +1,217 @@
+{
+ "book": "02-git",
+ "chapter": 2,
+ "chapterFile": "ch02",
+ "title": "تسطيب Git وتظبيطه صح",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "02-git-ch02-01",
+   "type": "command",
+   "level": "easy",
+   "prompt": "سطّب Git الحديث على الماك بـ Homebrew.",
+   "accepted": [
+    "brew install git"
+   ],
+   "hint": "brew install.",
+   "explanation": "النسخة اللي جاية مع Xcode Command Line Tools ممكن تبقى أقدم."
+  },
+  {
+   "id": "02-git-ch02-02",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اضبط اسمك على مستوى الجهاز كله بـ \"Sara Ahmed\".",
+   "accepted": [
+    "git config --global user.name \"Sara Ahmed\"",
+    "git config --global user.name 'Sara Ahmed'"
+   ],
+   "hint": "git config --global user.name.",
+   "explanation": "الاسم ده بيظهر في كل Commit."
+  },
+  {
+   "id": "02-git-ch02-03",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اضبط اسم الـ Branch الافتراضي لأي Repo جديد يبقى main.",
+   "accepted": [
+    "git config --global init.defaultBranch main"
+   ],
+   "hint": "init.defaultBranch.",
+   "explanation": "كده git init يعمل main بدل master."
+  },
+  {
+   "id": "02-git-ch02-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اضبط VS Code كـ Editor لـ Git بحيث Git يستنى لحد ما تقفل الملف.",
+   "accepted": [
+    "git config --global core.editor \"code --wait\"",
+    "git config --global core.editor 'code --wait'",
+    "git config --global core.editor \"code -w\""
+   ],
+   "hint": "core.editor مع --wait.",
+   "explanation": "من غير --wait، Git هيفتكر إنك خلصت فوراً."
+  },
+  {
+   "id": "02-git-ch02-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "عندك user.email في --global و --local مختلفين. أنهي اللي هيتطبق في الـ Repo ده؟",
+   "options": [
+    {
+     "text": "--local",
+     "why": "صح، الأقرب بيكسب."
+    },
+    {
+     "text": "--global",
+     "why": "بيتغلب من الـ local."
+    },
+    {
+     "text": "--system",
+     "why": "الأبعد."
+    },
+    {
+     "text": "هيطلع خطأ",
+     "why": "مفيش تعارض، فيه أولوية."
+    }
+   ],
+   "correct": 0,
+   "explanation": "system ← global ← local، والأخير بيكسب."
+  },
+  {
+   "id": "02-git-ch02-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "من غير `--wait` لو حطيت `code` كـ Editor، إيه اللي هيحصل مع git commit؟",
+   "options": [
+    {
+     "text": "VS Code هيفتح، و Git هيكمل على طول ويلاقي الرسالة فاضية فيلغي الـ Commit",
+     "why": "صح."
+    },
+    {
+     "text": "هيشتغل عادي",
+     "why": "لأ، Git مش هيستنى."
+    },
+    {
+     "text": "VS Code مش هيفتح",
+     "why": "هيفتح."
+    },
+    {
+     "text": "Git هيستخدم Vim بداله",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "--wait بتخلي الأمر يستنى لحد ما تقفل التابة."
+  },
+  {
+   "id": "02-git-ch02-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الإيميل اللي في الـ Commits بيبقى ظاهر لأي حد في الـ Repos العامة؟",
+   "options": [
+    {
+     "text": "أيوه، وعلشان كده تقدر تستخدم إيميل noreply بتاع GitHub",
+     "why": "صح."
+    },
+    {
+     "text": "لأ، GitHub بيخفيه",
+     "why": "بيبقى في الـ Commit نفسه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خصوصية: إيميل noreply."
+  },
+  {
+   "id": "02-git-ch02-08",
+   "type": "scenario",
+   "level": "easy",
+   "scenario": "عملت git commit ولقيت نفسك في شاشة غريبة (Vim) ومش عارف تخرج.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "Esc وبعدين `:wq` وEnter (أو `:q!` لو عايز تلغي)",
+     "why": "صح."
+    },
+    {
+     "text": "أقفل الـ Terminal",
+     "why": "ممكن يسيب ملفات مؤقتة."
+    },
+    {
+     "text": "Ctrl+C كتير",
+     "why": "Vim مبيخرجش بيها."
+    },
+    {
+     "text": "أعيد تشغيل الماك",
+     "why": "مبالغة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "وبعدها اضبط core.editor لـ VS Code."
+  },
+  {
+   "id": "02-git-ch02-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أول 3 إعدادات تعملها بعد التسطيب (حسب الفصل):",
+   "items": [
+    "git config --global user.name",
+    "git config --global user.email",
+    "git config --global init.defaultBranch main"
+   ],
+   "explanation": "وبعدها الـ Editor."
+  },
+  {
+   "id": "02-git-ch02-10",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرض كل الإعدادات ومعاها كل إعداد جاي من أنهي ملف.",
+   "accepted": [
+    "git config --list --show-origin",
+    "git config -l --show-origin"
+   ],
+   "hint": "--list مع --show-origin.",
+   "explanation": "مفيد جداً لما إعداد مش بيتطبق."
+  },
+  {
+   "id": "02-git-ch02-11",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل علشان تشوف المساعدة المختصرة لـ commit:",
+   "template": "git commit ___",
+   "blanks": [
+    [
+     "-h"
+    ]
+   ],
+   "hint": "help قصير.",
+   "explanation": "--help بيفتح الصفحة الكاملة."
+  },
+  {
+   "id": "02-git-ch02-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "`which -a git` طلّع `/opt/homebrew/bin/git` و `/usr/bin/git`. أنهي واحد بيشتغل؟",
+   "options": [
+    {
+     "text": "`/opt/homebrew/bin/git` لأنه أول واحد في الـ PATH",
+     "why": "صح."
+    },
+    {
+     "text": "`/usr/bin/git` لأنه بتاع Apple",
+     "why": "مالوش أولوية."
+    },
+    {
+     "text": "الاتنين",
+     "why": "الأول بس."
+    },
+    {
+     "text": "مش معروف",
+     "why": "الترتيب هو اللي بيقرر."
+    }
+   ],
+   "correct": 0,
+   "explanation": "نفس درس الـ PATH من كتاب الـ Terminal."
+  }
+ ]
+}

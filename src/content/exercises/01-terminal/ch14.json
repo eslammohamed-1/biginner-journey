@@ -1,0 +1,268 @@
+{
+ "book": "01-terminal",
+ "chapter": 14,
+ "chapterFile": "ch14",
+ "title": "السرعة والإنتاجية: الاختصارات والـ History و tmux",
+ "count": 13,
+ "exercises": [
+  {
+   "id": "01-terminal-ch14-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "إيه الاختصار اللي يوديك أول السطر؟",
+   "options": [
+    {
+     "text": "Ctrl+A",
+     "why": "صح."
+    },
+    {
+     "text": "Ctrl+E",
+     "why": "ده آخر السطر."
+    },
+    {
+     "text": "Ctrl+U",
+     "why": "بيمسح من المؤشر لأول السطر."
+    },
+    {
+     "text": "Ctrl+L",
+     "why": "بينضف الشاشة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Ctrl+A/E للأول والآخر."
+  },
+  {
+   "id": "01-terminal-ch14-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "إزاي تدوّر في الأوامر اللي كتبتها قبل كده؟",
+   "options": [
+    {
+     "text": "Ctrl+R",
+     "why": "صح، Reverse search."
+    },
+    {
+     "text": "Ctrl+S",
+     "why": "ممكن يجمد الشاشة (XON/XOFF)."
+    },
+    {
+     "text": "Ctrl+F",
+     "why": "حرف لقدام."
+    },
+    {
+     "text": "Ctrl+D",
+     "why": "بيقفل الـ Shell على سطر فاضي."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اكتب جزء من الأمر وكرّر Ctrl+R."
+  },
+  {
+   "id": "01-terminal-ch14-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`!$` معناها إيه؟",
+   "options": [
+    {
+     "text": "الأمر اللي فات كله",
+     "why": "ده !!."
+    },
+    {
+     "text": "آخر Argument في الأمر اللي فات",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Exit code",
+     "why": "ده $?."
+    },
+    {
+     "text": "الـ PID",
+     "why": "ده $$."
+    }
+   ],
+   "correct": 1,
+   "explanation": "mkdir proj ثم cd !$."
+  },
+  {
+   "id": "01-terminal-ch14-04",
+   "type": "command",
+   "level": "easy",
+   "prompt": "نسيت sudo في الأمر اللي فات. أعد تنفيذه بـ sudo.",
+   "accepted": [
+    "sudo !!"
+   ],
+   "hint": "!! = الأمر اللي فات.",
+   "explanation": "أسرع من إنك تكتبه تاني."
+  },
+  {
+   "id": "01-terminal-ch14-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "افتح المجلد الحالي في الـ Finder.",
+   "accepted": [
+    "open .",
+    "open ./"
+   ],
+   "hint": "open والنقطة.",
+   "explanation": "open بيفتح أي حاجة بالبرنامج الافتراضي."
+  },
+  {
+   "id": "01-terminal-ch14-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "انسخ المفتاح العام `~/.ssh/id_ed25519.pub` للـ Clipboard.",
+   "accepted": [
+    "pbcopy < ~/.ssh/id_ed25519.pub",
+    "cat ~/.ssh/id_ed25519.pub | pbcopy"
+   ],
+   "hint": "pbcopy بيقرا من stdin.",
+   "explanation": "و pbpaste بيطبع اللي في الـ Clipboard."
+  },
+  {
+   "id": "01-terminal-ch14-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل Session جديدة في tmux اسمها work.",
+   "accepted": [
+    "tmux new -s work",
+    "tmux new-session -s work"
+   ],
+   "hint": "new مع -s.",
+   "explanation": "Ctrl+B d للـ Detach، و tmux attach -t work للرجوع."
+  },
+  {
+   "id": "01-terminal-ch14-08",
+   "type": "mcq",
+   "level": "medium",
+   "question": "عملت Detach من tmux وقفلت الـ Terminal. البرامج اللي جواه؟",
+   "options": [
+    {
+     "text": "لسه شغالة، وترجعلها بـ tmux attach",
+     "why": "صح، دي فايدة tmux."
+    },
+    {
+     "text": "ماتت",
+     "why": "tmux بيفصلها عن الـ Terminal."
+    },
+    {
+     "text": "اتوقفت مؤقتاً",
+     "why": "شغالة عادي."
+    },
+    {
+     "text": "اتنقلت للخلفية كـ jobs",
+     "why": "مش jobs بتاعة الـ Shell."
+    }
+   ],
+   "correct": 0,
+   "explanation": "tmux شغلك ميضيعش."
+  },
+  {
+   "id": "01-terminal-ch14-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "اختصارات Alt (زي Alt+B) مش شغالة في Terminal.app.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أفعّل \"Use Option as Meta key\" من إعدادات البروفايل",
+     "why": "صح."
+    },
+    {
+     "text": "أغيّر الكيبورد",
+     "why": "مش محتاج."
+    },
+    {
+     "text": "أستخدم sudo",
+     "why": "مالهاش علاقة."
+    },
+    {
+     "text": "أسطب zsh تاني",
+     "why": "zsh سليم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Option مش بيشتغل كـ Alt افتراضياً على الماك."
+  },
+  {
+   "id": "01-terminal-ch14-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "ضغطت Ctrl+S بالغلط والـ Terminal اتجمد ومش بيكتب.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أضغط Ctrl+Q علشان أفك التجميد",
+     "why": "صح، ده XON/XOFF."
+    },
+    {
+     "text": "أقفل الـ Terminal",
+     "why": "مش محتاج."
+    },
+    {
+     "text": "kill -9 للـ Shell",
+     "why": "مبالغة."
+    },
+    {
+     "text": "أعمل restart",
+     "why": "مش محتاج."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Ctrl+S بيوقف الـ Output، و Ctrl+Q بيرجعه."
+  },
+  {
+   "id": "01-terminal-ch14-11",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تختار Branch من لستة تفاعلية وتعملها checkout:",
+   "template": "git branch | ___ | xargs git checkout",
+   "blanks": [
+    [
+     "fzf"
+    ]
+   ],
+   "hint": "أداة البحث التفاعلي.",
+   "explanation": "fzf بيحوّل أي لستة لبحث تفاعلي."
+  },
+  {
+   "id": "01-terminal-ch14-12",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات شغل tmux على سيرفر:",
+   "items": [
+    "tmux new -s deploy",
+    "شغّل الأمر الطويل",
+    "Ctrl+B ثم d",
+    "اقفل الـ ssh وارجع بعدين",
+    "tmux attach -t deploy"
+   ],
+   "explanation": "الـ Session بتفضل عايشة على السيرفر."
+  },
+  {
+   "id": "01-terminal-ch14-13",
+   "type": "mcq",
+   "level": "think",
+   "question": "كتبت أمر فيه token ومش عايزه يتسجل في الـ History. أسهل طريقة في zsh/bash (مع الإعداد المناسب)؟",
+   "options": [
+    {
+     "text": "أبدأ السطر بمسافة",
+     "why": "صح، مع HIST_IGNORE_SPACE (أو HISTCONTROL=ignorespace في bash)."
+    },
+    {
+     "text": "أكتبه بـ sudo",
+     "why": "هيتسجل برضه."
+    },
+    {
+     "text": "أقفل الـ Terminal بسرعة",
+     "why": "هيتسجل."
+    },
+    {
+     "text": "أكتبه بحروف كبيرة",
+     "why": "مالهاش علاقة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "\"مسافة قبل الأمر = سري\" من صناديق الفصل."
+  }
+ ]
+}

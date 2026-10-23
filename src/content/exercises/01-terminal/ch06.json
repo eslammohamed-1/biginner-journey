@@ -1,0 +1,272 @@
+{
+ "book": "01-terminal",
+ "chapter": 6,
+ "chapterFile": "ch06",
+ "title": "الصلاحيات والمستخدمين",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "01-terminal-ch06-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "`-rwxr-x---` صلاحيات الجروب فيها إيه؟",
+   "options": [
+    {
+     "text": "قراية وكتابة وتشغيل",
+     "why": "دي صلاحيات المالك rwx."
+    },
+    {
+     "text": "قراية وتشغيل",
+     "why": "صح، r-x للجروب."
+    },
+    {
+     "text": "ولا حاجة",
+     "why": "دي صلاحيات الباقي ---."
+    },
+    {
+     "text": "كتابة بس",
+     "why": "مفيش w للجروب."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الترتيب: المالك ثم الجروب ثم الباقي."
+  },
+  {
+   "id": "01-terminal-ch06-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الرقم 644 معناه إيه؟",
+   "options": [
+    {
+     "text": "المالك rw، والجروب r، والباقي r",
+     "why": "صح، 6=4+2 و 4=r."
+    },
+    {
+     "text": "الكل يقرا ويكتب",
+     "why": "ده 666."
+    },
+    {
+     "text": "المالك rwx والباقي r",
+     "why": "ده 744."
+    },
+    {
+     "text": "محدش يقرا غير المالك",
+     "why": "ده 600."
+    }
+   ],
+   "correct": 0,
+   "explanation": "r=4 و w=2 و x=1."
+  },
+  {
+   "id": "01-terminal-ch06-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "على المجلد، صلاحية x معناها إيه؟",
+   "options": [
+    {
+     "text": "تشغيل المجلد كبرنامج",
+     "why": "المجلد مبيتشغلش."
+    },
+    {
+     "text": "تقدر تدخله بـ cd وتوصل للي جواه",
+     "why": "صح."
+    },
+    {
+     "text": "تقدر تعرض أسماء الملفات بس",
+     "why": "ده r."
+    },
+    {
+     "text": "تقدر تمسح ملفات جواه",
+     "why": "ده w (مع x)."
+    }
+   ],
+   "correct": 1,
+   "explanation": "على المجلد: r تعرض، w تعمل وتمسح جواه، x تدخله."
+  },
+  {
+   "id": "01-terminal-ch06-04",
+   "type": "command",
+   "level": "easy",
+   "prompt": "ادّي المالك صلاحية تشغيل على `deploy.sh` بالحروف.",
+   "accepted": [
+    "chmod u+x deploy.sh",
+    "chmod +x deploy.sh"
+   ],
+   "hint": "u للمالك و +x.",
+   "explanation": "+x لوحدها بتضيف للكل حسب الـ umask، و u+x للمالك بس."
+  },
+  {
+   "id": "01-terminal-ch06-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "خلّي مفتاح SSH `~/.ssh/id_ed25519` مقروء للمالك بس (ولا حد غيره).",
+   "accepted": [
+    "chmod 600 ~/.ssh/id_ed25519",
+    "chmod 400 ~/.ssh/id_ed25519",
+    "chmod u=rw,go= ~/.ssh/id_ed25519"
+   ],
+   "hint": "الرقم اللي بيدي المالك rw والباقي ولا حاجة.",
+   "explanation": "ssh بيرفض المفتاح الخاص لو حد تاني يقدر يقراه (Bad permissions)."
+  },
+  {
+   "id": "01-terminal-ch06-06",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "npm بيقولك `EACCES: permission denied` في `~/.npm`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أرجّع ملكية المجلد ليا بـ `sudo chown -R $(whoami):staff ~/.npm`",
+     "why": "صح، الملفات اتعملت غالباً بـ sudo قبل كده."
+    },
+    {
+     "text": "أعمل `sudo chmod -R 777 ~/.npm`",
+     "why": "777 مش حل أبداً، صلّح المالك."
+    },
+    {
+     "text": "أشغّل npm بـ sudo دايماً",
+     "why": "ده اللي عمل المشكلة من الأول."
+    },
+    {
+     "text": "أمسح npm",
+     "why": "مش ضروري."
+    }
+   ],
+   "correct": 0,
+   "explanation": "القاعدة: صلّح المالك بدل ما تفتح الصلاحيات للكل."
+  },
+  {
+   "id": "01-terminal-ch06-07",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه `sudo echo hi > /etc/test.txt` بتقول Permission denied؟",
+   "options": [
+    {
+     "text": "لأن echo مش بيشتغل مع sudo",
+     "why": "بيشتغل، المشكلة في الـ Redirection."
+    },
+    {
+     "text": "لأن الـ Redirection `>` بيعملها الـ Shell بتاعك (مش root) قبل ما sudo يشتغل",
+     "why": "صح، والحل `echo hi | sudo tee /etc/test.txt`."
+    },
+    {
+     "text": "لأن /etc مش موجود على الماك",
+     "why": "موجود كـ Link لـ /private/etc."
+    },
+    {
+     "text": "لأن الـ password غلط",
+     "why": "لو غلط مكانش هيوصل للخطوة دي."
+    }
+   ],
+   "correct": 1,
+   "explanation": "sudo بيشمل الأمر بس مش الـ Redirection."
+  },
+  {
+   "id": "01-terminal-ch06-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الأمر علشان تكتب في ملف محمي بصلاحيات root:",
+   "template": "echo \"127.0.0.1 dev.local\" | sudo ___ -a /etc/hosts",
+   "blanks": [
+    [
+     "tee"
+    ]
+   ],
+   "hint": "الأمر اللي بيكتب الـ stdin في ملف (وعلى الشاشة).",
+   "explanation": "tee هو اللي بيشتغل بـ sudo فيقدر يكتب، و -a للإضافة."
+  },
+  {
+   "id": "01-terminal-ch06-09",
+   "type": "mcq",
+   "level": "medium",
+   "question": "على الماك، أول مستخدم بيتعمل بيبقى UID كام، وجروبه الأساسي إيه؟",
+   "options": [
+    {
+     "text": "501 و staff",
+     "why": "صح."
+    },
+    {
+     "text": "1000 و users",
+     "why": "ده المعتاد على Linux."
+    },
+    {
+     "text": "0 و wheel",
+     "why": "0 هو root."
+    },
+    {
+     "text": "100 و admin",
+     "why": "admin جروب الأدمن، بس مش الأساسي، والـ UID غلط."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بيانات المستخدمين على الماك في dscl مش /etc/passwd."
+  },
+  {
+   "id": "01-terminal-ch06-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "نزّلت برنامج من النت، والماك بيرفض يفتحه ويقول إنه من مطور مجهول، ومتأكد إنه آمن.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشوف الـ xattr وأشيل `com.apple.quarantine` بـ `xattr -dr com.apple.quarantine`",
+     "why": "صح، ده العلامة اللي الماك بيحطها على أي ملف من النت."
+    },
+    {
+     "text": "chmod 777",
+     "why": "الصلاحيات مش المشكلة."
+    },
+    {
+     "text": "أقفل SIP",
+     "why": "مبالغة خطيرة ومالهاش علاقة."
+    },
+    {
+     "text": "أغيّر اسم البرنامج",
+     "why": "العلامة بتفضل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اعمل كده بس للبرامج اللي متأكد منها."
+  },
+  {
+   "id": "01-terminal-ch06-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "بـ sudo، تقدر تعدّل ملف في `/usr/bin` على الماك؟",
+   "options": [
+    {
+     "text": "أيوه، root يقدر على كل حاجة",
+     "why": "على الماك فيه SIP."
+    },
+    {
+     "text": "لأ، SIP بيحمي ملفات النظام حتى من root",
+     "why": "صح."
+    },
+    {
+     "text": "أيوه لو قفلت الـ Terminal وفتحته",
+     "why": "مالوش علاقة."
+    },
+    {
+     "text": "لأ، علشان /usr/bin مش موجود",
+     "why": "موجود."
+    }
+   ],
+   "correct": 1,
+   "explanation": "SIP حماية إضافية فوق صلاحيات Unix."
+  },
+  {
+   "id": "01-terminal-ch06-12",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب صلاحيات الأرقام من الأقل للأكتر انفتاحاً:",
+   "items": [
+    "600",
+    "640",
+    "644",
+    "755",
+    "777"
+   ],
+   "explanation": "777 = أي حد يكتب وينفّذ، ودي آخر حاجة تفكر فيها."
+  }
+ ]
+}

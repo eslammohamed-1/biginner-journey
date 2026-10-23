@@ -1,0 +1,232 @@
+{
+ "book": "02-git",
+ "chapter": 16,
+ "chapterFile": "ch16",
+ "title": "الـ Reflog شبكة الأمان، و Bisect و Blame",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "02-git-ch16-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ reflog بيسجل إيه؟",
+   "options": [
+    {
+     "text": "كل حركات HEAD على جهازك",
+     "why": "صح."
+    },
+    {
+     "text": "كل Commits الـ Repo على GitHub",
+     "why": "محلي."
+    },
+    {
+     "text": "الملفات اللي اتعدلت ومش متعملها Commit",
+     "why": "مبيسجلهاش."
+    },
+    {
+     "text": "الـ Branches اللي على GitHub",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "HEAD@{n} اسم لأي مكان فيه."
+  },
+  {
+   "id": "02-git-ch16-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ reflog بيتبعت لـ GitHub مع الـ push؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "محلي بس."
+    },
+    {
+     "text": "لأ",
+     "why": "صح، محلي ومؤقت."
+    }
+   ],
+   "correct": 1,
+   "explanation": "90/30 يوم."
+  },
+  {
+   "id": "02-git-ch16-03",
+   "type": "command",
+   "level": "medium",
+   "prompt": "رجّع الـ Branch لمكانه قبل آخر حركة (بعد reset غلط).",
+   "accepted": [
+    "git reset --hard HEAD@{1}",
+    "git reset --hard 'HEAD@{1}'",
+    "git reset --hard \"HEAD@{1}\""
+   ],
+   "hint": "HEAD@{n}.",
+   "explanation": "في zsh ممكن تحتاج quotes."
+  },
+  {
+   "id": "02-git-ch16-04",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "مسحت Branch فيه شغل يومين بـ -D.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "git reflog ألاقي آخر Hash ليه وأعمل git branch rescue <hash>",
+     "why": "صح."
+    },
+    {
+     "text": "خلاص ضاع",
+     "why": "الـ reflog بيرجعه."
+    },
+    {
+     "text": "أعمل clone",
+     "why": "لو مش Pushed مش هيبقى هناك."
+    },
+    {
+     "text": "أعيد تشغيل الماك",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اعمل Branch الأول، الأأمن."
+  },
+  {
+   "id": "02-git-ch16-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ reflog بينقذ تعديلات عمرها ما اتعملها add ولا Commit؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مش متسجلة أصلاً."
+    },
+    {
+     "text": "لأ",
+     "why": "صح، دي الحاجة اللي ممكن تضيع بجد."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Commit كتير."
+  },
+  {
+   "id": "02-git-ch16-06",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات git bisect:",
+   "items": [
+    "git bisect start",
+    "git bisect bad (الـ Commit الحالي بايظ)",
+    "git bisect good <hash قديم سليم>",
+    "اختبر وقول good أو bad لحد ما يلاقيه",
+    "git bisect reset"
+   ],
+   "explanation": "بحث ثنائي."
+  },
+  {
+   "id": "02-git-ch16-07",
+   "type": "command",
+   "level": "think",
+   "prompt": "خلي bisect يختبر أوتوماتيك بـ npm test.",
+   "accepted": [
+    "git bisect run npm test"
+   ],
+   "hint": "bisect run.",
+   "explanation": "Exit code 0 = سليم."
+  },
+  {
+   "id": "02-git-ch16-08",
+   "type": "mcq",
+   "level": "medium",
+   "question": "مع bisect run، Exit code صفر معناه إيه؟",
+   "options": [
+    {
+     "text": "Commit سليم (good)",
+     "why": "صح."
+    },
+    {
+     "text": "بايظ",
+     "why": "غير صفر = bad."
+    },
+    {
+     "text": "تخطى",
+     "why": "125 للتخطي."
+    },
+    {
+     "text": "خطأ في bisect",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "نفس فكرة Exit codes."
+  },
+  {
+   "id": "02-git-ch16-09",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرف مين كتب السطور 10 لـ 20 في app.js.",
+   "accepted": [
+    "git blame -L 10,20 app.js"
+   ],
+   "hint": "blame مع -L.",
+   "explanation": "-w يتجاهل المسافات."
+  },
+  {
+   "id": "02-git-ch16-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "blame بيقولك إن زميلك آخر واحد لمس السطر، بس هو عمل reformat بس.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أستخدم `git blame -w` (أو -C) علشان يتجاهل تغييرات المسافات ويوصل للكاتب الحقيقي",
+     "why": "صح."
+    },
+    {
+     "text": "ألومه",
+     "why": "مش هو اللي كتب المنطق."
+    },
+    {
+     "text": "أمسح السطر",
+     "why": "لأ."
+    },
+    {
+     "text": "أعمل revert",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "وبعدين git show على الـ Hash تعرف ليه."
+  },
+  {
+   "id": "02-git-ch16-11",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تشوف تاريخ السطور 12-13 في app.js:",
+   "template": "git log ___ 12,13:app.js",
+   "blanks": [
+    [
+     "-L"
+    ]
+   ],
+   "hint": "line range.",
+   "explanation": "بيوريك كل Commit غيّر السطور دي."
+  },
+  {
+   "id": "02-git-ch16-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "git reset --hard بيمسح الـ Commits نهائياً من أول لحظة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لسه في الـ reflog والـ objects لفترة."
+    },
+    {
+     "text": "لأ، بتفضل موجودة ويقدر الـ reflog يرجعها لحد ما الـ gc يمسحها",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ولهذا \"اللي اتعمله Commit مبيضيعش\"."
+  }
+ ]
+}

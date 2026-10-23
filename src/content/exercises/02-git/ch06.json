@@ -1,0 +1,232 @@
+{
+ "book": "02-git",
+ "chapter": 6,
+ "chapterFile": "ch06",
+ "title": "التراجع عن أي غلطة",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "02-git-ch06-01",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب السؤالين اللي تسألهم قبل أي تراجع:",
+   "items": [
+    "الغلطة فين؟ (ورشة / Staging / Commit)",
+    "اتعملها Push ولا لأ؟",
+    "اختار الأمر المناسب"
+   ],
+   "explanation": "ده أساس خريطة القرار."
+  },
+  {
+   "id": "02-git-ch06-02",
+   "type": "command",
+   "level": "easy",
+   "prompt": "ارمي تعديلاتك على app.js (اللي مش متعملها add).",
+   "accepted": [
+    "git restore app.js",
+    "git checkout -- app.js"
+   ],
+   "hint": "restore.",
+   "explanation": "مفيهوش رجوع."
+  },
+  {
+   "id": "02-git-ch06-03",
+   "type": "command",
+   "level": "easy",
+   "prompt": "ألغي git add لـ app.js من غير ما تخسر التعديل.",
+   "accepted": [
+    "git restore --staged app.js",
+    "git reset HEAD app.js",
+    "git reset app.js"
+   ],
+   "hint": "restore مع --staged.",
+   "explanation": "آمن، التعديل بيفضل في الملف."
+  },
+  {
+   "id": "02-git-ch06-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "نسيت تضيف forgotten.js لآخر Commit (لسه مش Pushed). ضيفه لنفس الـ Commit من غير ما تغيّر الرسالة.",
+   "accepted": [
+    "git add forgotten.js && git commit --amend --no-edit"
+   ],
+   "hint": "add وبعدين amend مع --no-edit.",
+   "explanation": "amend بيعمل Commit جديد بـ Hash جديد."
+  },
+  {
+   "id": "02-git-ch06-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`git reset` من غير Flag بيشتغل كأنه إيه؟",
+   "options": [
+    {
+     "text": "--mixed",
+     "why": "صح، بيرجع الـ Branch ويسيب التغييرات في الورشة."
+    },
+    {
+     "text": "--soft",
+     "why": "لازم تكتبه."
+    },
+    {
+     "text": "--hard",
+     "why": "لازم تكتبه."
+    },
+    {
+     "text": "مبيعملش حاجة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "soft للـ Staging، mixed للورشة، hard يرمي."
+  },
+  {
+   "id": "02-git-ch06-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`git revert` بيمسح الـ Commit من التاريخ؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "revert بيضيف."
+    },
+    {
+     "text": "لأ، بيعمل Commit جديد عكسه، والتاريخ بيفضل",
+     "why": "صح، وعلشان كده آمن بعد الـ Push."
+    }
+   ],
+   "correct": 1,
+   "explanation": "revert للي اتعمله Push."
+  },
+  {
+   "id": "02-git-ch06-07",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عملت Commit فيه Bug وعملت Push وزميلك عمل Pull. تلغيه إزاي؟",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "`git revert <hash>` وأعمل Push",
+     "why": "صح."
+    },
+    {
+     "text": "`git reset --hard HEAD~1` و push --force",
+     "why": "هيبوظ تاريخ زميلك."
+    },
+    {
+     "text": "أمسح الـ Repo",
+     "why": "مبالغة."
+    },
+    {
+     "text": "أعدّل الـ Commit بـ amend",
+     "why": "هيغيّر الـ Hash لحاجة متشاركة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "على التاريخ المشترك: revert."
+  },
+  {
+   "id": "02-git-ch06-08",
+   "type": "command",
+   "level": "medium",
+   "prompt": "جمّع آخر 3 Commits (محلية) في Commit واحد.",
+   "accepted": [
+    "git reset --soft HEAD~3"
+   ],
+   "hint": "reset --soft.",
+   "explanation": "وبعدها git commit -m \"...\"."
+  },
+  {
+   "id": "02-git-ch06-09",
+   "type": "mcq",
+   "level": "think",
+   "question": "بعد `git reset --hard HEAD~1` اكتشفت إن الـ Commit ده كان مهم. اتمسح نهائياً؟",
+   "options": [
+    {
+     "text": "لأ، غالباً لسه موجود وتقدر ترجعه بـ ORIG_HEAD أو reflog",
+     "why": "صح، اللي اتعمله Commit تقريباً مبيضيعش."
+    },
+    {
+     "text": "أيوه للأبد",
+     "why": "الـ reflog بيرجعه."
+    },
+    {
+     "text": "بس لو عامل Push",
+     "why": "محلي برضه بيرجع."
+    },
+    {
+     "text": "لازم GitHub",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اللي بيضيع بجد هو اللي عمره ما اتعمله Commit."
+  },
+  {
+   "id": "02-git-ch06-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عايز تمسح ملفات جديدة (Untracked) اتعملت بالغلط.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "`git clean -n -d` الأول أشوف هيمسح إيه، وبعدين `-f -d`",
+     "why": "صح."
+    },
+    {
+     "text": "`git clean -fdx` على طول",
+     "why": "x بتمسح المتجاهَل كمان زي .env."
+    },
+    {
+     "text": "`git restore .`",
+     "why": "مبيلمسش Untracked."
+    },
+    {
+     "text": "`git reset --hard`",
+     "why": "مبيمسحش Untracked."
+    }
+   ],
+   "correct": 0,
+   "explanation": "-n قبل -f دايماً."
+  },
+  {
+   "id": "02-git-ch06-11",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تجيب نسخة app.js من 2 Commits فاتوا للورشة:",
+   "template": "git restore ___=HEAD~2 -- src/app.js",
+   "blanks": [
+    [
+     "--source"
+    ]
+   ],
+   "hint": "المصدر.",
+   "explanation": "بيكتب فوق الملف الحالي."
+  },
+  {
+   "id": "02-git-ch06-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "عايز ترجع آخر Commit وتسيب التعديلات في الـ Staging جاهزة. أنهي أمر؟",
+   "options": [
+    {
+     "text": "git reset --soft HEAD~1",
+     "why": "صح."
+    },
+    {
+     "text": "git reset --hard HEAD~1",
+     "why": "هيرمي التعديلات."
+    },
+    {
+     "text": "git revert HEAD",
+     "why": "هيعمل Commit عكسي."
+    },
+    {
+     "text": "git restore .",
+     "why": "للورشة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "soft = التغييرات متجهزة."
+  }
+ ]
+}

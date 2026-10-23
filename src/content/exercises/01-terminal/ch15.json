@@ -1,0 +1,253 @@
+{
+ "book": "01-terminal",
+ "chapter": 15,
+ "chapterFile": "ch15",
+ "title": "الأوامر الخطيرة وإزاي تحمي نفسك",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "01-terminal-ch15-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "`rm -rf` بيبعت الملفات للـ Trash؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مفيش Trash في الـ Terminal."
+    },
+    {
+     "text": "لأ، المسح نهائي",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "مفيش رجعة ولا Trash."
+  },
+  {
+   "id": "01-terminal-ch15-02",
+   "type": "mcq",
+   "level": "think",
+   "question": "إيه الخطر في `rm -rf ~/projects/ my-app/node_modules`؟",
+   "options": [
+    {
+     "text": "المسافة بعد `projects/` خلّت الأمر يمسح ~/projects كله ومعاه my-app/node_modules",
+     "why": "صح، مسافة واحدة غيّرت كل حاجة."
+    },
+    {
+     "text": "مفيش خطر",
+     "why": "فيه مسافة قاتلة."
+    },
+    {
+     "text": "هيمسح node_modules بس",
+     "why": "هيمسح الاتنين."
+    },
+    {
+     "text": "هيطلع خطأ",
+     "why": "هيشتغل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "راجع المسافات دايماً قبل rm -rf."
+  },
+  {
+   "id": "01-terminal-ch15-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`set -u` ممكن يحميك من إيه؟",
+   "options": [
+    {
+     "text": "مسح بسبب متغير فاضي زي `rm -rf \"$DIR/\"` لما DIR مش متعرّف",
+     "why": "صح، set -u هيوقف الـ Script."
+    },
+    {
+     "text": "من Fork bomb",
+     "why": "ده ulimit."
+    },
+    {
+     "text": "من dd",
+     "why": "لأ."
+    },
+    {
+     "text": "من SIP",
+     "why": "SIP حماية نظام."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أو استخدم ${DIR:?} اللي بيوقف لو فاضي."
+  },
+  {
+   "id": "01-terminal-ch15-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "SIP بيحمي ملفاتك في ~/Documents من rm -rf؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "SIP بيحمي النظام بس."
+    },
+    {
+     "text": "لأ، SIP بيحمي ملفات النظام مش ملفاتك",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Time Machine هو شبكة الأمان لملفاتك."
+  },
+  {
+   "id": "01-terminal-ch15-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرض كل الديسكات المتوصلة على الماك قبل ما تستخدم dd.",
+   "accepted": [
+    "diskutil list"
+   ],
+   "hint": "diskutil.",
+   "explanation": "على Linux: lsblk."
+  },
+  {
+   "id": "01-terminal-ch15-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ليه dd اسمه Disk Destroyer؟",
+   "options": [
+    {
+     "text": "لأن of= غلط بيكتب فوق ديسك كامل من غير أي سؤال",
+     "why": "صح."
+    },
+    {
+     "text": "لأنه بيبوظ الديسك فيزيائياً",
+     "why": "لأ، بيمسح البيانات."
+    },
+    {
+     "text": "لأنه بطيء",
+     "why": "مالهاش علاقة."
+    },
+    {
+     "text": "لأنه بيشتغل بـ sudo",
+     "why": "مش السبب."
+    }
+   ],
+   "correct": 0,
+   "explanation": "diskutil list الأول، واتأكد من رقم الديسك."
+  },
+  {
+   "id": "01-terminal-ch15-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في الـ Fork bomb `:(){ :|:& };:` الـ `:` إيه؟",
+   "options": [
+    {
+     "text": "اسم دالة",
+     "why": "صح، دالة بتنادي نفسها مرتين في الخلفية."
+    },
+    {
+     "text": "أمر من النظام",
+     "why": "هنا اتعرّفت كدالة."
+    },
+    {
+     "text": "تعليق",
+     "why": "لأ."
+    },
+    {
+     "text": "فاصل",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الحماية بـ ulimit -u."
+  },
+  {
+   "id": "01-terminal-ch15-08",
+   "type": "command",
+   "level": "easy",
+   "prompt": "فعّل الحماية في zsh اللي تمنع `>` إنه يكتب فوق ملف موجود.",
+   "accepted": [
+    "setopt noclobber",
+    "setopt NO_CLOBBER",
+    "set -o noclobber"
+   ],
+   "hint": "noclobber.",
+   "explanation": "ولو عايز تكتب فوقه قصداً: >|."
+  },
+  {
+   "id": "01-terminal-ch15-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "حد في فوروم قالك \"اعمل `sudo chmod -R 777 /usr/local` وهتشتغل\".",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أرفض، وأصلّح المالك بـ chown على المجلد المحدد بس",
+     "why": "صح، 777 مش حل أبداً."
+    },
+    {
+     "text": "أنفّذ على طول",
+     "why": "هتفتح ثغرة وممكن تبوظ برامج."
+    },
+    {
+     "text": "أعملها على / كله",
+     "why": "كارثة."
+    },
+    {
+     "text": "أعملها بـ su",
+     "why": "نفس الكارثة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "صلّح المالك، ماتفتحش الصلاحيات."
+  },
+  {
+   "id": "01-terminal-ch15-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب الطريقة الآمنة لتشغيل Install script من النت:",
+   "items": [
+    "curl -fsSL -o install.sh URL",
+    "less install.sh واقراه",
+    "bash install.sh"
+   ],
+   "explanation": "نزّل ← اقرا ← شغّل، بدل curl | sudo bash."
+  },
+  {
+   "id": "01-terminal-ch15-11",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "هتكتب على فلاشة بـ dd. `diskutil list` بيوريك disk4 هي الفلاشة.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "diskutil unmountDisk /dev/disk4 وبعدين sudo dd if=img of=/dev/rdisk4 bs=4m",
+     "why": "صح، unmount الأول و rdisk أسرع."
+    },
+    {
+     "text": "sudo dd of=/dev/disk0",
+     "why": "ده غالباً ديسك الماك الأساسي، كارثة."
+    },
+    {
+     "text": "dd من غير unmount",
+     "why": "ممكن يفشل أو يبوظ."
+    },
+    {
+     "text": "أنسخ الـ iso بـ cp للفلاشة",
+     "why": "مش هتبقى قابلة للإقلاع."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Ctrl+T بيوريك التقدم على الماك."
+  },
+  {
+   "id": "01-terminal-ch15-12",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان rm يوقف لو المتغير فاضي بدل ما يمسح /:",
+   "template": "rm -rf \"${DIR___}/build\"",
+   "blanks": [
+    [
+     ":?"
+    ]
+   ],
+   "hint": "Parameter expansion بيوقف بخطأ.",
+   "explanation": "${DIR:?} = لو فاضي اطلع بخطأ."
+  }
+ ]
+}
