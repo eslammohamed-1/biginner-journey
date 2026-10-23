@@ -1,0 +1,229 @@
+{
+ "book": "05-apis",
+ "chapter": 9,
+ "chapterFile": "ch09",
+ "title": "APIs مجانية حقيقية تتمرّن عليها (واتجرّبت كلها)",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "05-apis-ch09-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "httpbin مفيد في إيه؟",
+   "options": [
+    {
+     "text": "تشوف طلبك زي ما السيرفر استلمه، وتجرب Status codes و Auth و Delays",
+     "why": "صح."
+    },
+    {
+     "text": "بيحفظ بياناتك",
+     "why": "لأ."
+    },
+    {
+     "text": "API طقس",
+     "why": "لأ."
+    },
+    {
+     "text": "Database",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "/anything."
+  },
+  {
+   "id": "05-apis-ch09-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "JSONPlaceholder بيحفظ الـ Posts اللي بتعملها بـ POST؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "وهمي."
+    },
+    {
+     "text": "لأ، بيرد كأنه حفظ بس مش بيحفظ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "CRUD وهمي."
+  },
+  {
+   "id": "05-apis-ch09-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "PokeAPI و Rick and Morty بيستخدموا نفس طريقة الـ Pagination؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مختلفين."
+    },
+    {
+     "text": "لأ، PokeAPI بـ offset و Rick and Morty بـ page",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الاتنين بيدّوك next."
+  },
+  {
+   "id": "05-apis-ch09-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "NASA بترجع إيه لو الـ Key غلط؟",
+   "options": [
+    {
+     "text": "403 مكان 401",
+     "why": "صح حسب الكتاب."
+    },
+    {
+     "text": "401",
+     "why": "المفروض، بس هي بترجع 403."
+    },
+    {
+     "text": "200",
+     "why": "لأ."
+    },
+    {
+     "text": "500",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ code ثابت."
+  },
+  {
+   "id": "05-apis-ch09-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "جرب Status 429 على httpbin.",
+   "accepted": [
+    "curl -i https://httpbin.org/status/429",
+    "curl -s -i https://httpbin.org/status/429",
+    "curl https://httpbin.org/status/429"
+   ],
+   "hint": "/status/429.",
+   "explanation": "-i علشان تشوف الـ Headers."
+  },
+  {
+   "id": "05-apis-ch09-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "هات تاني صفحة من منتجات DummyJSON بحجم 10 (skip 10).",
+   "accepted": [
+    "curl \"https://dummyjson.com/products?limit=10&skip=10\"",
+    "curl -s \"https://dummyjson.com/products?limit=10&skip=10\"",
+    "curl -s \"https://dummyjson.com/products?skip=10&limit=10\""
+   ],
+   "hint": "limit و skip.",
+   "explanation": "و select=title,price."
+  },
+  {
+   "id": "05-apis-ch09-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تبعت Timezone القاهرة في Query لـ Open-Meteo:",
+   "template": "timezone=Africa___Cairo",
+   "blanks": [
+    [
+     "%2F"
+    ]
+   ],
+   "hint": "الـ / متشفّرة.",
+   "explanation": "URL encoding."
+  },
+  {
+   "id": "05-apis-ch09-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "Open-Meteo رجّعلك 400 بـ \"reason\": \"…Given: 300.0.\"",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أقرا الـ reason: القيمة (مثلاً latitude) برّه المدى المسموح، فأصلّحها",
+     "why": "صح."
+    },
+    {
+     "text": "السيرفر وقع",
+     "why": "ده 5xx."
+    },
+    {
+     "text": "أعيد نفس الطلب",
+     "why": "هيرجع نفس الخطأ."
+    },
+    {
+     "text": "أغيّر الـ API",
+     "why": "الخطأ مفيد."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أخطاء 400 مفيدة."
+  },
+  {
+   "id": "05-apis-ch09-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطة تمرين يومي على API جديد:",
+   "items": [
+    "ابعت أول GET وشوف الرد",
+    "جرب Query parameters",
+    "جرب Pagination أو POST",
+    "جرب خطأ واقرا رسالته"
+   ],
+   "explanation": "10 دقايق."
+  },
+  {
+   "id": "05-apis-ch09-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "الدرس من إن REST Countries قفلت v3.1؟",
+   "options": [
+    {
+     "text": "الـ Versioning مهم، والـ APIs بتتغير، فلازم تتابع الـ Changelog",
+     "why": "صح."
+    },
+    {
+     "text": "متستخدمش APIs مجانية",
+     "why": "مش الدرس."
+    },
+    {
+     "text": "REST بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ URL ثابت للأبد",
+     "why": "العكس."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Versioning مش رفاهية."
+  },
+  {
+   "id": "05-apis-ch09-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "404 من JSONPlaceholder لما Resource مش موجود رجّع Body فاضي. ده كويس؟",
+   "options": [
+    {
+     "text": "لأ، الأحسن رسالة خطأ واضحة في الـ Body",
+     "why": "صح."
+    },
+    {
+     "text": "أيوه",
+     "why": "صعب تفهم."
+    },
+    {
+     "text": "مش مهم",
+     "why": "مهم للـ Consumer."
+    },
+    {
+     "text": "لازم 500",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "201 + Location حلو."
+  }
+ ]
+}

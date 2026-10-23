@@ -1,0 +1,234 @@
+{
+ "book": "06-frontend",
+ "chapter": 20,
+ "chapterFile": "ch20",
+ "title": "إيكوسيستم الـ CSS: Tailwind و CSS Modules و Sass والمكتبات الجاهزة",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "06-frontend-ch20-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "Tailwind v4 محتاج tailwind.config.js؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "v4 بـ @theme في CSS."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "@import \"tailwindcss\"."
+  },
+  {
+   "id": "06-frontend-ch20-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في CSS Modules، .title في ملفين بيطلعوا نفس الاسم؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "أسماء محلية."
+    },
+    {
+     "text": "لأ، كل ملف بياخد اسم فريد",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "*.module.css."
+  },
+  {
+   "id": "06-frontend-ch20-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "$brand بتاع Sass يتغير بـ JS في المتصفح؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيختفي بعد البناء."
+    },
+    {
+     "text": "لأ، استخدم CSS variables لده",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Sass بيطلع CSS عادي."
+  },
+  {
+   "id": "06-frontend-ch20-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ليه ملف Tailwind صغير مع إن فيه آلاف الـ Classes؟",
+   "options": [
+    {
+     "text": "بيولّد بس الـ Classes اللي انت استخدمتها",
+     "why": "صح."
+    },
+    {
+     "text": "مضغوط",
+     "why": "مش السبب."
+    },
+    {
+     "text": "بيتحمّل من CDN",
+     "why": "لأ."
+    },
+    {
+     "text": "مفيش CSS",
+     "why": "فيه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان كده اكتب الأسماء كاملة."
+  },
+  {
+   "id": "06-frontend-ch20-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "ضيف Tailwind v4 في ملف CSS.",
+   "accepted": [
+    "@import \"tailwindcss\";",
+    "@import \"tailwindcss\""
+   ],
+   "hint": "@import.",
+   "explanation": "مع Plugin بتاع Vite."
+  },
+  {
+   "id": "06-frontend-ch20-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل تعريف لون في Tailwind v4:",
+   "template": "@___ { --color-brand: oklch(60% 0.2 250); }",
+   "blanks": [
+    [
+     "theme"
+    ]
+   ],
+   "hint": "الثيم.",
+   "explanation": "بعدين bg-brand."
+  },
+  {
+   "id": "06-frontend-ch20-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل اسم ملف CSS Module:",
+   "template": "Button.___.css",
+   "blanks": [
+    [
+     "module"
+    ]
+   ],
+   "hint": "وحدة.",
+   "explanation": "import styles from."
+  },
+  {
+   "id": "06-frontend-ch20-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "كتبت `bg-${color}-500` في Tailwind والألوان مش ظاهرة.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "Tailwind بيدوّر على أسماء كاملة في الكود، فأكتب الـ Classes كاملة (bg-red-500)",
+     "why": "صح."
+    },
+    {
+     "text": "Tailwind بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "أعيد التسطيب",
+     "why": "لأ."
+    },
+    {
+     "text": "أستخدم !important",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اكتب أسماء الـ Classes كاملة."
+  },
+  {
+   "id": "06-frontend-ch20-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب تسطيب Tailwind v4 في Vite:",
+   "items": [
+    "npm i tailwindcss @tailwindcss/vite",
+    "ضيف الـ Plugin في vite.config.js",
+    "@import \"tailwindcss\" في CSS",
+    "استخدم الـ Classes"
+   ],
+   "explanation": "من غير config."
+  },
+  {
+   "id": "06-frontend-ch20-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "إمتى shadcn/ui ولا MUI؟",
+   "options": [
+    {
+     "text": "shadcn/ui بتنسخ الكود عندك وتتحكم فيه، و MUI مكتبة Styled كاملة جاهزة",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "MUI للـ Vue",
+     "why": "لأ."
+    },
+    {
+     "text": "shadcn مدفوعة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Headless و Styled."
+  },
+  {
+   "id": "06-frontend-ch20-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "المشكلة اللي الأدوات دي بتحلها؟",
+   "options": [
+    {
+     "text": "CSS عام بيتراكم وبيتصادم",
+     "why": "صح."
+    },
+    {
+     "text": "CSS بطيء",
+     "why": "مش الأساس."
+    },
+    {
+     "text": "المتصفح مبيفهمش CSS",
+     "why": "بيفهم."
+    },
+    {
+     "text": "الألوان",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "كل أداة بطريقة."
+  },
+  {
+   "id": "06-frontend-ch20-12",
+   "type": "command",
+   "level": "easy",
+   "prompt": "سطّب Sass في مشروع Vite.",
+   "accepted": [
+    "npm install -D sass",
+    "npm i -D sass",
+    "npm i -D sass-embedded"
+   ],
+   "hint": "-D sass.",
+   "explanation": "Vite بيفهم .scss لوحده."
+  }
+ ]
+}

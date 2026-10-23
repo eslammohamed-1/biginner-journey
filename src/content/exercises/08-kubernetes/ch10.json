@@ -1,0 +1,228 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 10,
+ "chapterFile": "ch10",
+ "title": "الـ Deployment: إدارة الـ Pods باحتراف",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch10-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "العلاقة بين Deployment و ReplicaSet و Pods؟",
+   "options": [
+    {
+     "text": "Deployment يدير ReplicaSet، و ReplicaSet تدير Pods",
+     "why": "صح."
+    },
+    {
+     "text": "Pods تدير Deployment",
+     "why": "العكس."
+    },
+    {
+     "text": "مفيش علاقة",
+     "why": "فيه."
+    },
+    {
+     "text": "Deployment يدير Nodes",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "السلسلة."
+  },
+  {
+   "id": "08-kubernetes-ch10-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Deployment بيمسح كل الـ Pods القديمة مرة واحدة وهو بيحدّث؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "Rolling Update."
+    },
+    {
+     "text": "لأ، بيبدّل تدريجي من غير downtime",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "maxSurge و maxUnavailable."
+  },
+  {
+   "id": "08-kubernetes-ch10-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "maxUnavailable: 0 معناها؟",
+   "options": [
+    {
+     "text": "عدد الـ Pods الجاهزة مش هيقل عن المطلوب أثناء التحديث",
+     "why": "صح."
+    },
+    {
+     "text": "مفيش تحديث",
+     "why": "لأ."
+    },
+    {
+     "text": "كله يقف",
+     "why": "لأ."
+    },
+    {
+     "text": "Pod واحدة بس",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أمان."
+  },
+  {
+   "id": "08-kubernetes-ch10-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "--dry-run=client بيعمل الـ Object؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لأ."
+    },
+    {
+     "text": "لأ، بيوريك بس",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "مع -o yaml تطلّع ملف."
+  },
+  {
+   "id": "08-kubernetes-ch10-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "غيّر image الـ container webapp في deployment webapp لـ nginx:1.26.",
+   "accepted": [
+    "kubectl set image deployment/webapp webapp=nginx:1.26",
+    "kubectl set image deploy/webapp webapp=nginx:1.26",
+    "kubectl set image deployment webapp webapp=nginx:1.26"
+   ],
+   "hint": "set image.",
+   "explanation": "بيبدأ Rolling Update."
+  },
+  {
+   "id": "08-kubernetes-ch10-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ارجع للنسخة اللي قبل.",
+   "accepted": [
+    "kubectl rollout undo deploy/webapp",
+    "kubectl rollout undo deployment/webapp",
+    "kubectl rollout undo deployment webapp"
+   ],
+   "hint": "rollout undo.",
+   "explanation": "--to-revision لنسخة معينة."
+  },
+  {
+   "id": "08-kubernetes-ch10-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "كبّر webapp لـ 5 نسخ.",
+   "accepted": [
+    "kubectl scale deployment webapp --replicas=5",
+    "kubectl scale deploy/webapp --replicas=5",
+    "kubectl scale deployment/webapp --replicas=5"
+   ],
+   "hint": "scale.",
+   "explanation": "بس الملف هو مصدر الحقيقة."
+  },
+  {
+   "id": "08-kubernetes-ch10-08",
+   "type": "command",
+   "level": "medium",
+   "prompt": "طلّع YAML لـ Deployment اسمه web بـ nginx و 3 replicas من غير ما تعمله.",
+   "accepted": [
+    "kubectl create deployment web --image=nginx --replicas=3 --dry-run=client -o yaml",
+    "kubectl create deploy web --image=nginx --replicas=3 --dry-run=client -o yaml"
+   ],
+   "hint": "--dry-run=client -o yaml.",
+   "explanation": "> deploy.yaml."
+  },
+  {
+   "id": "08-kubernetes-ch10-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "التحديث الجديد بيعمل CrashLoop.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "kubectl rollout undo يرجّع النسخة اللي قبل",
+     "why": "صح."
+    },
+    {
+     "text": "أمسح الـ Deployment",
+     "why": "downtime."
+    },
+    {
+     "text": "أستنى",
+     "why": "لأ."
+    },
+    {
+     "text": "أعدّل الـ Pods بإيدي",
+     "why": "هتتمسح."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Rollback."
+  },
+  {
+   "id": "08-kubernetes-ch10-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Rolling Update:",
+   "items": [
+    "ReplicaSet جديدة تتعمل",
+    "Pods جديدة تقوم وتبقى Ready",
+    "Pods قديمة تتشال تدريجي",
+    "الـ ReplicaSet القديمة تفضل بـ 0 للـ Rollback"
+   ],
+   "explanation": "من غير downtime."
+  },
+  {
+   "id": "08-kubernetes-ch10-11",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل متابعة التحديث:",
+   "template": "kubectl rollout ___ deploy/webapp",
+   "blanks": [
+    [
+     "status"
+    ]
+   ],
+   "hint": "حالة.",
+   "explanation": "و history."
+  },
+  {
+   "id": "08-kubernetes-ch10-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه الملف هو مصدر الحقيقة مش kubectl scale؟",
+   "options": [
+    {
+     "text": "لو حد عمل apply للملف تاني هيرجّع العدد القديم، فالتغيير لازم يبقى في الملف",
+     "why": "صح."
+    },
+    {
+     "text": "scale ممنوع",
+     "why": "مسموح."
+    },
+    {
+     "text": "الملف أسرع",
+     "why": "لأ."
+    },
+    {
+     "text": "مش مهم",
+     "why": "مهم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Declarative."
+  }
+ ]
+}

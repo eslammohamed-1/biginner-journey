@@ -1,0 +1,218 @@
+{
+ "book": "07-docker",
+ "chapter": 3,
+ "chapterFile": "ch03",
+ "title": "الـ Images وإزاي بنتعامل معاها",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "07-docker-ch03-01",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اسحب Image الـ nginx.",
+   "accepted": [
+    "docker pull nginx",
+    "docker pull nginx:latest",
+    "docker image pull nginx"
+   ],
+   "hint": "pull.",
+   "explanation": "من docker.io/library."
+  },
+  {
+   "id": "07-docker-ch03-02",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض الـ Images اللي عندك.",
+   "accepted": [
+    "docker images",
+    "docker image ls",
+    "docker image list"
+   ],
+   "hint": "images.",
+   "explanation": "الاسم والـ tag والحجم."
+  },
+  {
+   "id": "07-docker-ch03-03",
+   "type": "command",
+   "level": "medium",
+   "prompt": "امسح Image اسمها nginx.",
+   "accepted": [
+    "docker rmi nginx",
+    "docker image rm nginx"
+   ],
+   "hint": "rmi.",
+   "explanation": "-f بالإجبار بحذر."
+  },
+  {
+   "id": "07-docker-ch03-04",
+   "type": "mcq",
+   "level": "easy",
+   "question": "لو كتبت docker pull nginx من غير tag، بيسحب أنهي نسخة؟",
+   "options": [
+    {
+     "text": "latest",
+     "why": "صح."
+    },
+    {
+     "text": "أقدم نسخة",
+     "why": "لأ."
+    },
+    {
+     "text": "Error",
+     "why": "لأ."
+    },
+    {
+     "text": "كل النسخ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "والـ Registry الافتراضي docker.io/library."
+  },
+  {
+   "id": "07-docker-ch03-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الاسم الكامل لـ nginx من غير اختصار؟",
+   "options": [
+    {
+     "text": "docker.io/library/nginx:latest",
+     "why": "صح."
+    },
+    {
+     "text": "nginx.com/nginx",
+     "why": "لأ."
+    },
+    {
+     "text": "hub/nginx",
+     "why": "لأ."
+    },
+    {
+     "text": "library:nginx",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الافتراضيات."
+  },
+  {
+   "id": "07-docker-ch03-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "docker rmi على Image فيه Container مستخدمها بيحصل إيه؟",
+   "options": [
+    {
+     "text": "بيرفض إلا لو مسحت الـ Container أو استخدمت -f",
+     "why": "صح."
+    },
+    {
+     "text": "بيمسح الاتنين",
+     "why": "لأ."
+    },
+    {
+     "text": "بيمسح عادي",
+     "why": "بيرفض."
+    },
+    {
+     "text": "بيوقف Docker",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "-f بحذر."
+  },
+  {
+   "id": "07-docker-ch03-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: سحب نسخة معينة من Python:",
+   "template": "docker pull python___3.13",
+   "blanks": [
+    [
+     ":"
+    ]
+   ],
+   "hint": "فاصل الـ tag.",
+   "explanation": "name:tag."
+  },
+  {
+   "id": "07-docker-ch03-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "docker pull nginx وبعد شهر pull تاني والسلوك اختلف.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "latest اتغير، فأثبّت tag محدد زي nginx:1.27",
+     "why": "صح."
+    },
+    {
+     "text": "Docker بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "أمسح Docker",
+     "why": "لأ."
+    },
+    {
+     "text": "عادي",
+     "why": "هيتكرر."
+    }
+   ],
+   "correct": 0,
+   "explanation": "latest مش ثابت."
+  },
+  {
+   "id": "07-docker-ch03-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أجزاء اسم Image كامل:",
+   "items": [
+    "Registry (docker.io)",
+    "Namespace (library)",
+    "Repo (nginx)",
+    "Tag (latest)"
+   ],
+   "explanation": "registry/namespace/repo:tag."
+  },
+  {
+   "id": "07-docker-ch03-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه docker rmi -f خطر؟",
+   "options": [
+    {
+     "text": "بيمسح حتى لو فيه Containers معتمدة عليها، فممكن تكسر حاجة شغالة",
+     "why": "صح."
+    },
+    {
+     "text": "بيمسح Docker",
+     "why": "لأ."
+    },
+    {
+     "text": "بيمسح ملفاتك",
+     "why": "لأ."
+    },
+    {
+     "text": "مش خطر",
+     "why": "خطر."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بحذر."
+  },
+  {
+   "id": "07-docker-ch03-11",
+   "type": "command",
+   "level": "medium",
+   "prompt": "امسح Image بالإجبار اسمها old-app.",
+   "accepted": [
+    "docker rmi -f old-app",
+    "docker image rm -f old-app",
+    "docker rmi --force old-app"
+   ],
+   "hint": "-f.",
+   "explanation": "بحذر."
+  }
+ ]
+}

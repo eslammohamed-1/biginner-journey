@@ -1,0 +1,216 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 4,
+ "chapterFile": "ch04",
+ "title": "تطبيق عملي: minikube وأول Pod",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch04-01",
+   "type": "command",
+   "level": "easy",
+   "prompt": "(على الماك) سطّب minikube.",
+   "accepted": [
+    "brew install minikube"
+   ],
+   "hint": "brew.",
+   "explanation": "الكتاب بيشرح على Ubuntu، وعلى الماك Homebrew أسهل."
+  },
+  {
+   "id": "08-kubernetes-ch04-02",
+   "type": "command",
+   "level": "easy",
+   "prompt": "شغّل الـ Cluster.",
+   "accepted": [
+    "minikube start",
+    "minikube start --driver=docker"
+   ],
+   "hint": "start.",
+   "explanation": "بيستخدم Docker كـ Driver."
+  },
+  {
+   "id": "08-kubernetes-ch04-03",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل Pod من ملف pod.yaml.",
+   "accepted": [
+    "kubectl apply -f pod.yaml",
+    "kubectl create -f pod.yaml"
+   ],
+   "hint": "apply -f.",
+   "explanation": "Declarative."
+  },
+  {
+   "id": "08-kubernetes-ch04-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرض الـ Pods مع الـ IP والـ Node.",
+   "accepted": [
+    "kubectl get pods -o wide",
+    "kubectl get po -o wide"
+   ],
+   "hint": "-o wide.",
+   "explanation": "تفاصيل أكتر."
+  },
+  {
+   "id": "08-kubernetes-ch04-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ادخل shell جوه my-pod.",
+   "accepted": [
+    "kubectl exec -it my-pod -- sh",
+    "kubectl exec -it my-pod -- bash",
+    "kubectl exec -it my-pod -- /bin/sh"
+   ],
+   "hint": "exec -it و --.",
+   "explanation": "الـ -- قبل الأمر."
+  },
+  {
+   "id": "08-kubernetes-ch04-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في minikube الـ Control Plane والـ Worker على نفس الـ Node؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح، Node واحدة للتجربة."
+    },
+    {
+     "text": "لأ",
+     "why": "نفس الـ Node."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Cluster صغير."
+  },
+  {
+   "id": "08-kubernetes-ch04-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ينفع Tabs في YAML؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ممنوع."
+    },
+    {
+     "text": "لأ، مسافات بس",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "أشهر غلطة."
+  },
+  {
+   "id": "08-kubernetes-ch04-08",
+   "type": "mcq",
+   "level": "medium",
+   "question": "kubectl describe بيوريك الـ Events؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح، في الآخر."
+    },
+    {
+     "text": "لأ",
+     "why": "بيوريك."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أول مكان تدوّر فيه."
+  },
+  {
+   "id": "08-kubernetes-ch04-09",
+   "type": "mcq",
+   "level": "medium",
+   "question": "READY 1/2 معناها؟",
+   "options": [
+    {
+     "text": "Container واحد شغال فعلاً من اتنين",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Pod 50% خلص تحميل",
+     "why": "لأ."
+    },
+    {
+     "text": "Pod من اتنين",
+     "why": "ده عن الـ Containers."
+    },
+    {
+     "text": "خطأ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الشغال/الكلي."
+  },
+  {
+   "id": "08-kubernetes-ch04-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عايز تشتغل على Cluster تاني منفصل في minikube.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "minikube start --profile اسم-تاني",
+     "why": "صح."
+    },
+    {
+     "text": "minikube delete للأول",
+     "why": "هتخسره."
+    },
+    {
+     "text": "مستحيل",
+     "why": "ممكن."
+    },
+    {
+     "text": "أسطب minikube تاني",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "--profile."
+  },
+  {
+   "id": "08-kubernetes-ch04-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أول تجربة:",
+   "items": [
+    "minikube start",
+    "kubectl get nodes",
+    "kubectl apply -f pod.yaml",
+    "kubectl get pods",
+    "kubectl describe pod / logs"
+   ],
+   "explanation": "أول Pod."
+  },
+  {
+   "id": "08-kubernetes-ch04-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه في الشغل الحقيقي مش بنعمل Pods لوحدها؟",
+   "options": [
+    {
+     "text": "محدش بيعمل بديل لو وقعت، فبنستخدم Deployment",
+     "why": "صح."
+    },
+    {
+     "text": "أغلى",
+     "why": "لأ."
+    },
+    {
+     "text": "ممنوع",
+     "why": "مسموح."
+    },
+    {
+     "text": "أبطأ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Controllers."
+  }
+ ]
+}

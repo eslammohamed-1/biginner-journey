@@ -1,0 +1,234 @@
+{
+ "book": "05-apis",
+ "chapter": 22,
+ "chapterFile": "ch22",
+ "title": "الجسر لـ Express: كل اللي فات في كود",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "05-apis-ch22-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "Express عبارة عن إيه؟",
+   "options": [
+    {
+     "text": "سلسلة Middleware بتعدّي عليها الـ Request بالترتيب",
+     "why": "صح."
+    },
+    {
+     "text": "Database",
+     "why": "لأ."
+    },
+    {
+     "text": "لغة",
+     "why": "لأ."
+    },
+    {
+     "text": "متصفح",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الترتيب جزء من المنطق."
+  },
+  {
+   "id": "05-apis-ch22-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "req.query.limit بييجي Number لو بعت ?limit=5؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "Strings دايماً."
+    },
+    {
+     "text": "لأ، \"5\" String",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "حوّله بنفسك."
+  },
+  {
+   "id": "05-apis-ch22-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Error handler في Express ممكن يبقى بـ 3 Arguments؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لازم 4."
+    },
+    {
+     "text": "لأ، لازم 4",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "(err, req, res, next)."
+  },
+  {
+   "id": "05-apis-ch22-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في Express 5، Error في async handler بيروح للـ Error handler لوحده؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح."
+    },
+    {
+     "text": "لأ",
+     "why": "ده Express 4."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Express 5 اتغير."
+  },
+  {
+   "id": "05-apis-ch22-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "رجّع 201 بـ Location /articles/42 وبـ JSON article.",
+   "accepted": [
+    "res.status(201).location(\"/articles/42\").json(article)",
+    "res.status(201).location('/articles/42').json(article)",
+    "res.location(\"/articles/42\").status(201).json(article)"
+   ],
+   "hint": "status و location و json.",
+   "explanation": "Chaining."
+  },
+  {
+   "id": "05-apis-ch22-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اقرا Path parameter اسمه id.",
+   "accepted": [
+    "req.params.id"
+   ],
+   "hint": "params.",
+   "explanation": "query للـ Query."
+  },
+  {
+   "id": "05-apis-ch22-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تقرا JSON Body:",
+   "template": "app.use(express.___())",
+   "blanks": [
+    [
+     "json"
+    ]
+   ],
+   "hint": "نوع البيانات.",
+   "explanation": "في Express 5 req.body ممكن undefined من غيره."
+  },
+  {
+   "id": "05-apis-ch22-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل توقيع الـ Error handler:",
+   "template": "app.use((___, req, res, next) => { ... })",
+   "blanks": [
+    [
+     "err"
+    ]
+   ],
+   "hint": "أول Argument.",
+   "explanation": "وفي الآخر خالص."
+  },
+  {
+   "id": "05-apis-ch22-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Middleware نموذجي:",
+   "items": [
+    "express.json()",
+    "Auth",
+    "Routes",
+    "404 handler",
+    "Error handler"
+   ],
+   "explanation": "الترتيب مهم."
+  },
+  {
+   "id": "05-apis-ch22-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "req.body بيطلع undefined في Express 5.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "نسيت express.json() أو الـ Content-Type مش JSON",
+     "why": "صح."
+    },
+    {
+     "text": "Express بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "أستخدم req.query",
+     "why": "مش البيانات."
+    },
+    {
+     "text": "أعيد التسطيب",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Express 5: اللي اتغير."
+  },
+  {
+   "id": "05-apis-ch22-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "إيه الناقص علشان library.js يبقى Production؟",
+   "options": [
+    {
+     "text": "Database و Auth و Router منظم و Redis و Security headers و Tests",
+     "why": "صح."
+    },
+    {
+     "text": "مفيش",
+     "why": "كتير."
+    },
+    {
+     "text": "CSS",
+     "why": "مش API."
+    },
+    {
+     "text": "لغة تانية",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الخريطة."
+  },
+  {
+   "id": "05-apis-ch22-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Error handler مكانه فين؟",
+   "options": [
+    {
+     "text": "آخر app.use بعد كل الـ Routes",
+     "why": "صح."
+    },
+    {
+     "text": "أول حاجة",
+     "why": "مش هيمسك."
+    },
+    {
+     "text": "مش مهم",
+     "why": "مهم."
+    },
+    {
+     "text": "جوه كل Route",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان يمسك أي Error."
+  }
+ ]
+}

@@ -1,0 +1,234 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 1,
+ "chapterFile": "ch01",
+ "title": "المقدمة: ليه Kubernetes؟",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch01-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "Kubernetes بيتعمل علشان إيه؟",
+   "options": [
+    {
+     "text": "Orchestrator بيدير Containers كتير: يقوّم اللي يقع، وينقل الشغل، ويوزّع الـ Traffic",
+     "why": "صح."
+    },
+    {
+     "text": "بديل لـ Docker في بناء الـ Images",
+     "why": "مش شغله."
+    },
+    {
+     "text": "قاعدة بيانات",
+     "why": "لأ."
+    },
+    {
+     "text": "لغة برمجة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "المايسترو."
+  },
+  {
+   "id": "08-kubernetes-ch01-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Kubernetes بيتعامل مع كل Container لوحده مباشرة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "أصغر وحدة الـ Pod."
+    },
+    {
+     "text": "لأ، بيتعامل مع الـ Pod",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ Pod فيه Container أو أكتر."
+  },
+  {
+   "id": "08-kubernetes-ch01-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ YAML بتاع Kubernetes ممكن يشتغل على أكتر من Cloud من غير تغيير؟",
+   "options": [
+    {
+     "text": "أيوه في الغالب",
+     "why": "صح، دي من مميزاته (مع اختلافات بسيطة زي الـ StorageClass)."
+    },
+    {
+     "text": "لأ أبداً",
+     "why": "مش صح."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Portability."
+  },
+  {
+   "id": "08-kubernetes-ch01-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "أي Cluster بيزوّد عدد الـ Nodes لوحده من غير إعداد؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "محتاج Cluster Autoscaler."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ HPA بيزوّد Pods مش Nodes."
+  },
+  {
+   "id": "08-kubernetes-ch01-05",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Node يعني إيه؟",
+   "options": [
+    {
+     "text": "جهاز (حقيقي أو VM) جوه الـ Cluster",
+     "why": "صح."
+    },
+    {
+     "text": "Container",
+     "why": "لأ."
+    },
+    {
+     "text": "Pod",
+     "why": "لأ."
+    },
+    {
+     "text": "ملف YAML",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Cluster = أجهزة كأنها كمبيوتر واحد."
+  },
+  {
+   "id": "08-kubernetes-ch01-06",
+   "type": "mcq",
+   "level": "think",
+   "question": "الـ Declarative Model معناه إيه؟",
+   "options": [
+    {
+     "text": "توصف الحالة المطلوبة (3 نسخ) و Kubernetes يحافظ عليها لوحده",
+     "why": "صح."
+    },
+    {
+     "text": "تكتب الأوامر خطوة بخطوة",
+     "why": "ده Imperative."
+    },
+    {
+     "text": "مفيش YAML",
+     "why": "لأ."
+    },
+    {
+     "text": "يدوي",
+     "why": "العكس."
+    }
+   ],
+   "correct": 0,
+   "explanation": "إنت بتوصف الهدف."
+  },
+  {
+   "id": "08-kubernetes-ch01-07",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب من الأكبر للأصغر:",
+   "items": [
+    "Cluster",
+    "Node",
+    "Pod",
+    "Container"
+   ],
+   "explanation": "الهيكل."
+  },
+  {
+   "id": "08-kubernetes-ch01-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عندك 50 Container على 5 سيرفرات، وسيرفر وقع بالليل.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "Orchestrator زي Kubernetes ينقل الـ Pods لسيرفرات تانية لوحده",
+     "why": "صح."
+    },
+    {
+     "text": "أصحى وأشغّلهم بإيدي",
+     "why": "ده اللي بنحاول نتجنبه."
+    },
+    {
+     "text": "أستنى السيرفر يرجع",
+     "why": "downtime."
+    },
+    {
+     "text": "docker compose",
+     "why": "سيرفر واحد."
+    }
+   ],
+   "correct": 0,
+   "explanation": "المشاكل لما الـ Containers تكتر."
+  },
+  {
+   "id": "08-kubernetes-ch01-09",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: أصغر وحدة Kubernetes بيتعامل معاها:",
+   "template": "الـ ___",
+   "blanks": [
+    [
+     "Pod",
+     "pod"
+    ]
+   ],
+   "hint": "جراب.",
+   "explanation": "جواه Container أو أكتر."
+  },
+  {
+   "id": "08-kubernetes-ch01-10",
+   "type": "command",
+   "level": "easy",
+   "prompt": "(على الماك) سطّب kubectl بـ Homebrew.",
+   "accepted": [
+    "brew install kubectl",
+    "brew install kubernetes-cli"
+   ],
+   "hint": "brew install.",
+   "explanation": "أداة الكلام مع الـ Cluster."
+  },
+  {
+   "id": "08-kubernetes-ch01-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إيه اللي Kubernetes بيعمله لو Container وقع؟",
+   "options": [
+    {
+     "text": "يعيد تشغيله أوتوماتيك (Self-healing)",
+     "why": "صح."
+    },
+    {
+     "text": "يبعتلك إيميل وخلاص",
+     "why": "لأ."
+    },
+    {
+     "text": "يوقف الـ Cluster",
+     "why": "لأ."
+    },
+    {
+     "text": "مبيعملش حاجة",
+     "why": "بيعمل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "حسب الـ Desired State."
+  }
+ ]
+}

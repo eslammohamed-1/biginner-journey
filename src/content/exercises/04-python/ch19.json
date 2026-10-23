@@ -1,0 +1,256 @@
+{
+ "book": "04-python",
+ "chapter": 19,
+ "chapterFile": "ch19",
+ "title": "OpenRouter: API واحد لمئات الموديلات",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch19-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "OpenRouter بيحل إيه؟",
+   "options": [
+    {
+     "text": "Key واحد و Endpoint واحد لمئات الموديلات من شركات مختلفة",
+     "why": "صح."
+    },
+    {
+     "text": "موديل جديد",
+     "why": "مش موديل."
+    },
+    {
+     "text": "مجاني دايماً",
+     "why": "لأ."
+    },
+    {
+     "text": "بديل لـ Python",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "متوافق مع OpenAI."
+  },
+  {
+   "id": "04-python-ch19-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لو مكتبتش api_key، مكتبة openai هتلاقي OPENROUTER_API_KEY لوحدها؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بتدوّر على OPENAI_API_KEY."
+    },
+    {
+     "text": "لأ، لازم تبعته في api_key",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "api_key=os.getenv(\"OPENROUTER_API_KEY\")."
+  },
+  {
+   "id": "04-python-ch19-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "\"prompt\": \"0.0000003\" في قايمة الموديلات معناها؟",
+   "options": [
+    {
+     "text": "$0.30 لكل مليون توكن",
+     "why": "صح، السعر لكل توكن."
+    },
+    {
+     "text": "$0.0000003 للطلب",
+     "why": "لكل توكن."
+    },
+    {
+     "text": "مجاني",
+     "why": "لأ."
+    },
+    {
+     "text": "3 دولار",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اضرب في مليون."
+  },
+  {
+   "id": "04-python-ch19-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "مع Fallbacks، بتدفع بسعر إيه؟",
+   "options": [
+    {
+     "text": "الموديل اللي اشتغل فعلاً",
+     "why": "صح."
+    },
+    {
+     "text": "أول موديل دايماً",
+     "why": "لأ."
+    },
+    {
+     "text": "أغلى واحد",
+     "why": "لأ."
+    },
+    {
+     "text": "مجاني",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "شوف usage.cost."
+  },
+  {
+   "id": "04-python-ch19-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل client لـ OpenRouter بمكتبة openai.",
+   "accepted": [
+    "client = OpenAI(base_url=\"https://openrouter.ai/api/v1\", api_key=os.getenv(\"OPENROUTER_API_KEY\"))",
+    "client = OpenAI(api_key=os.getenv(\"OPENROUTER_API_KEY\"), base_url=\"https://openrouter.ai/api/v1\")",
+    "client = OpenAI(base_url=\"https://openrouter.ai/api/v1\", api_key=os.environ[\"OPENROUTER_API_KEY\"])"
+   ],
+   "hint": "base_url و api_key.",
+   "explanation": "وبعدين chat.completions.create."
+  },
+  {
+   "id": "04-python-ch19-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تبعت Fallbacks:",
+   "template": "extra_body={\"___\": [\"model-a\", \"model-b\"]}",
+   "blanks": [
+    [
+     "models"
+    ]
+   ],
+   "hint": "جمع model.",
+   "explanation": "لو الأول وقع يجرب التاني."
+  },
+  {
+   "id": "04-python-ch19-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: لاحقة اسم الموديل للنسخة المجانية:",
+   "template": "provider/model:___",
+   "blanks": [
+    [
+     "free"
+    ]
+   ],
+   "hint": "مجاني.",
+   "explanation": "و :nitro للسرعة و :floor للأرخص."
+  },
+  {
+   "id": "04-python-ch19-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عندك بيانات حساسة وعايز تستخدم OpenRouter.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أعرف إن البيانات بتعدّي على طرف تالت، وأستخدم provider data_collection: \"deny\" أو أروح للـ SDK المباشر",
+     "why": "صح."
+    },
+    {
+     "text": "عادي",
+     "why": "فيه طرف تالت."
+    },
+    {
+     "text": "أشفّر النص",
+     "why": "الموديل مش هيفهمه."
+    },
+    {
+     "text": "أستخدم :free",
+     "why": "أسوأ للخصوصية."
+    }
+   ],
+   "correct": 0,
+   "explanation": "إمتى OpenRouter وإمتى المباشر."
+  },
+  {
+   "id": "04-python-ch19-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب استخدام OpenRouter من Python:",
+   "items": [
+    "أعمل OPENROUTER_API_KEY",
+    "OpenAI(base_url=..., api_key=...)",
+    "chat.completions.create(model=\"provider/model\", ...)",
+    "أقرا usage.cost"
+   ],
+   "explanation": "نفس المكتبة."
+  },
+  {
+   "id": "04-python-ch19-10",
+   "type": "mcq",
+   "level": "medium",
+   "question": "openrouter/auto بيعمل إيه؟",
+   "options": [
+    {
+     "text": "يختار الموديل لوحده حسب الطلب",
+     "why": "صح."
+    },
+    {
+     "text": "أرخص موديل دايماً",
+     "why": "مش بالظبط."
+    },
+    {
+     "text": "بيكرر الطلب",
+     "why": "لأ."
+    },
+    {
+     "text": "موديل OpenRouter نفسه",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مريح بس أقل تحكم."
+  },
+  {
+   "id": "04-python-ch19-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "إزاي تعرف أسامي الموديلات الصح على OpenRouter؟",
+   "options": [
+    {
+     "text": "من الـ API نفسه (قايمة الموديلات) أو موقعهم",
+     "why": "صح."
+    },
+    {
+     "text": "أخمّن",
+     "why": "غلط."
+    },
+    {
+     "text": "نفس أسامي OpenAI بالظبط",
+     "why": "فيها provider/."
+    },
+    {
+     "text": "من الـ AI",
+     "why": "ممكن يألّف."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اعرف الأسامي من الـ API."
+  },
+  {
+   "id": "04-python-ch19-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "OpenRouter بيزوّد Markup على سعر الموديل؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مفيش Markup."
+    },
+    {
+     "text": "لأ، بس فيه Fee على شراء الـ Credits",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "حسب الكتاب."
+  }
+ ]
+}

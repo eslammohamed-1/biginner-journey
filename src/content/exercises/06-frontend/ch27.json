@@ -1,0 +1,245 @@
+{
+ "book": "06-frontend",
+ "chapter": 27,
+ "chapterFile": "ch27",
+ "title": "الخريطة: تتعلم إيه وإمتى",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "06-frontend-ch27-01",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب رحلة التعلم حسب الكتاب:",
+   "items": [
+    "JavaScript",
+    "Node",
+    "React",
+    "TypeScript و Next.js"
+   ],
+   "explanation": "و HTML و CSS و a11y طول الوقت."
+  },
+  {
+   "id": "06-frontend-ch27-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "إمتى تتعلم أداة جديدة؟",
+   "options": [
+    {
+     "text": "لما تحس بمشكلتها",
+     "why": "صح."
+    },
+    {
+     "text": "قبل ما تحتاجها",
+     "why": "مش منصوح."
+    },
+    {
+     "text": "كلهم مرة واحدة",
+     "why": "هتتوه."
+    },
+    {
+     "text": "أبداً",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "القاعدة."
+  },
+  {
+   "id": "06-frontend-ch27-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "HTML و CSS و a11y بتتعلمهم إمتى؟",
+   "options": [
+    {
+     "text": "طول الوقت مع كل مرحلة",
+     "why": "صح."
+    },
+    {
+     "text": "في الأول وخلاص",
+     "why": "لأ."
+    },
+    {
+     "text": "في الآخر",
+     "why": "لأ."
+    },
+    {
+     "text": "مش مهمين",
+     "why": "مهمين."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أساس."
+  },
+  {
+   "id": "06-frontend-ch27-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إيه أحسن طريقة تثبّت كل مرحلة؟",
+   "options": [
+    {
+     "text": "مشروع صغير في كل مرحلة",
+     "why": "صح."
+    },
+    {
+     "text": "فيديوهات بس",
+     "why": "مش كفاية."
+    },
+    {
+     "text": "قراية بس",
+     "why": "مش كفاية."
+    },
+    {
+     "text": "مشروع ضخم واحد",
+     "why": "صعب."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خطة مشاريع."
+  },
+  {
+   "id": "06-frontend-ch27-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "مصادر تتابع منها؟",
+   "options": [
+    {
+     "text": "الدوكيومنتيشن الرسمية (MDN و react.dev و vite.dev) مع النظر للتاريخ",
+     "why": "صح."
+    },
+    {
+     "text": "أي فيديو",
+     "why": "ممكن يبقى قديم."
+    },
+    {
+     "text": "Stack Overflow بس",
+     "why": "مش كفاية."
+    },
+    {
+     "text": "الـ AI بس",
+     "why": "ممكن يغلط."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بص على التاريخ."
+  },
+  {
+   "id": "06-frontend-ch27-06",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "صاحبك عايز يتعلم Next.js قبل ما يعرف JavaScript.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أنصحه بـ JS الأول ثم Node ثم React، وبعدين Next.js",
+     "why": "صح."
+    },
+    {
+     "text": "يبدأ على طول",
+     "why": "هيتوه."
+    },
+    {
+     "text": "يتعلم TypeScript الأول",
+     "why": "مش منصوح."
+    },
+    {
+     "text": "يتعلم Angular",
+     "why": "نفس المشكلة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الترتيب."
+  },
+  {
+   "id": "06-frontend-ch27-07",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "TypeScript ظهر في كل مكان وحاسس إنك متأخر.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أكمّل React الأول، و TS هتبقى أسهل بعدها",
+     "why": "صح."
+    },
+    {
+     "text": "أوقف React وأتعلم TS",
+     "why": "مش منصوح."
+    },
+    {
+     "text": "أتجاهلها للأبد",
+     "why": "هتحتاجها."
+    },
+    {
+     "text": "أتعلم كل حاجة مع بعض",
+     "why": "هتتوه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "إيه اللي يستنى لبعدين."
+  },
+  {
+   "id": "06-frontend-ch27-08",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل موقع دوكيومنتيشن الويب الشامل:",
+   "template": "___ Web Docs",
+   "blanks": [
+    [
+     "MDN"
+    ]
+   ],
+   "hint": "Mozilla.",
+   "explanation": "المرجع الرسمي."
+  },
+  {
+   "id": "06-frontend-ch27-09",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل موقع React الرسمي:",
+   "template": "___.dev",
+   "blanks": [
+    [
+     "react"
+    ]
+   ],
+   "hint": "اسم المكتبة.",
+   "explanation": "الدوكيومنتيشن الحديثة."
+  },
+  {
+   "id": "06-frontend-ch27-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه \"بص على التاريخ\" مهمة في المصادر؟",
+   "options": [
+    {
+     "text": "أدوات الفرونت إند بتتغير بسرعة، والمقال القديم ممكن يعلّمك طريقة اتلغت",
+     "why": "صح."
+    },
+    {
+     "text": "علشان الشكل",
+     "why": "لأ."
+    },
+    {
+     "text": "القديم أحسن",
+     "why": "مش دايماً."
+    },
+    {
+     "text": "مش مهمة",
+     "why": "مهمة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مثلاً CRA اتوقف."
+  },
+  {
+   "id": "06-frontend-ch27-11",
+   "type": "command",
+   "level": "easy",
+   "prompt": "(مراجعة) اعمل مشروع React بـ Vite اسمه practice.",
+   "accepted": [
+    "npm create vite@latest practice -- --template react"
+   ],
+   "hint": "create vite و template.",
+   "explanation": "أول مشروع في مرحلة React."
+  }
+ ]
+}

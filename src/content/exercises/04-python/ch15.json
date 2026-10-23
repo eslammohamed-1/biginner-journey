@@ -1,0 +1,270 @@
+{
+ "book": "04-python",
+ "chapter": 15,
+ "chapterFile": "ch15",
+ "title": "خريطة الموديلات: OpenAI و Gemini و Claude (أكتوبر 2026)",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch15-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "أرخص موديل OpenAI في الكتاب؟",
+   "options": [
+    {
+     "text": "gpt-6-luna",
+     "why": "صح ($0.10/$0.50)."
+    },
+    {
+     "text": "gpt-6-astra",
+     "why": "الأقوى والأغلى."
+    },
+    {
+     "text": "gpt-6.1-sol",
+     "why": "المتوازن."
+    },
+    {
+     "text": "gemini-4-argon",
+     "why": "ده Google."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ابدأ رخيص وقيس."
+  },
+  {
+   "id": "04-python-ch15-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "تقدر تستخدم gemini-4-argon على الـ Free tier؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مش في الـ Free."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Flash و Flash-Lite متاحين."
+  },
+  {
+   "id": "04-python-ch15-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "gemini-flash-latest مثالي لاسكريبت لازم سلوكه ميتغيرش؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "latest بيتغير."
+    },
+    {
+     "text": "لأ، ثبّت اسم Stable",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "latest بيتنقل لموديل جديد."
+  },
+  {
+   "id": "04-python-ch15-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في الـ Free tier بتاع Gemini، المحتوى بتاعك...",
+   "options": [
+    {
+     "text": "ممكن يتستخدم لتحسين المنتجات",
+     "why": "صح، متبعتش بيانات حساسة."
+    },
+    {
+     "text": "محمي تماماً",
+     "why": "لأ."
+    },
+    {
+     "text": "بيتمسح فوراً",
+     "why": "مش مضمون."
+    },
+    {
+     "text": "مش بيوصل",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "فكّر قبل ما تبعت بيانات عملاء."
+  },
+  {
+   "id": "04-python-ch15-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في Claude، max_tokens في messages.create...",
+   "options": [
+    {
+     "text": "إجباري",
+     "why": "صح."
+    },
+    {
+     "text": "اختياري",
+     "why": "إجباري."
+    },
+    {
+     "text": "مش موجود",
+     "why": "موجود."
+    },
+    {
+     "text": "اسمه max_output_tokens",
+     "why": "ده OpenAI."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Opus و Sonnet و Haiku."
+  },
+  {
+   "id": "04-python-ch15-06",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات اختيار موديل:",
+   "items": [
+    "ابدأ بموديل رخيص",
+    "قيس على عينات حقيقية",
+    "اطلع لموديل أقوى لو لازم",
+    "ثبّت اسم Stable"
+   ],
+   "explanation": "بالتجربة مش بالسمعة."
+  },
+  {
+   "id": "04-python-ch15-07",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "لقيت gpt-4o-mini في اسكريبت قديم.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشيك في الدوكيومنتيشن هل لسه شغّال وإيه البديل، وأجرّب البديل على عينات",
+     "why": "صح."
+    },
+    {
+     "text": "أسيبه",
+     "why": "ممكن يتشال."
+    },
+    {
+     "text": "أكتب اسم من دماغي",
+     "why": "ممكن يبقى غلط."
+    },
+    {
+     "text": "أحط latest",
+     "why": "سلوك بيتغير."
+    }
+   ],
+   "correct": 0,
+   "explanation": "متكتبش اسم موديل من دماغك."
+  },
+  {
+   "id": "04-python-ch15-08",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "AI كتبلك اسم موديل مش موجود في الدوكيومنتيشن.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "مكتبش أي اسم من غير ما أتأكد من صفحة Models الرسمية أو أعمل models.list",
+     "why": "صح."
+    },
+    {
+     "text": "أشغّل وأشوف",
+     "why": "هياخد Error 404."
+    },
+    {
+     "text": "أصدّق الـ AI",
+     "why": "ممكن يألّف."
+    },
+    {
+     "text": "أغيّر حرف",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أسامي الموديلات بتتغير."
+  },
+  {
+   "id": "04-python-ch15-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: الموديلات اللي اسمها بينتهي بـ ___ ممكن تتغير أو تتشال من غير إنذار:",
+   "template": "…-___",
+   "blanks": [
+    [
+     "preview",
+     "exp"
+    ]
+   ],
+   "hint": "معاينة.",
+   "explanation": "Stable للشغل الجد."
+  },
+  {
+   "id": "04-python-ch15-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه أسعار الموديلات في الكتاب \"ليها تاريخ\"؟",
+   "options": [
+    {
+     "text": "الأسعار والموديلات بتتغير بسرعة، فراجع الصفحة الرسمية قبل ما تحسب",
+     "why": "صح."
+    },
+    {
+     "text": "علشان الكتاب غلط",
+     "why": "لأ."
+    },
+    {
+     "text": "الأسعار ثابتة",
+     "why": "لأ."
+    },
+    {
+     "text": "مش مهمة",
+     "why": "مهمة للتكلفة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أكتوبر 2026."
+  },
+  {
+   "id": "04-python-ch15-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إيه الفرق بين Batch/Flex والعادي؟",
+   "options": [
+    {
+     "text": "أرخص مقابل إن النتيجة تتأخر",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع",
+     "why": "العكس."
+    },
+    {
+     "text": "أدق",
+     "why": "لأ."
+    },
+    {
+     "text": "مجاني",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مفيد للملفات الكتير."
+  },
+  {
+   "id": "04-python-ch15-12",
+   "type": "command",
+   "level": "easy",
+   "prompt": "(من الـ Terminal) سطّب SDK بتاع OpenAI جوه الـ venv.",
+   "accepted": [
+    "pip install openai",
+    "python -m pip install openai",
+    "python3 -m pip install openai"
+   ],
+   "hint": "pip install.",
+   "explanation": "بعدين from openai import OpenAI."
+  }
+ ]
+}

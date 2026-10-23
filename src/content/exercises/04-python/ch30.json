@@ -1,0 +1,230 @@
+{
+ "book": "04-python",
+ "chapter": 30,
+ "chapterFile": "ch30",
+ "title": "اسكريبت كامل: ترجمة أو إعادة صياغة عمود في Excel",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "04-python-ch30-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "ليه دفعات من الصفوف بدل صف لكل طلب؟",
+   "options": [
+    {
+     "text": "طلبات أقل، وأسلوب موحّد، وتكلفة أقل للتعليمات المتكررة",
+     "why": "صح."
+    },
+    {
+     "text": "علشان الموديل مبيقبلش صف واحد",
+     "why": "بيقبل."
+    },
+    {
+     "text": "أسهل في الأخطاء",
+     "why": "محتاج IDs."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مع IDs للربط."
+  },
+  {
+   "id": "04-python-ch30-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Strict structured output بيضمن إن كل الـ IDs اللي بعتها هترجع؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيضمن الشكل بس."
+    },
+    {
+     "text": "لأ، لازم تتأكد بالكود",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "sent - got.keys()."
+  },
+  {
+   "id": "04-python-ch30-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لو غيّرت PROMPT_VERSION، الاسكريبت هيكمّل من الـ Cache القديم؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "اسم الـ Cache فيه النسخة."
+    },
+    {
+     "text": "لأ، هيبدأ Cache جديد",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "علشان نتايج Prompt قديم متختلطش."
+  },
+  {
+   "id": "04-python-ch30-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`-(-7 // 3)` بتساوي كام؟",
+   "options": [
+    {
+     "text": "3",
+     "why": "صح، قسمة مع تقريب لفوق."
+    },
+    {
+     "text": "2",
+     "why": "ده 7 // 3."
+    },
+    {
+     "text": "-3",
+     "why": "لأ."
+    },
+    {
+     "text": "2.33",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "عدد الدفعات."
+  },
+  {
+   "id": "04-python-ch30-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "احسب الـ IDs اللي متبعتة ومرجعتش في missing (sent set و got dict).",
+   "accepted": [
+    "missing = sent - got.keys()",
+    "missing = sent - set(got)",
+    "missing = set(sent) - set(got.keys())"
+   ],
+   "hint": "طرح sets.",
+   "explanation": "والناقص يتعاد لوحده."
+  },
+  {
+   "id": "04-python-ch30-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "املا عمود \"translation\" من الـ cache dict باستخدام الـ index.",
+   "accepted": [
+    "df[\"translation\"] = df.index.map(cache.get)",
+    "df['translation'] = df.index.map(cache.get)"
+   ],
+   "hint": "index.map.",
+   "explanation": "الصفوف اللي مش في الـ cache بتبقى NaN."
+  },
+  {
+   "id": "04-python-ch30-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تختار الخلايا اللي فيها قيمة بس:",
+   "template": "df[col].___()",
+   "blanks": [
+    [
+     "notna"
+    ]
+   ],
+   "hint": "not na.",
+   "explanation": "متبعتش خلايا فاضية."
+  },
+  {
+   "id": "04-python-ch30-08",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "الاسكريبت هيكتب على نفس ملف Excel الأصلي.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أكتب لملف جديد وأمنع الكتابة فوق الأصل في الكود",
+     "why": "صح."
+    },
+    {
+     "text": "عادي",
+     "why": "لو حصل خطأ هتخسر الأصل."
+    },
+    {
+     "text": "أعمل نسخة بإيدي وخلاص",
+     "why": "كويس بس الكود لازم يحمي."
+    },
+    {
+     "text": "أفتحه في Excel",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الحماية جزء من الاسكريبت."
+  },
+  {
+   "id": "04-python-ch30-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "العمود اللي اسمه \"Body\" مش موجود والاسكريبت وقع بـ KeyError.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشيك على وجود العمود في البداية وأطلع رسالة واضحة بالأعمدة الموجودة",
+     "why": "صح."
+    },
+    {
+     "text": "أعمل العمود فاضي",
+     "why": "هيترجم فاضي."
+    },
+    {
+     "text": "أعدّل Excel",
+     "why": "ممكن بس الكود لازم يحمي."
+    },
+    {
+     "text": "try/except: pass",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الحماية: عمود مش موجود."
+  },
+  {
+   "id": "04-python-ch30-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات ترجمة العمود:",
+   "items": [
+    "read_excel وأتأكد من العمود",
+    "أقسّم الصفوف دفعات بـ IDs",
+    "أبعت كل دفعة وأتأكد كل ID رجع",
+    "أحفظ في Cache JSONL",
+    "to_excel لملف جديد"
+   ],
+   "explanation": "Cache باسم فيه PROMPT_VERSION."
+  },
+  {
+   "id": "04-python-ch30-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "عايز تحوّل الاسكريبت لإعادة صياغة بدل ترجمة. تغيّر إيه؟",
+   "options": [
+    {
+     "text": "الـ Prompt و PROMPT_VERSION واسم العمود الجديد، والباقي زي ما هو",
+     "why": "صح."
+    },
+    {
+     "text": "أكتبه من الأول",
+     "why": "مش لازم."
+    },
+    {
+     "text": "أغيّر pandas",
+     "why": "لأ."
+    },
+    {
+     "text": "أغيّر الموديل بس",
+     "why": "مش كفاية."
+    }
+   ],
+   "correct": 0,
+   "explanation": "نفس الهيكل."
+  }
+ ]
+}

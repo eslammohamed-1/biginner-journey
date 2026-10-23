@@ -1,0 +1,270 @@
+{
+ "book": "05-apis",
+ "chapter": 15,
+ "chapterFile": "ch15",
+ "title": "الـ Methods والـ Idempotency",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "05-apis-ch15-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "Safe معناها إيه؟",
+   "options": [
+    {
+     "text": "الطلب مبيغيرش حاجة على السيرفر",
+     "why": "صح."
+    },
+    {
+     "text": "آمن من الهاكرز",
+     "why": "لأ."
+    },
+    {
+     "text": "مشفّر",
+     "why": "لأ."
+    },
+    {
+     "text": "سريع",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "GET و HEAD و OPTIONS و QUERY."
+  },
+  {
+   "id": "05-apis-ch15-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "أنهي Method مش Idempotent؟",
+   "options": [
+    {
+     "text": "POST",
+     "why": "صح، مرتين = اتنين."
+    },
+    {
+     "text": "PUT",
+     "why": "Idempotent."
+    },
+    {
+     "text": "DELETE",
+     "why": "Idempotent."
+    },
+    {
+     "text": "GET",
+     "why": "Safe و Idempotent."
+    }
+   ],
+   "correct": 0,
+   "explanation": "و PATCH كمان مش مضمونة."
+  },
+  {
+   "id": "05-apis-ch15-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "DELETE مرتين لازم يرجّع نفس الـ Status code علشان يبقى Idempotent؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الـ Idempotency على الحالة."
+    },
+    {
+     "text": "لأ، المهم حالة السيرفر نفسها",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ممكن 204 ثم 404."
+  },
+  {
+   "id": "05-apis-ch15-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في JSON Merge Patch، {\"summary\": null} بيعمل إيه؟",
+   "options": [
+    {
+     "text": "بيمسح الـ Field",
+     "why": "صح."
+    },
+    {
+     "text": "بيحطه null",
+     "why": "ده الفخ."
+    },
+    {
+     "text": "مبيعملش حاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "خطأ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "RFC 7396."
+  },
+  {
+   "id": "05-apis-ch15-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Idempotency-Key بيتعمل جديد مع كل إعادة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لازم نفس المفتاح."
+    },
+    {
+     "text": "لأ، نفس المفتاح للإعادة",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "نفس المفتاح = نفس النتيجة."
+  },
+  {
+   "id": "05-apis-ch15-06",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "بعت PUT بـ title بس، والمقال خسر الـ body والـ tags.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "PUT بيستبدل كله، فكان لازم PATCH للتعديل الجزئي",
+     "why": "صح."
+    },
+    {
+     "text": "السيرفر بايظ",
+     "why": "ده تعريف PUT."
+    },
+    {
+     "text": "أعيد PUT",
+     "why": "نفس النتيجة."
+    },
+    {
+     "text": "أستخدم DELETE",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "تجربة PUT ضد PATCH."
+  },
+  {
+   "id": "05-apis-ch15-07",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "طلب دفع POST حصله Timeout ومش عارف وصل ولا لأ.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أعيد بنفس Idempotency-Key، فلو كان وصل السيرفر يرجّع نفس النتيجة من غير ما يدفع مرتين",
+     "why": "صح."
+    },
+    {
+     "text": "أعيد من غير مفتاح",
+     "why": "ممكن يدفع مرتين."
+    },
+    {
+     "text": "منعيدش أبداً",
+     "why": "ممكن ميكونش وصل."
+    },
+    {
+     "text": "أبعت DELETE",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ده لازمة الـ Idempotency."
+  },
+  {
+   "id": "05-apis-ch15-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل عملية JSON Patch:",
+   "template": "{ \"op\": \"___\", \"path\": \"/title\", \"value\": \"New\" }",
+   "blanks": [
+    [
+     "replace"
+    ]
+   ],
+   "hint": "استبدال.",
+   "explanation": "و test و add و remove."
+  },
+  {
+   "id": "05-apis-ch15-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الـ Content-Type بتاع Merge Patch:",
+   "template": "application/merge-patch+___",
+   "blanks": [
+    [
+     "json"
+    ]
+   ],
+   "hint": "نوع.",
+   "explanation": "RFC 7396."
+  },
+  {
+   "id": "05-apis-ch15-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب اللي السيرفر بيعمله مع Idempotency-Key:",
+   "items": [
+    "يستلم الطلب بالمفتاح",
+    "يشوف المفتاح اتشاف قبل كده؟",
+    "لو أيوه، يرجّع الرد المحفوظ",
+    "لو لأ، ينفّذ ويحفظ الرد"
+   ],
+   "explanation": "Body مختلف بنفس المفتاح = 422."
+  },
+  {
+   "id": "05-apis-ch15-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": ":publish مرتين على نفس المقال بيرجّع إيه؟",
+   "options": [
+    {
+     "text": "409 Conflict",
+     "why": "صح."
+    },
+    {
+     "text": "200",
+     "why": "مش حسب الكتاب."
+    },
+    {
+     "text": "500",
+     "why": "لأ."
+    },
+    {
+     "text": "404",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "المقال منشور بالفعل."
+  },
+  {
+   "id": "05-apis-ch15-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "QUERY method (RFC 10008) بتحل إيه؟",
+   "options": [
+    {
+     "text": "بحث محتاج Body كبير وهو Safe و Idempotent، بدل POST",
+     "why": "صح."
+    },
+    {
+     "text": "بديل لـ DELETE",
+     "why": "لأ."
+    },
+    {
+     "text": "بتعمل Resources",
+     "why": "لأ."
+    },
+    {
+     "text": "للصور",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "البحث اللي محتاج Body."
+  }
+ ]
+}

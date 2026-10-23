@@ -1,0 +1,244 @@
+{
+ "book": "04-python",
+ "chapter": 25,
+ "chapterFile": "ch25",
+ "title": "Retries و Rate limits و Timeouts: الاسكريبت ميقعش في النص",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch25-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "Status 429 معناها إيه؟",
+   "options": [
+    {
+     "text": "استنى، انت بعت كتير (Rate limit) أو خلّصت الحصة",
+     "why": "صح، مش Bug."
+    },
+    {
+     "text": "السيرفر وقع",
+     "why": "ده 5xx."
+    },
+    {
+     "text": "الـ Key غلط",
+     "why": "ده 401."
+    },
+    {
+     "text": "الطلب غلط",
+     "why": "ده 400."
+    }
+   ],
+   "correct": 0,
+   "explanation": "استنى وأعيد."
+  },
+  {
+   "id": "04-python-ch25-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "أنهي Error تعيد عليه؟",
+   "options": [
+    {
+     "text": "429 (rate) و 408 و 5xx",
+     "why": "صح."
+    },
+    {
+     "text": "401",
+     "why": "الـ Key غلط، الإعادة مش هتفيد."
+    },
+    {
+     "text": "400",
+     "why": "الطلب نفسه غلط."
+    },
+    {
+     "text": "403",
+     "why": "صلاحيات."
+    }
+   ],
+   "correct": 0,
+   "explanation": "متعيدش على quota و billing."
+  },
+  {
+   "id": "04-python-ch25-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الطلبات اللي رجعت 429 مبتتحسبش من حصة الدقيقة؟",
+   "options": [
+    {
+     "text": "صح",
+     "why": "ممكن تتحسب."
+    },
+    {
+     "text": "غلط، ممكن تتحسب، فالخبط المتكرر بيطوّل المشكلة",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "علشان كده Backoff."
+  },
+  {
+   "id": "04-python-ch25-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "3 API Keys في نفس مشروع Gemini = 3 أضعاف الـ Rate limit؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الحد على المشروع."
+    },
+    {
+     "text": "لأ، الحد على مستوى المشروع",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "متحاولش تحايل."
+  },
+  {
+   "id": "04-python-ch25-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "خلي OpenAI client يعيد 5 مرات و timeout 60 ثانية.",
+   "accepted": [
+    "client = OpenAI(max_retries=5, timeout=60.0)",
+    "client = OpenAI(timeout=60.0, max_retries=5)",
+    "client = OpenAI(max_retries=5, timeout=60)"
+   ],
+   "hint": "max_retries و timeout.",
+   "explanation": "افتراضياً مرتين."
+  },
+  {
+   "id": "04-python-ch25-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "فعّل Retries في Gemini بـ 5 محاولات (اكتب الـ Object بس).",
+   "accepted": [
+    "HttpRetryOptions(attempts=5)",
+    "types.HttpRetryOptions(attempts=5)"
+   ],
+   "hint": "HttpRetryOptions.",
+   "explanation": "مقفولة افتراضياً."
+  },
+  {
+   "id": "04-python-ch25-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل Header اللي بيقولك تستنى قد إيه:",
+   "template": "___-after",
+   "blanks": [
+    [
+     "retry",
+     "Retry"
+    ]
+   ],
+   "hint": "أعد بعد.",
+   "explanation": "متنزلش تحت قيمته."
+  },
+  {
+   "id": "04-python-ch25-08",
+   "type": "fill",
+   "level": "think",
+   "prompt": "كمّل معادلة Exponential backoff:",
+   "template": "delay = min(cap, base * 2 ** ___) + jitter",
+   "blanks": [
+    [
+     "n",
+     "attempt"
+    ]
+   ],
+   "hint": "رقم المحاولة.",
+   "explanation": "jitter عشوائي علشان الكل ميعيدش مع بعض."
+  },
+  {
+   "id": "04-python-ch25-09",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "لفّيت نداء OpenAI بـ tenacity بـ 5 محاولات، والـ SDK نفسه بيعيد مرتين.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "دي Retries جوه Retries (ممكن 15 محاولة)، فأخلي مستوى واحد بس (max_retries=0 في الـ SDK أو أشيل الخارجي)",
+     "why": "صح."
+    },
+    {
+     "text": "كويس، أمان أكتر",
+     "why": "بتضاعف الانتظار والضغط."
+    },
+    {
+     "text": "أزوّد المحاولات",
+     "why": "أسوأ."
+    },
+    {
+     "text": "أشيل timeout",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مستوى Retry واحد."
+  },
+  {
+   "id": "04-python-ch25-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Backoff مع Retry-After:",
+   "items": [
+    "الطلب يرجّع 429",
+    "أقرا retry-after لو موجود",
+    "أحسب backoff مع jitter (ومنزلش تحت retry-after)",
+    "أستنى وأعيد، لحد سقف المحاولات"
+   ],
+   "explanation": "بعده أسجّل فشل."
+  },
+  {
+   "id": "04-python-ch25-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Gemini RPD بيتصفّر إمتى؟",
+   "options": [
+    {
+     "text": "نص الليل بتوقيت Pacific",
+     "why": "صح حسب الكتاب."
+    },
+    {
+     "text": "كل ساعة",
+     "why": "لأ."
+    },
+    {
+     "text": "نص الليل عندك",
+     "why": "لأ."
+    },
+    {
+     "text": "كل أسبوع",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خطط على كده."
+  },
+  {
+   "id": "04-python-ch25-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "أحسن من الـ Retry إيه؟",
+   "options": [
+    {
+     "text": "متخبطش أصلاً: قلل التوازي وابعت بمعدل أقل من الحد",
+     "why": "صح."
+    },
+    {
+     "text": "Retries أكتر",
+     "why": "لأ."
+    },
+    {
+     "text": "Keys أكتر",
+     "why": "الحد على المشروع."
+    },
+    {
+     "text": "شيل timeout",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الوقاية."
+  }
+ ]
+}

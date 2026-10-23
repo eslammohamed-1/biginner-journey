@@ -1,0 +1,241 @@
+{
+ "book": "06-frontend",
+ "chapter": 8,
+ "chapterFile": "ch08",
+ "title": "CSS Grid: الصفحة كلها كشبكة",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "06-frontend-ch08-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "Grid لكام بعد؟",
+   "options": [
+    {
+     "text": "بعدين: صفوف وأعمدة",
+     "why": "صح."
+    },
+    {
+     "text": "بعد واحد",
+     "why": "ده Flexbox."
+    },
+    {
+     "text": "تلاتة",
+     "why": "لأ."
+    },
+    {
+     "text": "مفيش",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "والاتنين مع بعض عادي."
+  },
+  {
+   "id": "06-frontend-ch08-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الوحدة fr بتشتغل في Flexbox؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "Grid بس."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "نصيب من المساحة الفاضلة."
+  },
+  {
+   "id": "06-frontend-ch08-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "repeat(auto-fill, minmax(200px, 1fr)) محتاجة Media query علشان تبقى Responsive؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "هي Responsive لوحدها."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "السطر السحري."
+  },
+  {
+   "id": "06-frontend-ch08-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "grid-column: 1 / -1 بيعمل إيه؟",
+   "options": [
+    {
+     "text": "العنصر ياخد عرض الشبكة كلها",
+     "why": "صح."
+    },
+    {
+     "text": "يختفي",
+     "why": "لأ."
+    },
+    {
+     "text": "أول عمود",
+     "why": "لأ."
+    },
+    {
+     "text": "خطأ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "-1 آخر خط."
+  },
+  {
+   "id": "06-frontend-ch08-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل شبكة كروت Responsive أقل عرض 200px من غير Media query.",
+   "accepted": [
+    "grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));",
+    "grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));"
+   ],
+   "hint": "repeat و minmax.",
+   "explanation": "auto-fit بيمدد الكروت."
+  },
+  {
+   "id": "06-frontend-ch08-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "خلي عنصر ياخد عمودين.",
+   "accepted": [
+    "grid-column: span 2;",
+    "grid-column: span 2"
+   ],
+   "hint": "span.",
+   "explanation": "خانتين."
+  },
+  {
+   "id": "06-frontend-ch08-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: 3 أعمدة متساوية:",
+   "template": "grid-template-columns: repeat(3, ___);",
+   "blanks": [
+    [
+     "1fr"
+    ]
+   ],
+   "hint": "نصيب.",
+   "explanation": "fr."
+  },
+  {
+   "id": "06-frontend-ch08-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: الولد بياخد مكانه في grid-template-areas بـ:",
+   "template": "grid-___: header;",
+   "blanks": [
+    [
+     "area"
+    ]
+   ],
+   "hint": "منطقة.",
+   "explanation": "على الولد."
+  },
+  {
+   "id": "06-frontend-ch08-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Layout بـ grid-template-areas:",
+   "items": [
+    "display: grid على الأب",
+    "grid-template-columns و rows",
+    "grid-template-areas بالكلام",
+    "grid-area على كل ولد"
+   ],
+   "explanation": "ترسم الصفحة بالكلام."
+  },
+  {
+   "id": "06-frontend-ch08-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "غيّرت الترتيب البصري بـ Grid والكيبورد بيمشي بترتيب مختلف.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "ترتيب الـ HTML هو ترتيب القراية والكيبورد، فأعدّل الـ HTML نفسه لو الترتيب مهم",
+     "why": "صح."
+    },
+    {
+     "text": "عادي",
+     "why": "مشكلة a11y."
+    },
+    {
+     "text": "tabindex موجب",
+     "why": "ممنوع."
+    },
+    {
+     "text": "أستخدم Flexbox",
+     "why": "نفس المشكلة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مهما غيّرت الشكل."
+  },
+  {
+   "id": "06-frontend-ch08-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "قاعدة اختيار Grid ولا Flexbox؟",
+   "options": [
+    {
+     "text": "Flexbox لصف أو عمود حسب المحتوى، و Grid لتخطيط بعدين من الشبكة",
+     "why": "صح."
+    },
+    {
+     "text": "Grid دايماً",
+     "why": "مش لازم."
+    },
+    {
+     "text": "Flexbox دايماً",
+     "why": "Grid أحسن للصفحة."
+    },
+    {
+     "text": "مش مهم",
+     "why": "مهم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "والاتنين مع بعض."
+  },
+  {
+   "id": "06-frontend-ch08-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "subgrid بيعمل إيه؟",
+   "options": [
+    {
+     "text": "الولد يستخدم خطوط شبكة الأب علشان المحتوى يتراصف",
+     "why": "صح."
+    },
+    {
+     "text": "شبكة صغيرة منفصلة",
+     "why": "ده grid عادي."
+    },
+    {
+     "text": "بيلغي Grid",
+     "why": "لأ."
+    },
+    {
+     "text": "للموبايل",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "في سطر."
+  }
+ ]
+}

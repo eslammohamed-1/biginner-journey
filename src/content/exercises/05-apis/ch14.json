@@ -1,0 +1,256 @@
+{
+ "book": "05-apis",
+ "chapter": 14,
+ "chapterFile": "ch14",
+ "title": "REST: الفكرة، والـ Resources، والـ Endpoints، والتسمية",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "05-apis-ch14-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "إيه الأحسن في REST؟",
+   "options": [
+    {
+     "text": "GET /articles",
+     "why": "صح، اسم جمع من غير فعل."
+    },
+    {
+     "text": "GET /getArticles",
+     "why": "فعل في الـ URL."
+    },
+    {
+     "text": "POST /articles/list",
+     "why": "لأ."
+    },
+    {
+     "text": "GET /Article.json",
+     "why": "حروف كبيرة وامتداد."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Method هي الفعل."
+  },
+  {
+   "id": "05-apis-ch14-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Stateless معناها إن السيرفر مبيخزّنش بيانات في Database؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "معناها كل طلب فيه كل اللي محتاجه."
+    },
+    {
+     "text": "لأ، معناها السيرفر مبيفتكرش حالة الجلسة بين الطلبات",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ Database عادي."
+  },
+  {
+   "id": "05-apis-ch14-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`/articles?status=draft` أحسن من `/articles/drafts`؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح، الفلترة في الـ Query."
+    },
+    {
+     "text": "لأ",
+     "why": "ده Resource مش جديد."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Query = طريقة العرض."
+  },
+  {
+   "id": "05-apis-ch14-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Resource ضد Representation؟",
+   "options": [
+    {
+     "text": "Resource = الحاجة نفسها، و Representation = شكلها (JSON مثلاً)",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "Representation = Database",
+     "why": "لأ."
+    },
+    {
+     "text": "Resource = JSON",
+     "why": "العكس."
+    }
+   ],
+   "correct": 0,
+   "explanation": "نفس المقال ممكن يتعرض بكذا شكل."
+  },
+  {
+   "id": "05-apis-ch14-05",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب مستويات Richardson:",
+   "items": [
+    "مستوى 0: Endpoint واحد",
+    "مستوى 1: Resources",
+    "مستوى 2: HTTP Methods و Status codes",
+    "مستوى 3: Hypermedia (لينكات)"
+   ],
+   "explanation": "هدفنا مستوى 2."
+  },
+  {
+   "id": "05-apis-ch14-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل العملية اللي فيها شغل (مش CRUD):",
+   "template": "POST /articles/42___publish",
+   "blanks": [
+    [
+     ":"
+    ]
+   ],
+   "hint": "نقطتين.",
+   "explanation": "Custom method."
+  },
+  {
+   "id": "05-apis-ch14-07",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل التسمية الصح:",
+   "template": "/blog-___",
+   "blanks": [
+    [
+     "posts"
+    ]
+   ],
+   "hint": "جمع بحروف صغيرة.",
+   "explanation": "الشرطة بين الكلمات."
+  },
+  {
+   "id": "05-apis-ch14-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "API قديم فيه GET /deleteArticle?id=5.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "ده خطر: GET المفروض Safe، وممكن Crawler يمسح، فأحوّله لـ DELETE /articles/5",
+     "why": "صح."
+    },
+    {
+     "text": "عادي",
+     "why": "كارثة."
+    },
+    {
+     "text": "أخليه POST /deleteArticle",
+     "why": "أحسن بس لسه فعل."
+    },
+    {
+     "text": "أخبّي اللينك",
+     "why": "مش حل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "GET بيمسح = كارثة."
+  },
+  {
+   "id": "05-apis-ch14-09",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Nesting زي /articles/42/comments لحد كام مستوى؟",
+   "options": [
+    {
+     "text": "مستوى واحد غالباً",
+     "why": "صح."
+    },
+    {
+     "text": "5",
+     "why": "كتير."
+    },
+    {
+     "text": "ممنوع",
+     "why": "مسموح."
+    },
+    {
+     "text": "غير محدود",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "عشان الـ URLs متطولش."
+  },
+  {
+   "id": "05-apis-ch14-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه الـ ID في الـ JSON يبقى String دايماً؟",
+   "options": [
+    {
+     "text": "علشان تغيّر النوع (UUID) بعدين من غير ما تكسر، وتتجنب حد 2^53",
+     "why": "صح."
+    },
+    {
+     "text": "أصغر",
+     "why": "لأ."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    },
+    {
+     "text": "أسرع",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Best Practice."
+  },
+  {
+   "id": "05-apis-ch14-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "IDs متسلسلة (1، 2، 3) مشكلتها إيه؟",
+   "options": [
+    {
+     "text": "سهل التخمين وبتكشف عدد البيانات",
+     "why": "صح."
+    },
+    {
+     "text": "بطيئة",
+     "why": "لأ."
+    },
+    {
+     "text": "مبتشتغلش في JSON",
+     "why": "بتشتغل."
+    },
+    {
+     "text": "طويلة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "UUID أصعب."
+  },
+  {
+   "id": "05-apis-ch14-12",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اكتب طلب curl يمسح المقال 42 بطريقة REST من api.example.com/v1.",
+   "accepted": [
+    "curl -X DELETE https://api.example.com/v1/articles/42",
+    "curl -s -X DELETE https://api.example.com/v1/articles/42",
+    "curl -i -X DELETE https://api.example.com/v1/articles/42"
+   ],
+   "hint": "-X DELETE.",
+   "explanation": "مش GET /delete."
+  }
+ ]
+}

@@ -1,0 +1,205 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 9,
+ "chapterFile": "ch09",
+ "title": "الـ Namespaces: تقسيم الـ Cluster",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch09-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Namespace إيه؟",
+   "options": [
+    {
+     "text": "تقسيم افتراضي للـ Cluster",
+     "why": "صح."
+    },
+    {
+     "text": "Cluster تاني",
+     "why": "لأ."
+    },
+    {
+     "text": "Node",
+     "why": "لأ."
+    },
+    {
+     "text": "Pod",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "dev و prod."
+  },
+  {
+   "id": "08-kubernetes-ch09-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Nodes بتتحط جوه Namespace؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "Cluster-scoped."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "وكمان PVs و ClusterRoles."
+  },
+  {
+   "id": "08-kubernetes-ch09-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "مسح Namespace بيمسح كل اللي جواها؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح، بحذر."
+    },
+    {
+     "text": "لأ",
+     "why": "بيمسح."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خطر."
+  },
+  {
+   "id": "08-kubernetes-ch09-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Namespaces بتمنع الـ Pods تكلّم بعض؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "محتاج NetworkPolicy."
+    },
+    {
+     "text": "لأ افتراضياً",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "service.namespace.svc.cluster.local."
+  },
+  {
+   "id": "08-kubernetes-ch09-05",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب خطوات إنك تشتغل في Namespace جديدة اسمها dev:",
+   "items": [
+    "kubectl create namespace dev",
+    "kubectl config set-context --current --namespace=dev",
+    "kubectl apply -f app.yaml",
+    "kubectl get pods (هتوريك dev من غير -n)"
+   ],
+   "explanation": "التلقائية: default و kube-system و kube-public و kube-node-lease."
+  },
+  {
+   "id": "08-kubernetes-ch09-06",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض الـ Pods في كل الـ Namespaces.",
+   "accepted": [
+    "kubectl get pods -A",
+    "kubectl get pods --all-namespaces"
+   ],
+   "hint": "-A.",
+   "explanation": "-n لواحدة."
+  },
+  {
+   "id": "08-kubernetes-ch09-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "خلي dev الـ Namespace الافتراضية للـ context الحالي.",
+   "accepted": [
+    "kubectl config set-context --current --namespace=dev",
+    "kubectl config set-context --current --namespace dev"
+   ],
+   "hint": "set-context --current.",
+   "explanation": "بدل -n كل مرة."
+  },
+  {
+   "id": "08-kubernetes-ch09-08",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعمل Namespace اسمها dev.",
+   "accepted": [
+    "kubectl create namespace dev",
+    "kubectl create ns dev"
+   ],
+   "hint": "create namespace.",
+   "explanation": "أو YAML."
+  },
+  {
+   "id": "08-kubernetes-ch09-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل اسم Service db-service في dev من Namespace تانية:",
+   "template": "db-service.___.svc.cluster.local",
+   "blanks": [
+    [
+     "dev"
+    ]
+   ],
+   "hint": "اسم الـ Namespace.",
+   "explanation": "الـ DNS الكامل."
+  },
+  {
+   "id": "08-kubernetes-ch09-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "زميل عايز يمسح Namespace prod \"علشان ينضّف\".",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أوقفه: هيتمسح كل اللي جواها، ونمسح الحاجات المحددة بس",
+     "why": "صح."
+    },
+    {
+     "text": "عادي",
+     "why": "كارثة."
+    },
+    {
+     "text": "أوافق",
+     "why": "لأ."
+    },
+    {
+     "text": "نعمل backup بعدين",
+     "why": "بعد المسح فات الأوان."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بحذر."
+  },
+  {
+   "id": "08-kubernetes-ch09-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ResourceQuota ضد LimitRange؟",
+   "options": [
+    {
+     "text": "ResourceQuota حد للمجموع في الـ Namespace، و LimitRange Defaults وحدود لكل Container",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "العكس",
+     "why": "لأ."
+    },
+    {
+     "text": "للـ Nodes",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "التحكم في الموارد."
+  }
+ ]
+}

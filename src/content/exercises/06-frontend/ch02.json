@@ -1,0 +1,252 @@
+{
+ "book": "06-frontend",
+ "chapter": 2,
+ "chapterFile": "ch02",
+ "title": "خريطة الأدوات: كل اسم هتسمعه، وهو بيعمل إيه",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "06-frontend-ch02-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "المتصفح بيفهم أنهي لغات؟",
+   "options": [
+    {
+     "text": "HTML و CSS و JS بس",
+     "why": "صح."
+    },
+    {
+     "text": "TypeScript كمان",
+     "why": "محتاج تحويل."
+    },
+    {
+     "text": "JSX",
+     "why": "محتاج تحويل."
+    },
+    {
+     "text": "Sass",
+     "why": "محتاج تحويل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "القاعدة الذهبية."
+  },
+  {
+   "id": "06-frontend-ch02-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Vite بيتبعت للمستخدم مع الموقع؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "أداة تطوير."
+    },
+    {
+     "text": "لأ، Vite أداة على جهازك والناتج dist بس",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "devDependencies."
+  },
+  {
+   "id": "06-frontend-ch02-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "React بتوصف نفسها كـ؟",
+   "options": [
+    {
+     "text": "Library للـ UI",
+     "why": "صح."
+    },
+    {
+     "text": "Framework كامل",
+     "why": "ده Angular."
+    },
+    {
+     "text": "Meta-framework",
+     "why": "ده Next.js."
+    },
+    {
+     "text": "لغة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "انت بتناديها."
+  },
+  {
+   "id": "06-frontend-ch02-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الفرق بين Library و Framework؟",
+   "options": [
+    {
+     "text": "Library انت بتناديها، و Framework هو بينادي كودك",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "Library أكبر",
+     "why": "مش المعيار."
+    },
+    {
+     "text": "Framework مجاني بس",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Inversion of control."
+  },
+  {
+   "id": "06-frontend-ch02-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الحجم اللي يهم المستخدم؟",
+   "options": [
+    {
+     "text": "حجم dist/",
+     "why": "صح."
+    },
+    {
+     "text": "حجم node_modules",
+     "why": "ده على جهازك."
+    },
+    {
+     "text": "حجم package.json",
+     "why": "لأ."
+    },
+    {
+     "text": "حجم src",
+     "why": "قبل البناء."
+    }
+   ],
+   "correct": 0,
+   "explanation": "node_modules مش بتروح."
+  },
+  {
+   "id": "06-frontend-ch02-06",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب الطبقات من تحت لفوق:",
+   "items": [
+    "المنصة (المتصفح)",
+    "اللغات فوقها (TS و JSX)",
+    "أدوات على جهازك (Node و Vite)",
+    "مكتبات/Frameworks (React)",
+    "Meta-frameworks (Next.js)",
+    "الاستضافة"
+   ],
+   "explanation": "6 طبقات."
+  },
+  {
+   "id": "06-frontend-ch02-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: مكان أدوات التطوير في package.json:",
+   "template": "\"___\": { \"vite\": \"^8.0.0\" }",
+   "blanks": [
+    [
+     "devDependencies"
+    ]
+   ],
+   "hint": "dev...",
+   "explanation": "dependencies للتطبيق."
+  },
+  {
+   "id": "06-frontend-ch02-08",
+   "type": "command",
+   "level": "easy",
+   "prompt": "شوف الـ scripts في package.json من الـ Terminal.",
+   "accepted": [
+    "npm run",
+    "cat package.json",
+    "npm pkg get scripts"
+   ],
+   "hint": "npm run من غير اسم.",
+   "explanation": "بيعرض الأوامر المتاحة."
+  },
+  {
+   "id": "06-frontend-ch02-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "لقيت مشروع فيه ملفات .tsx والمتصفح مش فاهمها لما فتحتها مباشرة.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "لازم Build (Vite) يحوّلها JS عادي",
+     "why": "صح."
+    },
+    {
+     "text": "المتصفح قديم",
+     "why": "كلهم مش بيفهموها."
+    },
+    {
+     "text": "أغيّر الامتداد لـ .js",
+     "why": "الكود نفسه مش JS."
+    },
+    {
+     "text": "أسطب Plugin في Chrome",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أي حاجة غير الـ 3 لازم تتحول."
+  },
+  {
+   "id": "06-frontend-ch02-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "Node دوره إيه في مشروع React؟",
+   "options": [
+    {
+     "text": "بيشغّل الأدوات على جهازك (Vite و npm)، مش الموقع في المتصفح",
+     "why": "صح."
+    },
+    {
+     "text": "بيشغّل React في المتصفح",
+     "why": "لأ."
+    },
+    {
+     "text": "لازم على الاستضافة",
+     "why": "SPA مش محتاجة."
+    },
+    {
+     "text": "قاعدة بيانات",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أدوات وقت التطوير."
+  },
+  {
+   "id": "06-frontend-ch02-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إيه مثال Meta-framework؟",
+   "options": [
+    {
+     "text": "Next.js",
+     "why": "صح."
+    },
+    {
+     "text": "React",
+     "why": "Library."
+    },
+    {
+     "text": "Vite",
+     "why": "أداة."
+    },
+    {
+     "text": "Tailwind",
+     "why": "CSS."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Framework فوق Library بيزوّد Routing وسيرفر."
+  }
+ ]
+}

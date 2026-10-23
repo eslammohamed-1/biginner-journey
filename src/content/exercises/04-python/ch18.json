@@ -1,0 +1,230 @@
+{
+ "book": "04-python",
+ "chapter": 18,
+ "chapterFile": "ch18",
+ "title": "OpenAI و Gemini جنب بعض: نفس المهمة بلهجتين",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "04-python-ch18-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "إيه المقابل في Gemini لـ instructions في OpenAI؟",
+   "options": [
+    {
+     "text": "system_instruction",
+     "why": "صح."
+    },
+    {
+     "text": "contents",
+     "why": "ده مقابل input."
+    },
+    {
+     "text": "text",
+     "why": "ده مقابل output_text."
+    },
+    {
+     "text": "config",
+     "why": "الحاوية بس."
+    }
+   ],
+   "correct": 0,
+   "explanation": "جدول الترجمة."
+  },
+  {
+   "id": "04-python-ch18-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "مقابل response.output_text في Gemini؟",
+   "options": [
+    {
+     "text": "response.text",
+     "why": "صح."
+    },
+    {
+     "text": "response.output",
+     "why": "لأ."
+    },
+    {
+     "text": "response.content",
+     "why": "لأ."
+    },
+    {
+     "text": "response.message",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "وممكن يبقى None."
+  },
+  {
+   "id": "04-python-ch18-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "google-genai بيعيد المحاولة على 429 تلقائياً من غير إعدادات؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مقفولة افتراضياً."
+    },
+    {
+     "text": "لأ",
+     "why": "صح، OpenAI SDK هو اللي بيعيد."
+    }
+   ],
+   "correct": 1,
+   "explanation": "HttpRetryOptions."
+  },
+  {
+   "id": "04-python-ch18-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "usage.output_tokens في OpenAI شامل توكنز الـ Reasoning؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح."
+    },
+    {
+     "text": "لأ",
+     "why": "شامل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "في Gemini توكنز التفكير منفصلة."
+  },
+  {
+   "id": "04-python-ch18-05",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه نعمل فانكشن ask(provider, ...)؟",
+   "options": [
+    {
+     "text": "علشان الاسكريبت كله ميعرفش الشركة، وتغيير الـ Provider يبقى في مكان واحد",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع",
+     "why": "مش السبب."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان التكلفة",
+     "why": "مش مباشرة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ترجّع شكل موحّد."
+  },
+  {
+   "id": "04-python-ch18-06",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب الترجمة من OpenAI لـ Gemini:",
+   "items": [
+    "OpenAI() ← genai.Client()",
+    "responses.create ← models.generate_content",
+    "instructions ← config.system_instruction",
+    "output_text ← text"
+   ],
+   "explanation": "نفس المفاهيم."
+  },
+  {
+   "id": "04-python-ch18-07",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "نقلت اسكريبت من OpenAI لـ Gemini وبقى يقع على 429 مع إنه كان بيعدي.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "OpenAI SDK كان بيعيد لوحده، فأفعّل HttpRetryOptions أو أعمل backoff",
+     "why": "صح."
+    },
+    {
+     "text": "Gemini أسوأ",
+     "why": "مش الفكرة."
+    },
+    {
+     "text": "أرجع لـ OpenAI",
+     "why": "مش حل."
+    },
+    {
+     "text": "أشيل الـ Loop",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "فرق من الأربعة."
+  },
+  {
+   "id": "04-python-ch18-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: input في OpenAI يقابلها في Gemini:",
+   "template": "___=",
+   "blanks": [
+    [
+     "contents"
+    ]
+   ],
+   "hint": "محتويات.",
+   "explanation": "Keyword argument."
+  },
+  {
+   "id": "04-python-ch18-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: max_output_tokens في Gemini بيتحط فين:",
+   "template": "config=types.GenerateContentConfig(max_output_tokens=500) ← الحاوية اسمها ___",
+   "blanks": [
+    [
+     "GenerateContentConfig"
+    ]
+   ],
+   "hint": "نفس الاسم.",
+   "explanation": "مش Argument مباشر."
+  },
+  {
+   "id": "04-python-ch18-10",
+   "type": "command",
+   "level": "think",
+   "prompt": "اكتب سطر يحمي من None وياخد النص من رد Gemini في out.",
+   "accepted": [
+    "out = (response.text or \"\").strip()",
+    "out = response.text or \"\"",
+    "out = (response.text or '').strip()"
+   ],
+   "hint": "or \"\".",
+   "explanation": "بيحميك من AttributeError."
+  },
+  {
+   "id": "04-python-ch18-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الفرق اللي بيوقّع الناس في timeout بين الاتنين؟",
+   "options": [
+    {
+     "text": "OpenAI بالثواني، و Gemini بالملّي",
+     "why": "صح."
+    },
+    {
+     "text": "العكس",
+     "why": "لأ."
+    },
+    {
+     "text": "نفس الوحدة",
+     "why": "لأ."
+    },
+    {
+     "text": "Gemini مفيهوش timeout",
+     "why": "فيه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "60 مقابل 60_000."
+  }
+ ]
+}

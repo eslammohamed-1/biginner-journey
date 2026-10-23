@@ -1,0 +1,255 @@
+{
+ "book": "06-frontend",
+ "chapter": 3,
+ "chapterFile": "ch03",
+ "title": "الـ Semantic HTML: إنك تقول للمتصفح «ده إيه» مش «شكله إيه»",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "06-frontend-ch03-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "Semantic HTML يعني إيه؟",
+   "options": [
+    {
+     "text": "العنصر بيقول \"ده إيه\" مش \"شكله إيه\"",
+     "why": "صح."
+    },
+    {
+     "text": "HTML ملون",
+     "why": "لأ."
+    },
+    {
+     "text": "HTML من غير CSS",
+     "why": "لأ."
+    },
+    {
+     "text": "HTML بـ div بس",
+     "why": "العكس."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ CSS للشكل."
+  },
+  {
+   "id": "06-frontend-ch03-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "<h3> مناسب لأي نص عايزه أكبر؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "العناوين فهرس."
+    },
+    {
+     "text": "لأ، الحجم بالـ CSS، والعناوين للهيكل",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "h1 واحد ومتنطّش مستويات."
+  },
+  {
+   "id": "06-frontend-ch03-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "alt=\"\" زي إنك متكتبش alt خالص؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مختلفين."
+    },
+    {
+     "text": "لأ، alt=\"\" معناها زينة فيتخطاها قارئ الشاشة، ومن غيرها ممكن يقرا اسم الملف",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "alt بالمعلومة."
+  },
+  {
+   "id": "06-frontend-ch03-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "<button> جوه <form> من غير type بيعمل إيه لما تضغطه؟",
+   "options": [
+    {
+     "text": "بيبعت الـ Form (type=submit افتراضي)",
+     "why": "صح."
+    },
+    {
+     "text": "مبيعملش حاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "Reset",
+     "why": "لأ."
+    },
+    {
+     "text": "خطأ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "type=\"button\" لو مش Submit."
+  },
+  {
+   "id": "06-frontend-ch03-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "حاجة بتوديك صفحة تانية تبقى؟",
+   "options": [
+    {
+     "text": "<a href>",
+     "why": "صح."
+    },
+    {
+     "text": "<button>",
+     "why": "للأفعال."
+    },
+    {
+     "text": "<div onclick>",
+     "why": "ممنوع."
+    },
+    {
+     "text": "<span>",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أهم قرار."
+  },
+  {
+   "id": "06-frontend-ch03-06",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Landmarks الصفحة النموذجية:",
+   "items": [
+    "header",
+    "nav",
+    "main",
+    "aside",
+    "footer"
+   ],
+   "explanation": "main واحد بس."
+  },
+  {
+   "id": "06-frontend-ch03-07",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل لصفحة عربي:",
+   "template": "<html lang=\"ar\" dir=\"___\">",
+   "blanks": [
+    [
+     "rtl"
+    ]
+   ],
+   "hint": "من اليمين.",
+   "explanation": "وcharset و viewport و title."
+  },
+  {
+   "id": "06-frontend-ch03-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: زرار حقيقي مش Submit:",
+   "template": "<button type=\"___\">",
+   "blanks": [
+    [
+     "button"
+    ]
+   ],
+   "hint": "نفس الاسم.",
+   "explanation": "علشان ميبعتش."
+  },
+  {
+   "id": "06-frontend-ch03-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الموقع كله div و span، وقارئ الشاشة بيقرا نص بس من غير هيكل.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أستخدم header و nav و main و عناوين و button و a حسب المعنى",
+     "why": "صح."
+    },
+    {
+     "text": "أضيف ARIA لكل div",
+     "why": "آخر حل."
+    },
+    {
+     "text": "أكبّر الخط",
+     "why": "مش المشكلة."
+    },
+    {
+     "text": "عادي",
+     "why": "مش Accessible."
+    }
+   ],
+   "correct": 0,
+   "explanation": "div soup."
+  },
+  {
+   "id": "06-frontend-ch03-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "إمتى تستخدم <table>؟",
+   "options": [
+    {
+     "text": "للبيانات الجدولية بس، مش للتخطيط",
+     "why": "صح."
+    },
+    {
+     "text": "لتخطيط الصفحة",
+     "why": "ده Grid."
+    },
+    {
+     "text": "أبداً",
+     "why": "للبيانات تمام."
+    },
+    {
+     "text": "للصور",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الجداول للبيانات."
+  },
+  {
+   "id": "06-frontend-ch03-11",
+   "type": "command",
+   "level": "easy",
+   "prompt": "(DevTools) اسم التابة اللي تشوف فيها شجرة الـ Accessibility في Chrome (في Elements).",
+   "accepted": [
+    "Accessibility"
+   ],
+   "hint": "نفس اسم الموضوع.",
+   "explanation": "بتوريك اللي قارئ الشاشة شايفه."
+  },
+  {
+   "id": "06-frontend-ch03-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "section ضد article؟",
+   "options": [
+    {
+     "text": "article حاجة مستقلة تتفهم لوحدها (مقال)، و section جزء له عنوان من حاجة أكبر",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "article للصور",
+     "why": "لأ."
+    },
+    {
+     "text": "section للـ footer",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "و div لما مفيش معنى."
+  }
+ ]
+}

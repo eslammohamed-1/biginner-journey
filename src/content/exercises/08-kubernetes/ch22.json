@@ -1,0 +1,238 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 22,
+ "chapterFile": "ch22",
+ "title": "الـ Helm: مدير الحزم لـ Kubernetes",
+ "count": 13,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch22-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Helm إيه؟",
+   "options": [
+    {
+     "text": "مدير حزم لـ Kubernetes",
+     "why": "صح."
+    },
+    {
+     "text": "Container Runtime",
+     "why": "لأ."
+    },
+    {
+     "text": "Cluster",
+     "why": "لأ."
+    },
+    {
+     "text": "Ingress",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "زي brew لـ Kubernetes."
+  },
+  {
+   "id": "08-kubernetes-ch22-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ينفع تسطّب نفس الـ Chart مرتين بأسماء Releases مختلفة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح."
+    },
+    {
+     "text": "لأ",
+     "why": "ينفع."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Release = نسخة متسطّبة."
+  },
+  {
+   "id": "08-kubernetes-ch22-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "helm rollback بيمسح الـ history؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيعمل Revision جديد."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ history بيفضل."
+  },
+  {
+   "id": "08-kubernetes-ch22-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في --set image.tag=1.2.0 النقطة معناها؟",
+   "options": [
+    {
+     "text": "مستوى أعمق في الـ values",
+     "why": "صح."
+    },
+    {
+     "text": "رقم عشري",
+     "why": "لأ."
+    },
+    {
+     "text": "فاصل",
+     "why": "لأ."
+    },
+    {
+     "text": "ملف",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "image: tag: 1.2.0."
+  },
+  {
+   "id": "08-kubernetes-ch22-05",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب Chart و Release و Repository حسب الدورة:",
+   "items": [
+    "Repository (مكان الـ Charts)",
+    "Chart (الحزمة)",
+    "Release (نسخة متسطّبة)"
+   ],
+   "explanation": "المفاهيم."
+  },
+  {
+   "id": "08-kubernetes-ch22-06",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب قوة القيم (من الأضعف للأقوى):",
+   "items": [
+    "values.yaml",
+    "-f ملف",
+    "--set"
+   ],
+   "explanation": "الأخير الأقوى."
+  },
+  {
+   "id": "08-kubernetes-ch22-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "سطّب podinfo/podinfo باسم my-web في namespace web واعملها لو مش موجودة.",
+   "accepted": [
+    "helm install my-web podinfo/podinfo -n web --create-namespace",
+    "helm install my-web podinfo/podinfo --namespace web --create-namespace"
+   ],
+   "hint": "--create-namespace.",
+   "explanation": "بعد repo add."
+  },
+  {
+   "id": "08-kubernetes-ch22-08",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل upgrade أو install لـ ./mychart باسم my-web بقيم values-prod.yaml.",
+   "accepted": [
+    "helm upgrade --install my-web ./mychart -f values-prod.yaml",
+    "helm upgrade -i my-web ./mychart -f values-prod.yaml",
+    "helm upgrade --install my-web ./mychart --values values-prod.yaml"
+   ],
+   "hint": "upgrade --install.",
+   "explanation": "مثالي للـ CI/CD."
+  },
+  {
+   "id": "08-kubernetes-ch22-09",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرض الـ YAML النهائي من غير تسطيب في out.yaml.",
+   "accepted": [
+    "helm template my-web ./mychart -f values-prod.yaml > out.yaml",
+    "helm template my-web ./mychart > out.yaml"
+   ],
+   "hint": "template و >.",
+   "explanation": "تراجع قبل ما تسطّب."
+  },
+  {
+   "id": "08-kubernetes-ch22-10",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الرجوع لـ Revision 2:",
+   "template": "helm ___ my-web 2",
+   "blanks": [
+    [
+     "rollback"
+    ]
+   ],
+   "hint": "رجوع.",
+   "explanation": "helm history تشوف الأرقام."
+  },
+  {
+   "id": "08-kubernetes-ch22-11",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عايز تشوف إيه اللي هيتغير في الـ Cluster قبل upgrade.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "helm template (أو --dry-run) وأراجع الـ YAML",
+     "why": "صح."
+    },
+    {
+     "text": "أعمل upgrade وأشوف",
+     "why": "مخاطرة."
+    },
+    {
+     "text": "أقرا الـ Chart بس",
+     "why": "مش كفاية مع القيم."
+    },
+    {
+     "text": "مستحيل",
+     "why": "ممكن."
+    }
+   ],
+   "correct": 0,
+   "explanation": "helm template."
+  },
+  {
+   "id": "08-kubernetes-ch22-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه upgrade --install مفيد في CI/CD؟",
+   "options": [
+    {
+     "text": "نفس الأمر يسطّب أول مرة ويحدّث بعد كده",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع",
+     "why": "مش الأساس."
+    },
+    {
+     "text": "بيمسح القديم",
+     "why": "لأ."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Idempotent."
+  },
+  {
+   "id": "08-kubernetes-ch22-13",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض الـ Releases في كل الـ Namespaces.",
+   "accepted": [
+    "helm list -A",
+    "helm ls -A",
+    "helm list --all-namespaces"
+   ],
+   "hint": "list -A.",
+   "explanation": "STATUS و REVISION."
+  }
+ ]
+}

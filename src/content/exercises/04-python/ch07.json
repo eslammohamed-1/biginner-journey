@@ -1,0 +1,221 @@
+{
+ "book": "04-python",
+ "chapter": 7,
+ "chapterFile": "ch07",
+ "title": "import بالتفصيل: الحاجات دي جاية منين؟",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "04-python-ch07-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "`from pathlib import Path` بعدها تكتب إيه؟",
+   "options": [
+    {
+     "text": "`Path(\"x\")` على طول",
+     "why": "صح."
+    },
+    {
+     "text": "`pathlib.Path(\"x\")` بس",
+     "why": "ممكن لو عملت import pathlib."
+    },
+    {
+     "text": "`import Path`",
+     "why": "لأ."
+    },
+    {
+     "text": "`pathlib()`",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "from x import thing."
+  },
+  {
+   "id": "04-python-ch07-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`pip install google-genai` وبعدين `import google_genai` هيشتغل؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الاسم مختلف."
+    },
+    {
+     "text": "لأ، الـ import هو `from google import genai`",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "اسم الـ pip مش دايماً اسم الـ import."
+  },
+  {
+   "id": "04-python-ch07-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`pip install python-dotenv` بتعمل import إزاي؟",
+   "options": [
+    {
+     "text": "`from dotenv import load_dotenv`",
+     "why": "صح."
+    },
+    {
+     "text": "`import python_dotenv`",
+     "why": "لأ."
+    },
+    {
+     "text": "`import python-dotenv`",
+     "why": "الشرطة مش مسموحة."
+    },
+    {
+     "text": "`import env`",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "نفس الفكرة."
+  },
+  {
+   "id": "04-python-ch07-04",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "`ImportError: cannot import name 'OpenAI' from 'openai' (/Users/you/ai-scripts/openai.py)`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "عندي ملف اسمه openai.py جنب الاسكريبت، Python بتستورده بدل المكتبة، فأغيّر اسمه وأمسح __pycache__",
+     "why": "صح."
+    },
+    {
+     "text": "المكتبة قديمة",
+     "why": "المسار بيوضح إنه ملفك."
+    },
+    {
+     "text": "أسطب تاني",
+     "why": "مش هيحل."
+    },
+    {
+     "text": "أكتب import OpenAI",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "متسمّيش ملفاتك بأسامي مكتبات."
+  },
+  {
+   "id": "04-python-ch07-05",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Python بتدوّر فين على الـ import:",
+   "items": [
+    "فولدر الاسكريبت",
+    "Standard library",
+    "site-packages (اللي pip سطّبه)",
+    "ModuleNotFoundError"
+   ],
+   "explanation": "علشان كده ملفك بيكسب."
+  },
+  {
+   "id": "04-python-ch07-06",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب الـ imports حسب العادة:",
+   "items": [
+    "Standard library (json و pathlib)",
+    "Third-party (openai و pandas)",
+    "Local (ملفاتك)"
+   ],
+   "explanation": "اقراه كخريطة."
+  },
+  {
+   "id": "04-python-ch07-07",
+   "type": "command",
+   "level": "easy",
+   "prompt": "استورد pandas باسم pd.",
+   "accepted": [
+    "import pandas as pd"
+   ],
+   "hint": "as.",
+   "explanation": "اسم مستعار."
+  },
+  {
+   "id": "04-python-ch07-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل import لملف جنبي في نفس الـ Package:",
+   "template": "from ___ import config",
+   "blanks": [
+    [
+     "."
+    ]
+   ],
+   "hint": "النقطة = جنبي.",
+   "explanation": "Relative import."
+  },
+  {
+   "id": "04-python-ch07-09",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إيه الفرق بين Module و Package؟",
+   "options": [
+    {
+     "text": "Module = ملف .py، و Package = فولدر فيه modules (و __init__.py)",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "مختلفين."
+    },
+    {
+     "text": "Package على النت بس",
+     "why": "لأ."
+    },
+    {
+     "text": "Module أكبر",
+     "why": "العكس."
+    }
+   ],
+   "correct": 0,
+   "explanation": "النقطة في الاسم = فولدر جوه فولدر."
+  },
+  {
+   "id": "04-python-ch07-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه `from x import *` مش كويسة؟",
+   "options": [
+    {
+     "text": "مبتعرفش الأسامي جت منين، وممكن تغطي على أسامي عندك",
+     "why": "صح."
+    },
+    {
+     "text": "أبطأ",
+     "why": "مش السبب."
+    },
+    {
+     "text": "ممنوعة",
+     "why": "مش ممنوعة."
+    },
+    {
+     "text": "مبتشتغلش",
+     "why": "بتشتغل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "متعملهاش."
+  },
+  {
+   "id": "04-python-ch07-11",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اطبع الأماكن اللي Python بتدوّر فيها على الـ modules (من الـ Terminal).",
+   "accepted": [
+    "python3 -c \"import sys; print(sys.path)\"",
+    "python -c \"import sys; print(sys.path)\"",
+    "python3 -c 'import sys; print(sys.path)'"
+   ],
+   "hint": "sys.path.",
+   "explanation": "site-packages في الآخر."
+  }
+ ]
+}

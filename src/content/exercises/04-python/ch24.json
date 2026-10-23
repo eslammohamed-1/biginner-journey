@@ -1,0 +1,247 @@
+{
+ "book": "04-python",
+ "chapter": 24,
+ "chapterFile": "ch24",
+ "title": "Embeddings و RAG بسيط: الموديل يجاوب من ملفاتك",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch24-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "Embedding يعني إيه؟",
+   "options": [
+    {
+     "text": "نص اتحوّل لـ List أرقام (Vector) بتمثّل معناه",
+     "why": "صح."
+    },
+    {
+     "text": "ضغط النص",
+     "why": "لأ."
+    },
+    {
+     "text": "ترجمة",
+     "why": "لأ."
+    },
+    {
+     "text": "تشفير",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "المعنى القريب = Vectors قريبة."
+  },
+  {
+   "id": "04-python-ch24-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لو الـ Vectors normalized، الـ Dot product = Cosine similarity؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح."
+    },
+    {
+     "text": "لأ",
+     "why": "بيساووا لما الطول 1."
+    }
+   ],
+   "correct": 0,
+   "explanation": "a @ b."
+  },
+  {
+   "id": "04-python-ch24-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ينفع تقارن Vector من OpenAI بـ Vector من Gemini؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مساحات مختلفة."
+    },
+    {
+     "text": "لأ، لازم نفس الموديل للمستندات والسؤال",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "احفظ اسم الموديل مع الـ Vectors."
+  },
+  {
+   "id": "04-python-ch24-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "gemini-embedding-2 لو بعتله List نصوص بيرجّع Vector لكل نص؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "حسب الكتاب Vector واحد لكل Request."
+    },
+    {
+     "text": "لأ، Vector واحد لكل Request",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "OpenAI embeddings.create بيرجّع Vector لكل نص."
+  },
+  {
+   "id": "04-python-ch24-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ليه بنقطّع المستندات (Chunking)؟",
+   "options": [
+    {
+     "text": "علشان كل جزء يبقى له معنى محدد ونبعت الأجزاء المهمة بس",
+     "why": "صح."
+    },
+    {
+     "text": "علشان الـ API مبيقبلش أكتر من كلمة",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان شكل الملف",
+     "why": "لأ."
+    },
+    {
+     "text": "مش لازم",
+     "why": "لازم للملفات الطويلة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "فقرات."
+  },
+  {
+   "id": "04-python-ch24-06",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات RAG بسيط:",
+   "items": [
+    "قطّع الملفات لفقرات",
+    "اعمل Embedding لكل فقرة واحفظه",
+    "اعمل Embedding للسؤال",
+    "ابحث عن أقرب k فقرات",
+    "ابعتهم للموديل مع \"جاوب من المستندات بس + المصدر\""
+   ],
+   "explanation": "rag.py."
+  },
+  {
+   "id": "04-python-ch24-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "احسب طول Vector a بـ numpy.",
+   "accepted": [
+    "np.linalg.norm(a)"
+   ],
+   "hint": "linalg.norm.",
+   "explanation": "بعدين اقسم عليه للـ normalize."
+  },
+  {
+   "id": "04-python-ch24-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل حساب التشابه بين كل الفقرات والسؤال:",
+   "template": "scores = matrix ___ query",
+   "blanks": [
+    [
+     "@"
+    ]
+   ],
+   "hint": "ضرب مصفوفات.",
+   "explanation": "وبعدين argsort."
+  },
+  {
+   "id": "04-python-ch24-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تعمل Embeddings بـ OpenAI:",
+   "template": "client.embeddings.___(model=M, input=chunks)",
+   "blanks": [
+    [
+     "create"
+    ]
+   ],
+   "hint": "نفس الفعل.",
+   "explanation": "dimensions اختياري."
+  },
+  {
+   "id": "04-python-ch24-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الموديل بيجاوب من دماغه مش من ملفاتك.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أقوله صراحة يجاوب من المستندات المرفقة بس ويذكر المصدر، ولو مش موجود يقول مش عارف",
+     "why": "صح."
+    },
+    {
+     "text": "أكبّر temperature",
+     "why": "لأ."
+    },
+    {
+     "text": "أبعت كل الملفات",
+     "why": "مكلف ومش مضمون."
+    },
+    {
+     "text": "أغيّر الموديل بس",
+     "why": "مش كفاية."
+    }
+   ],
+   "correct": 0,
+   "explanation": "التعليمات أساسية."
+  },
+  {
+   "id": "04-python-ch24-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "غيّرت موديل الـ Embedding، تعمل إيه في الـ Vectors المحفوظة؟",
+   "options": [
+    {
+     "text": "أعيد عمل كل الـ Vectors بالموديل الجديد",
+     "why": "صح."
+    },
+    {
+     "text": "أكمّل",
+     "why": "مش متوافقة."
+    },
+    {
+     "text": "أحوّلها بمعادلة",
+     "why": "مفيش."
+    },
+    {
+     "text": "أمسح السؤال بس",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "غلطة مشهورة."
+  },
+  {
+   "id": "04-python-ch24-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إمتى تكبر عن الحل البسيط (JSON + numpy)؟",
+   "options": [
+    {
+     "text": "لما عدد الفقرات يكبر جداً، فتستخدم Vector database",
+     "why": "صح."
+    },
+    {
+     "text": "من أول يوم",
+     "why": "مش لازم."
+    },
+    {
+     "text": "أبداً",
+     "why": "ساعات لازم."
+    },
+    {
+     "text": "لما تغيّر اللغة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الحل البسيط كفاية لملفاتك."
+  }
+ ]
+}

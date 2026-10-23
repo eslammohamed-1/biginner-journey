@@ -1,0 +1,243 @@
+{
+ "book": "06-frontend",
+ "chapter": 7,
+ "chapterFile": "ch07",
+ "title": "Flexbox: ترتيب العناصر في خط واحد",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "06-frontend-ch07-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "Flexbox لكام بعد؟",
+   "options": [
+    {
+     "text": "بعد واحد: صف أو عمود",
+     "why": "صح."
+    },
+    {
+     "text": "بعدين",
+     "why": "ده Grid."
+    },
+    {
+     "text": "تلاتة",
+     "why": "لأ."
+    },
+    {
+     "text": "مفيش",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "المحورين."
+  },
+  {
+   "id": "06-frontend-ch07-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "مع flex-direction: column، justify-content: center بيوسّط رأسياً؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح، المحور الرئيسي بقى رأسي."
+    },
+    {
+     "text": "لأ",
+     "why": "بيتبدّلوا."
+    }
+   ],
+   "correct": 0,
+   "explanation": "align-items للعرضي."
+  },
+  {
+   "id": "06-frontend-ch07-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "display: flex بيأثر على كل الأحفاد؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الولاد المباشرين بس."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الأحفاد عاديين."
+  },
+  {
+   "id": "06-frontend-ch07-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في dir=\"rtl\"، justify-content: flex-start بيحط العناصر؟",
+   "options": [
+    {
+     "text": "يمين",
+     "why": "صح، البداية في RTL يمين."
+    },
+    {
+     "text": "شمال",
+     "why": "لأ."
+    },
+    {
+     "text": "نص",
+     "why": "لأ."
+    },
+    {
+     "text": "تحت",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "فكّر بداية ونهاية."
+  },
+  {
+   "id": "06-frontend-ch07-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "flex: 1 معناها؟",
+   "options": [
+    {
+     "text": "1 1 0%: العناصر تقسم المساحة بالتساوي",
+     "why": "صح."
+    },
+    {
+     "text": "عرض 1px",
+     "why": "لأ."
+    },
+    {
+     "text": "عنصر واحد بس",
+     "why": "لأ."
+    },
+    {
+     "text": "متكبرش",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "grow و shrink و basis."
+  },
+  {
+   "id": "06-frontend-ch07-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "وسّط عنصر جوه container أفقي ورأسي بـ Flexbox.",
+   "accepted": [
+    "display: flex; justify-content: center; align-items: center;",
+    "display:flex;justify-content:center;align-items:center;",
+    "display: flex; align-items: center; justify-content: center;"
+   ],
+   "hint": "3 خصايص.",
+   "explanation": "أو display: grid; place-items: center."
+  },
+  {
+   "id": "06-frontend-ch07-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان عنصر ميصغرش:",
+   "template": "flex-shrink: ___",
+   "blanks": [
+    [
+     "0"
+    ]
+   ],
+   "hint": "صفر.",
+   "explanation": "مثلاً لوجو."
+  },
+  {
+   "id": "06-frontend-ch07-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان العناصر تنزل سطر جديد:",
+   "template": "flex-wrap: ___",
+   "blanks": [
+    [
+     "wrap"
+    ]
+   ],
+   "hint": "لف.",
+   "explanation": "مع gap."
+  },
+  {
+   "id": "06-frontend-ch07-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ Footer مش لازق تحت في صفحة محتواها قليل.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "body بـ display:flex و flex-direction:column و min-height:100svh، و main بـ flex:1",
+     "why": "صح."
+    },
+    {
+     "text": "position: absolute",
+     "why": "بيعمل مشاكل."
+    },
+    {
+     "text": "margin-top كبير",
+     "why": "مش ثابت."
+    },
+    {
+     "text": "table",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "نمط يومي."
+  },
+  {
+   "id": "06-frontend-ch07-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Navbar بـ Flexbox:",
+   "items": [
+    "nav { display: flex }",
+    "align-items: center",
+    "justify-content: space-between",
+    "gap للمسافات"
+   ],
+   "explanation": "نمط هتكتبه كل يوم."
+  },
+  {
+   "id": "06-frontend-ch07-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه تستخدم gap بدل margin على العناصر؟",
+   "options": [
+    {
+     "text": "مسافة بين العناصر بس من غير ما تضيف للأطراف، وبتشتغل مع RTL لوحدها",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع",
+     "why": "لأ."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    },
+    {
+     "text": "margin مبيشتغلش",
+     "why": "بيشتغل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أنظف."
+  },
+  {
+   "id": "06-frontend-ch07-12",
+   "type": "command",
+   "level": "easy",
+   "prompt": "(DevTools) إيه اللي بتضغط عليه جنب العنصر علشان تشوف المحاور؟",
+   "accepted": [
+    "flex",
+    "Flexbox editor",
+    "flex badge"
+   ],
+   "hint": "علامة جنب العنصر في Elements.",
+   "explanation": "بيرسم المحاور."
+  }
+ ]
+}

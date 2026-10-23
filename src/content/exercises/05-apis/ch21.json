@@ -1,0 +1,239 @@
+{
+ "book": "05-apis",
+ "chapter": 21,
+ "chapterFile": "ch21",
+ "title": "تكتب OpenAPI بإيدك",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "05-apis-ch21-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "Design-first يعني إيه؟",
+   "options": [
+    {
+     "text": "تكتب الـ Spec وتتفق عليه قبل الكود",
+     "why": "صح."
+    },
+    {
+     "text": "تكتب الكود الأول",
+     "why": "ده Code-first."
+    },
+    {
+     "text": "تصمم الواجهة",
+     "why": "لأ."
+    },
+    {
+     "text": "تختبر الأول",
+     "why": "مش ده."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Spec مصدر الحقيقة."
+  },
+  {
+   "id": "05-apis-ch21-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "openapi: 3.2.0 هي نسخة الـ API بتاعك؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "دي نسخة المواصفة."
+    },
+    {
+     "text": "لأ، نسخة الـ API في info.version",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "فخ مشهور."
+  },
+  {
+   "id": "05-apis-ch21-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "security: [] على Operation معناها؟",
+   "options": [
+    {
+     "text": "الـ Operation دي متعمدة من غير Auth",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Auth اتنسى",
+     "why": "لأ، دي إعلان صريح."
+    },
+    {
+     "text": "Error",
+     "why": "لأ."
+    },
+    {
+     "text": "كل الـ Auth",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "غيابها هو اللي ممكن يبقى نسيان."
+  },
+  {
+   "id": "05-apis-ch21-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في JSON Pointer، الـ / جوه اسم بتتكتب إزاي؟",
+   "options": [
+    {
+     "text": "~1",
+     "why": "صح."
+    },
+    {
+     "text": "\\/",
+     "why": "لأ."
+    },
+    {
+     "text": "%2F",
+     "why": "ده URL."
+    },
+    {
+     "text": "//",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "#/paths/~1articles."
+  },
+  {
+   "id": "05-apis-ch21-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل Lint لـ openapi.yaml بـ Redocly CLI.",
+   "accepted": [
+    "npx @redocly/cli lint openapi.yaml",
+    "redocly lint openapi.yaml",
+    "npx @redocly/cli@latest lint openapi.yaml"
+   ],
+   "hint": "redocly lint.",
+   "explanation": "صلّح التحذيرات."
+  },
+  {
+   "id": "05-apis-ch21-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل اسم مميز للـ Operation:",
+   "template": "___: createArticle",
+   "blanks": [
+    [
+     "operationId"
+    ]
+   ],
+   "hint": "operation...",
+   "explanation": "بيستخدموه في توليد الكود."
+  },
+  {
+   "id": "05-apis-ch21-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: Field اختياري ممكن يبقى null في 3.1:",
+   "template": "type: [string, \"___\"]",
+   "blanks": [
+    [
+     "null"
+    ]
+   ],
+   "hint": "لا قيمة.",
+   "explanation": "JSON Schema 2020-12."
+  },
+  {
+   "id": "05-apis-ch21-08",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب هيكل ملف OpenAPI:",
+   "items": [
+    "openapi",
+    "info",
+    "servers",
+    "paths",
+    "components"
+   ],
+   "explanation": "الهيكل."
+  },
+  {
+   "id": "05-apis-ch21-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ Contract test فشل على السيرفر القديم.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "السيرفر مش مطابق للـ Spec، فأعرف مين الصح (الـ Spec هو المصدر) وأصلّح",
+     "why": "صح."
+    },
+    {
+     "text": "أمسح الـ Test",
+     "why": "لأ."
+    },
+    {
+     "text": "أغيّر الـ Spec علشان يعدّي",
+     "why": "مش من غير تفكير."
+    },
+    {
+     "text": "أتجاهل",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مين بيكدب؟"
+  },
+  {
+   "id": "05-apis-ch21-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "إيه اللي بيطلع من ملف OpenAPI واحد؟",
+   "options": [
+    {
+     "text": "Docs HTML و TypeScript types و Contract tests",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Database",
+     "why": "لأ."
+    },
+    {
+     "text": "السيرفر كامل",
+     "why": "لأ."
+    },
+    {
+     "text": "مفيش",
+     "why": "كتير."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ملف واحد، حاجات كتير."
+  },
+  {
+   "id": "05-apis-ch21-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "readOnly على Field معناها؟",
+   "options": [
+    {
+     "text": "بيرجع في الرد بس، ومش مسموح يتبعت في الطلب (زي id)",
+     "why": "صح."
+    },
+    {
+     "text": "مش بيرجع",
+     "why": "العكس."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    },
+    {
+     "text": "سري",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "allOf للتركيب."
+  }
+ ]
+}

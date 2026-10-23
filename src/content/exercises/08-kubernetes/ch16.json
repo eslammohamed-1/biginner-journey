@@ -1,0 +1,249 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 16,
+ "chapterFile": "ch16",
+ "title": "الـ Volumes والتخزين: البيانات اللي متضيعش",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch16-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "ليه البيانات بتضيع من الـ Container؟",
+   "options": [
+    {
+     "text": "الـ Container مؤقت، واللي جواه بيضيع لما يتمسح أو يتعمل restart",
+     "why": "صح."
+    },
+    {
+     "text": "Bug",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Node",
+     "why": "لأ."
+    },
+    {
+     "text": "الشبكة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الحل Volume."
+  },
+  {
+   "id": "08-kubernetes-ch16-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "البيانات في emptyDir بتفضل بعد مسح الـ Pod؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بتعيش مع الـ Pod."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "بتعيش مع الـ Pod."
+  },
+  {
+   "id": "08-kubernetes-ch16-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ReadWriteOnce معناها Pod واحدة في الـ Cluster كله؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "Node واحدة."
+    },
+    {
+     "text": "لأ، Node واحدة تقدر تكتب",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ReadWriteOncePod لـ Pod واحدة."
+  },
+  {
+   "id": "08-kubernetes-ch16-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ StatefulSet بيدّي كل Pod اسم ثابت زي db-0؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح."
+    },
+    {
+     "text": "لأ",
+     "why": "بيدّي."
+    }
+   ],
+   "correct": 0,
+   "explanation": "هوية وبيانات خاصة."
+  },
+  {
+   "id": "08-kubernetes-ch16-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "PVC ضد PV؟",
+   "options": [
+    {
+     "text": "الـ PVC طلب تخزين، والـ PV التخزين الحقيقي",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "العكس",
+     "why": "لأ."
+    },
+    {
+     "text": "PV للـ Pod مباشرة",
+     "why": "عن طريق PVC."
+    }
+   ],
+   "correct": 0,
+   "explanation": "StorageClass بيعمل PVs أوتوماتيك."
+  },
+  {
+   "id": "08-kubernetes-ch16-06",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Pod بتستخدم تخزين دائم:",
+   "items": [
+    "StorageClass موجودة",
+    "PVC بيطلب 5Gi",
+    "PV يتعمل ويتربط",
+    "الـ Pod يستخدم الـ PVC في volumes",
+    "volumeMounts يركّبه جوه الـ Container"
+   ],
+   "explanation": "الربط."
+  },
+  {
+   "id": "08-kubernetes-ch16-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل في الـ Pod:",
+   "template": "volumes: - name: data ___: claimName: db-pvc",
+   "blanks": [
+    [
+     "persistentVolumeClaim"
+    ]
+   ],
+   "hint": "persistent...",
+   "explanation": "بالاسم."
+  },
+  {
+   "id": "08-kubernetes-ch16-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الـ accessMode اللي بيسمح لكذا Node تكتب:",
+   "template": "ReadWrite___",
+   "blanks": [
+    [
+     "Many"
+    ]
+   ],
+   "hint": "كتير.",
+   "explanation": "محتاج تخزين بيدعمه."
+  },
+  {
+   "id": "08-kubernetes-ch16-09",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض الـ PVs والـ PVCs في كل الـ Namespaces.",
+   "accepted": [
+    "kubectl get pv,pvc -A",
+    "kubectl get pvc,pv -A"
+   ],
+   "hint": "pv,pvc.",
+   "explanation": "STATUS Bound."
+  },
+  {
+   "id": "08-kubernetes-ch16-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "Database في Deployment بـ emptyDir، واتعمل restart للـ Pod وضاعت البيانات.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أستخدم PVC (ويُفضّل StatefulSet)",
+     "why": "صح."
+    },
+    {
+     "text": "hostPath",
+     "why": "مربوط بـ Node."
+    },
+    {
+     "text": "عادي",
+     "why": "مشكلة."
+    },
+    {
+     "text": "أزوّد replicas",
+     "why": "أسوأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "التخزين الدائم."
+  },
+  {
+   "id": "08-kubernetes-ch16-11",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "reclaimPolicy: Delete ومسحت الـ PVC بالغلط.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "البيانات راحت مع الـ PV، فللبيانات المهمة أستخدم Retain و Backups",
+     "why": "صح."
+    },
+    {
+     "text": "هترجع لوحدها",
+     "why": "لأ."
+    },
+    {
+     "text": "في etcd",
+     "why": "لأ."
+    },
+    {
+     "text": "أعيد الـ PVC",
+     "why": "هتبقى فاضية."
+    }
+   ],
+   "correct": 0,
+   "explanation": "reclaimPolicy."
+  },
+  {
+   "id": "08-kubernetes-ch16-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "إمتى hostPath؟",
+   "options": [
+    {
+     "text": "لما Pod محتاجة ملفات الـ Node نفسها (زي DaemonSet بيقرا Logs)",
+     "why": "صح."
+    },
+    {
+     "text": "للـ Databases",
+     "why": "مربوط بـ Node."
+    },
+    {
+     "text": "دايماً",
+     "why": "لأ."
+    },
+    {
+     "text": "للأسرار",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مع الـ Node."
+  }
+ ]
+}

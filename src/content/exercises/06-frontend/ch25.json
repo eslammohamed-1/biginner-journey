@@ -1,0 +1,235 @@
+{
+ "book": "06-frontend",
+ "chapter": 25,
+ "chapterFile": "ch25",
+ "title": "النشر: GitHub Pages و Netlify و Vercel",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "06-frontend-ch25-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "موقع Vite + React محتاج سيرفر Node علشان يشتغل؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ملفات ثابتة."
+    },
+    {
+     "text": "لأ، dist ملفات ثابتة تتحط على أي Static hosting",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "أي SPA."
+  },
+  {
+   "id": "06-frontend-ch25-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "على Netlify، الـ base لازم يبقى اسم الـ repo؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ده GitHub Pages."
+    },
+    {
+     "text": "لأ، على Netlify الموقع على الجذر فـ base \"/\"",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "base للـ subpath."
+  },
+  {
+   "id": "06-frontend-ch25-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Workflow بيستخدم npm ci ليه؟",
+   "options": [
+    {
+     "text": "علشان يلتزم بالـ Lockfile بالظبط",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع بس",
+     "why": "والتزام."
+    },
+    {
+     "text": "إجباري في GitHub",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان dev",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Deploy = npm ci ثم build."
+  },
+  {
+   "id": "06-frontend-ch25-04",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Deploy أي SPA:",
+   "items": [
+    "npm ci",
+    "npm run build",
+    "ارفع dist"
+   ],
+   "explanation": "أي SPA = ملفات ثابتة."
+  },
+  {
+   "id": "06-frontend-ch25-05",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "النشر على GitHub Pages طلع صفحة بيضا.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ base مش مظبوط، فأحط base: '/repo/' في vite.config.js",
+     "why": "صح."
+    },
+    {
+     "text": "الكود بايظ",
+     "why": "شغّال محلي."
+    },
+    {
+     "text": "أمسح الـ Workflow",
+     "why": "لأ."
+    },
+    {
+     "text": "أغيّر المتصفح",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "صفحة بيضا = base."
+  },
+  {
+   "id": "06-frontend-ch25-06",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "Refresh على /about بيدّي 404 على الاستضافة.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "محتاج Rewrite لكل المسارات لـ index.html (SPA fallback)",
+     "why": "صح."
+    },
+    {
+     "text": "أمسح الصفحة",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Router بايظ",
+     "why": "محلي شغال."
+    },
+    {
+     "text": "أستخدم SSR",
+     "why": "مش لازم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "404 مع Refresh."
+  },
+  {
+   "id": "06-frontend-ch25-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل في إعدادات GitHub Pages:",
+   "template": "Source: GitHub ___",
+   "blanks": [
+    [
+     "Actions"
+    ]
+   ],
+   "hint": "الأتمتة.",
+   "explanation": "مع Workflow."
+  },
+  {
+   "id": "06-frontend-ch25-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الفولدر اللي بيترفع:",
+   "template": "path: ./___",
+   "blanks": [
+    [
+     "dist"
+    ]
+   ],
+   "hint": "ناتج البناء.",
+   "explanation": "upload-pages-artifact."
+  },
+  {
+   "id": "06-frontend-ch25-09",
+   "type": "command",
+   "level": "easy",
+   "prompt": "انشر بـ Vercel CLI.",
+   "accepted": [
+    "npx vercel",
+    "vercel",
+    "npx vercel --prod"
+   ],
+   "hint": "vercel.",
+   "explanation": "Netlify ليه CLI كمان."
+  },
+  {
+   "id": "06-frontend-ch25-10",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Preview deployments بتعمل إيه؟",
+   "options": [
+    {
+     "text": "نسخة لكل PR تتجرب قبل الدمج",
+     "why": "صح."
+    },
+    {
+     "text": "Production",
+     "why": "من main."
+    },
+    {
+     "text": "Backup",
+     "why": "لأ."
+    },
+    {
+     "text": "Cache",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Netlify و Vercel."
+  },
+  {
+   "id": "06-frontend-ch25-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "حطيت VITE_API_KEY في متغيرات الاستضافة. بقى سري؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "VITE_ عامة في الـ Bundle."
+    },
+    {
+     "text": "لأ، لسه هيتكتب في الكود اللي بيوصل للمتصفح",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "متغيرات البيئة على الاستضافة."
+  },
+  {
+   "id": "06-frontend-ch25-12",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل Build محلي بـ base للمستودع my-links.",
+   "accepted": [
+    "npx vite build --base=/my-links/",
+    "npm run build -- --base=/my-links/",
+    "npx vite build --base /my-links/"
+   ],
+   "hint": "--base.",
+   "explanation": "أو في vite.config.js."
+  }
+ ]
+}

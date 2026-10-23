@@ -1,0 +1,247 @@
+{
+ "book": "05-apis",
+ "chapter": 11,
+ "chapterFile": "ch11",
+ "title": "تقرا أي API Docs، وتفهم ملف OpenAPI كمستخدم",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "05-apis-ch11-01",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب محطات قراية أي API Docs:",
+   "items": [
+    "Getting started",
+    "Auth",
+    "Versioning",
+    "Errors",
+    "Rate limits",
+    "Pagination",
+    "Reference",
+    "Changelog"
+   ],
+   "explanation": "ترتيب ثابت."
+  },
+  {
+   "id": "05-apis-ch11-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "في /users/42/repos?sort=updated، الـ 42 إيه؟",
+   "options": [
+    {
+     "text": "Path parameter (هوية الـ Resource)",
+     "why": "صح."
+    },
+    {
+     "text": "Query parameter",
+     "why": "ده sort."
+    },
+    {
+     "text": "Header",
+     "why": "لأ."
+    },
+    {
+     "text": "Body",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Query = طريقة العرض."
+  },
+  {
+   "id": "05-apis-ch11-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Swagger و OpenAPI ملهمش علاقة ببعض؟",
+   "options": [
+    {
+     "text": "صح",
+     "why": "ليهم علاقة."
+    },
+    {
+     "text": "غلط، OpenAPI المواصفة و Swagger أدوات (وكان اسم المواصفة زمان)",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "3.2.1 الأحدث."
+  },
+  {
+   "id": "05-apis-ch11-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "info.version في ملف OpenAPI معناها؟",
+   "options": [
+    {
+     "text": "نسخة الـ API نفسه",
+     "why": "صح."
+    },
+    {
+     "text": "نسخة مواصفة OpenAPI",
+     "why": "دي .openapi."
+    },
+    {
+     "text": "نسخة Swagger",
+     "why": "لأ."
+    },
+    {
+     "text": "نسخة Node",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "فخ مشهور."
+  },
+  {
+   "id": "05-apis-ch11-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Path parameters عادة اختيارية؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "إجبارية."
+    },
+    {
+     "text": "لأ، إجبارية لأنها جزء من الـ URL",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Query غالباً اختيارية."
+  },
+  {
+   "id": "05-apis-ch11-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اطبع الـ paths الموجودة في openapi.json بـ jq.",
+   "accepted": [
+    "jq '.paths | keys' openapi.json",
+    "jq '.paths|keys' openapi.json",
+    "jq -r '.paths | keys[]' openapi.json"
+   ],
+   "hint": ".paths و keys.",
+   "explanation": ".servers للـ Base URL."
+  },
+  {
+   "id": "05-apis-ch11-07",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرف نسخة مواصفة OpenAPI في الملف.",
+   "accepted": [
+    "jq .openapi openapi.json",
+    "jq '.openapi' openapi.json",
+    "jq -r .openapi openapi.json"
+   ],
+   "hint": ".openapi.",
+   "explanation": "مش .info.version."
+  },
+  {
+   "id": "05-apis-ch11-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: الأجزاء المشتركة (Schemas) في OpenAPI مكانها:",
+   "template": ".___.schemas",
+   "blanks": [
+    [
+     "components"
+    ]
+   ],
+   "hint": "مكونات.",
+   "explanation": "وبيتعمل لها $ref."
+  },
+  {
+   "id": "05-apis-ch11-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "صفحة Endpoint مش مكتوب فيها أي Response للأخطاء.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أفترض إن ممكن ييجي 4xx/5xx وأتعامل معاهم عام، وأجرّب بنفسي",
+     "why": "صح."
+    },
+    {
+     "text": "يبقى مفيش أخطاء",
+     "why": "دايماً فيه."
+    },
+    {
+     "text": "مستخدموش",
+     "why": "مبالغة."
+    },
+    {
+     "text": "أتجاهل",
+     "why": "هيوقع."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Responses اللي مش مكتوبة."
+  },
+  {
+   "id": "05-apis-ch11-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "إيه الفايدة من ملف OpenAPI للـ Consumer؟",
+   "options": [
+    {
+     "text": "تولّد منه دوكيومنتيشن (Swagger UI/Redoc/Scalar) و Types و Client جاهز",
+     "why": "صح."
+    },
+    {
+     "text": "مالوش فايدة غير للسيرفر",
+     "why": "لأ."
+    },
+    {
+     "text": "بيشغّل الـ API",
+     "why": "لأ."
+    },
+    {
+     "text": "بيعمل Auth",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الدوكيومنتيشن ملف JSON."
+  },
+  {
+   "id": "05-apis-ch11-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "البيانات اللي بتعمل بيها Resource جديد بتتبعت فين؟",
+   "options": [
+    {
+     "text": "في الـ Body",
+     "why": "صح."
+    },
+    {
+     "text": "في الـ Path",
+     "why": "للهوية."
+    },
+    {
+     "text": "في الـ Query",
+     "why": "للعرض."
+    },
+    {
+     "text": "في الـ Header",
+     "why": "عن الطلب."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Body = البيانات."
+  },
+  {
+   "id": "05-apis-ch11-12",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل اسم الـ API التجريبي الشهير في أمثلة OpenAPI:",
+   "template": "___store",
+   "blanks": [
+    [
+     "Pet"
+    ]
+   ],
+   "hint": "حيوانات أليفة.",
+   "explanation": "مثال عملي."
+  }
+ ]
+}

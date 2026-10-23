@@ -38,11 +38,11 @@ npm run preview
 
 ## ملفات PDF
 
-حطها في `public/downloads/` بالأسماء المكتوبة في `public/downloads/README.md`. الروابط موجودة، والبناء مش بيفشل لو الملفات لسه مش متضافة.
+الملفات موجودة في `public/downloads/` بالأسماء المكتوبة في `public/downloads/README.md`. روابط صفحة كل كتاب بتفتحها من `/biginner-journey/downloads/`.
 
 ## النشر
 
-ملف `.github/workflows/deploy.yml` يبني الموقع بـ `withastro/action` وينشره بـ `actions/deploy-pages` عند الدفع على `main`.
+ملف `.github/workflows/deploy.yml` يبني الموقع بـ `withastro/action` على Node `22.23.4` (أقل نسخة يقبلها Astro 7.4) وينشره بـ `actions/deploy-pages` عند الدفع على `main`.
 
 لازم صاحب الريبو يفعّل GitHub Pages من الإعدادات: **Settings → Pages → Build and deployment → Source: GitHub Actions**. من غير الخطوة دي الـ workflow مش هيقدر ينشر.
 
@@ -77,10 +77,10 @@ Reader progress stays in `localStorage` and shows on the home cards and on each 
 
 ## PDFs
 
-Linked from the book indexes as `/biginner-journey/downloads/*.pdf`. Add the files listed in `public/downloads/README.md` when they exist. Missing PDFs do not fail the build.
+The book and cheat-sheet PDFs are in `public/downloads/` and linked from each book index as `/biginner-journey/downloads/*.pdf`. Names are listed in `public/downloads/README.md`.
 
 ## Deploy
 
-`.github/workflows/deploy.yml` builds with the official `withastro/action` and deploys with `actions/deploy-pages` on every push to `main`.
+`.github/workflows/deploy.yml` builds with the official `withastro/action` on Node `22.23.4` (the minimum Astro 7.4 accepts) and deploys with `actions/deploy-pages` on every push to `main`.
 
 The repo owner has to set **Settings → Pages → Build and deployment → Source: GitHub Actions** once. The workflow cannot turn that on by itself.

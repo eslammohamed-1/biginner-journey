@@ -1,0 +1,247 @@
+{
+ "book": "06-frontend",
+ "chapter": 6,
+ "chapterFile": "ch06",
+ "title": "الـ Cascade والـ Specificity والـ Box model: ليه الـ CSS بتاعي مش شغال؟",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "06-frontend-ch06-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": ".a.b.c.d (0,4,0) بيكسب #x (1,0,0)؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ID واحد بيكسب أي عدد Classes."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الشمال يكسب."
+  },
+  {
+   "id": "06-frontend-ch06-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "قاعدة برة أي @layer بتكسب قاعدة جوه Layer حتى لو أقل Specificity؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح."
+    },
+    {
+     "text": "لأ",
+     "why": "الـ Layers أهم من الـ Specificity."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اللي برة بيكسبهم كلهم."
+  },
+  {
+   "id": "06-frontend-ch06-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ margin بيتورث من الأب؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "خصايص الصندوق مش بتتورث."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "خصايص النص بتتورث."
+  },
+  {
+   "id": "06-frontend-ch06-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Specificity بتاعة `nav ul li a.active`؟",
+   "options": [
+    {
+     "text": "(0,1,4)",
+     "why": "صح، class واحد و 4 عناصر."
+    },
+    {
+     "text": "(1,0,4)",
+     "why": "مفيش ID."
+    },
+    {
+     "text": "(0,4,1)",
+     "why": "لأ."
+    },
+    {
+     "text": "(0,0,5)",
+     "why": "فيه class."
+    }
+   ],
+   "correct": 0,
+   "explanation": "(IDs, Classes, Elements)."
+  },
+  {
+   "id": "06-frontend-ch06-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": ":where(.a) Specificity بتاعتها؟",
+   "options": [
+    {
+     "text": "صفر",
+     "why": "صح."
+    },
+    {
+     "text": "زي .a",
+     "why": "ده :is()."
+    },
+    {
+     "text": "أعلى",
+     "why": "لأ."
+    },
+    {
+     "text": "(1,0,0)",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": ":is() = أدق واحد جواها."
+  },
+  {
+   "id": "06-frontend-ch06-06",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عنصر width: 200px و padding: 20px و border: 5px، وطلع 250px.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ Box model الافتراضي content-box، فأستخدم box-sizing: border-box",
+     "why": "صح."
+    },
+    {
+     "text": "Bug في Chrome",
+     "why": "لأ."
+    },
+    {
+     "text": "أقلل الـ width",
+     "why": "حل ترقيعي."
+    },
+    {
+     "text": "أشيل الـ padding",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ليه 200 طلع 250؟"
+  },
+  {
+   "id": "06-frontend-ch06-07",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اكتب القاعدة اللي كل مشروع بيبدأ بيها للـ Box model لكل العناصر.",
+   "accepted": [
+    "*, *::before, *::after { box-sizing: border-box; }",
+    "* { box-sizing: border-box; }",
+    "*,*::before,*::after{box-sizing:border-box}"
+   ],
+   "hint": "box-sizing.",
+   "explanation": "الـ width يشمل الـ padding والـ border."
+  },
+  {
+   "id": "06-frontend-ch06-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: الطبقة اللي بتحدد ترتيب الـ Layers:",
+   "template": "@___ reset, base, components;",
+   "blanks": [
+    [
+     "layer"
+    ]
+   ],
+   "hint": "طبقة.",
+   "explanation": "الأخيرة تكسب."
+  },
+  {
+   "id": "06-frontend-ch06-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب الـ Cascade (مين بيتحسم الأول):",
+   "items": [
+    "الأهمية والمصدر",
+    "الـ inline",
+    "الـ Layers",
+    "الـ Specificity",
+    "الترتيب في الملف"
+   ],
+   "explanation": "بالترتيب."
+  },
+  {
+   "id": "06-frontend-ch06-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "زميل حل مشكلة CSS بـ !important في 20 مكان.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشوف في DevTools ليه القاعدة بتخسر وأصلّح الـ Specificity أو الترتيب أو أستخدم @layer",
+     "why": "صح."
+    },
+    {
+     "text": "أزوّد !important كمان",
+     "why": "حرب."
+    },
+    {
+     "text": "أكتب inline",
+     "why": "أسوأ."
+    },
+    {
+     "text": "عادي",
+     "why": "هيبقى مستحيل يتعدّل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "نادراً جداً."
+  },
+  {
+   "id": "06-frontend-ch06-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "القيمة الموروثة ضد قاعدة مباشرة بـ Specificity ضعيفة؟",
+   "options": [
+    {
+     "text": "القاعدة المباشرة تكسب دايماً",
+     "why": "صح."
+    },
+    {
+     "text": "الموروثة تكسب",
+     "why": "أضعف حاجة."
+    },
+    {
+     "text": "حسب الترتيب",
+     "why": "لأ."
+    },
+    {
+     "text": "الأكبر Specificity في الأب",
+     "why": "مش بيفرق."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الوراثة أضعف من أي قاعدة."
+  },
+  {
+   "id": "06-frontend-ch06-12",
+   "type": "command",
+   "level": "easy",
+   "prompt": "(DevTools) التابة اللي تشوف فيها القيمة النهائية بعد الـ Cascade.",
+   "accepted": [
+    "Computed"
+   ],
+   "hint": "محسوبة.",
+   "explanation": "و Styles للقواعد."
+  }
+ ]
+}

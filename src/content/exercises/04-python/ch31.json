@@ -1,0 +1,257 @@
+{
+ "book": "04-python",
+ "chapter": 31,
+ "chapterFile": "ch31",
+ "title": "المشروع النهائي: أداة من كذا ملف",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch31-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "Package في Python؟",
+   "options": [
+    {
+     "text": "فولدر فيه __init__.py وملفات .py",
+     "why": "صح."
+    },
+    {
+     "text": "ملف واحد",
+     "why": "ده Module."
+    },
+    {
+     "text": "مكتبة على pip بس",
+     "why": "لأ."
+    },
+    {
+     "text": "zip",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ونشغّله بـ python -m."
+  },
+  {
+   "id": "04-python-ch31-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`python content_tool/main.py` و `python -m content_tool.main` نفس الحاجة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الـ Relative imports بتشتغل مع -m بس."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "شغّل بـ -m."
+  },
+  {
+   "id": "04-python-ch31-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "__exit__ بتتنادي حتى لو حصل Error جوه الـ with؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح، علشان كده Context manager."
+    },
+    {
+     "text": "لأ",
+     "why": "بتتنادي."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Results بيقفل الملف دايماً."
+  },
+  {
+   "id": "04-python-ch31-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "تغيير PROMPT_VERSION بيعمل إيه في الأداة؟",
+   "options": [
+    {
+     "text": "بيخلي الأداة تعيد الملفات لأن النتايج القديمة بنسخة مختلفة",
+     "why": "صح."
+    },
+    {
+     "text": "مفيش حاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "بيمسح الأصل",
+     "why": "لأ."
+    },
+    {
+     "text": "بيغيّر الموديل",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "النسخة جزء من الـ Resume."
+  },
+  {
+   "id": "04-python-ch31-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شغّل main في Package اسمه content_tool على فولدر notes.",
+   "accepted": [
+    "python3 -m content_tool.main notes",
+    "python -m content_tool.main notes"
+   ],
+   "hint": "-m والنقط.",
+   "explanation": "من الفولدر اللي فوق."
+  },
+  {
+   "id": "04-python-ch31-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان الإعدادات متتغيرش بعد ما تتعمل:",
+   "template": "@dataclass(___=True)",
+   "blanks": [
+    [
+     "frozen"
+    ]
+   ],
+   "hint": "متجمّد.",
+   "explanation": "Settings."
+  },
+  {
+   "id": "04-python-ch31-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: الـ Method اللي بتتنادي أول ما تدخل with:",
+   "template": "def ___(self):",
+   "blanks": [
+    [
+     "__enter__"
+    ]
+   ],
+   "hint": "دخول.",
+   "explanation": "و __exit__ للخروج."
+  },
+  {
+   "id": "04-python-ch31-08",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب ملفات الأداة حسب المسؤولية (من الإعدادات للتشغيل):",
+   "items": [
+    "config.py",
+    "prompts.py",
+    "ai_client.py",
+    "files.py",
+    "main.py"
+   ],
+   "explanation": "كل مسؤولية في ملف."
+  },
+  {
+   "id": "04-python-ch31-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عايز تغيّر الأداة من OpenAI لـ Gemini.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أغيّر متغير البيئة بتاع الـ Provider بس، و AIClient فيه Adapter للاتنين",
+     "why": "صح."
+    },
+    {
+     "text": "أعدّل كل الملفات",
+     "why": "ده اللي التقسيم بيمنعه."
+    },
+    {
+     "text": "أكتب أداة جديدة",
+     "why": "لأ."
+    },
+    {
+     "text": "أغيّر prompts.py بس",
+     "why": "مش مكانه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "واجهة واحدة."
+  },
+  {
+   "id": "04-python-ch31-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "`ImportError: attempted relative import with no known parent package`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "شغّلت الملف مباشرة، فأشغّله بـ python -m content_tool.main من الفولدر اللي فوق",
+     "why": "صح."
+    },
+    {
+     "text": "أشيل النقطة من كل import",
+     "why": "ممكن يكسر."
+    },
+    {
+     "text": "أسطب Package",
+     "why": "لأ."
+    },
+    {
+     "text": "أنقل كل حاجة لملف واحد",
+     "why": "رجوع لورا."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Relative imports محتاجة Package."
+  },
+  {
+   "id": "04-python-ch31-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه dry-run يشتغل قبل التحقق من الـ Key؟",
+   "options": [
+    {
+     "text": "علشان أي حد يقدر يجرّب ويشوف الخطة من غير Key",
+     "why": "صح."
+    },
+    {
+     "text": "نسيان",
+     "why": "مقصود."
+    },
+    {
+     "text": "أمان أقل",
+     "why": "مفيش طلب API."
+    },
+    {
+     "text": "علشان أسرع",
+     "why": "مش السبب."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Exit codes و dry-run من غير Key."
+  },
+  {
+   "id": "04-python-ch31-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Exit code غير 0 معناه إيه؟",
+   "options": [
+    {
+     "text": "الأداة فشلت، وأي سكريبت تاني أو CI يقدر يعرف",
+     "why": "صح."
+    },
+    {
+     "text": "نجحت",
+     "why": "0 = نجاح."
+    },
+    {
+     "text": "مفيش معنى",
+     "why": "فيه."
+    },
+    {
+     "text": "عدد الملفات",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "زي فصل الـ Terminal."
+  }
+ ]
+}

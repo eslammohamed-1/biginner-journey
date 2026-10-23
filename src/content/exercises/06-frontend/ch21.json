@@ -1,0 +1,222 @@
+{
+ "book": "06-frontend",
+ "chapter": 21,
+ "chapterFile": "ch21",
+ "title": "TypeScript: نظرة من فوق",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "06-frontend-ch21-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "TypeScript بتحل إيه؟",
+   "options": [
+    {
+     "text": "بتلاقي أخطاء الأنواع قبل التشغيل",
+     "why": "صح."
+    },
+    {
+     "text": "بتسرّع الكود",
+     "why": "لأ."
+    },
+    {
+     "text": "بتشغّل في المتصفح",
+     "why": "لأ."
+    },
+    {
+     "text": "بتعمل CSS",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "JS + أنواع."
+  },
+  {
+   "id": "06-frontend-ch21-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "المتصفح بيفهم TypeScript مباشرة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لأ."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "لازم تتشال."
+  },
+  {
+   "id": "06-frontend-ch21-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "npm run dev في Vite بيوقف لو فيه Type error؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "Vite بيشيل الأنواع بس."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "علشان كده build فيه tsc &&."
+  },
+  {
+   "id": "06-frontend-ch21-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Node 24 بيشغّل ملف .ts فيه enum؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "enum مش Erasable."
+    },
+    {
+     "text": "لأ، بيشيل الأنواع بس، و enum محتاج تحويل",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "erasableSyntaxOnly."
+  },
+  {
+   "id": "06-frontend-ch21-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "افحص الأنواع في المشروع من غير ما تطلّع ملفات.",
+   "accepted": [
+    "npx tsc --noEmit",
+    "tsc --noEmit",
+    "npx tsc -b"
+   ],
+   "hint": "--noEmit.",
+   "explanation": "زي اللي في build."
+  },
+  {
+   "id": "06-frontend-ch21-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الـ build script في قالب react-ts:",
+   "template": "\"build\": \"___ && vite build\"",
+   "blanks": [
+    [
+     "tsc -b",
+     "tsc"
+    ]
+   ],
+   "hint": "الفاحص.",
+   "explanation": "لأن Vite مبيشيكش."
+  },
+  {
+   "id": "06-frontend-ch21-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل نوع Parameter:",
+   "template": "function greet(name: ___) {}",
+   "blanks": [
+    [
+     "string"
+    ]
+   ],
+   "hint": "نص.",
+   "explanation": "JS + أنواع."
+  },
+  {
+   "id": "06-frontend-ch21-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الكود بيشتغل في dev بس build بيقع بـ Type error.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "ده طبيعي: tsc في build بيفحص، فأصلّح الخطأ اللي بيقوله",
+     "why": "صح."
+    },
+    {
+     "text": "أشيل tsc من build",
+     "why": "بتخبّي المشكلة."
+    },
+    {
+     "text": "Vite بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "أرجع لـ JS",
+     "why": "مش لازم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مين بيشيك ومين بيشيل."
+  },
+  {
+   "id": "06-frontend-ch21-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب: مين بيعمل إيه:",
+   "items": [
+    "المحرر و tsc بيفحصوا",
+    "Vite بيشيل الأنواع",
+    "المتصفح بيشغّل JS"
+   ],
+   "explanation": "فحص ثم شيل."
+  },
+  {
+   "id": "06-frontend-ch21-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "إمتى تتعلم TypeScript حسب الكتاب؟",
+   "options": [
+    {
+     "text": "بعد React",
+     "why": "صح."
+    },
+    {
+     "text": "قبل JS",
+     "why": "لأ."
+    },
+    {
+     "text": "أبداً",
+     "why": "لأ."
+    },
+    {
+     "text": "أول حاجة",
+     "why": "مش منصوح."
+    }
+   ],
+   "correct": 0,
+   "explanation": "TypeScript 7 أسرع."
+  },
+  {
+   "id": "06-frontend-ch21-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "noEmit في tsconfig معناها؟",
+   "options": [
+    {
+     "text": "tsc يفحص بس من غير ما يطلّع ملفات JS",
+     "why": "صح."
+    },
+    {
+     "text": "ميفحصش",
+     "why": "لأ."
+    },
+    {
+     "text": "يطلّع ملفات",
+     "why": "العكس."
+    },
+    {
+     "text": "يمسح",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Vite هو اللي بيبني."
+  }
+ ]
+}

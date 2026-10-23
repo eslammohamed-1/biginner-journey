@@ -1,0 +1,222 @@
+{
+ "book": "06-frontend",
+ "chapter": 26,
+ "chapterFile": "ch26",
+ "title": "المشروع النهائي: صفحة روابط من الصفر للـ Deploy",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "06-frontend-ch26-01",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات المشروع النهائي:",
+   "items": [
+    "create-vite",
+    "npm install",
+    "Tailwind",
+    "الصفحة (HTML و RTL)",
+    "ESLint و Prettier",
+    "build و preview",
+    "Git commit",
+    "Workflow"
+   ],
+   "explanation": "من الصفر للـ Deploy."
+  },
+  {
+   "id": "06-frontend-ch26-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "إيه اللي ميترفعش في الـ commit؟",
+   "options": [
+    {
+     "text": "node_modules و dist والأسرار",
+     "why": "صح."
+    },
+    {
+     "text": "package.json",
+     "why": "لازم يترفع."
+    },
+    {
+     "text": "package-lock.json",
+     "why": "لازم."
+    },
+    {
+     "text": "src",
+     "why": "لازم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "14 ملف بس."
+  },
+  {
+   "id": "06-frontend-ch26-03",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعمل مشروع Vite اسمه my-links بقالب vanilla.",
+   "accepted": [
+    "npm create vite@latest my-links -- --template vanilla"
+   ],
+   "hint": "--template vanilla.",
+   "explanation": "من الصفر."
+  },
+  {
+   "id": "06-frontend-ch26-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شوف الملفات اللي هتتعمل commit قبل ما تعمل.",
+   "accepted": [
+    "git status",
+    "git status -s",
+    "git diff --cached --name-only"
+   ],
+   "hint": "status.",
+   "explanation": "اتأكد من غير node_modules."
+  },
+  {
+   "id": "06-frontend-ch26-05",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل .gitignore:",
+   "template": "node_modules ;; ___",
+   "blanks": [
+    [
+     "dist"
+    ]
+   ],
+   "hint": "ناتج البناء.",
+   "explanation": "واحد في كل سطر."
+  },
+  {
+   "id": "06-frontend-ch26-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل base المشروع:",
+   "template": "base: \"/___/\"",
+   "blanks": [
+    [
+     "my-links"
+    ]
+   ],
+   "hint": "اسم الـ repo.",
+   "explanation": "كل المسارات تحتها."
+  },
+  {
+   "id": "06-frontend-ch26-07",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "بعد preview الـ CSS مش ظاهر والمسارات بتبدأ بـ / مش /my-links/.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "base مش متظبط في vite.config.js، فأظبطه وأعيد Build",
+     "why": "صح."
+    },
+    {
+     "text": "Tailwind بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "أنقل الملفات",
+     "why": "لأ."
+    },
+    {
+     "text": "عادي",
+     "why": "هيبوظ على Pages."
+    }
+   ],
+   "correct": 0,
+   "explanation": "تتأكد من base."
+  },
+  {
+   "id": "06-frontend-ch26-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "لقيت ملف .env فيه Token في git status.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أضيفه لـ .gitignore قبل الـ commit",
+     "why": "صح."
+    },
+    {
+     "text": "أرفعه وأمسحه بعدين",
+     "why": "هيفضل في الـ History."
+    },
+    {
+     "text": "عادي",
+     "why": "سر."
+    },
+    {
+     "text": "أغيّر اسمه",
+     "why": "لسه هيترفع."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الملفات الصح بس."
+  },
+  {
+   "id": "06-frontend-ch26-09",
+   "type": "mcq",
+   "level": "medium",
+   "question": "حجم JS الناتج في المشروع حوالي كام؟",
+   "options": [
+    {
+     "text": "حوالي 1.29 kB",
+     "why": "صح، صغير جداً."
+    },
+    {
+     "text": "69 kB",
+     "why": "ده React."
+    },
+    {
+     "text": "1 MB",
+     "why": "لأ."
+    },
+    {
+     "text": "0",
+     "why": "فيه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "HTML 0.57 و CSS 9.53."
+  },
+  {
+   "id": "06-frontend-ch26-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه المشروع النهائي من غير React؟",
+   "options": [
+    {
+     "text": "صفحة روابط بسيطة مش محتاجة Framework، والهدف تتعلم الأدوات حواليها",
+     "why": "صح."
+    },
+    {
+     "text": "React صعب",
+     "why": "مش السبب."
+    },
+    {
+     "text": "ممنوع",
+     "why": "لأ."
+    },
+    {
+     "text": "نسيان",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "إمتى متحتاجش Framework."
+  },
+  {
+   "id": "06-frontend-ch26-11",
+   "type": "command",
+   "level": "medium",
+   "prompt": "لون brand في Tailwind v4 (اكتب سطر داخل @theme بقيمة #2563eb).",
+   "accepted": [
+    "--color-brand: #2563eb;",
+    "--color-brand: #2563eb"
+   ],
+   "hint": "--color-...",
+   "explanation": "بعدين bg-brand."
+  }
+ ]
+}

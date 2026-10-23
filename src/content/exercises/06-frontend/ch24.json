@@ -1,0 +1,249 @@
+{
+ "book": "06-frontend",
+ "chapter": 24,
+ "chapterFile": "ch24",
+ "title": "Lighthouse و Core Web Vitals وفحص الـ Accessibility",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "06-frontend-ch24-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "حدود Core Web Vitals الجيدة؟",
+   "options": [
+    {
+     "text": "LCP ≤ 2.5s، و INP ≤ 200ms، و CLS ≤ 0.1",
+     "why": "صح."
+    },
+    {
+     "text": "LCP ≤ 10s",
+     "why": "لأ."
+    },
+    {
+     "text": "INP ≤ 2s",
+     "why": "لأ."
+    },
+    {
+     "text": "CLS ≤ 1",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "على 75% من الزيارات."
+  },
+  {
+   "id": "06-frontend-ch24-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Lighthouse بيقيس INP مباشرة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "INP محتاج تفاعل حقيقي."
+    },
+    {
+     "text": "لأ، بيقيس TBT كبديل في الـ Lab",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "INP من Field data."
+  },
+  {
+   "id": "06-frontend-ch24-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "صورة من غير width و height ممكن تزوّد CLS؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح، الصفحة بتتزحلق لما تتحمل."
+    },
+    {
+     "text": "لأ",
+     "why": "بتزوّد."
+    }
+   ],
+   "correct": 0,
+   "explanation": "حط الأبعاد."
+  },
+  {
+   "id": "06-frontend-ch24-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Accessibility 100 في Lighthouse يعني الموقع Accessible تماماً؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "جزء بس."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "مالقاش الـ div ولا الـ input من غير label."
+  },
+  {
+   "id": "06-frontend-ch24-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Lab data ضد Field data؟",
+   "options": [
+    {
+     "text": "Lab (Lighthouse) للتشخيص في ظروف ثابتة، و Field (CrUX) من مستخدمين حقيقيين",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "Field للتشخيص",
+     "why": "العكس."
+    },
+    {
+     "text": "Lab أدق للحقيقة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "PageSpeed Insights بيوري الاتنين."
+  },
+  {
+   "id": "06-frontend-ch24-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شغّل Lighthouse من الـ CLI على http://localhost:4173.",
+   "accepted": [
+    "npx lighthouse http://localhost:4173",
+    "lighthouse http://localhost:4173",
+    "npx lighthouse http://localhost:4173 --view"
+   ],
+   "hint": "npx lighthouse.",
+   "explanation": "preview مش dev."
+  },
+  {
+   "id": "06-frontend-ch24-07",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: المقياس اللي بيقيس استجابة التفاعل:",
+   "template": "___",
+   "blanks": [
+    [
+     "INP"
+    ]
+   ],
+   "hint": "Interaction to Next Paint.",
+   "explanation": "≤ 200ms."
+  },
+  {
+   "id": "06-frontend-ch24-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "Lighthouse بيدّي Performance وحش على npm run dev.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أجرّب على npm run preview (الـ Build) في Incognito",
+     "why": "صح."
+    },
+    {
+     "text": "الموقع بطيء أكيد",
+     "why": "dev مش مقياس."
+    },
+    {
+     "text": "أشيل الصور",
+     "why": "مش الحل."
+    },
+    {
+     "text": "أتجاهل",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اختبر الـ preview."
+  },
+  {
+   "id": "06-frontend-ch24-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ LCP عالي والعنصر صورة Hero كبيرة عليها loading=\"lazy\".",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشيل lazy من صورة الـ Hero وأصغّرها وأحط width/height",
+     "why": "صح."
+    },
+    {
+     "text": "أزوّد lazy",
+     "why": "أسوأ."
+    },
+    {
+     "text": "أشيل الصورة",
+     "why": "مش لازم."
+    },
+    {
+     "text": "أغيّر اللون",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أشهر المشاكل."
+  },
+  {
+   "id": "06-frontend-ch24-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب فحص الأداء:",
+   "items": [
+    "npm run build و preview",
+    "Incognito",
+    "Lighthouse",
+    "اقرا Insights وصلّح",
+    "تابع Field data بعد النشر"
+   ],
+   "explanation": "Lab ثم Field."
+  },
+  {
+   "id": "06-frontend-ch24-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "إيه اللي الأدوات الآلية مش بتلاقيه في a11y؟",
+   "options": [
+    {
+     "text": "الـ div اللي بيتداس من غير كيبورد، والمعنى والترتيب، وتجربة قارئ الشاشة",
+     "why": "صح."
+    },
+    {
+     "text": "التباين",
+     "why": "بتلاقيه."
+    },
+    {
+     "text": "alt ناقص",
+     "why": "بتلاقيه."
+    },
+    {
+     "text": "مفيش",
+     "why": "فيه كتير."
+    }
+   ],
+   "correct": 0,
+   "explanation": "جرّب بالكيبورد و VoiceOver."
+  },
+  {
+   "id": "06-frontend-ch24-12",
+   "type": "command",
+   "level": "easy",
+   "prompt": "شغّل VoiceOver على الماك (اكتب الاختصار).",
+   "accepted": [
+    "Cmd+F5",
+    "Command+F5",
+    "cmd+f5"
+   ],
+   "hint": "Cmd مع F.",
+   "explanation": "جرّب موقعك."
+  }
+ ]
+}

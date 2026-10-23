@@ -1,0 +1,262 @@
+{
+ "book": "04-python",
+ "chapter": 12,
+ "chapterFile": "ch12",
+ "title": "الأخطاء: تقرا الـ Traceback وتمسك الخطأ بـ try/except",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch12-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "تقرا الـ Traceback منين؟",
+   "options": [
+    {
+     "text": "من تحت: آخر سطر فيه النوع والرسالة",
+     "why": "صح."
+    },
+    {
+     "text": "من أول سطر",
+     "why": "أول سطر أقل أهمية."
+    },
+    {
+     "text": "من النص",
+     "why": "لأ."
+    },
+    {
+     "text": "متقراهوش",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بعدين أول سطر من ملفاتك من تحت."
+  },
+  {
+   "id": "04-python-ch12-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`TypeError: 'NoneType' object is not subscriptable` معناها؟",
+   "options": [
+    {
+     "text": "عملت [] على قيمة None",
+     "why": "صح."
+    },
+    {
+     "text": "النوع غلط في الـ Arguments",
+     "why": "مش بالظبط."
+    },
+    {
+     "text": "الملف مش موجود",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Key غلط",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "شيك إن القيمة مش None."
+  },
+  {
+   "id": "04-python-ch12-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ finally بتتنفّذ إمتى؟",
+   "options": [
+    {
+     "text": "دايماً، نجح أو فشل",
+     "why": "صح."
+    },
+    {
+     "text": "لو نجح بس",
+     "why": "ده else."
+    },
+    {
+     "text": "لو فشل بس",
+     "why": "ده except."
+    },
+    {
+     "text": "مش بتتنفّذ",
+     "why": "بتتنفّذ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "للتنضيف."
+  },
+  {
+   "id": "04-python-ch12-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`except openai.APIError` بتمسك RateLimitError كمان؟",
+   "options": [
+    {
+     "text": "أيوه، لأنها جزء من شجرتها",
+     "why": "صح."
+    },
+    {
+     "text": "لأ",
+     "why": "هي Subclass."
+    }
+   ],
+   "correct": 0,
+   "explanation": "امسك RateLimitError لوحدها الأول."
+  },
+  {
+   "id": "04-python-ch12-05",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه `except: pass` ممنوعة؟",
+   "options": [
+    {
+     "text": "بتخبّي أي خطأ حتى Ctrl+C، والاسكريبت يكمّل غلط وانت مش عارف",
+     "why": "صح."
+    },
+    {
+     "text": "أبطأ",
+     "why": "لأ."
+    },
+    {
+     "text": "مش بتشتغل",
+     "why": "بتشتغل."
+    },
+    {
+     "text": "علشان شكلها",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "امسك نوع محدد واكتب سجل."
+  },
+  {
+   "id": "04-python-ch12-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اكتب except تمسك KeyError وتحطه في e.",
+   "accepted": [
+    "except KeyError as e:"
+   ],
+   "hint": "as e.",
+   "explanation": "بعدين print أو log."
+  },
+  {
+   "id": "04-python-ch12-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اقفل الاسكريبت برسالة واضحة \"Missing API key\".",
+   "accepted": [
+    "raise SystemExit(\"Missing API key\")",
+    "raise SystemExit('Missing API key')",
+    "sys.exit(\"Missing API key\")"
+   ],
+   "hint": "SystemExit.",
+   "explanation": "أوضح من Traceback طويل."
+  },
+  {
+   "id": "04-python-ch12-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان ترمي خطأ جديد وتربطه بالأصلي:",
+   "template": "raise RuntimeError(\"failed\") ___ e",
+   "blanks": [
+    [
+     "from"
+    ]
+   ],
+   "hint": "من.",
+   "explanation": "بيظهر \"The above exception was the direct cause\"."
+  },
+  {
+   "id": "04-python-ch12-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ Traceback فيه \"During handling of the above exception, another exception occurred\".",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "حصل خطأ جوه الـ except نفسه، فأشوف الخطأ الأول (فوق) وكمان كود الـ except",
+     "why": "صح."
+    },
+    {
+     "text": "اتنين أخطاء ملهمش علاقة",
+     "why": "ليهم علاقة."
+    },
+    {
+     "text": "أتجاهل",
+     "why": "لأ."
+    },
+    {
+     "text": "المكتبة بايظة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خطأ متسلسل."
+  },
+  {
+   "id": "04-python-ch12-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "هتلزق Traceback لـ AI علشان يساعدك.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "ألزق الـ Traceback كله والكود المرتبط، وأشيل أي Keys أو بيانات خاصة",
+     "why": "صح."
+    },
+    {
+     "text": "آخر سطر بس",
+     "why": "مش كفاية سياق."
+    },
+    {
+     "text": "أقوله \"مش شغال\"",
+     "why": "مش مفيد."
+    },
+    {
+     "text": "ألزق .env",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "قبل ما تلزقه للـ AI."
+  },
+  {
+   "id": "04-python-ch12-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أجزاء try:",
+   "items": [
+    "try",
+    "except (نوع محدد)",
+    "else (لو نجح)",
+    "finally (دايماً)"
+   ],
+   "explanation": "else و finally اختياريين."
+  },
+  {
+   "id": "04-python-ch12-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`KeyError: 'choices'` في قراية رد. السبب الأغلب؟",
+   "options": [
+    {
+     "text": "الرد شكله مختلف (مثلاً رسالة خطأ أو API تاني)، فأطبع الرد",
+     "why": "صح."
+    },
+    {
+     "text": "الإنترنت فاصل",
+     "why": "كان هيبقى خطأ اتصال."
+    },
+    {
+     "text": "Python قديمة",
+     "why": "لأ."
+    },
+    {
+     "text": "الموديل غلط بالضرورة",
+     "why": "مش بالضرورة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اطبع قبل ما تخمّن."
+  }
+ ]
+}

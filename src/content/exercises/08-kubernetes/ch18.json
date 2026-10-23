@@ -1,0 +1,221 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 18,
+ "chapterFile": "ch18",
+ "title": "الـ Secrets: البيانات الحساسة",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch18-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "base64 تشفير؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ترميز."
+    },
+    {
+     "text": "لأ، ترميز أي حد يفكه",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الأمان من RBAC و Encryption at Rest."
+  },
+  {
+   "id": "08-kubernetes-ch18-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Secrets متشفرة في etcd افتراضياً؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لازم تفعّل Encryption at Rest."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "حماية حقيقية محتاجة إعداد."
+  },
+  {
+   "id": "08-kubernetes-ch18-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Container بيشوف قيمة الـ Secret مفكوكة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح."
+    },
+    {
+     "text": "لأ، base64",
+     "why": "مفكوكة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Kubernetes بيفكها."
+  },
+  {
+   "id": "08-kubernetes-ch18-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "النوع tls فيه إيه؟",
+   "options": [
+    {
+     "text": "tls.crt و tls.key",
+     "why": "صح."
+    },
+    {
+     "text": "password",
+     "why": "لأ."
+    },
+    {
+     "text": "ca.pem بس",
+     "why": "لأ."
+    },
+    {
+     "text": "token",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "للـ Ingress."
+  },
+  {
+   "id": "08-kubernetes-ch18-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل base64 لـ S3cr3t! من غير سطر جديد.",
+   "accepted": [
+    "echo -n 'S3cr3t!' | base64",
+    "printf 'S3cr3t!' | base64",
+    "printf '%s' 'S3cr3t!' | base64"
+   ],
+   "hint": "echo -n.",
+   "explanation": "من غير -n هيدخل \\n."
+  },
+  {
+   "id": "08-kubernetes-ch18-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل Secret db-secret فيه DB_PASSWORD=S3cr3t!.",
+   "accepted": [
+    "kubectl create secret generic db-secret --from-literal=DB_PASSWORD='S3cr3t!'",
+    "kubectl create secret generic db-secret --from-literal=DB_PASSWORD=S3cr3t!"
+   ],
+   "hint": "secret generic.",
+   "explanation": "علامات التنصيص علشان ! في zsh."
+  },
+  {
+   "id": "08-kubernetes-ch18-07",
+   "type": "command",
+   "level": "think",
+   "prompt": "اقرا DB_PASSWORD من db-secret وفكّها.",
+   "accepted": [
+    "kubectl get secret db-secret -o jsonpath='{.data.DB_PASSWORD}' | base64 -d",
+    "kubectl get secret db-secret -o jsonpath=\"{.data.DB_PASSWORD}\" | base64 -d",
+    "kubectl get secret db-secret -o jsonpath='{.data.DB_PASSWORD}' | base64 --decode"
+   ],
+   "hint": "jsonpath و base64 -d.",
+   "explanation": "وده سبب إن base64 مش أمان."
+  },
+  {
+   "id": "08-kubernetes-ch18-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تكتب القيم نص عادي في YAML:",
+   "template": "___: DB_PASSWORD: S3cr3t!",
+   "blanks": [
+    [
+     "stringData"
+    ]
+   ],
+   "hint": "string...",
+   "explanation": "data بـ base64."
+  },
+  {
+   "id": "08-kubernetes-ch18-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل في env:",
+   "template": "valueFrom: ___: name: db-secret key: DB_PASSWORD",
+   "blanks": [
+    [
+     "secretKeyRef"
+    ]
+   ],
+   "hint": "secret...Ref.",
+   "explanation": "أو secretRef في envFrom."
+  },
+  {
+   "id": "08-kubernetes-ch18-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "زميل رفع secret.yaml فيه data بـ base64 على GitHub وقال \"متشفر\".",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "ده مكشوف، فأغيّر الباسورد فوراً وأشيل الملف وأستخدم حل زي Sealed Secrets أو External Secrets",
+     "why": "صح."
+    },
+    {
+     "text": "عادي، base64",
+     "why": "مش تشفير."
+    },
+    {
+     "text": "أمسح الملف بس",
+     "why": "لسه في الـ History."
+    },
+    {
+     "text": "Private repo كفاية",
+     "why": "مش كفاية."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ليه base64 مش تشفير."
+  },
+  {
+   "id": "08-kubernetes-ch18-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب تأمين الـ Secrets بجد:",
+   "items": [
+    "متحطهاش في Git كنص أو base64",
+    "فعّل Encryption at Rest في etcd",
+    "اقفل الوصول بـ RBAC",
+    "استخدم أداة إدارة أسرار خارجية لو محتاج"
+   ],
+   "explanation": "الأمان الحقيقي."
+  },
+  {
+   "id": "08-kubernetes-ch18-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "zsh: event not found لما كتبت --from-literal=DB_PASSWORD=S3cr3t! من غير تنصيص. ليه؟",
+   "options": [
+    {
+     "text": "الـ ! في zsh بتتفسر History expansion، فأحط القيمة بين ' '",
+     "why": "صح."
+    },
+    {
+     "text": "kubectl بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "الباسورد ممنوع",
+     "why": "لأ."
+    },
+    {
+     "text": "محتاج sudo",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مهم على الماك."
+  }
+ ]
+}

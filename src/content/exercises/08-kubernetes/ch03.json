@@ -1,0 +1,231 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 3,
+ "chapterFile": "ch03",
+ "title": "الشغل نفسه: الـ Pods",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch03-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Pod بيمثل إيه؟",
+   "options": [
+    {
+     "text": "نسخة واحدة من تطبيقك",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Cluster",
+     "why": "لأ."
+    },
+    {
+     "text": "Node",
+     "why": "لأ."
+    },
+    {
+     "text": "Image",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أصغر وحدة."
+  },
+  {
+   "id": "08-kubernetes-ch03-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "كل Container جوه نفس الـ Pod بياخد IP مختلف؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيشاركوا IP واحد."
+    },
+    {
+     "text": "لأ، بيشاركوا IP والـ Ports",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "وبيكلموا بعض بـ localhost."
+  },
+  {
+   "id": "08-kubernetes-ch03-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Pod اتعمل لوحده من غير Controller واتمسح. Kubernetes هيعمل بداله؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "محدش مسؤول عنه."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "علشان كده Deployment."
+  },
+  {
+   "id": "08-kubernetes-ch03-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Scaling بيكون إزاي؟",
+   "options": [
+    {
+     "text": "بزيادة عدد الـ Pods",
+     "why": "صح."
+    },
+    {
+     "text": "بزيادة الـ Containers جوه الـ Pod",
+     "why": "لأ."
+    },
+    {
+     "text": "بتكبير الـ Image",
+     "why": "لأ."
+    },
+    {
+     "text": "بزيادة الـ Nodes بس",
+     "why": "مش ده."
+    }
+   ],
+   "correct": 0,
+   "explanation": "نسخ."
+  },
+  {
+   "id": "08-kubernetes-ch03-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Containers في نفس الـ Pod بيشاركوا إيه؟",
+   "options": [
+    {
+     "text": "الـ IP والـ Ports والـ Volumes ودورة الحياة",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Image",
+     "why": "كل واحد ليه Image."
+    },
+    {
+     "text": "ولا حاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "الكود",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان كده بيبقوا مترابطين جامد."
+  },
+  {
+   "id": "08-kubernetes-ch03-06",
+   "type": "mcq",
+   "level": "think",
+   "question": "إمتى Multi-container Pod (Sidecar)؟",
+   "options": [
+    {
+     "text": "لما Container مساعد لازم يعيش ويموت مع التطبيق (زي جامع Logs بيقرا نفس الملفات)",
+     "why": "صح."
+    },
+    {
+     "text": "للـ Frontend والـ Backend",
+     "why": "كل واحد Pod لوحده."
+    },
+    {
+     "text": "للـ Database والتطبيق",
+     "why": "لأ، كل واحد لوحده."
+    },
+    {
+     "text": "دايماً",
+     "why": "الأغلب Container واحد."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الحالات المترابطة جامد."
+  },
+  {
+   "id": "08-kubernetes-ch03-07",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: الـ Pod طبيعته مؤقتة يعني:",
+   "template": "___",
+   "blanks": [
+    [
+     "Ephemeral",
+     "ephemeral",
+     "مؤقت"
+    ]
+   ],
+   "hint": "كلمة إنجليزي.",
+   "explanation": "بيموت ويتعمل جديد بـ IP جديد."
+  },
+  {
+   "id": "08-kubernetes-ch03-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ Pod اتعمله restart والـ IP اتغير والتطبيقات التانية مش لاقياه.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "متعتمدش على IP الـ Pod؛ استخدم Service",
+     "why": "صح."
+    },
+    {
+     "text": "أثبّت الـ IP",
+     "why": "مش الطريقة."
+    },
+    {
+     "text": "أمنع الـ restart",
+     "why": "مستحيل."
+    },
+    {
+     "text": "أكتب الـ IP الجديد",
+     "why": "هيتغير تاني."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Pod مؤقت."
+  },
+  {
+   "id": "08-kubernetes-ch03-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أجزاء YAML لـ Pod:",
+   "items": [
+    "apiVersion: v1",
+    "kind: Pod",
+    "metadata (name)",
+    "spec (containers)"
+   ],
+   "explanation": "الهيكل الأساسي."
+  },
+  {
+   "id": "08-kubernetes-ch03-10",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل Pod اسمه web من nginx بأمر واحد.",
+   "accepted": [
+    "kubectl run web --image=nginx",
+    "kubectl run web --image nginx"
+   ],
+   "hint": "kubectl run.",
+   "explanation": "للتجربة."
+  },
+  {
+   "id": "08-kubernetes-ch03-11",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل في الـ YAML:",
+   "template": "spec: ___: - name: app image: nginx",
+   "blanks": [
+    [
+     "containers"
+    ]
+   ],
+   "hint": "جمع.",
+   "explanation": "List."
+  }
+ ]
+}

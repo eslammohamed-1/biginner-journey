@@ -1,0 +1,253 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 6,
+ "chapterFile": "ch06",
+ "title": "الـ Requests والـ Limits: موارد الـ Pod",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch06-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ requests إيه؟",
+   "options": [
+    {
+     "text": "الحد الأدنى المحجوز، والـ Scheduler بيستخدمه",
+     "why": "صح."
+    },
+    {
+     "text": "السقف",
+     "why": "ده limits."
+    },
+    {
+     "text": "عدد الطلبات HTTP",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ replicas",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "لاختيار الـ Node."
+  },
+  {
+   "id": "08-kubernetes-ch06-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "cpu: \"500m\" معناها؟",
+   "options": [
+    {
+     "text": "نص Core",
+     "why": "صح."
+    },
+    {
+     "text": "500 Core",
+     "why": "لأ."
+    },
+    {
+     "text": "500 ميجا",
+     "why": "Memory."
+    },
+    {
+     "text": "5%",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "millicores."
+  },
+  {
+   "id": "08-kubernetes-ch06-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Container مينفعش يستخدم أكتر من الـ requests أبداً؟",
+   "options": [
+    {
+     "text": "صح",
+     "why": "يقدر لحد الـ limits."
+    },
+    {
+     "text": "غلط، يقدر يستخدم لحد الـ limits لو فيه موارد",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "requests حجز."
+  },
+  {
+   "id": "08-kubernetes-ch06-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Pods اللي ملهاش requests ولا limits أول حاجة بتتطرد؟",
+   "options": [
+    {
+     "text": "أيوه، BestEffort",
+     "why": "صح."
+    },
+    {
+     "text": "لأ",
+     "why": "هي الأولى."
+    }
+   ],
+   "correct": 0,
+   "explanation": "QoS."
+  },
+  {
+   "id": "08-kubernetes-ch06-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Container عدّى الـ Memory limit بيحصل إيه؟",
+   "options": [
+    {
+     "text": "OOMKilled",
+     "why": "صح."
+    },
+    {
+     "text": "Throttling",
+     "why": "ده الـ CPU."
+    },
+    {
+     "text": "بيكمّل عادي",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Node تقع",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Memory مش بتتضغط."
+  },
+  {
+   "id": "08-kubernetes-ch06-06",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب QoS classes من الأحسن للأضعف:",
+   "items": [
+    "Guaranteed",
+    "Burstable",
+    "BestEffort"
+   ],
+   "explanation": "Guaranteed: requests = limits."
+  },
+  {
+   "id": "08-kubernetes-ch06-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل:",
+   "template": "resources: requests: memory: \"256___\"",
+   "blanks": [
+    [
+     "Mi"
+    ]
+   ],
+   "hint": "ميبي.",
+   "explanation": "و Gi."
+  },
+  {
+   "id": "08-kubernetes-ch06-08",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرف QoS class بتاع my-pod.",
+   "accepted": [
+    "kubectl get pod my-pod -o jsonpath='{.status.qosClass}'",
+    "kubectl get pod my-pod -o jsonpath=\"{.status.qosClass}\""
+   ],
+   "hint": "jsonpath و qosClass.",
+   "explanation": "أو describe."
+  },
+  {
+   "id": "08-kubernetes-ch06-09",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض استهلاك الـ Pods الفعلي.",
+   "accepted": [
+    "kubectl top pod",
+    "kubectl top pods"
+   ],
+   "hint": "top.",
+   "explanation": "محتاج metrics-server."
+  },
+  {
+   "id": "08-kubernetes-ch06-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "Pod فضل Pending وفي الـ Events \"Insufficient cpu\".",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ requests أكبر من المتاح على أي Node، فأقللها أو أزوّد Nodes",
+     "why": "صح."
+    },
+    {
+     "text": "أشيل الـ limits",
+     "why": "المشكلة في الـ requests."
+    },
+    {
+     "text": "أعيد التشغيل",
+     "why": "هيفضل Pending."
+    },
+    {
+     "text": "الـ Image غلط",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Scheduler بيستخدم الـ requests."
+  },
+  {
+   "id": "08-kubernetes-ch06-11",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "التطبيق بطيء جداً مع إن الـ Node فاضية، والـ CPU limit صغير.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "ده Throttling، فأرفع الـ CPU limit",
+     "why": "صح."
+    },
+    {
+     "text": "OOMKilled",
+     "why": "ده للـ Memory."
+    },
+    {
+     "text": "أزوّد Memory",
+     "why": "مش المشكلة."
+    },
+    {
+     "text": "عادي",
+     "why": "بطء."
+    }
+   ],
+   "correct": 0,
+   "explanation": "عدّى الـ CPU = throttling."
+  },
+  {
+   "id": "08-kubernetes-ch06-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه تحط requests حتى لو الـ Cluster فاضي؟",
+   "options": [
+    {
+     "text": "علشان الـ Scheduler يوزّع صح والـ HPA يحسب، ومتبقاش BestEffort",
+     "why": "صح."
+    },
+    {
+     "text": "إجباري",
+     "why": "مش إجباري."
+    },
+    {
+     "text": "أسرع",
+     "why": "لأ."
+    },
+    {
+     "text": "مش مهم",
+     "why": "مهم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "HPA محتاج requests."
+  }
+ ]
+}

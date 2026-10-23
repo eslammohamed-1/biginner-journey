@@ -1,0 +1,231 @@
+{
+ "book": "04-python",
+ "chapter": 29,
+ "chapterFile": "ch29",
+ "title": "اسكريبت كامل: فولدر ملفات ← AI ← CSV و Excel",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "04-python-ch29-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "ليه الاسكريبت الكامل 150 سطر بدل 11؟",
+   "options": [
+    {
+     "text": "كل سطر زيادة بيقفل مشكلة: فلترة، وحجم، و Schema، و Retries، و Resume، و dry-run، وتكلفة",
+     "why": "صح."
+    },
+    {
+     "text": "علشان شكله احترافي",
+     "why": "لأ."
+    },
+    {
+     "text": "Python بتطلب كده",
+     "why": "لأ."
+    },
+    {
+     "text": "تكرار",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "من 11 لـ 150."
+  },
+  {
+   "id": "04-python-ch29-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "--dry-run في الاسكريبت ده محتاج API key؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مش محتاج."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "بيعدّ ويقدّر بس."
+  },
+  {
+   "id": "04-python-ch29-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لو الاسكريبت وقع عند ملف 10، notes.xlsx هيفضل ناقص للأبد؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيتبني من الـ JSONL كله."
+    },
+    {
+     "text": "لأ، الـ Excel بيتبني من results.jsonl كله في الآخر، فلما تكمّل يتعمل كامل",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ JSONL هو المصدر."
+  },
+  {
+   "id": "04-python-ch29-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الملف اللي فشل بيروح فين؟",
+   "options": [
+    {
+     "text": "failed.txt مش results.jsonl",
+     "why": "صح."
+    },
+    {
+     "text": "results.jsonl بقيم فاضية",
+     "why": "لأ."
+    },
+    {
+     "text": "بيتمسح",
+     "why": "لأ."
+    },
+    {
+     "text": "مفيش",
+     "why": "فيه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان تعيده بعدين."
+  },
+  {
+   "id": "04-python-ch29-05",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أجزاء الاسكريبت:",
+   "items": [
+    "الثوابت والـ Schema (NoteInfo)",
+    "find_notes (الفلترة)",
+    "extract (responses.parse)",
+    "main (argparse و Threads و Resume)",
+    "بناء Excel من JSONL"
+   ],
+   "explanation": "خطة فصل 3."
+  },
+  {
+   "id": "04-python-ch29-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شغّل الاسكريبت extract_notes.py على فولدر notes بـ dry-run.",
+   "accepted": [
+    "python3 extract_notes.py notes --dry-run",
+    "python3 extract_notes.py --dry-run notes",
+    "python extract_notes.py notes --dry-run"
+   ],
+   "hint": "Positional و --dry-run.",
+   "explanation": "قبل أي تشغيل."
+  },
+  {
+   "id": "04-python-ch29-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: الفانكشن الوحيدة اللي بتتغير لما تنقل لـ Gemini:",
+   "template": "def ___(...)",
+   "blanks": [
+    [
+     "extract"
+    ]
+   ],
+   "hint": "اللي بتكلم الموديل.",
+   "explanation": "ومعاها الـ Client."
+  },
+  {
+   "id": "04-python-ch29-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: كل الكتابة بتروح في فولدر:",
+   "template": "___/",
+   "blanks": [
+    [
+     "output"
+    ]
+   ],
+   "hint": "مخرجات.",
+   "explanation": "الأصل مبيتلمسش."
+  },
+  {
+   "id": "04-python-ch29-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "extract رجعت status incomplete لملف.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أسجّله في failed.txt وأكمّل الباقي، ومكتبش نتيجة ناقصة",
+     "why": "صح."
+    },
+    {
+     "text": "أكتب اللي رجع",
+     "why": "ناقص."
+    },
+    {
+     "text": "أوقف الاسكريبت كله",
+     "why": "مبالغة."
+    },
+    {
+     "text": "أتجاهله من غير تسجيل",
+     "why": "هتنساه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "التعامل مع incomplete."
+  },
+  {
+   "id": "04-python-ch29-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه extract معزولة في فانكشن لوحدها؟",
+   "options": [
+    {
+     "text": "علشان تغيير الـ Provider أو الموديل يبقى في مكان واحد وتعرف تختبرها",
+     "why": "صح."
+    },
+    {
+     "text": "علشان أسرع",
+     "why": "لأ."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان Threads مبتشتغلش غير مع فانكشنز",
+     "why": "مش السبب الأساسي."
+    }
+   ],
+   "correct": 0,
+   "explanation": "نمط ask()."
+  },
+  {
+   "id": "04-python-ch29-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "find_notes بتعمل إيه؟",
+   "options": [
+    {
+     "text": "تلاقي الملفات المطلوبة وتفلتر (امتداد، حجم، ملفات مخفية) بأمان",
+     "why": "صح."
+    },
+    {
+     "text": "بتمسح الملفات",
+     "why": "لأ."
+    },
+    {
+     "text": "بتكلم الموديل",
+     "why": "ده extract."
+    },
+    {
+     "text": "بتعمل Excel",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "فصل 9."
+  }
+ ]
+}

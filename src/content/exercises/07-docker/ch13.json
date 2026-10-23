@@ -1,0 +1,240 @@
+{
+ "book": "07-docker",
+ "chapter": 13,
+ "chapterFile": "ch13",
+ "title": "Docker Compose: شغّل المشروع كله بأمر واحد",
+ "count": 13,
+ "exercises": [
+  {
+   "id": "07-docker-ch13-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "Docker Compose بيعمل إيه؟",
+   "options": [
+    {
+     "text": "بيوصف المشروع كله (services و volumes و networks) في ملف ويشغّله بأمر واحد",
+     "why": "صح."
+    },
+    {
+     "text": "بيبني Images بس",
+     "why": "أكتر."
+    },
+    {
+     "text": "بديل Docker",
+     "why": "بيستخدم Docker."
+    },
+    {
+     "text": "Registry",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "compose.yaml."
+  },
+  {
+   "id": "07-docker-ch13-02",
+   "type": "command",
+   "level": "easy",
+   "prompt": "شغّل المشروع كله في الخلفية.",
+   "accepted": [
+    "docker compose up -d"
+   ],
+   "hint": "up -d.",
+   "explanation": "بيعمل الشبكة لوحده."
+  },
+  {
+   "id": "07-docker-ch13-03",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شغّل وأعد بناء الـ Images.",
+   "accepted": [
+    "docker compose up -d --build",
+    "docker compose up --build -d"
+   ],
+   "hint": "--build.",
+   "explanation": "بعد تعديل الكود."
+  },
+  {
+   "id": "07-docker-ch13-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "تابع logs بتاعة service اسمها backend.",
+   "accepted": [
+    "docker compose logs -f backend",
+    "docker compose logs --follow backend"
+   ],
+   "hint": "logs -f.",
+   "explanation": "لـ service واحدة."
+  },
+  {
+   "id": "07-docker-ch13-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "وقّف وامسح الـ Containers والشبكة.",
+   "accepted": [
+    "docker compose down"
+   ],
+   "hint": "down.",
+   "explanation": "-v بيمسح الـ Volumes كمان."
+  },
+  {
+   "id": "07-docker-ch13-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ services بتكلّم بعض إزاي في Compose؟",
+   "options": [
+    {
+     "text": "باسم الـ service على شبكة المشروع التلقائية",
+     "why": "صح."
+    },
+    {
+     "text": "بـ localhost",
+     "why": "لأ."
+    },
+    {
+     "text": "بالـ IP بس",
+     "why": "لأ."
+    },
+    {
+     "text": "لازم -p",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "db:5432."
+  },
+  {
+   "id": "07-docker-ch13-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "docker compose down -v بيعمل إيه زيادة؟",
+   "options": [
+    {
+     "text": "بيمسح الـ Volumes وكل البيانات اللي فيها",
+     "why": "صح، بحذر."
+    },
+    {
+     "text": "verbose",
+     "why": "لأ."
+    },
+    {
+     "text": "بيعمل نسخة",
+     "why": "لأ."
+    },
+    {
+     "text": "مفيش فرق",
+     "why": "فيه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بحذر."
+  },
+  {
+   "id": "07-docker-ch13-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل في compose.yaml:",
+   "template": "ports: - \"8080:___\"",
+   "blanks": [
+    [
+     "80"
+    ]
+   ],
+   "hint": "بورت الـ Container.",
+   "explanation": "host:container."
+  },
+  {
+   "id": "07-docker-ch13-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان الـ backend يستنى الـ db:",
+   "template": "___: - db",
+   "blanks": [
+    [
+     "depends_on"
+    ]
+   ],
+   "hint": "depends...",
+   "explanation": "ترتيب التشغيل."
+  },
+  {
+   "id": "07-docker-ch13-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أجزاء compose.yaml:",
+   "items": [
+    "services",
+    "backend (build و ports و environment)",
+    "db (image و volumes)",
+    "volumes (تعريف db-data)"
+   ],
+   "explanation": "الهيكل."
+  },
+  {
+   "id": "07-docker-ch13-11",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عدّلت الكود وعملت docker compose up -d والتغيير مش ظاهر.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ Image متبنتش تاني، فأستخدم --build",
+     "why": "صح."
+    },
+    {
+     "text": "Compose بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "أمسح كل حاجة",
+     "why": "مش لازم."
+    },
+    {
+     "text": "أعيد تشغيل الماك",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "up -d --build."
+  },
+  {
+   "id": "07-docker-ch13-12",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "زميل كتب docker compose down -v علشان \"ينضّف\" على سيرفر فيه Database.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أوقفه: -v هيمسح بيانات الـ Database، و down عادي كفاية",
+     "why": "صح."
+    },
+    {
+     "text": "عادي",
+     "why": "هتضيع البيانات."
+    },
+    {
+     "text": "أحسن",
+     "why": "لأ."
+    },
+    {
+     "text": "مفيش فرق",
+     "why": "فيه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بحذر."
+  },
+  {
+   "id": "07-docker-ch13-13",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ادخل shell جوه service اسمها backend.",
+   "accepted": [
+    "docker compose exec backend sh",
+    "docker compose exec backend bash"
+   ],
+   "hint": "compose exec.",
+   "explanation": "زي docker exec."
+  }
+ ]
+}

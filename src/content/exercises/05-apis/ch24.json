@@ -1,0 +1,267 @@
+{
+ "book": "05-apis",
+ "chapter": 24,
+ "chapterFile": "ch24",
+ "title": "المشروع 2: تصمم Content Library API",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "05-apis-ch24-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "تبدأ تصميم API منين؟",
+   "options": [
+    {
+     "text": "من الـ Clients والأدوار وهم عايزين يعملوا إيه",
+     "why": "صح."
+    },
+    {
+     "text": "من الـ Database",
+     "why": "لأ."
+    },
+    {
+     "text": "من الكود",
+     "why": "لأ."
+    },
+    {
+     "text": "من الـ CSS",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Brief."
+  },
+  {
+   "id": "05-apis-ch24-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "author بيحاول ينشر مقالة ومسموح بس للـ editor. الرد؟",
+   "options": [
+    {
+     "text": "401",
+     "why": "هو معروف."
+    },
+    {
+     "text": "403",
+     "why": "صح."
+    },
+    {
+     "text": "404",
+     "why": "لأ."
+    },
+    {
+     "text": "422",
+     "why": "لأ."
+    }
+   ],
+   "correct": 1,
+   "explanation": "عارفينك بس لأ."
+  },
+  {
+   "id": "05-apis-ch24-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "OpenAPI 3.1+ يقدر يوصف Webhooks؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح."
+    },
+    {
+     "text": "لأ",
+     "why": "يقدر."
+    }
+   ],
+   "correct": 0,
+   "explanation": "article.published."
+  },
+  {
+   "id": "05-apis-ch24-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "PATCH من غير If-Match في التصميم ده بيرجّع؟",
+   "options": [
+    {
+     "text": "428 Precondition Required",
+     "why": "صح."
+    },
+    {
+     "text": "412",
+     "why": "ده لو الـ ETag مش مطابق."
+    },
+    {
+     "text": "400",
+     "why": "مش ده."
+    },
+    {
+     "text": "200",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "If-Match إجباري."
+  },
+  {
+   "id": "05-apis-ch24-05",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات المشروع:",
+   "items": [
+    "الـ Brief والأدوار",
+    "جدول الـ Endpoints والأكواد",
+    "القرارات الصعبة مكتوبة بأسبابها",
+    "الـ Spec (OpenAPI)",
+    "Lint و Docs",
+    "Checklist الـ 30 نقطة"
+   ],
+   "explanation": "الكتاب كله."
+  },
+  {
+   "id": "05-apis-ch24-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل اسم حدث الـ Webhook:",
+   "template": "article.___",
+   "blanks": [
+    [
+     "published"
+    ]
+   ],
+   "hint": "اتنشر.",
+   "explanation": "في webhooks."
+  },
+  {
+   "id": "05-apis-ch24-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: الأدوار التلاتة: viewer و author و ___",
+   "template": "viewer و author و ___",
+   "blanks": [
+    [
+     "editor"
+    ]
+   ],
+   "hint": "المحرر.",
+   "explanation": "صلاحيات كل واحد."
+  },
+  {
+   "id": "05-apis-ch24-08",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "زميل اقترح IDs متسلسلة و PUT للتعديل ومن غير If-Match.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أرفض بأسباب: IDs String غير قابلة للتخمين، و PATCH للتعديل الجزئي، و If-Match إجباري ضد الـ Lost update",
+     "why": "صح."
+    },
+    {
+     "text": "أوافق علشان أسهل",
+     "why": "هتدفع بعدين."
+    },
+    {
+     "text": "أختار عشوائي",
+     "why": "لأ."
+    },
+    {
+     "text": "أسيبها للكود",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "القرارات الصعبة."
+  },
+  {
+   "id": "05-apis-ch24-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "Redocly lint طلّع 4 تحذيرات.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أصلّح كل واحد وأفهم سببه",
+     "why": "صح."
+    },
+    {
+     "text": "أتجاهلهم",
+     "why": "لأ."
+    },
+    {
+     "text": "أقفل الـ Lint",
+     "why": "لأ."
+    },
+    {
+     "text": "أمسح الملف",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Lint نظيف قبل التسليم."
+  },
+  {
+   "id": "05-apis-ch24-10",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ولّد Docs HTML من openapi.yaml بـ Redocly.",
+   "accepted": [
+    "npx @redocly/cli build-docs openapi.yaml",
+    "redocly build-docs openapi.yaml",
+    "npx @redocly/cli@latest build-docs openapi.yaml"
+   ],
+   "hint": "build-docs.",
+   "explanation": "ملف HTML."
+  },
+  {
+   "id": "05-apis-ch24-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه جدول الـ Endpoints بالأكواد قبل أي كود؟",
+   "options": [
+    {
+     "text": "علشان تتفق على العقد والحالات كلها (نجاح وأخطاء) قبل ما تتربط بتفاصيل",
+     "why": "صح."
+    },
+    {
+     "text": "شكل",
+     "why": "لأ."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان أسرع كتابة",
+     "why": "مش الأساس."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Design-first."
+  },
+  {
+   "id": "05-apis-ch24-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Pagination في Content Library اخترنا لها؟",
+   "options": [
+    {
+     "text": "Cursor",
+     "why": "صح."
+    },
+    {
+     "text": "Offset",
+     "why": "بيكرر."
+    },
+    {
+     "text": "مفيش",
+     "why": "لازم."
+    },
+    {
+     "text": "Page",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ثابت وسريع."
+  }
+ ]
+}

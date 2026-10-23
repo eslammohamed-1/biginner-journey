@@ -1,0 +1,219 @@
+{
+ "book": "07-docker",
+ "chapter": 10,
+ "chapterFile": "ch10",
+ "title": "بناء الـ Image و Multi-stage Build",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "07-docker-ch10-01",
+   "type": "command",
+   "level": "easy",
+   "prompt": "ابني Image اسمها myapp من الفولدر الحالي.",
+   "accepted": [
+    "docker build -t myapp .",
+    "docker build --tag myapp .",
+    "docker build -t myapp:latest ."
+   ],
+   "hint": "-t والنقطة.",
+   "explanation": "النقطة = الـ Context."
+  },
+  {
+   "id": "07-docker-ch10-02",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ابني من ملف اسمه Dockerfile.dev.",
+   "accepted": [
+    "docker build -t myapp -f Dockerfile.dev .",
+    "docker build -f Dockerfile.dev -t myapp ."
+   ],
+   "hint": "-f.",
+   "explanation": "لاسم مختلف."
+  },
+  {
+   "id": "07-docker-ch10-03",
+   "type": "mcq",
+   "level": "easy",
+   "question": "النقطة في آخر docker build معناها؟",
+   "options": [
+    {
+     "text": "الـ Build Context: الفولدر اللي بيتبعت لـ Docker",
+     "why": "صح."
+    },
+    {
+     "text": "نهاية الأمر",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Image",
+     "why": "لأ."
+    },
+    {
+     "text": "مفيش معنى",
+     "why": "فيه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بيتبعت كله."
+  },
+  {
+   "id": "07-docker-ch10-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في Multi-stage، أنهي مرحلة بتبقى الـ Image النهائية؟",
+   "options": [
+    {
+     "text": "الأخيرة بس",
+     "why": "صح."
+    },
+    {
+     "text": "الأولى",
+     "why": "لأ."
+    },
+    {
+     "text": "كلهم",
+     "why": "لأ."
+    },
+    {
+     "text": "الأكبر",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "COPY --from بينقل الناتج."
+  },
+  {
+   "id": "07-docker-ch10-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ليه Multi-stage؟",
+   "options": [
+    {
+     "text": "أدوات البناء متبقاش في الـ Image النهائية، فتبقى أصغر وأأمن",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع build دايماً",
+     "why": "مش الأساس."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان الـ logs",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ضخمة وخطر أمنياً."
+  },
+  {
+   "id": "07-docker-ch10-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل نقل الناتج من مرحلة اسمها build:",
+   "template": "COPY ___=build /app/dist /usr/share/nginx/html",
+   "blanks": [
+    [
+     "--from"
+    ]
+   ],
+   "hint": "من.",
+   "explanation": "Multi-stage."
+  },
+  {
+   "id": "07-docker-ch10-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل تسمية مرحلة:",
+   "template": "FROM node:22 ___ build",
+   "blanks": [
+    [
+     "AS"
+    ]
+   ],
+   "hint": "باسم.",
+   "explanation": "ونستخدم الاسم في --from."
+  },
+  {
+   "id": "07-docker-ch10-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "كل تعديل في الكود بيعيد npm ci من الأول ويطوّل الـ build.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أنسخ package*.json وأعمل npm ci قبل COPY . . علشان الكاش",
+     "why": "صح."
+    },
+    {
+     "text": "أشيل الكاش",
+     "why": "أبطأ."
+    },
+    {
+     "text": "أستخدم ADD",
+     "why": "مش الحل."
+    },
+    {
+     "text": "عادي",
+     "why": "بطيء."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اللي بيتغير قليل الأول."
+  },
+  {
+   "id": "07-docker-ch10-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Multi-stage لـ React:",
+   "items": [
+    "FROM node AS build",
+    "npm ci و npm run build",
+    "FROM nginx",
+    "COPY --from=build dist"
+   ],
+   "explanation": "Image صغيرة."
+  },
+  {
+   "id": "07-docker-ch10-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "Image لـ React من غير Multi-stage فيها إيه زيادة؟",
+   "options": [
+    {
+     "text": "Node و node_modules وأدوات البناء اللي مش محتاجها وقت التشغيل",
+     "why": "صح."
+    },
+    {
+     "text": "مفيش زيادة",
+     "why": "فيه."
+    },
+    {
+     "text": "الـ OS بس",
+     "why": "لأ."
+    },
+    {
+     "text": "الصور بس",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ضخمة وخطر."
+  },
+  {
+   "id": "07-docker-ch10-11",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرض حجم الـ Images علشان تقارن قبل وبعد Multi-stage.",
+   "accepted": [
+    "docker images",
+    "docker image ls",
+    "docker images myapp"
+   ],
+   "hint": "images.",
+   "explanation": "عمود SIZE."
+  }
+ ]
+}

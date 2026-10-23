@@ -1,0 +1,247 @@
+{
+ "book": "04-python",
+ "chapter": 27,
+ "chapterFile": "ch27",
+ "title": "التكلفة وتوفير الـ Tokens: احسب قبل ما تدفع",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch27-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "معادلة التكلفة؟",
+   "options": [
+    {
+     "text": "(input × سعر + cached × سعر + output × سعر) ÷ مليون",
+     "why": "صح."
+    },
+    {
+     "text": "عدد الطلبات × دولار",
+     "why": "لأ."
+    },
+    {
+     "text": "عدد الحروف",
+     "why": "بالتوكنز."
+    },
+    {
+     "text": "الوقت",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "والتفكير داخل في الـ Output."
+  },
+  {
+   "id": "04-python-ch27-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "تقدير سريع لعدد التوكنز بالإنجليزي؟",
+   "options": [
+    {
+     "text": "عدد الحروف ÷ 4",
+     "why": "صح، تقريبي."
+    },
+    {
+     "text": "عدد الكلمات × 10",
+     "why": "لأ."
+    },
+    {
+     "text": "عدد السطور",
+     "why": "لأ."
+    },
+    {
+     "text": "الحجم بالميجا",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "العربي بياخد أكتر."
+  },
+  {
+   "id": "04-python-ch27-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "علشان الـ Caching يشتغل، تحط اسم الملف المتغير في أول الـ Prompt؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "العكس."
+    },
+    {
+     "text": "لأ، الثابت في الأول والمتغير في الآخر",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ Cache على الـ Prefix."
+  },
+  {
+   "id": "04-python-ch27-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في GPT-6 كتابة الـ Cache أغلى من الـ Input العادي؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح حسب الكتاب."
+    },
+    {
+     "text": "لأ",
+     "why": "أغلى."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بس القراية منه أرخص."
+  },
+  {
+   "id": "04-python-ch27-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "احسب عدد توكنز text تقريبياً في est.",
+   "accepted": [
+    "est = len(text) // 4"
+   ],
+   "hint": "len و // 4.",
+   "explanation": "الدقيق بـ count_tokens."
+  },
+  {
+   "id": "04-python-ch27-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تعرف التوكنز اللي جت من الـ Cache:",
+   "template": "response.usage.input_tokens_details.___",
+   "blanks": [
+    [
+     "cached_tokens"
+    ]
+   ],
+   "hint": "cached...",
+   "explanation": "وreasoning_tokens في output_tokens_details."
+  },
+  {
+   "id": "04-python-ch27-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تعدّ توكنز في Gemini قبل الطلب:",
+   "template": "client.models.___(model=M, contents=text)",
+   "blanks": [
+    [
+     "count_tokens"
+    ]
+   ],
+   "hint": "عدّ.",
+   "explanation": "وOpenAI responses.input_tokens.count."
+  },
+  {
+   "id": "04-python-ch27-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "هتشغّل اسكريبت على 5000 ملف لأول مرة.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشغّل estimate_cost.py الأول وأحسب التكلفة المتوقعة، وبعدين --limit على عينة",
+     "why": "صح."
+    },
+    {
+     "text": "أشغّل وأشوف الفاتورة",
+     "why": "الفاتورة اللي محدش توقعها."
+    },
+    {
+     "text": "أخلي الموديل الأغلى",
+     "why": "مكلف."
+    },
+    {
+     "text": "أشيل max_output_tokens",
+     "why": "أخطر."
+    }
+   ],
+   "correct": 0,
+   "explanation": "احسب قبل ما تدفع."
+  },
+  {
+   "id": "04-python-ch27-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب طرق التوفير بنفس ترتيب الكتاب (من أول قرار بتاخده لآخر قرار):",
+   "items": [
+    "موديل أصغر",
+    "تفكير أقل",
+    "سقف Output وInput أقصر",
+    "الثابت في الأول للـ Cache",
+    "Batch/Flex"
+   ],
+   "explanation": "ومعاهم Resume وحد صرف."
+  },
+  {
+   "id": "04-python-ch27-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه تحط الأسعار في الكود بتاريخها؟",
+   "options": [
+    {
+     "text": "علشان الأسعار بتتغير وتعرف حساباتك مبنية على أنهي نسخة",
+     "why": "صح."
+    },
+    {
+     "text": "علشان شكلها",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ API بيطلبها",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان تبقى ثابتة",
+     "why": "مش ثابتة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الأسعار بتتغير."
+  },
+  {
+   "id": "04-python-ch27-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Tokens التفكير مجانية لأنها مش بتظهر؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بتتحسب Output."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "reasoning_tokens."
+  },
+  {
+   "id": "04-python-ch27-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إيه أسهل طريقة تقلل تكلفة كل طلب من غير ما تغيّر الموديل؟",
+   "options": [
+    {
+     "text": "تقصّر الـ Input (مثلاً أول 4000 حرف) وتحط سقف للـ Output",
+     "why": "صح."
+    },
+    {
+     "text": "تكرر الطلب",
+     "why": "أغلى."
+    },
+    {
+     "text": "تزوّد الأمثلة",
+     "why": "أغلى."
+    },
+    {
+     "text": "تبعت كل حاجة",
+     "why": "أغلى."
+    }
+   ],
+   "correct": 0,
+   "explanation": "9 طرق توفّر."
+  }
+ ]
+}

@@ -1,29 +1,25 @@
-const CURLY_SINGLE = /[\u2018\u2019\u201A\u201B\u2032]/g;
-const CURLY_DOUBLE = /[\u201C\u201D\u201E\u201F\u2033\u00AB\u00BB]/g;
 const INVISIBLE = /[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF]/g;
+const ARABIC_DIACRITICS = /[\u064B-\u0652\u0670\u0640]/g;
 
-/** Trim, collapse whitespace, and turn curly quotes into straight quotes. */
-export function normalizeAnswer(input: string): string {
-	return input
-		.normalize('NFC')
-		.replace(INVISIBLE, '')
-		.replace(CURLY_SINGLE, "'")
-		.replace(CURLY_DOUBLE, '"')
-		.replace(/\s+/g, ' ')
-		.trim();
+function stripMarks(input: string): string {
+	return input.normalize('NFC').replace(INVISIBLE, '');
 }
 
-function quotesEquivalent(a: string, b: string): boolean {
-	const fold = (value: string) => value.replace(/['"]/g, '"');
-	return fold(a) === fold(b);
+/**
+ * Typed answers (commands and code lines), per exercises/SCHEMA.md:
+ * trim, strip one leading `$ ` or `% `, collapse whitespace, drop one trailing `;`.
+ */
+export function normalizeAnswer(input: string): string {
+	let value = stripMarks(input).trim();
+	if (value.startsWith('$ ') || value.startsWith('% ')) value = value.slice(2);
+	value = value.replace(/\s+/g, ' ');
+	if (value.endsWith(';')) value = value.slice(0, -1);
+	return value.trim();
 }
 
 export function matchesAccepted(input: string, accepted: readonly string[]): boolean {
 	const norm = normalizeAnswer(input);
-	return accepted.some((answer) => {
-		const target = normalizeAnswer(answer);
-		return norm === target || quotesEquivalent(norm, target);
-	});
+	return accepted.some((answer) => normalizeAnswer(answer) === norm);
 }
 
 export function matchesCommand(
@@ -32,20 +28,35 @@ export function matchesCommand(
 	patterns: readonly string[] = [],
 ): boolean {
 	if (matchesAccepted(input, accepted)) return true;
-	const candidates = [input.trim(), normalizeAnswer(input)];
+	const norm = normalizeAnswer(input);
 	return patterns.some((pattern) => {
 		try {
-			const re = new RegExp(pattern);
-			return candidates.some((candidate) => re.test(candidate));
+			return new RegExp(pattern).test(norm);
 		} catch {
 			return false;
 		}
 	});
 }
 
+/** Fill blanks: trim, case-sensitive. Arabic diacritics and tatweel are ignored. */
+export function normalizeFill(input: string): string {
+	return stripMarks(input).trim();
+}
+
+function foldArabic(input: string): string {
+	return input.replace(ARABIC_DIACRITICS, '');
+}
+
 export function matchesFill(inputs: readonly string[], blanks: readonly (readonly string[])[]): boolean {
 	if (inputs.length !== blanks.length) return false;
-	return inputs.every((input, index) => matchesAccepted(input, blanks[index] ?? []));
+	return inputs.every((input, index) => {
+		const norm = normalizeFill(input);
+		const folded = foldArabic(norm);
+		return (blanks[index] ?? []).some((answer) => {
+			const target = normalizeFill(answer);
+			return norm === target || folded === foldArabic(target);
+		});
+	});
 }
 
 export function sameOrder(current: readonly string[], correct: readonly string[]): boolean {

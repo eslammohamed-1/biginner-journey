@@ -1,0 +1,249 @@
+{
+ "book": "05-apis",
+ "chapter": 8,
+ "chapterFile": "ch08",
+ "title": "الأدوات: curl للـ APIs و HTTPie و Bruno/Postman وتابة Network",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "05-apis-ch08-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "`curl -d '{\"a\":1}' URL` بيبعت Content-Type: application/json؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيبعت form."
+    },
+    {
+     "text": "لأ، بيبعت application/x-www-form-urlencoded",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الغلطة الأشهر."
+  },
+  {
+   "id": "05-apis-ch08-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في HTTPie، count=5 بيبعت إيه؟",
+   "options": [
+    {
+     "text": "\"5\" كـ String",
+     "why": "صح."
+    },
+    {
+     "text": "5 كرقم",
+     "why": "ده count:=5."
+    },
+    {
+     "text": "Header",
+     "why": "ده :."
+    },
+    {
+     "text": "Query",
+     "why": "ده ==."
+    }
+   ],
+   "correct": 0,
+   "explanation": ":= للـ JSON الخام."
+  },
+  {
+   "id": "05-apis-ch08-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`curl -f` لو الـ Status 404 الـ Exit code بيبقى؟",
+   "options": [
+    {
+     "text": "22",
+     "why": "صح."
+    },
+    {
+     "text": "0",
+     "why": "من غير -f."
+    },
+    {
+     "text": "404",
+     "why": "لأ."
+    },
+    {
+     "text": "1",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "--fail-with-body بيطبع الرسالة."
+  },
+  {
+   "id": "05-apis-ch08-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ابعت PUT بـ JSON {\"a\":1} لـ https://httpbin.org/put.",
+   "accepted": [
+    "curl -s --json '{\"a\":1}' -X PUT https://httpbin.org/put",
+    "curl --json '{\"a\":1}' -X PUT https://httpbin.org/put",
+    "curl -X PUT --json '{\"a\":1}' https://httpbin.org/put"
+   ],
+   "hint": "--json مع -X PUT.",
+   "explanation": "--json بيحط Content-Type و Accept."
+  },
+  {
+   "id": "05-apis-ch08-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اطبع الـ Status code بس لـ https://httpbin.org/status/404.",
+   "accepted": [
+    "curl -s -o /dev/null -w \"%{http_code}\" https://httpbin.org/status/404",
+    "curl -s -o /dev/null -w '%{http_code}' https://httpbin.org/status/404"
+   ],
+   "hint": "-o /dev/null و -w.",
+   "explanation": "و %{time_total} للوقت."
+  },
+  {
+   "id": "05-apis-ch08-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ابعت Query آمن q=APIs و JSON لـ URL بـ GET.",
+   "accepted": [
+    "curl -G --data-urlencode \"q=APIs و JSON\" URL",
+    "curl -G --data-urlencode 'q=APIs و JSON' URL"
+   ],
+   "hint": "-G و --data-urlencode.",
+   "explanation": "بيعمل encoding للمسافات والعربي."
+  },
+  {
+   "id": "05-apis-ch08-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل HTTPie علشان تشوف الطلب قبل ما يتبعت:",
+   "template": "http ___ POST api.example.com/v1/articles title=\"Hello\"",
+   "blanks": [
+    [
+     "--offline"
+    ]
+   ],
+   "hint": "من غير نت.",
+   "explanation": "و views:=10 رقم."
+  },
+  {
+   "id": "05-apis-ch08-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "السيرفر بيقول json: null مع إنك بعت JSON بـ -d.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "نسيت Content-Type، فأستخدم --json أو -H 'Content-Type: application/json'",
+     "why": "صح."
+    },
+    {
+     "text": "الـ JSON غلط",
+     "why": "الـ Header."
+    },
+    {
+     "text": "السيرفر بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "أستخدم GET",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أشهر غلطة."
+  },
+  {
+   "id": "05-apis-ch08-09",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "عملت Copy as cURL من تابة Network وهتبعته لزميل.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشيل الـ Cookies والـ Authorization الأول لأن فيهم أسراري",
+     "why": "صح."
+    },
+    {
+     "text": "أبعته زي ما هو",
+     "why": "فيه جلستك."
+    },
+    {
+     "text": "أشيل الـ URL",
+     "why": "مش المشكلة."
+    },
+    {
+     "text": "عادي",
+     "why": "خطر."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خلي بالك."
+  },
+  {
+   "id": "05-apis-ch08-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب من الأخف للأتقل كأدوات:",
+   "items": [
+    "curl (Terminal)",
+    "HTTPie (Terminal أسهل)",
+    "Bruno/Insomnia (واجهة خفيفة)",
+    "Postman (الأشهر والأتقل)"
+   ],
+   "explanation": "Bruno ملفات في Git."
+  },
+  {
+   "id": "05-apis-ch08-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ميزة Bruno الأساسية؟",
+   "options": [
+    {
+     "text": "الـ Collections ملفات تتحفظ في Git مع المشروع",
+     "why": "صح."
+    },
+    {
+     "text": "أغلى",
+     "why": "لأ."
+    },
+    {
+     "text": "مفيهوش واجهة",
+     "why": "فيه."
+    },
+    {
+     "text": "بيشتغل في المتصفح بس",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Postman الأشهر."
+  },
+  {
+   "id": "05-apis-ch08-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه تحط الـ Token في Variable بدل ما تكتبه في الأمر؟",
+   "options": [
+    {
+     "text": "علشان ميفضلش في الـ History وميتشاركش بالغلط",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع",
+     "why": "لأ."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    },
+    {
+     "text": "curl بيطلب كده",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Best Practice."
+  }
+ ]
+}

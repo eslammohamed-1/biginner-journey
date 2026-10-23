@@ -1,0 +1,231 @@
+{
+ "book": "04-python",
+ "chapter": 5,
+ "chapterFile": "ch05",
+ "title": "الشروط والـ Loops: الاسكريبت بيقرر ويكرر",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "04-python-ch05-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "`range(3)` بيدّي إيه؟",
+   "options": [
+    {
+     "text": "0, 1, 2",
+     "why": "صح."
+    },
+    {
+     "text": "1, 2, 3",
+     "why": "بيبدأ من 0."
+    },
+    {
+     "text": "0, 1, 2, 3",
+     "why": "من غير 3."
+    },
+    {
+     "text": "3",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "النهاية مش داخلة."
+  },
+  {
+   "id": "04-python-ch05-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`continue` بتعمل إيه؟",
+   "options": [
+    {
+     "text": "تسيب الدور ده وتروح للي بعده",
+     "why": "صح."
+    },
+    {
+     "text": "تخرج من الـ Loop",
+     "why": "ده break."
+    },
+    {
+     "text": "توقف الاسكريبت",
+     "why": "لأ."
+    },
+    {
+     "text": "تعيد الدور",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "break = اخرج خالص."
+  },
+  {
+   "id": "04-python-ch05-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`[x * 2 for x in [1, 2, 3]]` نتيجتها؟",
+   "options": [
+    {
+     "text": "[2, 4, 6]",
+     "why": "صح."
+    },
+    {
+     "text": "[1, 2, 3, 1, 2, 3]",
+     "why": "ده list * 2."
+    },
+    {
+     "text": "12",
+     "why": "لأ."
+    },
+    {
+     "text": "خطأ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اقراه: الـ for الأول."
+  },
+  {
+   "id": "04-python-ch05-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "تقارن بـ None إزاي؟",
+   "options": [
+    {
+     "text": "`x is None`",
+     "why": "صح."
+    },
+    {
+     "text": "`x == None`",
+     "why": "بتشتغل بس مش الأسلوب الصح."
+    },
+    {
+     "text": "`x = None`",
+     "why": "ده إسناد."
+    },
+    {
+     "text": "`None(x)`",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "is للهوية."
+  },
+  {
+   "id": "04-python-ch05-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "لف على paths مع رقم يبدأ من 1.",
+   "accepted": [
+    "for i, path in enumerate(paths, start=1):",
+    "for i, path in enumerate(paths, 1):"
+   ],
+   "hint": "enumerate مع start.",
+   "explanation": "أحسن من عدّاد بإيدك."
+  },
+  {
+   "id": "04-python-ch05-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل List بأسامي (stem) الملفات اللي امتدادها .md بس من paths.",
+   "accepted": [
+    "names = [p.stem for p in paths if p.suffix == \".md\"]",
+    "names = [p.stem for p in paths if p.suffix == '.md']"
+   ],
+   "hint": "Comprehension بـ if.",
+   "explanation": "الـ for ثم الـ if ثم اللي في الأول."
+  },
+  {
+   "id": "04-python-ch05-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تلف على اتنين مع بعض:",
+   "template": "for name, text in ___(names, texts):",
+   "blanks": [
+    [
+     "zip"
+    ]
+   ],
+   "hint": "سوستة.",
+   "explanation": "بيقف عند الأقصر."
+  },
+  {
+   "id": "04-python-ch05-08",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: ثلاثي الشرط في سطر:",
+   "template": "label = \"big\" if n > 100 ___ \"small\"",
+   "blanks": [
+    [
+     "else"
+    ]
+   ],
+   "hint": "وإلا.",
+   "explanation": "x if cond else y."
+  },
+  {
+   "id": "04-python-ch05-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الاسكريبت لف ومش بيخلص.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "Ctrl+C علشان أوقفه، وأراجع شرط الـ while إنه بيتغير",
+     "why": "صح."
+    },
+    {
+     "text": "أقفل الماك",
+     "why": "مبالغة."
+    },
+    {
+     "text": "أستنى",
+     "why": "ممكن للأبد."
+    },
+    {
+     "text": "أمسح الملف",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خد بالك من الـ Loop اللانهائي."
+  },
+  {
+   "id": "04-python-ch05-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "إمتى تستخدم while بدل for؟",
+   "options": [
+    {
+     "text": "لما متعرفش هتلف كام مرة، زي محاولات الإعادة لحد ما تنجح",
+     "why": "صح."
+    },
+    {
+     "text": "دايماً",
+     "why": "for أوضح غالباً."
+    },
+    {
+     "text": "لما عندك List",
+     "why": "for."
+    },
+    {
+     "text": "مش موجودة في Python",
+     "why": "موجودة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "for لكل حاجة في..."
+  },
+  {
+   "id": "04-python-ch05-11",
+   "type": "command",
+   "level": "medium",
+   "prompt": "احسب مجموع tokens لكل الصفوف rows (كل صف فيه .tokens) في سطر.",
+   "accepted": [
+    "sum(x.tokens for x in rows)",
+    "sum(r.tokens for r in rows)",
+    "sum([x.tokens for x in rows])"
+   ],
+   "hint": "sum مع Generator.",
+   "explanation": "any و all زيها."
+  }
+ ]
+}

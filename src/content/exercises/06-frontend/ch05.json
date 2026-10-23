@@ -1,0 +1,249 @@
+{
+ "book": "06-frontend",
+ "chapter": 5,
+ "chapterFile": "ch05",
+ "title": "الـ Accessibility: الموقع لكل الناس، مش للي زيك بس",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "06-frontend-ch05-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Accessibility بتفيد مين؟",
+   "options": [
+    {
+     "text": "كل الناس: إعاقة دائمة أو مؤقتة أو ظرفية",
+     "why": "صح."
+    },
+    {
+     "text": "المكفوفين بس",
+     "why": "لأ."
+    },
+    {
+     "text": "محدش",
+     "why": "لأ."
+    },
+    {
+     "text": "المطورين",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "انت كمان."
+  },
+  {
+   "id": "06-frontend-ch05-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "role=\"button\" على div بيخليه يشتغل بالـ Enter والـ Space لوحده؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ARIA بيغيّر المعنى بس."
+    },
+    {
+     "text": "لأ، لازم تكتب الكيبورد بنفسك، فاستخدم <button>",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "القاعدة الأولى."
+  },
+  {
+   "id": "06-frontend-ch05-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "tabindex=\"-1\" بيخلي العنصر يتوصل بالـ Tab؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "العكس."
+    },
+    {
+     "text": "لأ، بيخليه يتعمله focus بالـ JS بس",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ومفيش tabindex موجب."
+  },
+  {
+   "id": "06-frontend-ch05-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Lighthouse بيمسك كل مشاكل الـ Accessibility؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "جزء بس."
+    },
+    {
+     "text": "لأ، لازم اختبار يدوي بالكيبورد وقارئ الشاشة",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Checklist يدوي."
+  },
+  {
+   "id": "06-frontend-ch05-05",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل نسبة التباين للنص العادي:",
+   "template": "___:1",
+   "blanks": [
+    [
+     "4.5"
+    ]
+   ],
+   "hint": "أربعة ونص.",
+   "explanation": "3:1 للكبير."
+  },
+  {
+   "id": "06-frontend-ch05-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان الـ Focus يظهر للكيبورد:",
+   "template": "button:___ { outline: 2px solid; }",
+   "blanks": [
+    [
+     "focus-visible"
+    ]
+   ],
+   "hint": "focus-...",
+   "explanation": "متعملش outline: none من غير بديل."
+  },
+  {
+   "id": "06-frontend-ch05-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اكتب Media query بتحترم اللي مش عايز حركة.",
+   "accepted": [
+    "@media (prefers-reduced-motion: reduce)",
+    "@media (prefers-reduced-motion: reduce) {"
+   ],
+   "hint": "prefers-reduced-motion.",
+   "explanation": "شيل الأنيميشن."
+  },
+  {
+   "id": "06-frontend-ch05-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "زرار القايمة بيفتح ويقفل بس قارئ الشاشة مش عارف حالته.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أضيف aria-expanded=\"true/false\" على الزرار وأحدّثها",
+     "why": "صح."
+    },
+    {
+     "text": "أغيّر اللون بس",
+     "why": "مش كفاية."
+    },
+    {
+     "text": "أشيل الزرار",
+     "why": "لأ."
+    },
+    {
+     "text": "أضيف alt",
+     "why": "للصور."
+    }
+   ],
+   "correct": 0,
+   "explanation": "aria-expanded."
+  },
+  {
+   "id": "06-frontend-ch05-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الأخطاء في الـ Form بتظهر باللون الأحمر بس.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أضيف نص يشرح الخطأ وأيقونة، ومعتمدش على اللون لوحده",
+     "why": "صح."
+    },
+    {
+     "text": "أحمر أغمق",
+     "why": "لسه لون."
+    },
+    {
+     "text": "عادي",
+     "why": "عمى الألوان."
+    },
+    {
+     "text": "أشيل الأخطاء",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "متعتمدش على اللون."
+  },
+  {
+   "id": "06-frontend-ch05-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Checklist يدوي سريع:",
+   "items": [
+    "جرّب الصفحة بالكيبورد بس",
+    "شيك الـ Focus ظاهر",
+    "شيك التباين",
+    "شيك الـ alt والـ labels",
+    "جرّب VoiceOver"
+   ],
+   "explanation": "5 دقايق."
+  },
+  {
+   "id": "06-frontend-ch05-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ترتيب الـ Tab بيمشي على إيه؟",
+   "options": [
+    {
+     "text": "ترتيب الـ HTML",
+     "why": "صح، علشان كده متغيّرش الترتيب بالـ CSS بس."
+    },
+    {
+     "text": "الترتيب البصري",
+     "why": "مش دايماً."
+    },
+    {
+     "text": "tabindex موجب",
+     "why": "ممنوع."
+    },
+    {
+     "text": "عشوائي",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ترتيب الـ HTML = ترتيب الـ Tab."
+  },
+  {
+   "id": "06-frontend-ch05-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "مستوى WCAG المستهدف عادةً؟",
+   "options": [
+    {
+     "text": "AA",
+     "why": "صح."
+    },
+    {
+     "text": "A",
+     "why": "أقل."
+    },
+    {
+     "text": "AAA",
+     "why": "صعب لكل حاجة."
+    },
+    {
+     "text": "مفيش",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "المبادئ POUR."
+  }
+ ]
+}

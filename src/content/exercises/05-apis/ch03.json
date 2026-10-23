@@ -1,0 +1,244 @@
+{
+ "book": "05-apis",
+ "chapter": 3,
+ "chapterFile": "ch03",
+ "title": "تشريح طلب API حقيقي: كل سطر رايح وكل سطر جاي",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "05-apis-ch03-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "GitHub بيعمل إيه في طلب من غير User-Agent؟",
+   "options": [
+    {
+     "text": "بيرفضه بـ 403",
+     "why": "صح."
+    },
+    {
+     "text": "بيقبله",
+     "why": "لأ."
+    },
+    {
+     "text": "404",
+     "why": "لأ."
+    },
+    {
+     "text": "500",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "curl بيبعت واحد افتراضياً."
+  },
+  {
+   "id": "05-apis-ch03-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "رد 304 فيه نفس الـ Body بتاع 200؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "من غير Body."
+    },
+    {
+     "text": "لأ، 304 من غير Body ومعناه استخدم النسخة اللي عندك",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "If-None-Match + ETag."
+  },
+  {
+   "id": "05-apis-ch03-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "x-ratelimit-reset بيقولك إيه؟",
+   "options": [
+    {
+     "text": "وقت التصفير كـ Unix time",
+     "why": "صح."
+    },
+    {
+     "text": "عدد الثواني الفاضلة",
+     "why": "مش ثواني فاضلة."
+    },
+    {
+     "text": "عدد الطلبات",
+     "why": "ده remaining."
+    },
+    {
+     "text": "التاريخ النهارده",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "تحوّله بـ date -r على الماك."
+  },
+  {
+   "id": "05-apis-ch03-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الأحسن تخزّن full_name ولا id كمرجع لـ Repo؟",
+   "options": [
+    {
+     "text": "id، لأن الاسم ممكن يتغير",
+     "why": "صح."
+    },
+    {
+     "text": "full_name",
+     "why": "بيتغير."
+    },
+    {
+     "text": "الاتنين مش مهمين",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خزّن الـ id."
+  },
+  {
+   "id": "05-apis-ch03-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "حوّل Unix time 1767225600 لتاريخ مقروء على الماك.",
+   "accepted": [
+    "date -r 1767225600"
+   ],
+   "hint": "date -r على الماك.",
+   "explanation": "على Linux date -d @..."
+  },
+  {
+   "id": "05-apis-ch03-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شوف الطلب والرد بالتفصيل لـ https://api.github.com/zen.",
+   "accepted": [
+    "curl -v https://api.github.com/zen",
+    "curl -sv https://api.github.com/zen",
+    "curl -v \"https://api.github.com/zen\""
+   ],
+   "hint": "-v.",
+   "explanation": "> رايح و < جاي."
+  },
+  {
+   "id": "05-apis-ch03-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل Header الطلب الـ Conditional:",
+   "template": "-H 'If-None-___: \"etag-value\"'",
+   "blanks": [
+    [
+     "Match"
+    ]
+   ],
+   "hint": "If-None-...",
+   "explanation": "لو مفيش تغيير 304."
+  },
+  {
+   "id": "05-apis-ch03-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل Header اللي بيطلب JSON من GitHub:",
+   "template": "-H \"Accept: application/vnd.___+json\"",
+   "blanks": [
+    [
+     "github"
+    ]
+   ],
+   "hint": "اسم الموقع.",
+   "explanation": "ومعاه X-GitHub-Api-Version."
+  },
+  {
+   "id": "05-apis-ch03-09",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب خطة التلات أسئلة لأي رد:",
+   "items": [
+    "نجح؟ (Status)",
+    "إيه الشكل؟ (Content-Type و Body)",
+    "فاضلّي قد إيه؟ (x-ratelimit-*)"
+   ],
+   "explanation": "Best Practice."
+  },
+  {
+   "id": "05-apis-ch03-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ Body الراجع JSON ضخم وتايه فيه.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أختار الحقول اللي محتاجها بـ jq وأشوف الشكل الأول",
+     "why": "صح."
+    },
+    {
+     "text": "أقراه كله بعيني",
+     "why": "هتتوه."
+    },
+    {
+     "text": "أمسحه",
+     "why": "لأ."
+    },
+    {
+     "text": "أطلب API تاني",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "تمشي في JSON كبير."
+  },
+  {
+   "id": "05-apis-ch03-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "الـ ETag مربوط بإيه؟",
+   "options": [
+    {
+     "text": "بنسخة الـ Resource وكمان بالـ Accept، فتغيير Accept يدّي ETag مختلف",
+     "why": "صح."
+    },
+    {
+     "text": "بالوقت بس",
+     "why": "لأ."
+    },
+    {
+     "text": "بالـ IP",
+     "why": "لأ."
+    },
+    {
+     "text": "بالـ Token",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خلي بالك."
+  },
+  {
+   "id": "05-apis-ch03-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "التواريخ في JSON بتاع GitHub شكلها؟",
+   "options": [
+    {
+     "text": "ISO 8601 بـ Z في الآخر (UTC)",
+     "why": "صح."
+    },
+    {
+     "text": "Unix time دايماً",
+     "why": "مش في الـ Body غالباً."
+    },
+    {
+     "text": "تاريخ عربي",
+     "why": "لأ."
+    },
+    {
+     "text": "dd/mm/yyyy",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "حوّلها لوقتك."
+  }
+ ]
+}

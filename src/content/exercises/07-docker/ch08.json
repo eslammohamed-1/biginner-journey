@@ -1,0 +1,232 @@
+{
+ "book": "07-docker",
+ "chapter": 8,
+ "chapterFile": "ch08",
+ "title": "Docker Networks: إزاي الـ Containers بتكلّم بعض",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "07-docker-ch08-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Network driver الافتراضي؟",
+   "options": [
+    {
+     "text": "bridge",
+     "why": "صح."
+    },
+    {
+     "text": "host",
+     "why": "لازم تطلبه."
+    },
+    {
+     "text": "none",
+     "why": "لأ."
+    },
+    {
+     "text": "overlay",
+     "why": "لـ Swarm."
+    }
+   ],
+   "correct": 0,
+   "explanation": "كل Container بياخد IP."
+  },
+  {
+   "id": "07-docker-ch08-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "جوه User-defined network، الـ Containers بتكلّم بعض إزاي؟",
+   "options": [
+    {
+     "text": "بالاسم وعلى بورت الـ Container",
+     "why": "صح، DNS داخلي."
+    },
+    {
+     "text": "بالـ IP بس",
+     "why": "الاسم أحسن."
+    },
+    {
+     "text": "بـ localhost",
+     "why": "localhost = الـ Container نفسه."
+    },
+    {
+     "text": "بـ -p",
+     "why": "مش لازم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ده سبب تعمل شبكة."
+  },
+  {
+   "id": "07-docker-ch08-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "--network host بيعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ Container بيستخدم شبكة الـ Host مباشرة من غير عزل",
+     "why": "صح."
+    },
+    {
+     "text": "مفيش شبكة",
+     "why": "ده none."
+    },
+    {
+     "text": "شبكة خاصة",
+     "why": "لأ."
+    },
+    {
+     "text": "بيعمل VPN",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "على الماك بيتصرف مختلف."
+  },
+  {
+   "id": "07-docker-ch08-04",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعمل شبكة اسمها app-net.",
+   "accepted": [
+    "docker network create app-net"
+   ],
+   "hint": "network create.",
+   "explanation": "بتدّيك DNS داخلي."
+  },
+  {
+   "id": "07-docker-ch08-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شغّل postgres:16 باسم db على شبكة app-net.",
+   "accepted": [
+    "docker run -d --name db --network app-net postgres:16",
+    "docker run -d --network app-net --name db postgres:16",
+    "docker run -d --name db --network app-net -e POSTGRES_PASSWORD=secret postgres:16"
+   ],
+   "patterns": [
+    "^docker run\\s+(?=.*--name\\s+db)(?=.*--network\\s+app-net).*postgres:16$"
+   ],
+   "hint": "--name و --network.",
+   "explanation": "التاني يكلمه بـ db:5432."
+  },
+  {
+   "id": "07-docker-ch08-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "وصّل Container موجود اسمه web بشبكة app-net.",
+   "accepted": [
+    "docker network connect app-net web"
+   ],
+   "hint": "network connect.",
+   "explanation": "من غير ما تعيد تشغيله."
+  },
+  {
+   "id": "07-docker-ch08-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل connection string من backend للـ db على نفس الشبكة:",
+   "template": "postgres://user:pass@___:5432/app",
+   "blanks": [
+    [
+     "db"
+    ]
+   ],
+   "hint": "اسم الـ Container.",
+   "explanation": "DNS داخلي."
+  },
+  {
+   "id": "07-docker-ch08-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ backend بيحاول يوصل للـ DB على localhost:5432 وبيفشل.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "localhost جوه الـ Container = الـ Container نفسه، فأحطهم على شبكة واحدة وأستخدم اسم db",
+     "why": "صح."
+    },
+    {
+     "text": "أفتح -p للـ DB",
+     "why": "مش لازم."
+    },
+    {
+     "text": "أعيد التشغيل",
+     "why": "لأ."
+    },
+    {
+     "text": "أغيّر البورت",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أشهر غلطة."
+  },
+  {
+   "id": "07-docker-ch08-09",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "عايز الـ Database متتشافش من برّه الجهاز خالص.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "مأعملهاش -p، والـ backend يكلمها على الشبكة الداخلية",
+     "why": "صح."
+    },
+    {
+     "text": "أعمل -p 5432:5432",
+     "why": "كده مكشوفة."
+    },
+    {
+     "text": "أغيّر الباسورد بس",
+     "why": "لسه مكشوفة."
+    },
+    {
+     "text": "--network host",
+     "why": "أسوأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "-p بس للحاجة اللي لازم تتشاف."
+  },
+  {
+   "id": "07-docker-ch08-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب ربط backend بـ db:",
+   "items": [
+    "docker network create app-net",
+    "شغّل db على app-net",
+    "شغّل backend على app-net",
+    "الـ backend يكلم db:5432"
+   ],
+   "explanation": "بالاسم."
+  },
+  {
+   "id": "07-docker-ch08-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه الشبكة الافتراضية bridge مش كفاية؟",
+   "options": [
+    {
+     "text": "مفيهاش DNS بالأسماء، فمحتاج IPs بتتغير",
+     "why": "صح."
+    },
+    {
+     "text": "مبتشتغلش",
+     "why": "بتشتغل."
+    },
+    {
+     "text": "أبطأ",
+     "why": "مش الأساس."
+    },
+    {
+     "text": "ممنوعة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "User-defined network."
+  }
+ ]
+}

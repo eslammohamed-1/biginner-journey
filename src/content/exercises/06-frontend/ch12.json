@@ -1,0 +1,228 @@
+{
+ "book": "06-frontend",
+ "chapter": 12,
+ "chapterFile": "ch12",
+ "title": "React و Vue و Angular و Svelte: نفس الفكرة بأربع لهجات",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "06-frontend-ch12-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ 4 Frameworks بيشتركوا في إيه؟",
+   "options": [
+    {
+     "text": "Components و State و Declarative UI",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الكود",
+     "why": "لأ."
+    },
+    {
+     "text": "نفس الحجم",
+     "why": "لأ."
+    },
+    {
+     "text": "نفس الشركة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "نفس الفكرة بأربع لهجات."
+  },
+  {
+   "id": "06-frontend-ch12-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Angular فيه Routing و Forms رسميين جواه؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح، Framework كامل."
+    },
+    {
+     "text": "لأ",
+     "why": "فيه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "React مكتبة."
+  },
+  {
+   "id": "06-frontend-ch12-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "React أكبر في الحجم الثابت، فأي تطبيق React أبطأ من أي Svelte؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "معيار واحد مش كفاية."
+    },
+    {
+     "text": "لأ، الحجم الثابت مش كل حاجة",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "10 ضد 69 كيلو لعداد."
+  },
+  {
+   "id": "06-frontend-ch12-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ State في React بتتعمل بـ؟",
+   "options": [
+    {
+     "text": "useState",
+     "why": "صح."
+    },
+    {
+     "text": "ref",
+     "why": "Vue."
+    },
+    {
+     "text": "$state",
+     "why": "Svelte."
+    },
+    {
+     "text": "signal",
+     "why": "Angular."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الأربعة."
+  },
+  {
+   "id": "06-frontend-ch12-05",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل State في Vue:",
+   "template": "const count = ___(0)",
+   "blanks": [
+    [
+     "ref"
+    ]
+   ],
+   "hint": "مرجع.",
+   "explanation": "وفي Svelte $state."
+  },
+  {
+   "id": "06-frontend-ch12-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل في React:",
+   "template": "const [count, setCount] = ___(0)",
+   "blanks": [
+    [
+     "useState"
+    ]
+   ],
+   "hint": "use...",
+   "explanation": "Hook."
+  },
+  {
+   "id": "06-frontend-ch12-07",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب من الأصغر حجماً ثابتاً للأكبر (حسب قياس الكتاب):",
+   "items": [
+    "Svelte",
+    "Vue/Angular",
+    "React"
+   ],
+   "explanation": "معيار واحد بس."
+  },
+  {
+   "id": "06-frontend-ch12-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "اتعلمت React وعايز تشتغل في مشروع Vue.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الأفكار (Components و State و Props) بتتنقل، فأتعلم الصيغة بس",
+     "why": "صح."
+    },
+    {
+     "text": "أبدأ من الصفر",
+     "why": "لأ."
+    },
+    {
+     "text": "مستحيل",
+     "why": "سهل."
+    },
+    {
+     "text": "أرفض",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "لو فهمت React كويس."
+  },
+  {
+   "id": "06-frontend-ch12-09",
+   "type": "mcq",
+   "level": "think",
+   "question": "إيه الفرق في شكل الـ Template بين React والباقيين؟",
+   "options": [
+    {
+     "text": "React بـ JSX جوه JS، والباقيين HTML بإضافات",
+     "why": "صح."
+    },
+    {
+     "text": "كلهم JSX",
+     "why": "لأ."
+    },
+    {
+     "text": "React HTML",
+     "why": "لأ."
+    },
+    {
+     "text": "مفيش Template",
+     "why": "فيه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الشكل بس."
+  },
+  {
+   "id": "06-frontend-ch12-10",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Svelte بتشتغل إزاي؟",
+   "options": [
+    {
+     "text": "Compiler بيحوّل الكود لـ JS بيحدّث الـ DOM مباشرة",
+     "why": "صح."
+    },
+    {
+     "text": "Virtual DOM",
+     "why": "React."
+    },
+    {
+     "text": "jQuery",
+     "why": "لأ."
+    },
+    {
+     "text": "على السيرفر بس",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "$state مش Function وقت التشغيل."
+  },
+  {
+   "id": "06-frontend-ch12-11",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعمل مشروع React بـ Vite اسمه app.",
+   "accepted": [
+    "npm create vite@latest app -- --template react",
+    "npm create vite@latest app -- --template react-ts"
+   ],
+   "hint": "npm create vite و --template.",
+   "explanation": "-- علشان تعدّي الـ Flag."
+  }
+ ]
+}

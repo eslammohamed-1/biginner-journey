@@ -1,0 +1,221 @@
+{
+ "book": "07-docker",
+ "chapter": 12,
+ "chapterFile": "ch12",
+ "title": "رفع الـ Image على Docker Hub: tag و login و push",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "07-docker-ch12-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "اسم الـ Image على Docker Hub لازم يبدأ بإيه؟",
+   "options": [
+    {
+     "text": "اسم حسابك: username/repo:tag",
+     "why": "صح."
+    },
+    {
+     "text": "docker/",
+     "why": "لأ."
+    },
+    {
+     "text": "hub/",
+     "why": "لأ."
+    },
+    {
+     "text": "أي اسم",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "غير الرسمية."
+  },
+  {
+   "id": "07-docker-ch12-02",
+   "type": "command",
+   "level": "easy",
+   "prompt": "سجّل دخول Docker Hub.",
+   "accepted": [
+    "docker login"
+   ],
+   "hint": "login.",
+   "explanation": "بيطلب username و token."
+  },
+  {
+   "id": "07-docker-ch12-03",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ادّي myapp اسم eslam/myapp:1.0.",
+   "accepted": [
+    "docker tag myapp eslam/myapp:1.0",
+    "docker image tag myapp eslam/myapp:1.0"
+   ],
+   "hint": "tag.",
+   "explanation": "نفس الـ Image باسم جديد."
+  },
+  {
+   "id": "07-docker-ch12-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ارفع eslam/myapp:1.0.",
+   "accepted": [
+    "docker push eslam/myapp:1.0",
+    "docker image push eslam/myapp:1.0"
+   ],
+   "hint": "push.",
+   "explanation": "الـ Layers الموجودة مبتترفعش."
+  },
+  {
+   "id": "07-docker-ch12-05",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب الرفع:",
+   "items": [
+    "docker build -t myapp .",
+    "docker tag myapp user/myapp:1.0",
+    "docker login",
+    "docker push user/myapp:1.0"
+   ],
+   "explanation": "الخطوات."
+  },
+  {
+   "id": "07-docker-ch12-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "docker tag بيعمل نسخة جديدة من الـ Image؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "اسم تاني لنفس الـ Image."
+    },
+    {
+     "text": "لأ، نفس الـ ID باسم جديد",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "مفيش مساحة زيادة."
+  },
+  {
+   "id": "07-docker-ch12-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "رفعت نسخة جديدة وغيّرت سطر واحد. بيترفع كل حاجة؟",
+   "options": [
+    {
+     "text": "لأ، الـ Layers اللي اتغيرت بس",
+     "why": "صح."
+    },
+    {
+     "text": "أيوه كله",
+     "why": "الـ Layers الموجودة مبتترفعش."
+    },
+    {
+     "text": "مفيش حاجة",
+     "why": "اللي اتغير."
+    },
+    {
+     "text": "الـ Base بس",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ميزة الطبقات."
+  },
+  {
+   "id": "07-docker-ch12-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "docker push طلّع \"denied: requested access to the resource is denied\".",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الاسم مش بادئ بحسابي أو مش عامل login",
+     "why": "صح."
+    },
+    {
+     "text": "Docker Hub واقع",
+     "why": "غالباً لأ."
+    },
+    {
+     "text": "الـ Image كبيرة",
+     "why": "لأ."
+    },
+    {
+     "text": "أعيد build",
+     "why": "مش السبب."
+    }
+   ],
+   "correct": 0,
+   "explanation": "username/repo."
+  },
+  {
+   "id": "07-docker-ch12-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الرفع لـ GitHub Container Registry:",
+   "template": "docker push ___/eslam/myapp:1.0",
+   "blanks": [
+    [
+     "ghcr.io"
+    ]
+   ],
+   "hint": "عنوان الـ Registry.",
+   "explanation": "نفس الخطوات."
+  },
+  {
+   "id": "07-docker-ch12-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "هترفع Image لـ Docker Hub Public.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أتأكد إن مفيش أسرار جواها (.env وكلمات سر في ENV أو history) قبل الرفع",
+     "why": "صح."
+    },
+    {
+     "text": "أرفع على طول",
+     "why": "ممكن تسرّب."
+    },
+    {
+     "text": "أخليها Private وأحط أسرار عادي",
+     "why": "لسه خطر."
+    },
+    {
+     "text": "مش مهم",
+     "why": "مهم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أمان."
+  },
+  {
+   "id": "07-docker-ch12-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه tag برقم نسخة (1.0) أحسن من latest بس؟",
+   "options": [
+    {
+     "text": "السيرفر يعرف بيشغّل أنهي نسخة بالظبط ويقدر يرجع لنسخة قديمة",
+     "why": "صح."
+    },
+    {
+     "text": "latest أدق",
+     "why": "بيتغير."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    },
+    {
+     "text": "أسرع",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Rollback."
+  }
+ ]
+}

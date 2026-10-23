@@ -1,0 +1,242 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 15,
+ "chapterFile": "ch15",
+ "title": "الـ TLS و cert-manager: HTTPS ببلاش",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch15-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "أهداف الـ TLS التلاتة؟",
+   "options": [
+    {
+     "text": "تشفير وتوثيق وسلامة بيانات",
+     "why": "صح."
+    },
+    {
+     "text": "سرعة وضغط وتخزين",
+     "why": "لأ."
+    },
+    {
+     "text": "Logging",
+     "why": "لأ."
+    },
+    {
+     "text": "Scaling",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "HTTPS."
+  },
+  {
+   "id": "08-kubernetes-ch15-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Private Key بيتبعت للمتصفح؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "أبداً."
+    },
+    {
+     "text": "لأ، بيفضل على السيرفر",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ Public Key بس."
+  },
+  {
+   "id": "08-kubernetes-ch15-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "مع TLS Termination الـ Traffic جوه الـ Cluster بيبقى HTTP؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح، بيتفك عند الـ Ingress."
+    },
+    {
+     "text": "لأ",
+     "why": "بيبقى HTTP."
+    }
+   ],
+   "correct": 0,
+   "explanation": "إلا لو عملت تشفير داخلي."
+  },
+  {
+   "id": "08-kubernetes-ch15-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "cert-manager بيحفظ الشهادة فين؟",
+   "options": [
+    {
+     "text": "جوه Secret",
+     "why": "صح."
+    },
+    {
+     "text": "ConfigMap",
+     "why": "لأ."
+    },
+    {
+     "text": "ملف على الماك",
+     "why": "لأ."
+    },
+    {
+     "text": "etcd مباشرة كنص",
+     "why": "عن طريق Secret."
+    }
+   ],
+   "correct": 0,
+   "explanation": "والـ Ingress بيقراه."
+  },
+  {
+   "id": "08-kubernetes-ch15-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ليه التشفير غير المتماثل بيتستخدم مرة في التعارف بس؟",
+   "options": [
+    {
+     "text": "تقيل، فبعده Session Key متماثل سريع",
+     "why": "صح."
+    },
+    {
+     "text": "مش آمن",
+     "why": "آمن."
+    },
+    {
+     "text": "ممنوع",
+     "why": "لأ."
+    },
+    {
+     "text": "بيتستخدم دايماً",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الصندوق والقفل."
+  },
+  {
+   "id": "08-kubernetes-ch15-06",
+   "type": "command",
+   "level": "easy",
+   "prompt": "ضيف Helm repo بتاع cert-manager.",
+   "accepted": [
+    "helm repo add jetstack https://charts.jetstack.io"
+   ],
+   "hint": "jetstack.",
+   "explanation": "بعدين helm install."
+  },
+  {
+   "id": "08-kubernetes-ch15-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل المكون اللي بيطلب الشهادات من Let's Encrypt:",
+   "template": "kind: Cluster___",
+   "blanks": [
+    [
+     "Issuer"
+    ]
+   ],
+   "hint": "مصدر.",
+   "explanation": "ClusterIssuer."
+  },
+  {
+   "id": "08-kubernetes-ch15-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل اسم الـ Secret في Ingress:",
+   "template": "tls: - hosts: [app.example.com] ___: app-tls",
+   "blanks": [
+    [
+     "secretName"
+    ]
+   ],
+   "hint": "secret...",
+   "explanation": "cert-manager بيملاه."
+  },
+  {
+   "id": "08-kubernetes-ch15-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب HTTPS:",
+   "items": [
+    "المتصفح يطلب الموقع",
+    "السيرفر يبعت الـ Certificate",
+    "المتصفح يتأكد من الـ CA",
+    "يتفقوا على Session Key",
+    "تشفير متماثل للباقي"
+   ],
+   "explanation": "الخطوات."
+  },
+  {
+   "id": "08-kubernetes-ch15-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الشهادة مش بتتعمل والـ Ingress لسه HTTP.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشوف الـ Certificate و الـ Events (kubectl get events --sort-by) وأتأكد إن الـ DNS موجّه صح والـ annotation موجودة",
+     "why": "صح."
+    },
+    {
+     "text": "أعمل شهادة بإيدي كل شهر",
+     "why": "cert-manager بيوفّر ده."
+    },
+    {
+     "text": "أشيل TLS",
+     "why": "لأ."
+    },
+    {
+     "text": "أعيد الـ Cluster",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مشاكل الشهادة."
+  },
+  {
+   "id": "08-kubernetes-ch15-11",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرض الـ Events مترتبة بالوقت.",
+   "accepted": [
+    "kubectl get events --sort-by='.lastTimestamp'",
+    "kubectl get events --sort-by=.lastTimestamp",
+    "kubectl get events --sort-by=.metadata.creationTimestamp"
+   ],
+   "hint": "--sort-by.",
+   "explanation": "آخر حاجة تحت."
+  },
+  {
+   "id": "08-kubernetes-ch15-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه cert-manager أحسن من شهادة يدوي؟",
+   "options": [
+    {
+     "text": "بيجدد الشهادات لوحده قبل ما تنتهي",
+     "why": "صح."
+    },
+    {
+     "text": "أرخص",
+     "why": "الاتنين مجاني مع Let's Encrypt."
+    },
+    {
+     "text": "أأمن تشفيراً",
+     "why": "نفس التشفير."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "شهادات بتتجدد لوحدها."
+  }
+ ]
+}

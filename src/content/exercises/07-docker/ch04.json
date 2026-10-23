@@ -1,0 +1,245 @@
+{
+ "book": "07-docker",
+ "chapter": 4,
+ "chapterFile": "ch04",
+ "title": "تشغيل الـ Images والتعامل مع الـ Containers",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "07-docker-ch04-01",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شغّل nginx في الخلفية وافتح بورت 8080 على جهازك لبورت 80 جوه.",
+   "accepted": [
+    "docker run -d -p 8080:80 nginx",
+    "docker run -p 8080:80 -d nginx"
+   ],
+   "hint": "-d و -p host:container.",
+   "explanation": "افتح localhost:8080."
+  },
+  {
+   "id": "07-docker-ch04-02",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض كل الـ Containers حتى الواقفة.",
+   "accepted": [
+    "docker ps -a",
+    "docker container ls -a",
+    "docker ps --all"
+   ],
+   "hint": "-a.",
+   "explanation": "ps للشغال بس."
+  },
+  {
+   "id": "07-docker-ch04-03",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ادخل Container اسمه web بـ shell.",
+   "accepted": [
+    "docker exec -it web sh",
+    "docker exec -it web bash",
+    "docker exec -it web /bin/sh"
+   ],
+   "hint": "exec -it.",
+   "explanation": "exit للخروج."
+  },
+  {
+   "id": "07-docker-ch04-04",
+   "type": "command",
+   "level": "easy",
+   "prompt": "وقّف Container اسمه web.",
+   "accepted": [
+    "docker stop web",
+    "docker container stop web"
+   ],
+   "hint": "stop.",
+   "explanation": "start تاني."
+  },
+  {
+   "id": "07-docker-ch04-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "شغّلت docker run ubuntu ووقف على طول. ليه؟",
+   "options": [
+    {
+     "text": "الـ Container بيقف لما الـ Process الأساسية تخلص، و ubuntu مفيهاش حاجة شغالة",
+     "why": "صح."
+    },
+    {
+     "text": "Docker بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Image بايظة",
+     "why": "لأ."
+    },
+    {
+     "text": "محتاج sudo",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Container = Process."
+  },
+  {
+   "id": "07-docker-ch04-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "-p 8080:80 أنهي رقم بتاع جهازك؟",
+   "options": [
+    {
+     "text": "8080",
+     "why": "صح، host:container."
+    },
+    {
+     "text": "80",
+     "why": "ده جوه."
+    },
+    {
+     "text": "الاتنين",
+     "why": "لأ."
+    },
+    {
+     "text": "ولا واحد",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الشمال جهازك."
+  },
+  {
+   "id": "07-docker-ch04-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الملفات اللي اتعملت جوه Container بيحصلها إيه لما يتمسح؟",
+   "options": [
+    {
+     "text": "بتضيع",
+     "why": "صح."
+    },
+    {
+     "text": "بتتحفظ في الـ Image",
+     "why": "لأ."
+    },
+    {
+     "text": "بتروح Desktop",
+     "why": "لأ."
+    },
+    {
+     "text": "بتتحفظ دايماً",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الحل Volumes."
+  },
+  {
+   "id": "07-docker-ch04-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "nginx شغّال في Container بس localhost:80 مش بيفتح.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "نسيت Port Mapping، فأشغّله بـ -p 8080:80",
+     "why": "صح."
+    },
+    {
+     "text": "nginx بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "المتصفح",
+     "why": "لأ."
+    },
+    {
+     "text": "أعيد تشغيل الماك",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "لازم -p."
+  },
+  {
+   "id": "07-docker-ch04-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "docker rm web طلّع Error إن الـ Container شغال.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أوقفه بـ docker stop الأول أو استخدم rm -f",
+     "why": "صح."
+    },
+    {
+     "text": "أمسح الـ Image",
+     "why": "مش الحل."
+    },
+    {
+     "text": "أعيد Docker",
+     "why": "لأ."
+    },
+    {
+     "text": "مستحيل",
+     "why": "ممكن."
+    }
+   ],
+   "correct": 0,
+   "explanation": "rm للواقف."
+  },
+  {
+   "id": "07-docker-ch04-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب دورة حياة Container:",
+   "items": [
+    "docker run -d",
+    "docker stop",
+    "docker start",
+    "docker stop",
+    "docker rm"
+   ],
+   "explanation": "الإدارة."
+  },
+  {
+   "id": "07-docker-ch04-11",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان Docker يختار بورتات عشوائية لكل الـ EXPOSE:",
+   "template": "docker run -d ___ nginx",
+   "blanks": [
+    [
+     "-P"
+    ]
+   ],
+   "hint": "P كابيتال.",
+   "explanation": "docker port تعرف البورت."
+  },
+  {
+   "id": "07-docker-ch04-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "الفرق بين docker run و docker start؟",
+   "options": [
+    {
+     "text": "run بيعمل Container جديد من Image، و start بيشغّل Container موجود واقف",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "start بيعمل جديد",
+     "why": "العكس."
+    },
+    {
+     "text": "run بيشغّل الواقف",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "كل run = Container جديد."
+  }
+ ]
+}

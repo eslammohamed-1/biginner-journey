@@ -1,0 +1,240 @@
+{
+ "book": "04-python",
+ "chapter": 17,
+ "chapterFile": "ch17",
+ "title": "الـ Google Gen AI SDK بالتفصيل: generate_content و Interactions",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch17-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "import الصح لـ Google Gen AI SDK؟",
+   "options": [
+    {
+     "text": "from google import genai",
+     "why": "صح."
+    },
+    {
+     "text": "import google_genai",
+     "why": "لأ."
+    },
+    {
+     "text": "import gemini",
+     "why": "لأ."
+    },
+    {
+     "text": "from genai import Client",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "و from google.genai import types."
+  },
+  {
+   "id": "04-python-ch17-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لو GEMINI_API_KEY و GOOGLE_API_KEY الاتنين موجودين، مين بيكسب؟",
+   "options": [
+    {
+     "text": "GOOGLE_API_KEY",
+     "why": "صح حسب الكتاب."
+    },
+    {
+     "text": "GEMINI_API_KEY",
+     "why": "لأ."
+    },
+    {
+     "text": "خطأ",
+     "why": "لأ."
+    },
+    {
+     "text": "الأول في .env",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خلي واحد بس."
+  },
+  {
+   "id": "04-python-ch17-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`HttpOptions(timeout=30)` معناها 30 ثانية؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بالملّي ثانية."
+    },
+    {
+     "text": "لأ، 30 ملّي ثانية",
+     "why": "صح، اكتب 60_000 لدقيقة."
+    }
+   ],
+   "correct": 1,
+   "explanation": "أشهر فخ."
+  },
+  {
+   "id": "04-python-ch17-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "response.text دايماً نص؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ممكن None."
+    },
+    {
+     "text": "لأ، ممكن None (مثلاً طلب أداة أو حجب)",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "(response.text or \"\")."
+  },
+  {
+   "id": "04-python-ch17-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ابعت \"Hello\" لـ gemini-3.8-flash وحط الرد في response.",
+   "accepted": [
+    "response = client.models.generate_content(model=\"gemini-3.8-flash\", contents=\"Hello\")",
+    "response = client.models.generate_content(model='gemini-3.8-flash', contents='Hello')"
+   ],
+   "hint": "models.generate_content مع contents.",
+   "explanation": "contents مش input."
+  },
+  {
+   "id": "04-python-ch17-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل Client لـ Gemini.",
+   "accepted": [
+    "client = genai.Client()"
+   ],
+   "hint": "genai.Client.",
+   "explanation": "بيقرا الـ Key من البيئة."
+  },
+  {
+   "id": "04-python-ch17-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الإعدادات:",
+   "template": "config=types.___(system_instruction=\"...\", max_output_tokens=500)",
+   "blanks": [
+    [
+     "GenerateContentConfig"
+    ]
+   ],
+   "hint": "Generate...Config.",
+   "explanation": "فيها thinking_config كمان."
+  },
+  {
+   "id": "04-python-ch17-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تعرف توكنز التفكير:",
+   "template": "response.usage_metadata.___",
+   "blanks": [
+    [
+     "thoughts_token_count"
+    ]
+   ],
+   "hint": "thoughts...",
+   "explanation": "منفصلة عن candidates_token_count."
+  },
+  {
+   "id": "04-python-ch17-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الاسكريبت بيقع بعد ثانية بـ timeout على طول.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "حطيت timeout بالثواني في HttpOptions، وهو بالملّي، فأكتب 60_000",
+     "why": "صح."
+    },
+    {
+     "text": "النت بطيء",
+     "why": "مش السبب."
+    },
+    {
+     "text": "الموديل وقع",
+     "why": "لأ."
+    },
+    {
+     "text": "أشيل الـ Key",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الوحدة ملّي ثانية."
+  },
+  {
+   "id": "04-python-ch17-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب طلب Gemini كامل:",
+   "items": [
+    "from google import genai و types",
+    "client = genai.Client()",
+    "client.models.generate_content(model, contents, config)",
+    "اقرا response.text (وشيك None)"
+   ],
+   "explanation": "بعدين usage_metadata."
+  },
+  {
+   "id": "04-python-ch17-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Interactions API في الكتاب حالته إيه؟",
+   "options": [
+    {
+     "text": "Beta، فيه input و output_text و previous_interaction_id",
+     "why": "صح."
+    },
+    {
+     "text": "الأساسي القديم",
+     "why": "generate_content هو الثابت."
+    },
+    {
+     "text": "اتشال",
+     "why": "لأ."
+    },
+    {
+     "text": "للصور بس",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Batch مش شغّال معاه النهارده."
+  },
+  {
+   "id": "04-python-ch17-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "عايز محادثة متعددة الأدوار في Gemini SDK من غير ما تدير التاريخ بإيدك.",
+   "options": [
+    {
+     "text": "client.chats",
+     "why": "صح."
+    },
+    {
+     "text": "generate_content_stream",
+     "why": "ده Streaming."
+    },
+    {
+     "text": "client.files",
+     "why": "ده للملفات."
+    },
+    {
+     "text": "مستحيل",
+     "why": "ممكن."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الشات بيحفظ التاريخ في الـ Object."
+  }
+ ]
+}

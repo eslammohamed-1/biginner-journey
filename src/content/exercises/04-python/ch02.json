@@ -1,0 +1,186 @@
+{
+ "book": "04-python",
+ "chapter": 2,
+ "chapterFile": "ch02",
+ "title": "تشغيل أي اسكريبت على الـ Mac: python3 و venv و pip",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "04-python-ch02-01",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرف أنهي python3 بتشتغل.",
+   "accepted": [
+    "which python3",
+    "which -a python3",
+    "command -v python3",
+    "type -a python3"
+   ],
+   "hint": "which.",
+   "explanation": "النسخة اللي مع Xcode ممكن تبقى قديمة."
+  },
+  {
+   "id": "04-python-ch02-02",
+   "type": "command",
+   "level": "easy",
+   "prompt": "سطّب Python 3.14 بـ Homebrew.",
+   "accepted": [
+    "brew install python@3.14"
+   ],
+   "hint": "brew install python@...",
+   "explanation": "بعدها اتأكد بـ python3 --version."
+  },
+  {
+   "id": "04-python-ch02-03",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعمل venv في فولدر .venv.",
+   "accepted": [
+    "python3 -m venv .venv"
+   ],
+   "hint": "-m venv.",
+   "explanation": "venv لكل مشروع."
+  },
+  {
+   "id": "04-python-ch02-04",
+   "type": "command",
+   "level": "easy",
+   "prompt": "فعّل الـ venv.",
+   "accepted": [
+    "source .venv/bin/activate",
+    ". .venv/bin/activate"
+   ],
+   "hint": "source وملف activate.",
+   "explanation": "لازم تعمله في كل Terminal جديد."
+  },
+  {
+   "id": "04-python-ch02-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "سطّب المكتبات اللي في requirements.txt.",
+   "accepted": [
+    "pip install -r requirements.txt",
+    "python -m pip install -r requirements.txt",
+    "python3 -m pip install -r requirements.txt"
+   ],
+   "hint": "-r.",
+   "explanation": "زي npm install."
+  },
+  {
+   "id": "04-python-ch02-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "صوّر نسخ المكتبات الحالية في requirements.txt.",
+   "accepted": [
+    "pip freeze > requirements.txt",
+    "python -m pip freeze > requirements.txt"
+   ],
+   "hint": "freeze و >.",
+   "explanation": "> بيكتب فوق الملف."
+  },
+  {
+   "id": "04-python-ch02-07",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "pip install طلّعلك `error: externally-managed-environment`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أعمل venv وأفعّله وأسطب جواه",
+     "why": "صح."
+    },
+    {
+     "text": "أستخدم sudo pip",
+     "why": "هتبوظ Python بتاع النظام/Homebrew."
+    },
+    {
+     "text": "--break-system-packages",
+     "why": "اسمها بيقولك."
+    },
+    {
+     "text": "أمسح Python",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الرسالة معناها \"اعمل venv\"."
+  },
+  {
+   "id": "04-python-ch02-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "`ModuleNotFoundError: No module named 'openai'` مع إنك سطّبته.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "غالباً مش في نفس الـ venv، فأفعّل الـ venv وأسطب بـ python -m pip",
+     "why": "صح."
+    },
+    {
+     "text": "أعيد تشغيل الماك",
+     "why": "لأ."
+    },
+    {
+     "text": "أكتب import OpenAI",
+     "why": "اسم غلط."
+    },
+    {
+     "text": "المكتبة بايظة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "python -m pip بيضمن نفس الـ python."
+  },
+  {
+   "id": "04-python-ch02-09",
+   "type": "mcq",
+   "level": "medium",
+   "question": "بعد ما تقفل الـ Terminal وتفتحه، الـ venv بيفضل مفعّل؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لازم تفعّله تاني."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "activate لكل Terminal جديد."
+  },
+  {
+   "id": "04-python-ch02-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "الكود جوه `if __name__ == \"__main__\":` بيشتغل لما ملف تاني يعمل import للملف ده؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لأ."
+    },
+    {
+     "text": "لأ، بيشتغل بس لما الملف يتشغّل مباشرة",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ده مدخل الاسكريبت."
+  },
+  {
+   "id": "04-python-ch02-11",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الـ Shebang:",
+   "template": "#!/usr/bin/env ___",
+   "blanks": [
+    [
+     "python3"
+    ]
+   ],
+   "hint": "اسم الـ Interpreter.",
+   "explanation": "ومعاه chmod +x."
+  }
+ ]
+}
