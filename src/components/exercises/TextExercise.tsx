@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks';
+import { useEffect, useState } from 'preact/hooks';
 import type { CommandExercise, FillExercise, ItemState } from '../../lib/types';
 import { matchesCommand, matchesFill } from '../../lib/grade';
 import { LevelBadge } from './LevelBadge';
@@ -24,22 +24,44 @@ function revealFill(exercise: FillExercise): string {
 export function TextExercise({ exercise, number, state, onChange }: Props) {
 	const isFill = exercise.type === 'fill';
 	const holes = isFill ? holeCount(exercise) : 1;
-	const texts = state?.texts ?? [];
-	const values = Array.from({ length: holes }, (_, index) => texts[index] ?? '');
+	// Typing stays local. Progress is written only on check or reveal,
+	// not on every keystroke.
+	const [values, setValues] = useState<string[]>(() => {
+		const texts = state?.texts ?? [];
+		return Array.from({ length: holes }, (_, index) => texts[index] ?? '');
+	});
+	const [dirty, setDirty] = useState(false);
 	const solved = Boolean(state?.solved);
-	const checked = Boolean(state?.checked);
+	const revealed = Boolean(state?.revealed);
+	const locked = solved || revealed;
+	const checked = Boolean(state?.checked) && !dirty;
+	const attempts = state?.attempts ?? 0;
 	const [hintOpen, setHintOpen] = useState(false);
-	const [revealed, setRevealed] = useState(false);
 
-	function write(next: string[], markChecked: boolean, markSolved: boolean) {
-		onChange({ solved: markSolved, checked: markChecked, texts: next });
+	// Saved progress arrives after hydration. Pull it in unless the reader is mid-edit.
+	const savedKey = (state?.texts ?? []).join('\u0000');
+	useEffect(() => {
+		if (dirty) return;
+		const texts = state?.texts ?? [];
+		setValues(Array.from({ length: holes }, (_, index) => texts[index] ?? ''));
+	}, [savedKey]);
+
+	function edit(next: string[]) {
+		setValues(next);
+		setDirty(true);
 	}
 
 	function check() {
 		const ok = isFill
 			? matchesFill(values, exercise.blanks)
 			: matchesCommand(values[0] ?? '', exercise.accepted, exercise.patterns ?? []);
-		write(values, true, ok);
+		setDirty(false);
+		onChange({ solved: ok, checked: true, texts: values, attempts: ok ? attempts : attempts + 1 });
+	}
+
+	function reveal() {
+		setDirty(false);
+		onChange({ solved: false, checked: Boolean(state?.checked), texts: values, attempts, revealed: true });
 	}
 
 	const parts = isFill ? exercise.template.split('___') : [];
@@ -57,7 +79,7 @@ export function TextExercise({ exercise, number, state, onChange }: Props) {
 				class="ex-form"
 				onSubmit={(event) => {
 					event.preventDefault();
-					if (!solved) check();
+					if (!locked) check();
 				}}
 			>
 				{isFill ? (
@@ -74,11 +96,11 @@ export function TextExercise({ exercise, number, state, onChange }: Props) {
 										autoComplete="off"
 										aria-label={`الفراغ ${index + 1}`}
 										value={values[index] ?? ''}
-										disabled={solved}
+										disabled={locked}
 										onInput={(event) => {
 											const next = values.slice();
 											next[index] = event.currentTarget.value;
-											write(next, false, false);
+											edit(next);
 										}}
 									/>
 								) : null}
@@ -94,23 +116,25 @@ export function TextExercise({ exercise, number, state, onChange }: Props) {
 						autoComplete="off"
 						aria-label="اكتب الأمر"
 						value={values[0] ?? ''}
-						disabled={solved}
-						onInput={(event) => write([event.currentTarget.value], false, false)}
+						disabled={locked}
+						onInput={(event) => edit([event.currentTarget.value])}
 					/>
 				)}
-				<div class="ex-actions">
-					<button class="ex-btn" type="submit" disabled={solved}>
-						تحقق
-					</button>
-					{exercise.hint ? (
-						<button class="ex-btn secondary" type="button" onClick={() => setHintOpen((open) => !open)}>
-							{hintOpen ? 'إخفاء التلميح' : 'تلميح'}
+				{!locked && (
+					<div class="ex-actions">
+						<button class="ex-btn" type="submit">
+							تحقق
 						</button>
-					) : null}
-					<button class="ex-btn secondary" type="button" onClick={() => setRevealed(true)}>
-						اعرض الإجابة
-					</button>
-				</div>
+						{exercise.hint ? (
+							<button class="ex-btn secondary" type="button" onClick={() => setHintOpen((open) => !open)}>
+								{hintOpen ? 'إخفاء التلميح' : 'تلميح'}
+							</button>
+						) : null}
+						<button class="ex-btn secondary" type="button" onClick={reveal}>
+							اعرض الإجابة
+						</button>
+					</div>
+				)}
 			</form>
 			{hintOpen && exercise.hint ? (
 				<p class="ex-hint">
@@ -118,16 +142,22 @@ export function TextExercise({ exercise, number, state, onChange }: Props) {
 					<RichText text={exercise.hint} />
 				</p>
 			) : null}
-			{(checked || solved) && (
+			{(checked || solved) && !revealed && (
 				<div class="ex-feedback" aria-live="polite">
 					<p class={solved ? 'ex-verdict is-correct' : 'ex-verdict is-wrong'}>{solved ? 'صح' : 'غلط'}</p>
 					{!solved ? (
-						<p class="ex-why">راجع المسافات. لو نسخت الأمر، شيّل `$` أو `%` من الأول والفاصلة المنقوطة من الآخر.</p>
+						<p class="ex-why">
+							{isFill
+								? 'راجع الكتابة حرف حرف. الحروف الكبيرة والصغيرة بتفرق، والمسافات الزيادة في الأول والآخر مش مشكلة.'
+								: 'راجع الأمر والـ Flags والمسافات. مش لازم تكتب `$` أو `%` في الأول.'}
+							{attempts >= 2 && exercise.hint && !hintOpen ? ' جرّب التلميح.' : ''}
+						</p>
 					) : null}
 				</div>
 			)}
 			{revealed ? (
-				<div class="ex-reveal">
+				<div class="ex-reveal" aria-live="polite">
+					<p class="ex-locked">السؤال ده مش هيتحسب في النتيجة. امسح تقدّم الفصل لو عايز تحاول تاني.</p>
 					<strong>الإجابة: </strong>
 					{isFill ? (
 						<code dir="ltr">{revealFill(exercise)}</code>
@@ -142,7 +172,7 @@ export function TextExercise({ exercise, number, state, onChange }: Props) {
 					)}
 				</div>
 			) : null}
-			{(checked || solved || revealed) && (
+			{(solved || revealed) && (
 				<p class="ex-explain">
 					<strong>الشرح: </strong>
 					<RichText text={exercise.explanation} />

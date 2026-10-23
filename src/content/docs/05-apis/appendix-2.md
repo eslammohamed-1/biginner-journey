@@ -8,7 +8,7 @@ sidebar:
 
 كل مصطلح مهم في الكتاب في سطر واحد، مترتب أبجدياً. ارجعله كل ما تقابل كلمة ومش فاكر معناها.
 
-### #
+## #
 
 - **201 / 204**: Created + Location / نجاح من غير Body.
 
@@ -20,7 +20,7 @@ sidebar:
 
 - **429**: Too Many Requests: استنى (Retry-After) وأعد.
 
-### A
+## A
 
 - **Access token**: توكن قصير العمر بيتبعت مع كل طلب (غالباً Bearer).
 
@@ -32,7 +32,7 @@ sidebar:
 
 - **Authorization**: مسموحلك تعمل إيه (403 لو فشل).
 
-### B
+## B
 
 - **Base64url**: Base64 بـ `-` و`_` ومن غير `=`، آمن في URLs (JWT والـ Cursors).
 
@@ -42,7 +42,7 @@ sidebar:
 
 - **Breaking change**: تغيير بيكسر Clients شغالة: شيل Field، أو غيّر نوعه أو معناه.
 
-### C
+## C
 
 - **Client Credentials**: OAuth flow لسيرفر بيكلم API باسمه من غير مستخدم.
 
@@ -58,13 +58,13 @@ sidebar:
 
 - **Custom method**: عملية مش CRUD زي `POST /articles/42:publish`.
 
-### D
+## D
 
 - **Deprecation**: هيدر (RFC 9745) بيقول الحاجة دي قديمة من تاريخ معين.
 
 - **Design-first**: تكتب الـ Spec وتتفق عليه قبل الكود.
 
-### E
+## E
 
 - **Endpoint**: Method + URL بيعمل حاجة معينة.
 
@@ -74,17 +74,17 @@ sidebar:
 
 - **Express**: Framework لـ Node بيبني APIs بسلسلة Middleware.
 
-### F
+## F
 
 - **fetch**: دالة HTTP المدمجة في المتصفح و Node.
 
-### G
+## G
 
 - **GraphQL**: API بـ Endpoint واحد والـ Client بيحدد الـ Fields اللي عايزها.
 
 - **gRPC**: RPC سريع بـ Protocol Buffers و HTTP/2، غالباً بين السيرفرات.
 
-### H
+## H
 
 - **HATEOAS**: الرد فيه لينكات للخطوات الجاية (مستوى 3 في Richardson).
 
@@ -92,7 +92,7 @@ sidebar:
 
 - **HTTPie**: أداة سطر أوامر للـ HTTP بصيغة أبسط من curl.
 
-### I
+## I
 
 - **I-JSON**: JSON بقيود أمان (RFC 7493): UTF-8، ومفيش Keys مكررة، وأرقام آمنة.
 
@@ -102,7 +102,7 @@ sidebar:
 
 - **If-Match**: "نفّذ بس لو النسخة لسه دي"، وإلا 412.
 
-### J
+## J
 
 - **jq**: أداة سطر أوامر لقراية وتحويل JSON.
 
@@ -120,7 +120,7 @@ sidebar:
 
 - **JWT**: توكن فيه Header و Payload وتوقيع، مقروء لأي حد ومختوم.
 
-### L
+## L
 
 - **Link header**: لينكات في هيدر (RFC 8288) زي `rel="next"`.
 
@@ -128,11 +128,11 @@ sidebar:
 
 - **Lost update**: تعديل بيمسح تعديل حد تاني من غير ما حد ياخد باله.
 
-### M
+## M
 
 - **Middleware**: Function في سلسلة Express بترد أو تنادي `next()`.
 
-### O
+## O
 
 - **OAuth 2.0**: إطار لإعطاء App صلاحية محددة على حسابك من غير الباسورد.
 
@@ -146,7 +146,7 @@ sidebar:
 
 - **Over-fetching**: الرد فيه بيانات أكتر من اللي محتاجه.
 
-### P
+## P
 
 - **PKCE**: حماية للـ Authorization code بـ verifier و challenge.
 
@@ -156,11 +156,11 @@ sidebar:
 
 - **Problem Details**: شكل Errors موحّد `application/problem+json` (RFC 9457).
 
-### Q
+## Q
 
 - **QUERY**: Method جديد (RFC 10008): بحث بـ Body وهو Safe.
 
-### R
+## R
 
 - **Rate limit**: حد لعدد الطلبات في فترة، و 429 لما تعدّيه.
 
@@ -176,7 +176,7 @@ sidebar:
 
 - **RFC 3339**: صيغة تواريخ `2026-10-23T11:43:20Z`.
 
-### S
+## S
 
 - **Safe**: Method مبيغيرش حاجة (GET و HEAD).
 
@@ -194,26 +194,26 @@ sidebar:
 
 - **Swagger UI**: أداة بتعرض OpenAPI كصفحة تجرّب منها.
 
-### T
+## T
 
 - **timingSafeEqual**: مقارنة بوقت ثابت ضد الـ Timing attacks.
 
-### U
+## U
 
 - **Under-fetching**: محتاج طلبات كتير علشان تجمع اللي عايزه.
 
 - **URLSearchParams**: كلاس JS لبناء وقراية Query strings بـ Encoding صح.
 
-### V
+## V
 
 - **Versioning**: طريقة تعيش بيها نسخ من الـ API: `/v1` أو Header بتاريخ.
 
-### W
+## W
 
 - **Webhook**: الـ Provider بيبعتلك POST لما حاجة تحصل.
 
 - **WebSocket**: اتصال مفتوح في الاتجاهين.
 
-### Y
+## Y
 
 - **YAML**: صيغة زي JSON بالمسافات، شائعة لملفات OpenAPI.

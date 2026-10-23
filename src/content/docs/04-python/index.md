@@ -1,6 +1,6 @@
 ---
 title: "Python for AI — دليل المذاكرة"
-description: "Python for AI — دليل المذاكرة"
+description: "تشغّل وتقرا Python على قد ما تحتاجه، وبعدين الموديلات والـ SDKs وسكربتات الـ AI."
 sidebar:
   order: 0
   label: "عن الكتاب"

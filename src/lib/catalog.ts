@@ -15,7 +15,16 @@ function chapterSort(a: string, b: string): number {
 	return a.localeCompare(b, 'en', { numeric: true });
 }
 
-export async function loadCatalog(): Promise<ExerciseCatalog> {
+let cached: Promise<ExerciseCatalog> | undefined;
+
+/** Built once per production build. Dev rebuilds every call so JSON edits show up. */
+export function loadCatalog(): Promise<ExerciseCatalog> {
+	if (!import.meta.env.PROD) return buildCatalog();
+	cached ??= buildCatalog();
+	return cached;
+}
+
+async function buildCatalog(): Promise<ExerciseCatalog> {
 	const entries = await getCollection('exercises');
 	const byKey = new Map<string, ChapterExercises>();
 
@@ -36,6 +45,9 @@ export async function loadCatalog(): Promise<ExerciseCatalog> {
 				if (exercise.correct < 0 || exercise.correct >= exercise.options.length) {
 					throw new Error(`correct خارج نطاق الاختيارات في ${exercise.id}`);
 				}
+			}
+			if (exercise.type === 'order' && new Set(exercise.items).size !== exercise.items.length) {
+				throw new Error(`في عناصر مكررة في تمرين الترتيب ${exercise.id}.`);
 			}
 			if (exercise.type === 'fill') {
 				const holes = exercise.template.split('___').length - 1;

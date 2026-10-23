@@ -1,6 +1,6 @@
 ---
 title: "Kubernetes — دليل المذاكرة"
-description: "Kubernetes — دليل المذاكرة"
+description: "من المشكلة والـ Pod لحد الـ Workloads والشبكات والبيانات والتشغيل الاحترافي."
 sidebar:
   order: 0
   label: "عن الكتاب"

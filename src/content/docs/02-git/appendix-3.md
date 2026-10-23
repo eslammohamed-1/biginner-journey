@@ -8,7 +8,7 @@ sidebar:
 
 جاوب بنفسك الأول، وبعدين قارن. لكل فصل: إجابات أسئلة المراجعة، وبعدها صح ولا غلط، وبعدها حلول التحديات. أغلب التحديات تجارب عملية، فلو وصلت لنفس النتيجة بطريقة تانية فهي صح.
 
-#### الفصل 1: ليه Git أصلاً؟
+## الفصل 1: ليه Git أصلاً؟
 
 1. مثلاً: مساحة كبيرة متكررة، ومش عارف إيه اللي اتغير بين نسختين، وأسماء زي `final-final2` بتلخبط، ومفيش طريقة تدمج شغل اتنين.
 2. كل واحد عنده التاريخ كامل على جهازه: يشتغل من غير نت، ولو السيرفر وقع مفيش حاجة تضيع.
@@ -23,7 +23,7 @@ sidebar:
 2. `find ~ -iname "*final*" -o -iname "*copy*" 2>/dev/null | head`
 3. إجابة شخصية: آلاف الـ Commits من مئات الناس في نفس الوقت محتاجة تاريخ ودمج أوتوماتيك.
 
-#### الفصل 2: تسطيب Git وتظبيطه
+## الفصل 2: تسطيب Git وتظبيطه
 
 1. الإيميل الشخصي بـ `--global`، وجوه Repo الشغل: `git config user.email work@company.com` (يعني `--local`، وبيغلب).
 2. عشان يطابق GitHub (من 2020) ويطابق اللي Git 3.0 هيعمله افتراضي، فمتلاقيش master عندك و main على GitHub.
@@ -38,7 +38,7 @@ sidebar:
 2. `git config --global core.editor "code --wait"` ثم `git config --global --edit`.
 3. `git config --global alias.st "status -sb"` و `git config --global alias.last "log -1 HEAD --stat"`.
 
-#### الفصل 3: الأماكن التلاتة والـ Commit
+## الفصل 3: الأماكن التلاتة والـ Commit
 
 1. الـ Working directory: الملفات اللي بتعدلها في VS Code. الـ Staging: اللي اخترته بـ `add` للـ Commit الجاي. الـ Repo (`.git`): الـ Commits المتسجلة.
 2. عشان تختار: عدّلت 3 حاجات لأغراض مختلفة، فتعمل 3 Commits مركّزة بدل واحد ملخبط.
@@ -53,7 +53,7 @@ sidebar:
 2. النسخة اللي اتعملها add دخلت، والتعديل التاني فاضل ` M` في الورشة.
 3. `cat-file -p HEAD` بيطبع `tree <sha>` والـ author و committer والوقت، وبعد سطر فاضي الرسالة.
 
-#### الفصل 4: قراية التاريخ
+## الفصل 4: قراية التاريخ
 
 1. `git log --oneline -5 -- index.html`
 2. `git diff --staged`
@@ -68,7 +68,7 @@ sidebar:
 2. `diff` = الورشة مقابل الـ Staging، و `--staged` = الـ Staging مقابل آخر Commit، و `HEAD` = الورشة مقابل آخر Commit (الاتنين مع بعض).
 3. `git log -S "word" --oneline` ثم `git show <sha>`.
 
-#### الفصل 5: الـ .gitignore
+## الفصل 5: الـ .gitignore
 
 1. `dist/` أي فولدر بالاسم ده في أي مكان، و `/dist` اللي في الجذر بس (ملف أو فولدر)، و `dist` أي ملف أو فولدر بالاسم ده في أي مكان.
 2. `.env` فيه أسرار حقيقية، و `.env.example` بيقول للفريق محتاجين أنهي متغيرات من غير قيم.
@@ -83,7 +83,7 @@ sidebar:
 2. `git check-ignore -v .env` يطبع القاعدة، و `git check-ignore -v .env.example` مبيطبعش حاجة.
 3. `git rm --cached debug.log` ثم Commit، و `git ls-files` مبقاش فيه الملف.
 
-#### الفصل 6: التراجع
+## الفصل 6: التراجع
 
 1. `git add file` ثم `git commit --amend --no-edit`.
 2. التلاتة بيحركوا الـ Branch. `--soft` بيسيب الـ Staging والورشة، و `--mixed` بيفضّي الـ Staging ويسيب الورشة، و `--hard` بيرجّع التلاتة (ويمسح التعديلات).
@@ -98,7 +98,7 @@ sidebar:
 2. `git reset --soft HEAD~3` ثم `git commit -m "…"`.
 3. `ORIG_HEAD` بيتحفظ قبل الـ reset، فـ `git reset --hard ORIG_HEAD` بيرجّعه.
 
-#### الفصل 7: الـ Branches و HEAD
+## الفصل 7: الـ Branches و HEAD
 
 1. feature بيتحرك للـ Commit الجديد، و main فاضل مكانه، و HEAD بيشاور على feature وبيتحرك معاه.
 2. `branch x` بيعمل اللافتة بس، و `switch -c x` بيعملها ويتنقل عليها.
@@ -113,7 +113,7 @@ sidebar:
 2. هتشوف خطين بيتفرعوا من Commit مشترك.
 3. `git reflog`، دوّر على الـ Commit، ثم `git branch rescue <sha>`.
 
-#### الفصل 8: الـ Merge والـ Conflicts
+## الفصل 8: الـ Merge والـ Conflicts
 
 1. Fast-forward لما main معملش Commits من ساعة ما اتفرعت (الخط مستقيم). 3-way لما الاتنين عملوا Commits.
 2. آخر Commit مشترك بين الاتنين. Git بيقارن كل Branch بيه عشان يعرف مين غيّر إيه.
@@ -128,7 +128,7 @@ sidebar:
 2. تجربة.
 3. `git merge --abort`، وبعدين `git checkout --theirs index.html` و add و commit.
 
-#### الفصل 9: GitHub والـ Remotes
+## الفصل 9: GitHub والـ Remotes
 
 1. HTTPS: `https://github.com/u/r.git` بـ Token أو Keychain. SSH: `git@github.com:u/r.git` بمفتاح.
 2. لو حد خد الملف الخاص، ميقدرش يستخدمه من غير الـ Passphrase. والـ Keychain بيحفظها فمش هتكتبها كل مرة.
@@ -143,7 +143,7 @@ sidebar:
 2. `ssh-keygen -t ed25519 -C "you@mail.com"`، و `pbcopy < ~/.ssh/id_ed25519.pub`، ثم `ssh -T git@github.com`.
 3. `git remote add origin https://…`، ثم `git remote set-url origin git@…` و `git remote -v`.
 
-#### الفصل 10: clone و push و fetch و pull
+## الفصل 10: clone و push و fetch و pull
 
 1. بيعمل الفولدر، وينزّل كل التاريخ، ويضيف origin، ويعمل Branch محلي متابع للـ Default.
 2. `--set-upstream`: بيربط main المحلي بـ origin/main، فبعد كده `git push` و `git pull` من غير أسماء.
@@ -158,7 +158,7 @@ sidebar:
 2. `status` هيقول behind 1، و `log main..origin/main` هيعرض الـ Commit.
 3. الـ push التاني يترفض، فـ `git pull` وحل الـ Conflict و push، وبعدين pull في الأولى.
 
-#### الفصل 11: التعاون
+## الفصل 11: التعاون
 
 1. `switch main`، `pull`، `switch -c feat/x`، شغل و Commits، `push -u origin feat/x`، افتح PR، مراجعة وتعديلات، Merge، `switch main` و `pull` و `branch -d feat/x`.
 2. `origin` = الـ Fork بتاعك (بتعمل push عليه)، و `upstream` = المشروع الأصلي (بتعمل منه fetch).
@@ -173,7 +173,7 @@ sidebar:
 2. بعد Squash هتلاقي Commit واحد جديد على main.
 3. `git remote add upstream …`، و `git fetch upstream`، و `git merge upstream/main`، و `git push`.
 
-#### الفصل 12: GitHub Flow
+## الفصل 12: GitHub Flow
 
 1. main دايماً شغال، وكل شغل في Branch باسم واضح، و Commits و push بانتظام، و PR للمراجعة، و Merge بعد الموافقة والـ Checks، والـ Deploy من main.
 2. عشان تبدأ من آخر نسخة وتقلل الـ Conflicts بعد كده.
@@ -188,7 +188,7 @@ sidebar:
 2. الـ push يترفض بـ `GH013`، وتصلّح بالطريقة اللي في السؤال 3.
 3. `git switch feature/b` و `git fetch` و `git merge origin/main`.
 
-#### الفصل 13: رسايل الـ Commits
+## الفصل 13: رسايل الـ Commits
 
 1. `fix(auth): handle wrong PIN on login`، و `docs: add README`، ودي اتنين: `feat(nav): add navbar` و `style: update color palette`.
 2. عشان يكمّل الجملة: "لو اتطبق، الـ Commit ده هي…" add navbar. وده نفس أسلوب الرسايل اللي Git بيعملها (Merge branch...).
@@ -203,7 +203,7 @@ sidebar:
 2. `git add -p`: `y` للأول و `n` للتاني، Commit، وبعدين `git add` للباقي و Commit.
 3. `git commit` من غير `-m`، وفي آخر الجسم سطر `Closes #3`.
 
-#### الفصل 14: الـ Stash والـ Tags
+## الفصل 14: الـ Stash والـ Tags
 
 1. `pop` بيطبّق ويمسحه من القايمة، و `apply` بيطبّق ويسيبه.
 2. لما الشغل هيقعد أيام: اعمل Branch و Commit wip أحسن.
@@ -218,7 +218,7 @@ sidebar:
 2. من غير `-u` الملف الجديد بيفضل في الورشة.
 3. `git tag -a v0.1.0 -m "…"` و `git push origin v0.1.0`.
 
-#### الفصل 15: الـ Rebase والـ Cherry-pick
+## الفصل 15: الـ Rebase والـ Cherry-pick
 
 1. الـ Rebase بيعيد Commits الـ Branch فوق آخر main فالخط مستقيم، والـ Merge بيسيب الخطين ويضيف Merge Commit.
 2. لأنه بيعمل Commits جديدة بـ Hashes جديدة، والناس اللي عندهم القديمة هيلاقوا تاريخين.
@@ -233,7 +233,7 @@ sidebar:
 2. `pick` للأول و `fixup` للي بعده، و `reword` للرسايل.
 3. حل وبعدين `git add` و `git rebase --continue`، ثم `git cherry-pick -x <sha>`.
 
-#### الفصل 16: الـ Reflog و Bisect و Blame
+## الفصل 16: الـ Reflog و Bisect و Blame
 
 1. `log` = تاريخ الـ Commits المتشاركة، و `reflog` = مذكرات جهازك: كل مكان HEAD راحله.
 2. `git reflog`، دوّر على آخر Commit كان عليه، و `git branch name <sha>`.
@@ -248,7 +248,7 @@ sidebar:
 2. `git reflog` ودوّر على `checkout: moving from x`.
 3. `git bisect start HEAD <first>` ثم `git bisect run sh -c '! grep -q BUG file'`.
 
-#### الفصل 17: README و Pages و Actions و gh
+## الفصل 17: README و Pages و Actions و gh
 
 1. مثال: `# Title`، و `![shot](img.png)`، و `[Demo](url)`، و `- item`، وبلوك بـ 3 Backticks.
 2. لأن الموقع على `/repo/` مش `/`، فالملفات اللي Vite بيعملها لازم مساراتها تبدأ بيه.
@@ -263,7 +263,7 @@ sidebar:
 2. تجربة.
 3. تجربة: الـ PR هيظهر فيه ✗ لحد ما الاختبار يعدّي.
 
-#### الفصل 18: Git والـ AI
+## الفصل 18: Git والـ AI
 
 1. عشان أي تغيير بعد كده هو بتاع الـ AI بس، فـ `diff` يعرضه لوحده و `restore` يرجّع بالظبط.
 2. `git add -p` للي عاوزه ثم Commit، وبعدين `git restore .` للباقي.
@@ -278,7 +278,7 @@ sidebar:
 2. تجربة.
 3. `git rebase -i` و `edit` على الـ Commit، شيل المفتاح، `git commit --amend`، و `git rebase --continue`، وبعدين `git log -p | grep KEY` فاضي.
 
-#### الفصل 19: الإنقاذ
+## الفصل 19: الإنقاذ
 
 1. `git branch feature/x` ثم `git reset --hard origin/main` (أو `HEAD~2`) ثم `git switch feature/x`.
 2. اللي اتعمله push: `revert` عشان التاريخ المتشارك ميتغيرش. المحلي: `reset` أو `amend` عادي.

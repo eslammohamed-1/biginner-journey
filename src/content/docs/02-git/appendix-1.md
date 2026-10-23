@@ -8,7 +8,7 @@ sidebar:
 
 ورقة مراجعة لكل أوامر Git و gh المهمة في الكتاب مقسّمة حسب الموضوع، وبعدها جدول الـ Flags ومعانيها في كل أمر، وجدول لكل رمز ممكن تشوفه في Git: HEAD~ و .. و علامات الـ Conflict وأنماط الـ .gitignore.
 
-#### Setupالتظبيط
+### Setup · التظبيط
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -20,7 +20,7 @@ sidebar:
 | `git config --list --show-origin` | كل الإعدادات ومنين |
 | `git help cmd / git cmd -h` | المساعدة |
 
-#### Startالبداية
+### Start · البداية
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -31,7 +31,7 @@ sidebar:
 | `git commit -m "msg"` | سجّل |
 | `git commit -am "msg"` | add للمتتبَّع + commit |
 
-#### Historyالتاريخ
+### History · التاريخ
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -43,7 +43,7 @@ sidebar:
 | `git diff --stat` | ملخص الملفات |
 | `git show sha / sha:f` | Commit / ملف في Commit |
 
-#### Ignoreالتجاهل
+### Ignore · التجاهل
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -52,7 +52,7 @@ sidebar:
 | `git rm --cached f` | بطّل تتابعه وسيبه |
 | `git mv old new` | غيّر اسم |
 
-#### Undoالتراجع
+### Undo · التراجع
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -65,7 +65,7 @@ sidebar:
 | `git revert sha` | Commit عكسي (آمن بعد push) |
 | `git clean -nd / -fd` | جرّب / امسح Untracked |
 
-#### Branchesالفروع
+### Branches · الفروع
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -77,7 +77,7 @@ sidebar:
 | `git merge name` | ادمج في الحالي |
 | `git merge --abort` | الغي Merge |
 
-#### Remotesالريموت
+### Remotes · الريموت
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -90,7 +90,7 @@ sidebar:
 | `git push --force-with-lease` | بعد rebase (Branch بتاعتك) |
 | `ssh -T git@github.com` | اختبر SSH |
 
-#### Stash & Tagsالرف والتاجات
+### Stash & Tags · الرف والتاجات
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -100,7 +100,7 @@ sidebar:
 | `git tag -a v1.0.0 -m "msg"` | Annotated tag |
 | `git push origin v1.0.0 / --tags` | ابعت Tag |
 
-#### Advancedالمتقدم
+### Advanced · المتقدم
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -113,7 +113,7 @@ sidebar:
 | `git bisect start / good / bad / reset` | دوّر على الـ Bug |
 | `git blame -w f` | مين كتب كل سطر |
 
-#### ghGitHub CLI
+### ghGitHub CLI
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -125,7 +125,7 @@ sidebar:
 | `gh issue create / list` | Issues |
 | `gh run watch` | تابع Actions |
 
-#### AI safetyمع الـ AI
+### AI safety · مع الـ AI
 
 | الأمر | بيعمل إيه |
 |---|---|

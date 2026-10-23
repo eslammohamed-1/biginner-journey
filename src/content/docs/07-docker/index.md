@@ -1,6 +1,6 @@
 ---
 title: "Docker — دليل المذاكرة"
-description: "Docker — دليل المذاكرة"
+description: "المشكلة الأول، وبعدين Images جاهزة، وبعدها تبني Image بتاعتك وتشغّل المشروع."
 sidebar:
   order: 0
   label: "عن الكتاب"

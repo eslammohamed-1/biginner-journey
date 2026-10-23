@@ -8,7 +8,7 @@ sidebar:
 
 جاوب بنفسك الأول، وبعدين قارن. لكل فصل: إجابات أسئلة المراجعة، وبعدها صح ولا غلط، وبعدها مفاتيح التحديات. أغلب التحديات تجارب عملية، فلو وصلت لنفس النتيجة بطريقة تانية فهي صح.
 
-#### الفصل 1: حكاية الفرونت إند
+## الفصل 1: حكاية الفرونت إند
 
 1. مثلاً بنك: تطبيق الموبايل والشاشات اللي بتشوفها = فرونت، والسيرفر اللي بيحسب الرصيد ويحفظ التحويلات = باك.
 2. AJAX حل مشكلة «كل ضغطة = صفحة جديدة» (تجيب بيانات من غير Reload). jQuery حل مشكلة «كل متصفح بيتكلم DOM بطريقة مختلفة» (API واحد سهل).
@@ -23,7 +23,7 @@ sidebar:
 2. طلبات Fetch/XHR بتطلع والصفحة ماعملتش Reload.
 3. View Source فيه محتوى = Server-rendered أو Meta-framework (‎/\_next/ = Next.js)، و div فاضي = SPA.
 
-#### الفصل 2: خريطة الإيكوسيستم
+## الفصل 2: خريطة الإيكوسيستم
 
 1. المنصة (HTML و Web APIs)، ولغات فوق اللغة (TypeScript و JSX)، والأدوات على جهازك (npm و Vite)، والمكتبات (React و Tailwind)، والـ Meta-framework (Next.js و Nuxt)، والاستضافة (Vercel و Netlify).
 2. انت بتنادي الـ Library وقت ما تحب. الـ Framework هو اللي بينادي كودك في أماكن محددة (Inversion of control).
@@ -38,7 +38,7 @@ sidebar:
 2. غالباً نسخ أحدث ونفس الـ scripts. قارن بنفسك.
 3. ‎/\_next/static/ = Next.js، و /assets/index-xxxx.js = غالباً Vite.
 
-#### الفصل 3: Semantic HTML
+## الفصل 3: Semantic HTML
 
 1. شجرة بيبنيها المتصفح من الـ HTML فيها الدور والاسم والحالة لكل عنصر. بتستخدمها Screen readers وأدوات الأتمتة.
 2. article: حاجة مستقلة ليها معنى لوحدها (بوست، كارت منتج). section: جزء ليه عنوان من حاجة أكبر. div: للتنسيق بس من غير معنى.
@@ -53,7 +53,7 @@ sidebar:
 2. كل Landmark ظاهر بدوره (banner و navigation و main و complementary و contentinfo).
 3. مثلاً: div بيتداس، وصور من غير alt، وخانات من غير label، وتباين ضعيف، و Focus مش باين.
 
-#### الفصل 4: Forms
+## الفصل 4: Forms
 
 1. id للربط جوه الصفحة (label for و CSS و JS). name هو المفتاح اللي بيتبعت مع البيانات.
 2. submit بيلقط Enter وزرار الإرسال وأي طريقة إرسال، وبيدّيك الـ Validation بتاع المتصفح.
@@ -68,7 +68,7 @@ sidebar:
 2. ‎?q=…&sort=… في الـ URL، وبعدين preventDefault و fetch بـ FormData.
 3. ‎setCustomValidity(a === b ? '' : 'Passwords do not match').
 
-#### الفصل 5: Accessibility
+## الفصل 5: Accessibility
 
 1. حد في مواصلات من غير سماعات، أو في مكان دوشة، بيقرا الـ Captions.
 2. لأنه بيظهر للي بيستخدم الكيبورد بس، ومن غيره مستخدم الكيبورد مش عارف هو فين.
@@ -83,7 +83,7 @@ sidebar:
 2. aria-expanded true/false و hidden على القايمة.
 3. الأخطاء بتتقري مع كل خانة، والملخص بيتقري بعد الإرسال.
 
-#### الفصل 6: الـ Cascade
+## الفصل 6: الـ Cascade
 
 1. الأهمية والمصدر، ثم الـ inline style، ثم الـ Layers، ثم الـ Specificity، ثم الترتيب في الملف.
 2. (1,2,3): ‎#menu = 1، و .active و :hover = 2، و ul و li و a = 3.
@@ -98,7 +98,7 @@ sidebar:
 2. ‎@layer reset, base, components; والـ .btn بيكسب.
 3. ‎:where(h1, h2, h3, p) { margin: 0 } (Specificity صفر).
 
-#### الفصل 7: Flexbox
+## الفصل 7: Flexbox
 
 1. space-between: مفيش مسافة على الأطراف. space-evenly: نفس المسافة بين الكل وعلى الأطراف.
 2. flex: 1 = ‎1 1 0% (يبدأ من صفر ويتقسّم بالتساوي). flex: auto = ‎1 1 auto (يبدأ من حجم المحتوى).
@@ -113,7 +113,7 @@ sidebar:
 2. آخر كارت بيتمط على السطر كله، و Grid بيمنع ده.
 3. —
 
-#### الفصل 8: Grid
+## الفصل 8: Grid
 
 1. Flex بيوزّع كل سطر لوحده، فآخر سطر بيكبّر عناصره. Grid أعمدة ثابتة لكل الصفوف.
 2. «العمود عمره ما يقل عن 120px، ولو فيه مساحة ياخد نصيبه منها».
@@ -128,7 +128,7 @@ sidebar:
 2. Media query واحدة بتغيّر grid-template-areas لعمود واحد.
 3. dense بيملا الفراغات بعناصر بعدين.
 
-#### الفصل 9: Responsive
+## الفصل 9: Responsive
 
 1. الموبايل كان بيعرض الصفحة كأنها 980px ويصغّرها (من أيام iPhone الأول). السطر بيقول «العرض = عرض الجهاز».
 2. لأن rem بيحترم حجم الخط اللي المستخدم اختاره في الإعدادات.
@@ -143,7 +143,7 @@ sidebar:
 2. Mobile-first بـ min-width.
 3. كل نسخة حسب عرض علبتها.
 
-#### الفصل 10: CSS الحديث
+## الفصل 10: CSS الحديث
 
 1. ‎el.style.setProperty('--brand', 'red'). متغيرات Sass بتختفي وقت البناء فمفيش حاجة تتغير.
 2. li:has(a).
@@ -158,7 +158,7 @@ sidebar:
 2. ‎\[data-theme="dark"\] { --bg: …; --text: … }.
 3. ‎form:has(:user-invalid) button { … }.
 
-#### الفصل 11: ليه Frameworks
+## الفصل 11: ليه Frameworks
 
 1. Imperative: «امشي يمين، اطلع الدور التالت…». Declarative: «عايز أوصل الشقة دي».
 2. لأن innerHTML بيمسح الخانة ويعمل واحدة جديدة مع كل حرف، فالـ Focus بيروح لـ BODY.
@@ -173,7 +173,7 @@ sidebar:
 2. حدّث h1 و ul بس.
 3. النسخة التانية أقصر وأسهل تتصلّح.
 
-#### الفصل 12: مقارنة الـ Frameworks
+## الفصل 12: مقارنة الـ Frameworks
 
 1. React: useState، و Vue: ref، و Svelte: ‎$state، و Angular: signal.
 2. JSX = JavaScript فيها HTML (تكتب map و ternary). Templates = HTML فيها إضافات (v-if و {#if}).
@@ -188,7 +188,7 @@ sidebar:
 2. React: react و react-dom في dependencies، والباقي devDependencies.
 3. —
 
-#### الفصل 13: Node و npm
+## الفصل 13: Node و npm
 
 1. لأن vite بيعتمد على Packages وهما بيعتمدوا على غيرهم: Transitive dependencies.
 2. انت طلبت نسخة بالظبط، و npm كتب ‎^4.17.20 (أي 4.x من 4.17.20 وطالع).
@@ -203,7 +203,7 @@ sidebar:
 2. Apple Silicon: darwin-arm64، و Intel: darwin-x64.
 3. من غير Lockfile ممكن تاخد نسخ أحدث جوه الـ Range.
 
-#### الفصل 14: package.json
+## الفصل 14: package.json
 
 1. علشان npm يرفض ينشره بالغلط على الـ Registry العام.
 2. prebuild ثم build. لو prebuild فشل (exit مش صفر)، build مش هيشتغل.
@@ -218,7 +218,7 @@ sidebar:
 2. ‎"prebuild": "rm -rf dist".
 3. ‎"type": "module" أو غيّر الامتداد لـ .mjs.
 
-#### الفصل 15: SemVer و Lockfile
+## الفصل 15: SemVer و Lockfile
 
 1. مفيش Lockfile متوحد، فكل واحد خد نسخة مختلفة جوه الـ ^. الـ Lockfile بيقفل النسخة لكل الناس.
 2. لأ: مع 0.x الـ ^ مابيغيرش الـ MINOR، فيقبل 0.4.x بس.
@@ -233,7 +233,7 @@ sidebar:
 2. ‎npx semver -r "^2.4.1" 2.9.0 بيرجّع 2.9.0، و ~2.4.1 مع 2.5.0 مايرجّعش حاجة.
 3. ‎npm ci يفشل بـ EUSAGE، والحل npm install والـ diff يبين النسخة الجديدة.
 
-#### الفصل 16: بدائل npm والأمان
+## الفصل 16: بدائل npm والأمان
 
 1. import لـ Package مش في package.json بتاعك بس موجود بالصدفة لأن حد تاني جابه. pnpm مابيحطش غير اللي طلبته في node\_modules.
 2. ‎pnpm i --frozen-lockfile و bun install --frozen-lockfile، و pnpm dlx create-vite و bunx create-vite.
@@ -248,7 +248,7 @@ sidebar:
 2. المرة التانية reused أكتر و downloaded أقل.
 3. ‎install-scripts approve esbuild ثم npm rebuild، وبعدها النسخة بتطبع.
 
-#### الفصل 17: Modules و Bundlers
+## الفصل 17: Modules و Bundlers
 
 1. الـ Modules بتتحمّل بقواعد CORS، و file:// الـ Origin بتاعه null.
 2. main.js يستورد app.js، و app.js يستورد button.js: المتصفح مايعرفش button غير بعد ما app ينزل.
@@ -263,7 +263,7 @@ sidebar:
 2. CORS error من origin 'null'.
 3. Hash بتاع chart اتغير، وغالباً index كمان لأنه بيشاور على اسم chart.
 
-#### الفصل 18: Vite
+## الفصل 18: Vite
 
 1. لأنه مش بيعمل Bundle في الـ Dev، بيقدّم ESM للمتصفح ملف ملف.
 2. src/assets (بـ import، و Hash ويتحذف لو مش مستخدم). public لملف محتاج اسم ثابت (favicon و robots.txt).
@@ -278,7 +278,7 @@ sidebar:
 2. رابط Network من سطر الـ Terminal.
 3. file:// و Modules = CORS. preview بيحلها.
 
-#### الفصل 19: env و .env
+## الفصل 19: env و .env
 
 1. لأنه مش بادئ بـ VITE\_، فـ Vite رفض يحطه في كود المتصفح.
 2. build: .env.production (الـ mode أقوى). dev: .env لأن الـ mode development.
@@ -293,7 +293,7 @@ sidebar:
 2. ‎"build:staging": "vite build --mode staging".
 3. grep هيلاقيها في dist/assets.
 
-#### الفصل 20: CSS Ecosystem
+## الفصل 20: CSS Ecosystem
 
 1. Tailwind بيولّد الـ Classes اللي لقاها مكتوبة بس. الفخ: أسماء متركبة بـ template string.
 2. Sass وقت البناء ويختفي. Custom property في المتصفح وتتغير بـ JS و Media queries.
@@ -307,7 +307,7 @@ sidebar:
 2. ‎.bg-brand و hover بنسبة شفافية.
 3. الأرقام بتختلف، و Tailwind بيضيف Reset و Theme فبيبقى أكبر في كارت واحد، والفرق بيقل مع كبر المشروع.
 
-#### الفصل 21: TypeScript
+## الفصل 21: TypeScript
 
 1. لأن Vite بيشيل الأنواع ومابيفحصش.
 2. src/App.tsx السطر 8 العمود 5، و TS2322 = نوع مش متوافق.
@@ -321,7 +321,7 @@ sidebar:
 2. npm run build يفشل بـ exit 2، و vite build ينجح.
 3. 7 غالباً أسرع، والفرق بيبان في المشاريع الكبيرة.
 
-#### الفصل 22: Rendering و Next.js
+## الفصل 22: Rendering و Next.js
 
 1. المنيو SSG أو ISR (تتغير نادراً و SEO مهم). صفحة الطلبات SSR أو CSR ورا Login.
 2. لأنها اتبنت وقت البناء ومتخزنة (cacheLife minutes)، فالوقت = وقت آخر بناء.
@@ -335,7 +335,7 @@ sidebar:
 2. ○ للمسارات اللي في generateStaticParams.
 3. ‎/now بيتغير كل طلب، و /news بعد الدقيقة: أول طلب بيرجّع القديم ويبني الجديد في الخلفية، والطلب اللي بعده بيجيب الجديد.
 
-#### الفصل 23: ESLint و Prettier
+## الفصل 23: ESLint و Prettier
 
 1. error بيرجّع exit 1 ويوقف الـ CI، و warn لأ.
 2. علشان يعرف المتغيرات الجاهزة في المتصفح (document و window) أو Node.
@@ -349,7 +349,7 @@ sidebar:
 2. —
 3. == بيعمل تحويل أنواع (0 == '' = true)، و === بيقارن من غير تحويل.
 
-#### الفصل 24: الأداء والـ a11y
+## الفصل 24: الأداء والـ a11y
 
 1. لأن الـ Dev مش مضغوط وفيه HMR وملفات كتير، فالأرقام مش حقيقية.
 2. SSR/SSG (Next.js)، و Code splitting، وصورة أصغر بصيغة حديثة، و Preload للصورة الأساسية.
@@ -363,7 +363,7 @@ sidebar:
 2. lang و alt و تباين و aria-label و main، وبعدين button و label.
 3. Field data محتاجة زيارات كفاية من Chrome.
 
-#### الفصل 25: النشر
+## الفصل 25: النشر
 
 1. push ثم npm ci ثم build ثم رفع dist ثم رابط.
 2. تجرّب كل تغيير على رابط لوحده قبل ما يوصل الـ Production.
@@ -377,7 +377,7 @@ sidebar:
 2. —
 3. Pages: ‎/my-links/ و Vercel: ‎/.
 
-#### الفصل 26: المشروع النهائي
+## الفصل 26: المشروع النهائي
 
 1. create-vite: index.html و .gitignore و favicon، و Tailwind: vite.config.js و style.css، والصفحة: main.js و links.js و .env، و Lint: eslint.config.js و .prettierrc و .prettierignore، و package.json و Lockfile مع كل install، و deploy.yml للنشر.
 2. امسح base (أو خليه ‎/)، و Import في Vercel، وزوّد VITE\_APP\_TITLE لو مش هترفع .env.
@@ -389,7 +389,7 @@ sidebar:
 2. ‎dark:bg-slate-900 و dark:text-slate-100.
 3. Lighthouse على الرابط الحقيقي.
 
-#### الفصل 27: الـ Roadmap
+## الفصل 27: الـ Roadmap
 
 1. غالباً Vite (18) و env (19) و Deploy (25).
 2. Vite بدل create-react-app (فصل 18)، و Tailwind v4 بـ ‎@import و @theme (فصل 20).

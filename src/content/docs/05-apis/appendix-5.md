@@ -8,7 +8,7 @@ sidebar:
 
 جاوب بنفسك الأول، وبعدين قارن. لكل فصل: إجابات أسئلة المراجعة، وبعدها صح ولا غلط، وبعدها مفاتيح التحديات. أغلب التحديات تجارب عملية، فلو وصلت لنفس النتيجة بطريقة تانية فهي صح.
 
-#### الفصل 1: حكاية الـ API
+## الفصل 1: حكاية الـ API
 
 1. الـ Endpoint (العنوان)، والـ Input المطلوب (Parameters و Body)، وشكل الـ Output، والأخطاء الممكنة وأكوادها. (وكمان الـ Auth والحدود.)
 2. لأن الـ Shell بيعتبر `&` "شغّل الأمر في الخلفية"، فالـ URL بيتقطع عندها والباقي بيتنفذ كأمر تاني. علامات التنصيص بتخلي الـ URL كله كلمة واحدة.
@@ -23,7 +23,7 @@ sidebar:
 2. مثلاً `login` و`id` و`public_repos` و`followers` و`created_at`.
 3. v1 مفيهاش EGP وشكل الرد مختلف (base و rates)، والـ Docs بتوصّي بـ v2.
 
-#### الفصل 2: أنواع الـ APIs
+## الفصل 2: أنواع الـ APIs
 
 1. Over-fetching: محتاج اسم الدولة بس والرد فيه 50 Field. Under-fetching: محتاج الدولة وعملتها وجيرانها فبتعمل 3 طلبات.
 2. لأن كل Resource في REST ليه URL و GET، فالـ Cache بيخزّن بالـ URL. في GraphQL كله POST على URL واحد.
@@ -38,7 +38,7 @@ sidebar:
 2. `query($c: ID!) { country(code: $c) { name } }` وغيّر `variables`.
 3. `/countries/EG` ثم `/countries/EG/languages`… يعني طلبين أو أكتر بدل واحد.
 
-#### الفصل 3: تشريح طلب ورد
+## الفصل 3: تشريح طلب ورد
 
 1. `Accept` في الطلب: "عايز الرد بالشكل ده". `Content-Type`: "الـ Body اللي معايا بالشكل ده"، وبيتبعت في الطلب (لو فيه Body) وفي الرد.
 2. لأن المحتوى ممكن يكون اتغير فعلاً، أو الطلب مختلف في Header موجود في `Vary` (زي Accept أو Authorization) فالـ ETag بتاع نسخة تانية مش هيطابق.
@@ -53,7 +53,7 @@ sidebar:
 2. `curl -i -H 'If-None-Match: "…"'` بالـ ETag من الرد الأول.
 3. رجّع 415، والمتوقع حسب HTTP هو 406 Not Acceptable.
 
-#### الفصل 4: JSON بالتفصيل
+## الفصل 4: JSON بالتفصيل
 
 1. `.5`←`0.5`، `+1`←`1`، `01`←`1`، `NaN`←`null`، `0x1F`←`31`.
 2. لأن الأرقام في JS بتفقد الدقة بعد 2<sup>53</sup>، فالـ ID ممكن يتغير وهو بيتقري.
@@ -68,7 +68,7 @@ sidebar:
 2. `"a \"q\"\nb \\ \u0645"`.
 3. مسموح للـ Parser يحط حدود (حجم، وعمق، وطول أرقام)، فمتفترضش إن أي JSON صحيح هيتقري في كل مكان.
 
-#### الفصل 5: JSON في JavaScript
+## الفصل 5: JSON في JavaScript
 
 1. `undefined` بيختفي، و`null` بيتبعت. للسيرفر: الغياب = "متغيرش"، و null = "امسح" (Merge Patch).
 2. `JSON.stringify(user, (k, v) => k === "password" ? undefined : v)`.
@@ -83,7 +83,7 @@ sidebar:
 2. `if (!res.headers.get("content-type")?.includes("json")) throw new Error((await res.text()).slice(0,100))`.
 3. Regex زي `/^\d{4}-\d{2}-\d{2}T/`، والخطر إن نص عادي يتحول لـ Date غلط. الأحسن تحوّل Fields معروفة بالاسم.
 
-#### الفصل 6: jq
+## الفصل 6: jq
 
 1. `.[]` بيطلّع العناصر واحدة واحدة (Stream). `[ … ]` بيجمّع اللي جواه في Array.
 2. `.[] | select(.email | endswith(".biz")) | .name`.
@@ -98,7 +98,7 @@ sidebar:
 2. `group_by(.userId) | map({user: .[0].userId, percent: (map(select(.completed)) | length) * 100 / length})`.
 3. `jq -r '.[] | [.number, .title, .user.login, ([.labels[].name] | join(";"))] | @csv'`.
 
-#### الفصل 7: JSON Schema
+## الفصل 7: JSON Schema
 
 1. توثيق، و Types، و Forms، و Mock data، وعقد بين الفرق، و Structured output للموديلات.
 2. `{"type":"object","required":["email"],"properties":{"email":{"type":"string","format":"email"},"age":{"type":"integer","minimum":13,"maximum":120}}}`.
@@ -113,7 +113,7 @@ sidebar:
 2. كل الـ 200 بيعدّوا.
 3. هيفشل لأن `lat` String في JSONPlaceholder. يعني البيانات الوهمية مش متصممة بعناية للأنواع.
 
-#### الفصل 8: curl و HTTPie والأدوات
+## الفصل 8: curl و HTTPie والأدوات
 
 1. `curl --json '{"title":"Hi","userId":1}' URL` و`http POST URL title=Hi userId:=1`.
 2. الاتنين Exit code 22، بس `--fail-with-body` بيطبع الـ Body (فيه رسالة الخطأ).
@@ -128,7 +128,7 @@ sidebar:
 2. غالباً Cookie واحدة أو Header Authorization كفاية.
 3. ملفات `.bru` نصية تقدر ترفعها على Git.
 
-#### الفصل 9: APIs للتمرين
+## الفصل 9: APIs للتمرين
 
 1. Open-Meteo بيقولك بالظبط إيه الغلط بـ `reason`. JSONPlaceholder بيرجّع `{}` من غير شرح.
 2. لأن السيرفر بيحدد شكل اللينك وانت متعرفش هيتغير إزاي، وبتمشي وراه بس.
@@ -143,7 +143,7 @@ sidebar:
 2. Loop على `info.next` لحد null، وعدّ `status === "Dead"`.
 3. هتلاقي كل واحد بشكل، وده سبب RFC 9457 (فصل 17).
 
-#### الفصل 10: fetch في Node والمتصفح
+## الفصل 10: fetch في Node والمتصفح
 
 1. بتتـ Reject لو الشبكة فشلت (DNS، أو اتصال، أو Timeout، أو CORS). مش بتتـ Reject على 4xx و 5xx.
 2. لأن 204 مفيهوش Body، و`res.json()` هيرمي Error.
@@ -158,7 +158,7 @@ sidebar:
 2. اقرا `Retry-After` كثواني، و `await new Promise(r => setTimeout(r, s*1000))` ثم أعد.
 3. `async function* paginate(url){ while(url){ const d = await (await fetch(url)).json(); yield* d.results; url = d.info.next; } }`.
 
-#### الفصل 11: قراية الـ Docs
+## الفصل 11: قراية الـ Docs
 
 1. لأنهم بيحددوا هتكتب الكود إزاي (Retries وتعامل مع الأخطاء) قبل أي Endpoint.
 2. Path لهوية الـ Resource (`/users/42`)، و Query للفلترة والخيارات (`?status=open`).
@@ -173,7 +173,7 @@ sidebar:
 2. `base` و`quote` الاتنين `in: path`.
 3. الـ Collection بتطلع بكل الـ Endpoints جاهزة.
 
-#### الفصل 12: الـ Auth
+## الفصل 12: الـ Auth
 
 1. بيتسجل في Logs السيرفرات والـ Proxies، و History المتصفح، و Referer header.
 2. HS256: Secret واحد بيوقّع ويتحقق. RS256: Private key بيوقّع و Public key أي حد يتحقق بيه.
@@ -188,7 +188,7 @@ sidebar:
 2. `exp` = `Math.floor(Date.now()/1000) - 60`.
 3. قارن `header.alg === "HS256"` و`payload.aud === "articles-api"` قبل التوقيع.
 
-#### الفصل 13: OAuth و CORS
+## الفصل 13: OAuth و CORS
 
 1. `state` ضد CSRF (رد مش من طلبك). PKCE ضد سرقة الـ code (لازم الـ verifier الأصلي).
 2. لأن الـ URL بيتسجل ويتسرب، والتبديل بيحصل في طلب مباشر (ومعاه PKCE أو Secret).
@@ -203,7 +203,7 @@ sidebar:
 2. هتلاقي `response_type=code` و`scope` و`state` وغالباً `code_challenge`.
 3. GitHub بيرجّع CORS مفتوح فبتشتغل، بس الهيدر ممكن ميتقريش لو مش في Expose. و httpbin مع Authorization بيعمل Preflight.
 
-#### الفصل 14: REST والتسمية
+## الفصل 14: REST والتسمية
 
 1. لأن GET المفروض Safe، فأي Crawler أو Prefetch أو Cache ممكن يبعته ويمسح بيانات.
 2. Resource = المقالة 42 كفكرة. Representation = الـ JSON أو الـ HTML اللي بيوصل لها.
@@ -218,7 +218,7 @@ sidebar:
 2. `/lists` و`/lists/{id}/items` و`position` في كل Item، وترتيب بـ PATCH.
 3. مثلاً Endpoints فيها أفعال زي `/repos/{o}/{r}/merges`: اختاروا وضوح العملية.
 
-#### الفصل 15: الـ Methods
+## الفصل 15: الـ Methods
 
 1. PUT بيقول "خليها كده" فتكراره نفس النتيجة. POST بيقول "اعمل جديدة" فتكراره = مقالتين.
 2. Merge Patch: ابعت الـ Array كلها بالـ 6. JSON Patch: `{"op":"add","path":"/tags/-","value":"x"}`.
@@ -233,7 +233,7 @@ sidebar:
 2. `[{"op":"test","path":"/status","value":"draft"},{"op":"replace","path":"/title","value":"..."},{"op":"remove","path":"/tags/0"}]`.
 3. Redis أو جدول بـ TTL 24 ساعة، وحالة "processing" ترجّع 409.
 
-#### الفصل 16: Status و Body
+## الفصل 16: Status و Body
 
 1. (أ) 409. (ب) 415. (ج) 202. (د) 400.
 2. علشان الـ Client يعرف يتابع حالة الشغل منين.
@@ -248,7 +248,7 @@ sidebar:
 2. `{"id":"7","name":"...","role":"editor","articleCount":12,"isActive":true,"joinedAt":"2026-...Z","bio":null,"tags":[]}`.
 3. snake\_case، و null كتير (`mirror_url`)، و Objects متداخلة (`owner`).
 
-#### الفصل 17: الـ Errors
+## الفصل 17: الـ Errors
 
 1. علشان لو الـ Body اتنقل أو اتسجل لوحده يفضل مفهوم.
 2. `title` ثابت لكل نوع، و`detail` للمرة دي بالذات.
@@ -263,7 +263,7 @@ sidebar:
 2. لو `p.status === 429` اقرا `Retry-After` واستنى وأعد مرة.
 3. validation و article-not-found و already-published و precondition و rate-limited و forbidden-role.
 
-#### الفصل 18: الـ Pagination
+## الفصل 18: الـ Pagination
 
 1. صفحة 1 = أول 2 (5 و 4). الـ 6 دخل في الأول، فالـ offset 2 بقى بيشاور على 4 تاني.
 2. جداول صغيرة أو Admin محتاج أرقام صفحات وقفز.
@@ -278,7 +278,7 @@ sidebar:
 2. هيفوّت عنصر.
 3. مقالتين بنفس `createdAt` ممكن واحدة تتكرر أو تتفوّت. الحل Cursor فيه `(createdAt, id)`.
 
-#### الفصل 19: التطوير والحدود
+## الفصل 19: التطوير والحدود
 
 1. Deprecation (‎@timestamp) = اتعلن قديم. Sunset (HTTP-date) = هيقف.
 2. علشان الكود القديم ميتكسرش لوحده.
@@ -293,7 +293,7 @@ sidebar:
 2. GET ← PATCH بـ ETag ← لو 412 GET تاني واعرض.
 3. زوّد `author` جنب `authorId`، و Deprecation على `authorId` في الـ Docs والهيدرز، و Sunset بعد مهلة طويلة، ثم شيله في v2.
 
-#### الفصل 20: الـ Webhooks
+## الفصل 20: الـ Webhooks
 
 1. 5 × 120 = 600 في الساعة، والحد 60.
 2. اللي معاه السر يقدر يزوّر أي Delivery. غيّره فوراً (Rotate).
@@ -308,7 +308,7 @@ sidebar:
 2. `if (event !== "issues" || payload.action !== "opened") return res.status(204).end()` بعد التحقق.
 3. smee-client بيحوّل لـ `localhost:4000/webhooks/github`.
 
-#### الفصل 21: كتابة OpenAPI
+## الفصل 21: كتابة OpenAPI
 
 1. اسم ثابت للعملية، والأدوات بتعمل منه Functions.
 2. علشان متكررش الـ Fields، وأي تعديل يحصل في مكان واحد.
@@ -323,7 +323,7 @@ sidebar:
 2. Path جديد و Schema `Author`، و `404` بـ Problem.
 3. `test("422", ..., "ValidationProblem")` بطلب POST غلط.
 
-#### الفصل 22: الجسر لـ Express
+## الفصل 22: الجسر لـ Express
 
 1. لأن Express بيمشي بالترتيب، فلو قبلهم هيرد على كل حاجة.
 2. الـ Body هيتقري ويتحول، والتوقيع هيفشل.
@@ -338,7 +338,7 @@ sidebar:
 2. `const router = express.Router()` و`app.use("/v1/articles", router)`.
 3. نفس `problem()` و `etagOf()`.
 
-#### الفصل 23: مشروع 1
+## الفصل 23: مشروع 1
 
 1. من `rel="last"` و `page=56` و`per_page=3`.
 2. علشان أي Script أو CI يعرف إنه فشل.
@@ -353,7 +353,7 @@ sidebar:
 2. Loop على `Link` واعمل `filter(i => !i.pull_request)`.
 3. احفظ `{etag, body}` في ملف، ولو 304 اطبع "from cache".
 
-#### الفصل 24: مشروع 2
+## الفصل 24: مشروع 2
 
 1. علشان متكشفش إن الـ Draft موجود.
 2. لأن فيه Validation وتواريخ و Webhook، أكبر من تغيير Field.

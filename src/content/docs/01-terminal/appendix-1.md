@@ -8,7 +8,7 @@ sidebar:
 
 ورقة مراجعة لكل الأوامر المهمة في الكتاب مقسّمة حسب الموضوع، وبعدها جدول الـ Flags المشتركة بين الأوامر ومعانيها المختلفة، وجدول لكل رمز ممكن تشوفه في سطر أوامر.
 
-#### Navigationالتنقل
+### Navigation · التنقل
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -21,7 +21,7 @@ sidebar:
 | `cdf` | روح لمجلد Finder (دالة الفصل 13) |
 | `tree -L 2` | شجرة لمستويين (brew install tree) |
 
-#### Filesالملفات
+### Files · الملفات
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -34,7 +34,7 @@ sidebar:
 | `trash f` | للـ Trash (brew install trash) |
 | `ln -s target link` | Soft link |
 
-#### Viewingالقراية
+### Viewing · القراية
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -47,7 +47,7 @@ sidebar:
 | `qlmanage -p f` | Quick Look |
 | `wc -l f` | عدد السطور |
 
-#### Permissionsالصلاحيات
+### Permissions · الصلاحيات
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -59,7 +59,7 @@ sidebar:
 | `xattr -d com.apple.quarantine app` | شيل علامة النت |
 | `csrutil status` | SIP شغال؟ |
 
-#### Textالنصوص
+### Text · النصوص
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -72,7 +72,7 @@ sidebar:
 | `tr 'a-z' 'A-Z'` | بدّل حروف |
 | `pbpaste \| cmd \| pbcopy` | من وإلى الـ Clipboard |
 
-#### Findالبحث عن ملفات
+### Find · البحث عن ملفات
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -84,7 +84,7 @@ sidebar:
 | `mdfind -name invoice` | Spotlight: في ثانية |
 | `mdfind -onlyin ~/Docs 'kMDItemKind == PDF'` | Spotlight بشرط ومكان |
 
-#### Redirectionالتوجيه والربط
+### Redirection · التوجيه والربط
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -97,7 +97,7 @@ sidebar:
 | `a \|\| b` | b لو a فشل |
 | `echo $?` | Exit code آخر أمر |
 
-#### Processesالعمليات
+### Processes · العمليات
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -111,7 +111,7 @@ sidebar:
 | `nohup cmd &` | يعيش بعد قفل الـ Terminal |
 | `caffeinate -i cmd` | متخليش الماك ينام |
 
-#### Servicesالخدمات (launchd)
+### Services · الخدمات (launchd)
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -124,7 +124,7 @@ sidebar:
 | `log stream --predicate 'process == "x"'` | لوج لايف |
 | `log show --last 1h` | لوج آخر ساعة |
 
-#### Networkالشبكة
+### Network · الشبكة
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -137,7 +137,7 @@ sidebar:
 | `curl -I url / curl -fsSLO url` | الـ Headers / حمّل |
 | `lsof -nP -iTCP -sTCP:LISTEN` | مين بيسمع على أنهي بورت |
 
-#### SSH & Transferالسيرفرات والنقل
+### SSH & Transfer · السيرفرات والنقل
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -150,7 +150,7 @@ sidebar:
 | `rsync -avzP --dry-run a/ host:b/` | مزامنة (جرّب الأول) |
 | `ssh -N -L 8080:localhost:80 host` | نفق |
 
-#### Archivesالأرشيف
+### Archives · الأرشيف
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -160,7 +160,7 @@ sidebar:
 | `tar -tzf a.tar.gz` | اعرض المحتوى |
 | `zip -r a.zip dir / unzip a.zip` | zip |
 
-#### Homebrewالحزم
+### Homebrew · الحزم
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -173,7 +173,7 @@ sidebar:
 | `brew doctor` | اكتشف المشاكل |
 | `brew bundle dump / brew bundle` | Brewfile: احفظ / رجّع |
 
-#### Serversعلى سيرفر Linux
+### Servers · على سيرفر Linux
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -184,7 +184,7 @@ sidebar:
 | `journalctl -u x -f` | لوج الخدمة لايف |
 | `ip -br addr / sudo ss -tulnp` | العناوين / البورتات |
 
-#### BSD vs GNUالماك قصاد Linux
+### BSD vs GNU · الماك قصاد Linux
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -196,7 +196,7 @@ sidebar:
 | `grep -E / grep -P` | Regex (مفيش -P على الماك) |
 | `brew install coreutils` | gls و gsed و gdate |
 
-#### Scriptingالـ Scripts
+### Scripting · الـ Scripts
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -209,7 +209,7 @@ sidebar:
 | `trap 'cleanup' EXIT` | نضّف عند الخروج |
 | `${arr[@]+"${arr[@]}"}` | Array فاضية في bash 3.2 |
 
-#### Shell configالإعدادات (zsh)
+### Shell config · الإعدادات (zsh)
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -221,7 +221,7 @@ sidebar:
 | `which -a cmd / type cmd` | ده إيه وفين |
 | `security find-generic-password -s x -w` | سر من الـ Keychain |
 
-#### Mac goodiesأدوات الماك
+### Mac goodies · أدوات الماك
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -234,7 +234,7 @@ sidebar:
 | `screencapture -i -c` | Screenshot للـ Clipboard |
 | `sw_vers / pmset -g batt` | النسخة / البطارية |
 
-#### Keys & tmuxالاختصارات
+### Keys & tmux · الاختصارات
 
 | الأمر | بيعمل إيه |
 |---|---|

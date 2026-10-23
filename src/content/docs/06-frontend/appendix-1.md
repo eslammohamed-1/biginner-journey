@@ -8,7 +8,7 @@ sidebar:
 
 ورقة مراجعة لأهم أوامر npm و npx و Vite و Tailwind وأدوات الجودة والنشر، مقسّمة حسب الموضوع، وبعدها جدول الـ Flags وجدول لرموز الـ SemVer والـ CSS وغيرها.
 
-#### npmالتسطيب
+### npm · التسطيب
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -23,7 +23,7 @@ sidebar:
 | `npm update` | أحدث نسخة جوه الـ Range |
 | `npm outdated` | Current / Wanted / Latest |
 
-#### npmالفحص والإدارة
+### npm · الفحص والإدارة
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -37,7 +37,7 @@ sidebar:
 | `npm install-scripts ls / approve x` | npm 12: Install scripts |
 | `npm rebuild` | شغّل الـ Scripts المسموحة |
 
-#### npm runScripts و npx
+### npm runScripts و npx
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -49,7 +49,7 @@ sidebar:
 | `npx x` | شغّل من .bin أو نزّل مؤقتاً |
 | `npm create vite@latest app -- --template react` | = npx create-vite@latest |
 
-#### ViteVite
+### ViteVite
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -64,7 +64,7 @@ sidebar:
 | `import('./x.js')` | Code splitting |
 | `*.module.css` | CSS Modules |
 
-#### Tailwind v4CSS
+### Tailwind v4CSS
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -75,7 +75,7 @@ sidebar:
 | `p-4 = calc(var(--spacing) * 4)` | 1rem |
 | `hover: / focus-visible: / md: / dark:` | Variants |
 
-#### Quality & Deployالجودة والنشر
+### Quality & Deploy · الجودة والنشر
 
 | الأمر | بيعمل إيه |
 |---|---|

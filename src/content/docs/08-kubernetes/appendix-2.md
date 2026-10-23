@@ -8,7 +8,7 @@ sidebar:
 
 كل مصطلح مهم في الكتاب في سطر واحد، مترتب أبجدياً. ارجعله كل ما تقابل كلمة ومش فاكر معناها.
 
-### A
+## A
 
 - **accessModes**: طريقة الوصول للتخزين: RWO و ROX و RWX و RWOP.
 
@@ -16,11 +16,11 @@ sidebar:
 
 - **API Server**: بوابة الـ Cluster: كل الأوامر (kubectl وغيره) بتكلمه، وهو اللي بيكلم الـ etcd.
 
-### B
+## B
 
 - **base64**: ترميز بيحوّل أي بيانات لنص. مش تشفير.
 
-### C
+## C
 
 - **CA**: Certificate Authority: جهة موثوقة بتختم الشهادات.
 
@@ -46,7 +46,7 @@ sidebar:
 
 - **CronJob**: بيعمل Job على ميعاد متكرر.
 
-### D
+## D
 
 - **DaemonSet**: بيشغّل Pod واحدة على كل Node (أو Nodes مختارة).
 
@@ -54,7 +54,7 @@ sidebar:
 
 - **Deployment**: بيدير ReplicaSets ويعمل Rolling Update و Rollback.
 
-### E
+## E
 
 - **emptyDir**: Volume مؤقت بيعيش مع الـ Pod.
 
@@ -64,11 +64,11 @@ sidebar:
 
 - **Events**: سجل الأحداث اللي حصلت للـ Objects، بيظهر في describe.
 
-### G
+## G
 
 - **Gateway API**: الجيل الأحدث بعد الـ Ingress لإدارة الـ Traffic الداخل.
 
-### H
+## H
 
 - **Helm**: مدير الحزم لـ Kubernetes.
 
@@ -76,17 +76,17 @@ sidebar:
 
 - **HPA**: Horizontal Pod Autoscaler: بيغير عدد الـ Pods حسب الاستهلاك.
 
-### I
+## I
 
 - **Ingress**: قواعد بتوجّه HTTP/HTTPS حسب الـ Host والـ Path للـ Services.
 
 - **Ingress Controller**: البرنامج اللي بينفّذ قواعد الـ Ingress فعلاً.
 
-### J
+## J
 
 - **Job**: بيشغّل Pod لحد ما تخلص بنجاح.
 
-### K
+## K
 
 - **kube-proxy**: بيظبط قواعد الشبكة على كل Node عشان الـ Services تشتغل.
 
@@ -94,7 +94,7 @@ sidebar:
 
 - **kubelet**: الـ Agent على كل Node، بيشغّل الـ Pods ويتابعها.
 
-### L
+## L
 
 - **Label**: key=value على الـ Object بيستخدم في الاختيار والتنظيم.
 
@@ -106,13 +106,13 @@ sidebar:
 
 - **LoadBalancer**: نوع Service بياخد IP خارجي من الـ Cloud.
 
-### M
+## M
 
 - **metrics-server**: بيجمع استهلاك الـ CPU والـ Memory للـ HPA و kubectl top.
 
 - **minikube**: Cluster محلي للتجربة على جهازك.
 
-### N
+## N
 
 - **Namespace**: تقسيم منطقي جوه الـ Cluster.
 
@@ -124,11 +124,11 @@ sidebar:
 
 - **nodeSelector**: تشغيل الـ Pod على Nodes عليها Label معينة.
 
-### O
+## O
 
 - **OOMKilled**: الـ Container اتقتل لأنه عدّى الـ memory limit.
 
-### P
+## P
 
 - **PersistentVolume (PV)**: مساحة تخزين حقيقية في الـ Cluster.
 
@@ -136,11 +136,11 @@ sidebar:
 
 - **PVC**: طلب تخزين بيرتبط بـ PV.
 
-### Q
+## Q
 
 - **QoS Class**: Guaranteed و Burstable و BestEffort: بتحدد مين يتطرد الأول.
 
-### R
+## R
 
 - **RBAC**: نظام الصلاحيات: Roles و Bindings.
 
@@ -158,7 +158,7 @@ sidebar:
 
 - **Rolling Update**: تحديث تدريجي من غير توقف.
 
-### S
+## S
 
 - **Scheduler**: بيختار الـ Node المناسبة لكل Pod.
 
@@ -178,16 +178,16 @@ sidebar:
 
 - **StorageClass**: بيعمل PVs أوتوماتيك (Dynamic Provisioning).
 
-### T
+## T
 
 - **Taint / Toleration**: Taint على الـ Node بيمنع الـ Pods، والـ Toleration تصريح بالدخول.
 
 - **TLS Termination**: فك تشفير الـ HTTPS عند الـ Ingress.
 
-### V
+## V
 
 - **Volume**: تخزين بيتركّب جوه الـ Container من برّه.
 
-### Y
+## Y
 
 - **YAML**: صيغة الملفات اللي بنوصف بيها الـ Objects.

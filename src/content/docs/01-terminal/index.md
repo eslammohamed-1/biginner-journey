@@ -1,6 +1,6 @@
 ---
 title: "الـ Terminal — المرجع الشخصي (إصدار macOS)"
-description: "الـ Terminal — المرجع الشخصي (إصدار macOS)"
+description: "من أول ضغطة Enter لحد السكربتات والصلاحيات، على macOS و zsh، ومعاه المقابل على Linux."
 sidebar:
   order: 0
   label: "عن الكتاب"

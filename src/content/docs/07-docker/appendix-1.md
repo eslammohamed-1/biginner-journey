@@ -8,7 +8,7 @@ sidebar:
 
 ورقة مراجعة سريعة لكل الأوامر والـ Instructions اللي في الكتاب، مقسّمة حسب الموضوع. اطبعها وحطها جنبك وانت بتشتغل.
 
-#### Imagesسحب وعرض ومسح
+## Images · سحب وعرض ومسح
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -19,7 +19,7 @@ sidebar:
 | `docker image inspect nginx` | كل تفاصيل الـ Image |
 | `docker image prune` | مسح الـ Images اللي ملهاش اسم (dangling) |
 
-#### Build & Pushبناء ونشر
+## Build & Push · بناء ونشر
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -30,7 +30,7 @@ sidebar:
 | `docker login` | تسجيل الدخول على Docker Hub |
 | `docker push moaz/app:1.0` | رفع الـ Image |
 
-#### Runتشغيل Container
+## Run · تشغيل Container
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -42,7 +42,7 @@ sidebar:
 | `docker run --rm -it ubuntu bash` | Container تفاعلي بيتمسح لما تخرج |
 | `docker run -d --memory 512m --cpus 1 app` | تحديد الموارد (cgroups) |
 
-#### Containersإدارة
+## Containers · إدارة
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -55,7 +55,7 @@ sidebar:
 | `docker rm web` | مسح Container (و -f بالإجبار) |
 | `docker container prune` | مسح كل الـ Containers الواقفة |
 
-#### Monitoringمراقبة وفحص
+## Monitoring · مراقبة وفحص
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -66,7 +66,7 @@ sidebar:
 | `docker top web` | الـ Processes جوه الـ Container |
 | `docker system df` | المساحة المستخدمة |
 
-#### Volumesتخزين البيانات
+## Volumes · تخزين البيانات
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -80,7 +80,7 @@ sidebar:
 | `docker volume rm my-vol` | مسح Volume |
 | `docker volume prune` | مسح الـ Volumes اللي مش مستخدمة |
 
-#### Networksالشبكات
+## Networks · الشبكات
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -92,7 +92,7 @@ sidebar:
 | `docker run --network host nginx` | استخدام شبكة الـ Host |
 | `docker network rm app-net` | مسح شبكة |
 
-#### Composeالمشروع كله
+## Compose · المشروع كله
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -104,7 +104,7 @@ sidebar:
 | `docker compose down` | إيقاف ومسح (الـ Volumes بتفضل) |
 | `docker compose down -v` | ومسح الـ Volumes كمان |
 
-#### Dockerfileالـ Instructions
+## Dockerfile · الـ Instructions
 
 | الأمر | بيعمل إيه |
 |---|---|

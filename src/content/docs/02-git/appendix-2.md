@@ -8,7 +8,7 @@ sidebar:
 
 كل مصطلح مهم في الكتاب في سطر واحد، مترتب أبجدياً. ارجعله كل ما تقابل كلمة ومش فاكر معناها.
 
-### A
+## A
 
 - **Actions**: خدمة GitHub لتشغيل Workflows أوتوماتيك (اختبارات، Build، نشر) مع أحداث زي push و PR.
 
@@ -22,7 +22,7 @@ sidebar:
 
 - **Atomic commit**: Commit بيعمل حاجة واحدة بس، فيسهل فهمه وإلغاؤه.
 
-### B
+## B
 
 - **Bisect**: بحث ثنائي في التاريخ عن أول Commit بايظ: `git bisect`.
 
@@ -34,7 +34,7 @@ sidebar:
 
 - **Branch protection / Ruleset**: قواعد على GitHub بتحمي Branch: ممنوع push مباشر، لازم PR ومراجعة.
 
-### C
+## C
 
 - **Cherry-pick**: نسخ Commit واحد من مكان لمكان: `git cherry-pick <sha>`.
 
@@ -48,7 +48,7 @@ sidebar:
 
 - **Conventional Commits**: صيغة رسايل: `type(scope): description` زي `feat:` و `fix:`.
 
-### D
+## D
 
 - **Detached HEAD**: HEAD بيشاور على Commit مباشرة مش على Branch.
 
@@ -56,7 +56,7 @@ sidebar:
 
 - **Distributed VCS**: نظام كل نسخة فيه معاها التاريخ كامل (زي Git).
 
-### F
+## F
 
 - **Fast-forward**: Merge من غير Commit جديد: اللافتة بتتحرك لقدام بس.
 
@@ -66,7 +66,7 @@ sidebar:
 
 - **Fork**: نسخة من Repo حد تاني على حسابك في GitHub.
 
-### G
+## G
 
 - **gh**: أداة GitHub الرسمية للـ Terminal: Repos و PRs و Issues و Releases.
 
@@ -76,7 +76,7 @@ sidebar:
 
 - **.gitignore**: ملف فيه أنماط الملفات اللي Git يتجاهلها.
 
-### H
+## H
 
 - **Hash / SHA**: بصمة الـ Object المحسوبة من محتواه (40 حرف Hex في SHA-1).
 
@@ -84,7 +84,7 @@ sidebar:
 
 - **Hunk**: جزء متصل من التغييرات في diff، بيبدأ بـ `@@`.
 
-### I
+## I
 
 - **Index / Staging area**: المكان اللي بتجهز فيه الـ Commit الجاي بـ `git add`.
 
@@ -92,15 +92,15 @@ sidebar:
 
 - **Issue**: تذكرة على GitHub لـ Bug أو فكرة أو مهمة.
 
-### K
+## K
 
 - **Keychain**: مخزن كلمات السر في macOS. Git و SSH بيحفظوا فيه بيانات الدخول.
 
-### L
+## L
 
 - **Lightweight tag**: Tag مجرد اسم على Commit من غير معلومات إضافية.
 
-### M
+## M
 
 - **Markdown**: طريقة تنسيق نص برموز بسيطة، بيستخدمها README و GitHub.
 
@@ -110,7 +110,7 @@ sidebar:
 
 - **Merge commit**: Commit ليه Parentين بيجمع خطين.
 
-### O
+## O
 
 - **Object**: وحدة التخزين في `.git/objects`: blob أو tree أو commit أو tag.
 
@@ -120,7 +120,7 @@ sidebar:
 
 - **origin/main**: Remote-tracking branch: صورة main على GitHub آخر مرة عملت fetch.
 
-### P
+## P
 
 - **Personal access token**: بديل الباسوورد للـ HTTPS، بصلاحيات وتاريخ انتهاء.
 
@@ -132,7 +132,7 @@ sidebar:
 
 - **Push protection**: ميزة GitHub بترفض push فيه مفاتيح سرية معروفة.
 
-### R
+## R
 
 - **Rebase**: إعادة تشغيل Commits فوق Base جديد، بـ Hashes جديدة.
 
@@ -152,7 +152,7 @@ sidebar:
 
 - **Revert**: Commit جديد بيلغي تأثير Commit قديم من غير ما يمسحه.
 
-### S
+## S
 
 - **Secret scanning**: فحص GitHub للـ Repos عن مفاتيح وكلمات سر متسرّبة.
 
@@ -166,7 +166,7 @@ sidebar:
 
 - **Stash**: رف مؤقت بتحط عليه تعديلات مش جاهزة: `git stash`.
 
-### T
+## T
 
 - **Tag**: اسم ثابت على Commit معين، غالباً لإصدار زي `v1.0.0`.
 
@@ -174,11 +174,11 @@ sidebar:
 
 - **Tree**: Object بيمثل فولدر: أسماء الملفات والـ blobs والـ trees اللي جواه.
 
-### U
+## U
 
 - **Upstream**: الـ Branch على الـ Remote اللي الـ Branch المحلي متابعه، أو المشروع الأصلي في حالة الـ Fork.
 
-### W
+## W
 
 - **Workflow (Actions)**: ملف YAML في `.github/workflows` بيحدد إمتى وإيه اللي يتشغّل.
 

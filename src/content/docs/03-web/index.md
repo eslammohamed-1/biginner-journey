@@ -1,6 +1,6 @@
 ---
 title: "الإنترنت والويب و DevTools — دليل المذاكرة"
-description: "الإنترنت والويب و DevTools — دليل المذاكرة"
+description: "الإنترنت اتعمل ليه، والصفحة بتوصلك إزاي، و HTTP والأمان، وبعدين DevTools عشان تمسك أي مشكلة."
 sidebar:
   order: 0
   label: "عن الكتاب"

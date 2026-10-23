@@ -8,7 +8,7 @@ sidebar:
 
 ورقة مراجعة لأهم أوامر curl و HTTPie و jq وسطور fetch و Express والأدوات اللي في الكتاب، مقسّمة حسب الموضوع، وبعدها جدول الـ Flags وجدول لكل رمز ممكن تقابله في طلب أو رد أو Spec.
 
-#### curlالطلبات
+### curl · الطلبات
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -26,7 +26,7 @@ sidebar:
 | `curl -H 'If-None-Match: "…"' URL` | Conditional (304) |
 | `curl --data-binary @f.json URL` | ابعت الملف زي ما هو |
 
-#### HTTPieHTTPie
+### HTTPieHTTPie
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -38,7 +38,7 @@ sidebar:
 | `http -A bearer -a $T URL` | Bearer |
 | `--ignore-stdin` | في Scripts (مش tty) |
 
-#### jqjq
+### jqjq
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -51,7 +51,7 @@ sidebar:
 | `--arg k v / --argjson k 5` | متغيرات |
 | `@csv / @tsv / @uri / @base64d` | تحويلات |
 
-#### fetchJavaScript
+### fetchJavaScript
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -64,7 +64,7 @@ sidebar:
 | `JSON.stringify(o, null, 2)` | JSON منسّق |
 | `JSON.parse(s, reviver)` | Parse بتحويل |
 
-#### Express 5Express
+### Express 5Express
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -78,7 +78,7 @@ sidebar:
 | `express.raw({ type: "application/json" })` | Raw body للـ Webhooks |
 | `"/v1/articles/:id\\:publish"` | ‎:publish حرفي |
 
-#### Specs & toolsأدوات
+### Specs & tools · أدوات
 
 | الأمر | بيعمل إيه |
 |---|---|

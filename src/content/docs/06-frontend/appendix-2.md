@@ -8,11 +8,11 @@ sidebar:
 
 كل مصطلح مهم في الكتاب في سطر واحد، مترتب أبجدياً. ارجعله كل ما تقابل كلمة ومش فاكر معناها.
 
-### #
+## #
 
 - **^ / ~**: Range: نفس الـ MAJOR / نفس الـ MINOR.
 
-### A
+## A
 
 - **Accessibility (a11y)**: إن أي حد يقدر يستخدم الموقع: بالكيبورد، أو Screen reader، أو تكبير، أو نظر ضعيف.
 
@@ -20,7 +20,7 @@ sidebar:
 
 - **ARIA**: Attributes بتوصف الدور والحالة للتقنيات المساعدة. أول قاعدة: متستخدمهاش لو فيه عنصر HTML بيعمل نفس الحاجة.
 
-### B
+## B
 
 - **Bare specifier**: import بالاسم بس (`'react'`). المتصفح مايفهمهوش، والـ Bundler بيحلّه.
 
@@ -28,7 +28,7 @@ sidebar:
 
 - **Bundler**: أداة بتجمّع الـ Modules والـ Packages في ملفات قليلة مصغّرة (Rolldown و webpack).
 
-### C
+## C
 
 - **Cascade**: القواعد اللي بتحدد أنهي CSS يكسب: الأهمية، ثم inline، ثم Layers، ثم Specificity، ثم الترتيب.
 
@@ -48,7 +48,7 @@ sidebar:
 
 - **Custom property**: متغير CSS (`--x`) بيعيش في المتصفح ويتغير وقت التشغيل.
 
-### D
+## D
 
 - **Dependency**: Package مشروعك محتاجه. dev = أدوات، peer = «سطّبه انت»، optional = «لو فشل كمّل».
 
@@ -60,19 +60,19 @@ sidebar:
 
 - **dist-tag**: اسم بيشاور على نسخة: latest و next و beta.
 
-### E
+## E
 
 - **ES Modules (ESM)**: نظام الـ Modules الرسمي: `import` و`export`.
 
 - **ESLint**: Linter: بيدوّر على الأخطاء والكود المشكوك فيه.
 
-### F
+## F
 
 - **Flat config**: ملف `eslint.config.js`، طريقة الإعداد الوحيدة في ESLint 10.
 
 - **Framework**: كود بينادي كودك في أماكن محددة ويحدد الهيكل (Angular و Next.js).
 
-### H
+## H
 
 - **Hash (في اسم الملف)**: حروف من محتوى الملف (`index-Ba828Msq.js`) علشان الـ Cache.
 
@@ -82,17 +82,17 @@ sidebar:
 
 - **Hydration**: ربط JS بـ HTML جاي جاهز من السيرفر علشان يبقى تفاعلي.
 
-### I
+## I
 
 - **INP**: Interaction to Next Paint: سرعة رد الصفحة على الضغط. جيد ≤ 200ms. بدل FID من مارس 2024.
 
 - **ISR**: Incremental Static Regeneration: صفحة Static بتتجدد كل فترة.
 
-### J
+## J
 
 - **JSX**: HTML جوه JavaScript في React، بيتحول لـ JS.
 
-### L
+## L
 
 - **LCP**: Largest Contentful Paint: أكبر عنصر ظهر إمتى. جيد ≤ 2.5 ثانية.
 
@@ -102,11 +102,11 @@ sidebar:
 
 - **Lockfile**: `package-lock.json`: النسخ اللي اتسطبت بالظبط مع resolved و integrity.
 
-### M
+## M
 
 - **Meta-framework**: Framework فوق مكتبة UI بيضيف Routing و SSR (Next.js و Nuxt و SvelteKit).
 
-### N
+## N
 
 - **Node.js**: Runtime بيشغّل JavaScript برة المتصفح. كل أدوات الفرونت شغالة بيه.
 
@@ -116,11 +116,11 @@ sidebar:
 
 - **npx**: يشغّل أمر من node\_modules/.bin أو ينزّله مؤقتاً. = npm exec.
 
-### O
+## O
 
 - **overrides**: مفتاح في package.json بيجبر نسخة Package جوه الشجرة.
 
-### P
+## P
 
 - **Package**: أي فولدر فيه package.json.
 
@@ -134,11 +134,11 @@ sidebar:
 
 - **Provenance**: إثبات إن الـ Package اتبنى من repo معين على CI (Attestation).
 
-### R
+## R
 
 - **Registry**: السيرفر اللي فيه كل الـ Packages: registry.npmjs.org.
 
-### S
+## S
 
 - **Semantic HTML**: استخدام العنصر اللي معناه مناسب (button و nav و main) مش div لكل حاجة.
 
@@ -158,7 +158,7 @@ sidebar:
 
 - **Supply chain attack**: هجوم على Package موقعك بيعتمد عليه بدل موقعك نفسه.
 
-### T
+## T
 
 - **Tailwind CSS**: Utility classes في الـ HTML، وبيولّد اللي انت استخدمته بس.
 
@@ -170,7 +170,7 @@ sidebar:
 
 - **Typosquatting**: Package باسم قريب من مشهور فيه كود ضار.
 
-### V
+## V
 
 - **Virtual DOM**: نسخة في الذاكرة من الواجهة بيقارنها React علشان يحدّث اللي اتغير.
 
@@ -178,6 +178,6 @@ sidebar:
 
 - **VITE\_**: بادئة المتغيرات اللي Vite بيحطها في كود المتصفح. يعني عامة.
 
-### W
+## W
 
 - **WCAG**: معايير الـ Accessibility الدولية (2.2).

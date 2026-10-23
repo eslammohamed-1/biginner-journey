@@ -64,8 +64,12 @@ export function sameOrder(current: readonly string[], correct: readonly string[]
 	return current.every((item, index) => item === correct[index]);
 }
 
-/** Stable shuffle so server HTML and the hydrated page show the same order. */
-export function seededShuffle<T>(items: readonly T[], seed: string): T[] {
+/**
+ * Stable shuffle so server HTML and the hydrated page show the same order.
+ * `avoidIdentity` (default on, for ordering puzzles) never returns the input order.
+ * Turn it off for answer options, or two-option questions would always swap.
+ */
+export function seededShuffle<T>(items: readonly T[], seed: string, avoidIdentity = true): T[] {
 	const arr = items.map((item, index) => ({ item, index }));
 	let hash = 2166136261;
 	for (let i = 0; i < seed.length; i++) {
@@ -85,7 +89,7 @@ export function seededShuffle<T>(items: readonly T[], seed: string): T[] {
 		arr[i] = arr[j]!;
 		arr[j] = tmp;
 	}
-	if (arr.length > 1 && arr.every((entry, index) => entry.index === index)) {
+	if (avoidIdentity && arr.length > 1 && arr.every((entry, index) => entry.index === index)) {
 		const first = arr.shift();
 		if (first) arr.push(first);
 	}

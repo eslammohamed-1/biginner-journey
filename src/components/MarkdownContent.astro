@@ -16,6 +16,17 @@ const exerciseData = chapterKey ? catalog.byKey.get(chapterKey) : undefined;
 const bookEntry = bookMatch?.groups
 	? catalog.books.find((book) => book.slug === bookMatch.groups!.book)
 	: undefined;
+
+const chapterBook = chapterMatch?.groups
+	? catalog.books.find((book) => book.slug === chapterMatch.groups!.book)
+	: undefined;
+const lastVisited = chapterMatch
+	? {
+			href: Astro.url.pathname,
+			title: Astro.locals.starlightRoute.entry.data.title,
+			bookTitle: chapterBook?.title ?? '',
+		}
+	: null;
 ---
 
 {
@@ -27,7 +38,7 @@ const bookEntry = bookMatch?.groups
 {
 	exerciseData && (
 		<>
-			<ExerciseSection client:load data={exerciseData} />
+			<ExerciseSection client:visible={{ rootMargin: '600px' }} data={exerciseData} />
 			<noscript>
 				<p class="ex-noscript">التصحيح وحفظ النتيجة محتاجين JavaScript.</p>
 			</noscript>
@@ -40,5 +51,14 @@ const bookEntry = bookMatch?.groups
 			<h2>اتدرّب</h2>
 			<p>التمارين جاية قريب</p>
 		</section>
+	)
+}
+{
+	lastVisited && (
+		<script is:inline define:vars={{ lastVisited }}>
+			try {
+				localStorage.setItem('bj-last-v1', JSON.stringify(lastVisited));
+			} catch {}
+		</script>
 	)
 }

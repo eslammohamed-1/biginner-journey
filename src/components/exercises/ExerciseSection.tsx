@@ -44,6 +44,9 @@ export default function ExerciseSection({ data }: Props) {
 	}
 
 	const solvedCount = data.exercises.filter((exercise) => items[exercise.id]?.solved).length;
+	const revealedCount = data.exercises.filter(
+		(exercise) => !items[exercise.id]?.solved && items[exercise.id]?.revealed,
+	).length;
 	const pct = ready ? percent(solvedCount, data.exercises.length) : 0;
 
 	return (
@@ -55,6 +58,9 @@ export default function ExerciseSection({ data }: Props) {
 				</div>
 				<p class="ex-score" aria-live="polite">
 					النتيجة: {ready ? solvedCount : '…'} من {data.exercises.length}
+					{ready && revealedCount > 0 ? (
+						<span class="ex-score-note"> · {revealedCount} اتكشفت إجابتهم</span>
+					) : null}
 				</p>
 			</header>
 			<div
@@ -78,6 +84,7 @@ export default function ExerciseSection({ data }: Props) {
 								key={itemKey}
 								exercise={exercise}
 								number={number}
+								salt={salt}
 								state={state}
 								onChange={(next) => onChange(exercise.id, next)}
 							/>

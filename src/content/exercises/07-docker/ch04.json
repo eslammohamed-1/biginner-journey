@@ -191,15 +191,14 @@
    "id": "07-docker-ch04-10",
    "type": "order",
    "level": "medium",
-   "prompt": "رتّب دورة حياة Container:",
+   "prompt": "رتّب دورة حياة Container (تشغيل، إيقاف، إعادة تشغيل، ثم حذف):",
    "items": [
     "docker run -d",
     "docker stop",
     "docker start",
-    "docker stop",
-    "docker rm"
+    "docker rm -f"
    ],
-   "explanation": "الإدارة."
+   "explanation": "تشغّله بـ run، توقّفه بـ stop، تشغّله تاني بـ start، وتمسحه في الآخر بـ rm."
   },
   {
    "id": "07-docker-ch04-11",

@@ -581,6 +581,68 @@ body {
 	margin-top: 0.4rem;
 }
 
+.ex-card > .ex-actions {
+	margin-top: 0.7rem;
+}
+
+.ex-retry {
+	color: var(--sl-color-orange-high);
+	font-weight: 600;
+}
+
+.ex-locked {
+	margin: 0 0 0.45rem;
+	font-size: var(--sl-text-sm);
+	color: var(--sl-color-gray-2);
+}
+
+.ex-score-note {
+	font-weight: 400;
+	color: var(--sl-color-gray-2);
+}
+
+.resume {
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.4rem 0.8rem;
+}
+
+.resume-where {
+	color: var(--sl-color-gray-2);
+	font-size: var(--sl-text-sm);
+}
+
+.progress-tools {
+	margin-top: 2rem;
+	padding: 1rem 1.05rem;
+	border: 1px dashed var(--sl-color-gray-5);
+	border-radius: 1rem;
+}
+
+.sl-markdown-content .progress-tools h2 {
+	margin: 0 0 0.35rem;
+	font-size: var(--sl-text-lg);
+}
+
+.sl-markdown-content .progress-tools p {
+	margin: 0 0 0.75rem;
+	color: var(--sl-color-gray-2);
+}
+
+.sl-markdown-content .progress-tools .progress-tools-status {
+	margin: 0.75rem 0 0;
+	font-weight: 600;
+}
+
+.progress-tools-status.is-ok {
+	color: var(--sl-color-green-high);
+}
+
+.progress-tools-status.is-error {
+	color: var(--sl-color-red-high);
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.prog-track > span {
 		transition: none;

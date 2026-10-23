@@ -46,6 +46,72 @@ export function resetChapter(book: string, chapterFile: string): void {
 	writeProgress(store);
 }
 
+type ProgressFile = {
+	app: 'biginner-journey';
+	version: 1;
+	exportedAt: string;
+	progress: ProgressStore;
+};
+
+export function exportProgress(): string {
+	const file: ProgressFile = {
+		app: 'biginner-journey',
+		version: 1,
+		exportedAt: new Date().toISOString(),
+		progress: readProgress(),
+	};
+	return JSON.stringify(file, null, 2);
+}
+
+/**
+ * Merges an exported file into the saved progress. A solved item is never
+ * downgraded, so importing an older file can't erase newer work.
+ * Returns the number of chapters in the file, or throws on a bad file.
+ */
+export function importProgress(text: string): number {
+	const parsed = JSON.parse(text) as Partial<ProgressFile>;
+	const incoming = parsed?.progress;
+	if (parsed?.app !== 'biginner-journey' || !incoming || typeof incoming !== 'object' || Array.isArray(incoming)) {
+		throw new Error('bad file');
+	}
+	const store = readProgress();
+	let chapters = 0;
+	for (const [key, chapter] of Object.entries(incoming)) {
+		if (!chapter?.items || typeof chapter.items !== 'object') continue;
+		chapters += 1;
+		const target = store[key] ?? { items: {} };
+		for (const [id, item] of Object.entries(chapter.items)) {
+			if (!item || typeof item !== 'object') continue;
+			const current = target.items[id];
+			if (current?.solved && !item.solved) continue;
+			target.items[id] = item;
+		}
+		store[key] = target;
+	}
+	writeProgress(store);
+	return chapters;
+}
+
+export const LAST_KEY = 'bj-last-v1';
+
+export type LastVisited = {
+	href: string;
+	title: string;
+	bookTitle: string;
+};
+
+export function readLastVisited(): LastVisited | null {
+	if (typeof localStorage === 'undefined') return null;
+	try {
+		const raw = localStorage.getItem(LAST_KEY);
+		if (!raw) return null;
+		const parsed = JSON.parse(raw) as LastVisited;
+		return parsed && typeof parsed.href === 'string' && typeof parsed.title === 'string' ? parsed : null;
+	} catch {
+		return null;
+	}
+}
+
 export type BookStat = {
 	done: number;
 	total: number;

@@ -16,26 +16,29 @@ export function OrderExercise({ exercise, number, salt, state, onChange }: Props
 	const shuffled = seededShuffle(exercise.items, `${exercise.id}:${salt}`);
 	const list = state?.order ?? shuffled;
 	const solved = Boolean(state?.solved);
+	const revealed = Boolean(state?.revealed);
+	const locked = solved || revealed;
 	const checked = Boolean(state?.checked);
+	const attempts = state?.attempts ?? 0;
 	const [dragIndex, setDragIndex] = useState<number | null>(null);
 	const [overIndex, setOverIndex] = useState<number | null>(null);
-	const [revealed, setRevealed] = useState(false);
-
-	function commit(next: string[], markChecked: boolean, markSolved: boolean) {
-		onChange({ solved: markSolved, checked: markChecked, order: next });
-	}
 
 	function move(from: number, to: number) {
-		if (solved || from === to || to < 0 || to >= list.length) return;
+		if (locked || from === to || to < 0 || to >= list.length) return;
 		const next = list.slice();
 		const [item] = next.splice(from, 1);
 		if (item === undefined) return;
 		next.splice(to, 0, item);
-		commit(next, false, false);
+		onChange({ solved: false, checked: false, order: next, attempts });
 	}
 
 	function check() {
-		commit(list, true, sameOrder(list, exercise.items));
+		const ok = sameOrder(list, exercise.items);
+		onChange({ solved: ok, checked: true, order: list, attempts: ok ? attempts : attempts + 1 });
+	}
+
+	function reveal() {
+		onChange({ solved: false, checked: false, order: list, attempts, revealed: true });
 	}
 
 	return (
@@ -53,7 +56,7 @@ export function OrderExercise({ exercise, number, salt, state, onChange }: Props
 					<li
 						key={item}
 						class={`ex-order-item${overIndex === index ? ' is-over' : ''}`}
-						draggable={!solved}
+						draggable={!locked}
 						onDragStart={(event) => {
 							setDragIndex(index);
 							event.dataTransfer?.setData('text/plain', String(index));
@@ -86,7 +89,7 @@ export function OrderExercise({ exercise, number, salt, state, onChange }: Props
 								type="button"
 								class="ex-move"
 								aria-label={`نقل لأعلى: ${item}`}
-								disabled={solved || index === 0}
+								disabled={locked || index === 0}
 								onPointerDown={(event) => event.stopPropagation()}
 								onClick={() => move(index, index - 1)}
 							>
@@ -96,7 +99,7 @@ export function OrderExercise({ exercise, number, salt, state, onChange }: Props
 								type="button"
 								class="ex-move"
 								aria-label={`نقل لتحت: ${item}`}
-								disabled={solved || index === list.length - 1}
+								disabled={locked || index === list.length - 1}
 								onPointerDown={(event) => event.stopPropagation()}
 								onClick={() => move(index, index + 1)}
 							>
@@ -106,15 +109,17 @@ export function OrderExercise({ exercise, number, salt, state, onChange }: Props
 					</li>
 				))}
 			</ol>
-			<div class="ex-actions">
-				<button class="ex-btn" type="button" onClick={check} disabled={solved}>
-					تحقق من الترتيب
-				</button>
-				<button class="ex-btn secondary" type="button" onClick={() => setRevealed(true)}>
-					اعرض الإجابة
-				</button>
-			</div>
-			{(checked || solved) && (
+			{!locked && (
+				<div class="ex-actions">
+					<button class="ex-btn" type="button" onClick={check}>
+						تحقق من الترتيب
+					</button>
+					<button class="ex-btn secondary" type="button" onClick={reveal}>
+						اعرض الإجابة
+					</button>
+				</div>
+			)}
+			{(checked || solved) && !revealed && (
 				<div class="ex-feedback" aria-live="polite">
 					<p class={solved ? 'ex-verdict is-correct' : 'ex-verdict is-wrong'}>
 						{solved ? 'ترتيب صح' : 'لسه الترتيب مش مظبوط'}
@@ -122,7 +127,8 @@ export function OrderExercise({ exercise, number, salt, state, onChange }: Props
 				</div>
 			)}
 			{revealed ? (
-				<div class="ex-reveal">
+				<div class="ex-reveal" aria-live="polite">
+					<p class="ex-locked">السؤال ده مش هيتحسب في النتيجة. امسح تقدّم الفصل لو عايز تحاول تاني.</p>
 					<strong>الترتيب الصح: </strong>
 					<ol class="ex-answer-list">
 						{exercise.items.map((item) => (
@@ -133,7 +139,7 @@ export function OrderExercise({ exercise, number, salt, state, onChange }: Props
 					</ol>
 				</div>
 			) : null}
-			{(checked || solved || revealed) && (
+			{(solved || revealed) && (
 				<p class="ex-explain">
 					<strong>الشرح: </strong>
 					<RichText text={exercise.explanation} />

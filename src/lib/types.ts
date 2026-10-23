@@ -78,6 +78,10 @@ export type ChapterRef = {
 export type ItemState = {
 	solved: boolean;
 	checked?: boolean;
+	/** Wrong checks so far. */
+	attempts?: number;
+	/** The answer was shown before the reader solved it. Locks the item, never counts as solved. */
+	revealed?: boolean;
 	choice?: number;
 	texts?: string[];
 	order?: string[];

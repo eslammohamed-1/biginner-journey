@@ -8,7 +8,7 @@ sidebar:
 
 ورقة مراجعة لكل أوامر الـ Terminal واختصارات DevTools والـ Console اللي في الكتاب مقسّمة حسب الموضوع، وبعدها جدول الـ Flags ومعانيها في كل أمر، وجدول لكل رمز ممكن تقابله: علامات curl -v، ورموز الـ URL، والكوكيز، وقيم Network الخاصة.
 
-#### curl: readcurl: تقرا الرد
+### curl: readcurl: تقرا الرد
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -19,7 +19,7 @@ sidebar:
 | `curl -sIL URL` | تابع كل الـ Redirects (Headers بس) |
 | `curl -s URL \| jq .` | JSON منسق |
 
-#### curl: sendcurl: تبعت
+### curl: sendcurl: تبعت
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -32,7 +32,7 @@ sidebar:
 | `curl -G --data-urlencode 'q=a b' URL` | Query متشفّر |
 | `curl -u user URL` | Basic auth (يسألك الباسورد) |
 
-#### curl: controlcurl: تتحكم
+### curl: controlcurl: تتحكم
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -46,7 +46,7 @@ sidebar:
 | `curl --resolve h:443:IP URL` | DNS مؤقت للأمر ده |
 | `curl -s -o /dev/null -w @timing.txt URL` | قيس المراحل |
 
-#### DNSالأسماء
+### DNS · الأسماء
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -59,7 +59,7 @@ sidebar:
 | `dscacheutil -q host -a name x.test` | زي ما الـ Mac شايفه (و hosts) |
 | `sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder` | امسح كاش DNS |
 
-#### Networkالشبكة
+### Network · الشبكة
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -73,7 +73,7 @@ sidebar:
 | `python3 -m http.server 8000` | سيرفر ملفات سريع |
 | `sudo nano /etc/hosts` | أسماء على جهازك |
 
-#### TLSالشهادات
+### TLS · الشهادات
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -82,7 +82,7 @@ sidebar:
 | `... \| openssl x509 -noout -text \| grep -A1 Alternative` | الأسماء (SAN) |
 | `curl -v URL 2>&1 \| grep '^\*'` | سطور TLS في curl |
 
-#### DevToolsاختصارات Chrome
+### DevTools · اختصارات Chrome
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -98,7 +98,7 @@ sidebar:
 | `⇧ + Hover` | مين طلب الطلب ده |
 | `F8 / F10 / F11` | Resume / Step over / Step into |
 
-#### Consoleالـ Console
+### Console · الـ Console
 
 | الأمر | بيعمل إيه |
 |---|---|

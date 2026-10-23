@@ -1,6 +1,6 @@
 ---
 title: "عالم الفرونت إند — دليل المذاكرة"
-description: "عالم الفرونت إند — دليل المذاكرة"
+description: "من HTML و CSS لحد ليه الـ Frameworks اتعملت، و npm و Vite و TypeScript وخريطة الطريق."
 sidebar:
   order: 0
   label: "عن الكتاب"

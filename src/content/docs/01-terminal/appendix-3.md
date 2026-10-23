@@ -8,7 +8,7 @@ sidebar:
 
 جاوب بنفسك الأول، وبعدين قارن. لكل فصل: إجابات أسئلة المراجعة، وبعدها صح ولا غلط، وبعدها حلول التحديات. حلول التحديات طريقة واحدة من طرق كتير، فلو حلّك مختلف وشغال فهو صح.
 
-#### الفصل 1: جوه الـ Terminal
+## الفصل 1: جوه الـ Terminal
 
 1. الـ Terminal (Terminal.app أو iTerm2) هو الشباك اللي بيعرض ويستقبل الكتابة، والـ Shell (zsh على الماك) هو البرنامج اللي جواه بيفهم الأوامر وينفذها.
 2. لأن البرنامج الخارجي بيشتغل في Process ابن، وتغيير المجلد في الابن مش بيرجع للأب؛ فلازم الـ Shell نفسه يغير مجلده.
@@ -24,7 +24,7 @@ sidebar:
 3. `echo "$PATH" | tr ':' '\n'`: اطبع المتغير، وحوّل كل `:` لسطر جديد.
 4. الـ PPID بتاع bash = الـ PID بتاع zsh. `ps -o pid,ppid,command` بيبيّن السلسلة: Terminal ← login ← `-zsh` ← bash ← ps.
 
-#### الفصل 2: تشريح أي أمر
+## الفصل 2: تشريح أي أمر
 
 1. GNU هي نسخ الأوامر في Linux، و BSD هي النسخ اللي الماك واخدها من FreeBSD، ونفس الأمر بيختلف في Options. `sed -i` على الماك محتاجة امتداد للنسخة الاحتياطية، فبتتكتب `sed -i '' 's/a/b/' f`.
 2. `grep` الأمر، و `--max-count=20` Option طويلة بقيمة (وقف بعد 20 تطابق)، و `-i` تجاهل حالة الحروف، و `error` النمط (Argument)، و `a.log b.log` الملفات.
@@ -40,7 +40,7 @@ sidebar:
 2. `rm -- -n` و `rm ./-n`.
 3. أرشف `logs/` مضغوط على stdout (`-f -`)، و Pipe لـ ssh، وعلى السيرفر فك من stdin في `/backup`. الشرح كامل في فصل الشبكات (tar).
 
-#### الفصل 3: الـ Shells
+## الفصل 3: الـ Shells
 
 1. POSIX معيار مشترك لسلوك الـ Shells والأوامر. Script بـ `sh` هيشتغل على أي نظام Unix (حتى اللي مفيهوش bash زي Alpine، أو dash على Ubuntu).
 2. الـ Arrays بتبدأ من 1 في zsh ومن 0 في bash، و zsh مبيقسمش المتغيرات اللي من غير Quotes على المسافات (bash بيقسمها).
@@ -57,7 +57,7 @@ sidebar:
 3. bash: `for i in 1 2 3; do echo $i; done`، و fish: `for i in 1 2 3; echo $i; end`، و PowerShell: `foreach ($i in 1..3) { $i }`.
 4. `/bin/bash -c 'declare -A m; m[a]=1; echo ${m[a]}'` هيقولك `declare: -A: invalid option`، و `/opt/homebrew/bin/bash -c '...'` هيطبع 1.
 
-#### الفصل 4: الـ Filesystem على الماك
+## الفصل 4: الـ Filesystem على الماك
 
 1. SSH في `~/.ssh/config`، و VS Code في `~/Library/Application Support/Code/User/settings.json`، وبرامج Homebrew على M2 في `/opt/homebrew/bin` (والملفات الحقيقية في `/opt/homebrew/Cellar`).
 2. `../../Downloads`.
@@ -75,7 +75,7 @@ sidebar:
 4. الماك هيلاقي الملف عادي لأنه مش حساس للحالة. على سيرفر Linux `import './Test'` و `'./test'` ملفين مختلفين، فالكود اللي شغال عندك ممكن يقع هناك.
 5. الملف التنفيذي في `Calculator.app/Contents/MacOS/Calculator`، وتشغله بالمسار ده كامل (والـ .app نفسه مجلد عادي).
 
-#### الفصل 5: التنقل والملفات
+## الفصل 5: التنقل والملفات
 
 1. `ls -lhtrG ~/Downloads`.
 2. `cp -r` بينسخ المحتوى بس، و `-a` بيحافظ على الصلاحيات والتواريخ والـ Links. وعلى الماك `cp -R src dst` بينسخ المجلد نفسه، و `cp -R src/ dst` بينسخ محتوياته بس جوه dst.
@@ -90,7 +90,7 @@ sidebar:
 2. `cp -a lab lab-backup` وبعدين `stat -f '%Sm' lab/in/a.txt lab-backup/in/a.txt`: نفس الوقت.
 3. `less /var/log/install.log` ثم `G` للآخر، ثم `?error` و `n` للي قبله.
 
-#### الفصل 6: الصلاحيات
+## الفصل 6: الصلاحيات
 
 1. `750` و `664`.
 2. المفتاح الخاص `600`، والـ Script `755` (أو `700` لو ليك بس).
@@ -107,7 +107,7 @@ sidebar:
 3. الملف اللي من المتصفح عليه `com.apple.quarantine` (وممكن `com.apple.macl` و `kMDItemWhereFroms`)، واللي من `curl -O` مفيهوش، عشان كده curl بيعدّي من Gatekeeper.
 4. `(umask 077; touch f; mkdir d; ls -ld f d)`: الملف `-rw-------` والمجلد `drwx------`. والـ `( )` عشان التغيير ميأثرش على الـ Shell بتاعك.
 
-#### الفصل 7: قوة الـ Shell
+## الفصل 7: قوة الـ Shell
 
 1. `find / -name '*.conf' > found.txt 2>/dev/null`.
 2. `>` بيكتب في ملف ويمسح القديم، و `>>` بيضيف في الآخر، و `|` بيدّي الناتج لأمر تاني.
@@ -123,7 +123,7 @@ sidebar:
 2. `d=$(date +%F) && mkdir -p "$d" && cd "$d" && printf '%s %s\n' "$USER" "$$" > info.txt || echo failed`.
 3. استخدم Here-doc عادي (من غير Quotes حوالين EOF) واكتب `\$HOME` في السطر الأول و `$HOME` في التاني.
 
-#### الفصل 8: النصوص والبحث
+## الفصل 8: النصوص والبحث
 
 1. `grep -ic error *.log` (لكل ملف)، أو `cat *.log | grep -ic error` للإجمالي.
 2. على الماك: `sed -i.bak 's/localhost/127.0.0.1/g' config` (نفس السطر شغال على Linux كمان).
@@ -139,7 +139,7 @@ sidebar:
 2. `awk '$9 == 401 || $9 == 403 {print $7}' access.log | sort | uniq -c | sort -rn | head -5`.
 3. `find ~ -type f -exec du -h {} + 2>/dev/null | sort -rh | head -10`.
 
-#### الفصل 9: العمليات والخدمات
+## الفصل 9: العمليات والخدمات
 
 1. `ps aux -m | head -6`، أو `top -o mem` (أو Activity Monitor ← Memory).
 2. `kill` بالـ PID، و `pkill` بنمط في الاسم أو الأمر (`-f`)، و `killall` بالاسم بالظبط.
@@ -155,7 +155,7 @@ sidebar:
 2. `pgrep -x Finder >/dev/null && echo running || echo stopped`.
 3. plist فيه `Label` و `ProgramArguments` (`/bin/sh -c 'date >> /Users/YOU/hello.log'`) و `StartInterval` = 60، وبعدين `launchctl bootstrap gui/$(id -u) FILE`، و `launchctl print gui/$(id -u)/com.YOU.hello`، و `launchctl bootout gui/$(id -u)/com.YOU.hello`. وعلى Linux: Unit في `~/.config/systemd/user/` + Timer، و `systemctl --user enable --now`.
 
-#### الفصل 10: الشبكات
+## الفصل 10: الشبكات
 
 1. `ipconfig getifaddr en0` (عندي IP؟) ← `route -n get default` و `ping` للراوتر ← `ping 8.8.8.8` (النت) ← `dig site.com` (الـ DNS) ← `curl -I https://site.com` (الخدمة) ← على السيرفر `ss -tlnp` أو `lsof -i` (بيسمع؟).
 2. `-f` افشل لو HTTP error، و `-s` ساكت، و `-S` بس اعرض الأخطاء، و `-L` اتبع الـ Redirects.
@@ -171,7 +171,7 @@ sidebar:
 2. `[ "$(curl -s -o /dev/null -w '%{http_code}' https://site.com)" = 200 ] && echo UP || echo DOWN`.
 3. `ssh-keygen -t ed25519 -f ~/.ssh/lab`، و Host lab في الـ config بـ `IdentityFile ~/.ssh/lab`، و `ssh-copy-id -i ~/.ssh/lab.pub lab`، ثم `rsync -avz --dry-run dir/ lab:dir/` وبعدين من غير `--dry-run`.
 
-#### الفصل 11: Homebrew ومديري الحزم
+## الفصل 11: Homebrew ومديري الحزم
 
 1. `update` بيحدّث brew وقائمة الحزم، و `upgrade` بيرقّي البرامج نفسها. نفس الفرق بالظبط في `apt update` و `apt upgrade`.
 2. Formula = أداة Terminal أو مكتبة (`git` و `wget`)، و Cask = برنامج .app بواجهة (`google-chrome` و `visual-studio-code`).
@@ -188,7 +188,7 @@ sidebar:
 3. `mkdir -p ~/dotfiles && brew bundle dump --file=~/dotfiles/Brewfile`، ثم `brew bundle check --file=~/dotfiles/Brewfile`.
 4. `for p in brew apt dnf pacman; do command -v $p >/dev/null && { echo $p; break; }; done`.
 
-#### الفصل 12: الـ Scripting
+## الفصل 12: الـ Scripting
 
 1. `"$@"` كل Argument لوحده، و `"$*"` كلهم نص واحد.
 2. `[[ -d "$1" ]] || { echo "not a dir" >&2; exit 1; }`.
@@ -205,7 +205,7 @@ sidebar:
 2. `for f in *.*; do [[ -f "$f" ]] || continue; ext="${f##*.}"; mkdir -p "$ext" && mv -- "$f" "$ext/"; done` (جوه نسخة في `/tmp` الأول).
 3. `while getopts "nd:" o; do case $o in n) dry=1;; d) dir=$OPTARG;; esac; done`، ثم `find "$dir" -type f -mtime +30` مع `-delete` لو مش dry، و `wc -l` للإجمالي.
 
-#### الفصل 13: التخصيص
+## الفصل 13: التخصيص
 
 1. Login أول دخول (SSH، وكل تابة في Terminal.app لأنه بيفتح Login دايماً)، و Interactive أي Shell بتكتب فيه. في zsh: Login بيقرا `.zprofile` ثم `.zshrc`، و Interactive بيقرا `.zshrc` (و `.zshenv` دايماً). في bash: Login بيقرا `~/.bash_profile` (أو `.profile`)، و Interactive `~/.bashrc`.
 2. `echo "alias gs='git status'" >> ~/.zshrc && source ~/.zshrc`.
@@ -222,7 +222,7 @@ sidebar:
 3. `security add-generic-password -a "$USER" -s my-token -w`، وفي `~/.zshrc`: `export MY_TOKEN="$(security find-generic-password -s my-token -w)"`.
 4. `PROMPT='%(?.%F{green}.%F{red})%1~ %#%f '` مع `autoload -Uz vcs_info; precmd() { vcs_info; }; setopt prompt_subst; RPROMPT='${vcs_info_msg_0_}'`. وفي bash: `PROMPT_COMMAND='[[ $? == 0 ]] && c=32 || c=31; PS1="\[\e[${c}m\]\w\$\[\e[0m\] "'`.
 
-#### الفصل 14: الإنتاجية
+## الفصل 14: الإنتاجية
 
 1. `sudo !!`.
 2. `Ctrl+C` يلغي (SIGINT)، و `Ctrl+Z` يوقف مؤقتاً (SIGTSTP)، و `Ctrl+D` نهاية الدخل (ويقفل الـ Shell لو السطر فاضي).
@@ -238,7 +238,7 @@ sidebar:
 3. `notify() { "$@" && m="نجح" || m="فشل"; osascript -e "display notification \"$m: $*\" with title \"Terminal\""; }`.
 4. `tmux new -s mon`، و `Ctrl+B %` و `Ctrl+B "`، وشغّل `htop` و `tail -f`، ثم `Ctrl+B d` و `tmux a -t mon`.
 
-#### الفصل 15: الأوامر الخطيرة
+## الفصل 15: الأوامر الخطيرة
 
 1. لو `DIR` فاضي أو مش متعرّف، السطر بيبقى `rm -rf /*`. الآمن: `set -u` و `rm -rf -- "${DIR:?}"/*`.
 2. `diskutil list external` قبل وبعد تركيب الفلاشة، وشوف الحجم و `external, physical`. `/dev/disk4` بيعدّي على Cache النظام، و `/dev/rdisk4` (Raw) مباشر وأسرع بكتير مع dd.
@@ -253,7 +253,7 @@ sidebar:
 2. من غير حماية الـ echo بيطبع `rm -rf /Applications /Library /System …`. مع `set -u` و `unset DIR`: `DIR: unbound variable` (أو `parameter not set` في zsh). ومع `${DIR:?}`: `parameter null or not set`.
 3. `saferm(){ local d="$HOME/.trash/$(date +%F)"; mkdir -p -- "$d"; for f in "$@"; do case "$(realpath -- "$f")" in /|"$HOME") echo "refusing: $f" >&2; return 1;; esac; mv -- "$f" "$d/"; done; }`.
 
-#### الفصل 16: المشروع النهائي
+## الفصل 16: المشروع النهائي
 
 1. عشان النتايج بس تروح لـ stdout، فلو عملت Pipe أو `>` الرسايل متتخلطش بالبيانات وتفضل ظاهرة على الشاشة.
 2. `ls -1t` الأرشيفات الأحدث الأول، و `tail -n +8` كل حاجة بعد أحدث 7، و `while IFS= read -r` اسم اسم، و `rm -v --` يمسح. ومستخدمناش `find -printf` لأنه GNU بس ومش موجود في find بتاع الماك.

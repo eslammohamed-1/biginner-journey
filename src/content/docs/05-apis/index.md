@@ -1,6 +1,6 @@
 ---
 title: "APIs و JSON — دليل المذاكرة"
-description: "APIs و JSON — دليل المذاكرة"
+description: "تفهم الطلب، تشتغل مع JSON، تكلّم APIs حقيقية، وبعدين تصمّم REST و OpenAPI."
 sidebar:
   order: 0
   label: "عن الكتاب"

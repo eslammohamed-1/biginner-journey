@@ -1,6 +1,6 @@
 ---
 title: "Git و GitHub — من الصفر"
-description: "Git و GitHub — من الصفر"
+description: "من فكرة الـ Version Control لحد الشغل مع فريق على GitHub وأدوات الـ AI من غير ما تبوّظ حاجة."
 sidebar:
   order: 0
   label: "عن الكتاب"

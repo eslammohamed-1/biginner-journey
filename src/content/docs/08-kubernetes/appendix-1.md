@@ -8,7 +8,7 @@ sidebar:
 
 ورقة مراجعة سريعة لكل الأوامر اللي في الكتاب، مقسّمة حسب الموضوع، وبعدها مرجع لكل Flag وكل علامة بتظهر في الأوامر ومعناها.
 
-#### Cluster & Contextالـ Cluster والإعدادات
+### Cluster & Context · الـ Cluster والإعدادات
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -21,7 +21,7 @@ sidebar:
 | `kubectl config use-context dev` | التبديل لـ Cluster تاني |
 | `kubectl config set-context --current --namespace=dev` | تغيير الـ Namespace الافتراضية |
 
-#### Podsالـ Pods
+### Pods · الـ Pods
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -33,7 +33,7 @@ sidebar:
 | `kubectl delete pod web` | مسح Pod |
 | `kubectl top pod` | الاستهلاك الحالي (محتاج metrics-server) |
 
-#### Apply & YAMLالملفات
+### Apply & YAML · الملفات
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -45,7 +45,7 @@ sidebar:
 | `kubectl explain deployment.spec.strategy` | شرح أي حقل في الـ YAML |
 | `kubectl edit deploy web` | تعديل مباشر |
 
-#### Deploymentsالـ Deployments والـ ReplicaSets
+### Deployments · الـ Deployments والـ ReplicaSets
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -57,7 +57,7 @@ sidebar:
 | `kubectl rollout undo deploy/web` | الرجوع للنسخة اللي قبلها |
 | `kubectl rollout restart deploy/web` | إعادة تشغيل كل الـ Pods |
 
-#### Labels & Namespacesالتنظيم
+### Labels & Namespaces · التنظيم
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -69,7 +69,7 @@ sidebar:
 | `kubectl create ns dev` | إنشاء Namespace |
 | `kubectl get pods -A` | من كل الـ Namespaces |
 
-#### WorkloadsDaemonSet و Jobs
+### WorkloadsDaemonSet و Jobs
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -78,7 +78,7 @@ sidebar:
 | `kubectl get jobs,cronjobs` | الـ Jobs والـ CronJobs |
 | `kubectl create job test --from=cronjob/backup` | تشغيل CronJob دلوقتي |
 
-#### Networkingالـ Services والـ Ingress
+### Networking · الـ Services والـ Ingress
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -90,7 +90,7 @@ sidebar:
 | `kubectl get ingress` | عرض الـ Ingress |
 | `kubectl get certificate` | حالة شهادات cert-manager |
 
-#### Config & Storageالإعدادات والتخزين
+### Config & Storage · الإعدادات والتخزين
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -101,7 +101,7 @@ sidebar:
 | `kubectl get secret db -o jsonpath='{.data.PASS}' \| base64 -d` | قراية قيمة Secret |
 | `kubectl get pv,pvc` | التخزين الدائم |
 
-#### Security & Scalingالصلاحيات والـ Scaling
+### Security & Scaling · الصلاحيات والـ Scaling
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -111,7 +111,7 @@ sidebar:
 | `kubectl autoscale deploy web --cpu-percent=50 --min=2 --max=10` | عمل HPA |
 | `kubectl get hpa -w` | متابعة الـ HPA |
 
-#### Troubleshootingالتشخيص
+### Troubleshooting · التشخيص
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -121,7 +121,7 @@ sidebar:
 | `kubectl get events --sort-by=.lastTimestamp` | الأحداث بالترتيب |
 | `kubectl debug -it web --image=busybox` | Container مؤقت للتشخيص |
 
-#### Helmالحزم
+### Helm · الحزم
 
 | الأمر | بيعمل إيه |
 |---|---|

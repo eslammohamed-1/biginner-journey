@@ -1,5 +1,7 @@
 ---
 import HomeGrid from './HomeGrid';
+import ResumeLink from './ResumeLink';
+import ProgressTools from './ProgressTools';
 import { loadCatalog } from '../lib/catalog';
 
 const { books } = await loadCatalog();
@@ -12,7 +14,7 @@ const base = import.meta.env.BASE_URL;
 		الترتيب مهم. ابدأ من الكتاب 01 وكمّل بالترتيب لحد 08، لأن كل كتاب بيبني على اللي قبله.
 	</p>
 	<p>
-		<a class="start-link" href={`${base}01-terminal/`}>ابدأ بالكتاب الأول</a>
+		<ResumeLink client:load base={base} />
 	</p>
 </div>
 <HomeGrid
@@ -27,3 +29,4 @@ const base = import.meta.env.BASE_URL;
 		chapters: book.chapters,
 	}))}
 />
+<ProgressTools client:idle />

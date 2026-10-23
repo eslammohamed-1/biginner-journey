@@ -8,7 +8,7 @@ sidebar:
 
 حاول تجاوب على الأسئلة بنفسك الأول، وبعدين قارن إجابتك هنا. لكل فصل: إجابات أسئلة المراجعة، وبعدها إجابات صح ولا غلط.
 
-#### الفصل 1: المقدمة
+## الفصل 1: المقدمة
 
 1. إدارة يدوية مستحيلة، الـ Container لو وقع محدش يقومه، توزيع الحمل والـ Scaling، والتحديث من غير توقف.
 2. مجموعة Nodes شغالين مع بعض كوحدة واحدة. الـ Node جهاز، والـ Pod أصغر وحدة شغل بتتشغل على Node.
@@ -17,7 +17,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) غلط: بيتعامل مع الـ Pods. · (2) صح. · (3) غلط: محتاج Cluster Autoscaler.
 
-#### الفصل 2: الـ Structure
+## الفصل 2: الـ Structure
 
 1. الـ API Server.
 2. حالة الـ Cluster كلها بتضيع، فلازم Backup دوري للـ etcd.
@@ -26,7 +26,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) صح. · (2) غلط: بيستخدم Runtime زي containerd. · (3) غلط: ده شغل الـ kubelet والـ Controllers.
 
-#### الفصل 3: الـ Pods
+## الفصل 3: الـ Pods
 
 1. Pods، لأن الـ Pod وحدة الـ Scaling، والـ Containers جوه الـ Pod بيتعاملوا كوحدة واحدة.
 2. على `localhost` لأنهم بيشاركوا نفس الشبكة.
@@ -35,7 +35,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) غلط: بيشاركوا IP واحد. · (2) غلط: محتاج Controller زي ReplicaSet. · (3) صح.
 
-#### الفصل 4: minikube
+## الفصل 4: minikube
 
 1. `minikube start --profile <name>`.
 2. فيه 2 Containers في الـ Pod، واحد بس جاهز.
@@ -44,7 +44,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) صح. · (2) غلط: مسافات بس. · (3) صح.
 
-#### الفصل 5: الـ Probes
+## الفصل 5: الـ Probes
 
 1. `exec` أو `tcpSocket`.
 2. لأن لو الـ DB وقعت كل الـ Pods هتعمل restart على الفاضي والمشكلة مش فيهم؛ ده مكانه الـ Readiness.
@@ -53,7 +53,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) غلط: بيتشال من الـ Endpoints بس. · (2) غلط: لازم 1 في الـ liveness. · (3) صح.
 
-#### الفصل 6: الـ Resources
+## الفصل 6: الـ Resources
 
 1. الـ Memory: يتقتل OOMKilled. الـ CPU: يتعمله Throttling (يبطأ) من غير ما يتقتل.
 2. لأنه بيختار Node فيها مكان فاضي على حسب الـ requests.
@@ -62,7 +62,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) صح. · (2) غلط: يقدر لحد الـ limit. · (3) صح (BestEffort).
 
-#### الفصل 7: الـ Labels
+## الفصل 7: الـ Labels
 
 1. لأن الاسم فريد لكل Pod، والـ Service محتاجة تختار مجموعة متغيرة.
 2. `app: myapp`، `tier: backend`، `env: staging`.
@@ -71,7 +71,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) غلط. · (2) صح. · (3) غلط: في الـ metadata.
 
-#### الفصل 8: الـ ReplicaSets
+## الفصل 8: الـ ReplicaSets
 
 1. عشان الـ High Availability وتوزيع الحمل.
 2. هتعمل Pod جديدة عشان ترجع 3.
@@ -79,7 +79,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) غلط. · (2) صح. · (3) غلط: محتاج Deployment.
 
-#### الفصل 9: الـ Namespaces
+## الفصل 9: الـ Namespaces
 
 1. `api.prod` أو كامل `api.prod.svc.cluster.local`.
 2. لأنها لمكونات Kubernetes نفسها، وأي غلطة فيها ممكن توقع الـ Cluster.
@@ -88,7 +88,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) غلط. · (2) صح. · (3) غلط: محتاج NetworkPolicy.
 
-#### الفصل 10: الـ Deployment
+## الفصل 10: الـ Deployment
 
 1. لأنها مش بتحدّث Pods موجودة، والـ Deployment بيعمل ReplicaSet جديدة.
 2. بيعمل ReplicaSet جديدة ويزوّدها تدريجياً ويقلل القديمة لحد صفر، والقديمة بتفضل للـ rollback.
@@ -97,7 +97,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) غلط: تدريجي. · (2) صح. · (3) غلط.
 
-#### الفصل 11: الـ DaemonSet
+## الفصل 11: الـ DaemonSet
 
 1. لأن العدد = عدد الـ Nodes المناسبة.
 2. `volumeMounts` = المسار جوه الـ Container، و `volumes` = المصدر على الـ Node (hostPath).
@@ -106,7 +106,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) صح. · (2) غلط. · (3) صح.
 
-#### الفصل 12: الـ Jobs
+## الفصل 12: الـ Jobs
 
 1. لأن الـ Deployment هيعيد تشغيله بعد ما يخلص على طول.
 2. `0 23 * * 5`
@@ -115,7 +115,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) غلط. · (2) صح. · (3) صح.
 
-#### الفصل 13: الـ Services
+## الفصل 13: الـ Services
 
 1. لأن IP الـ Pod بيتغير كل ما يتعمل من جديد.
 2. الـ selector مش مطابق للـ Labels (أو الـ Pods مش Ready).
@@ -124,7 +124,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) غلط: ClusterIP. · (2) غلط: المدى `30000-32767`. · (3) صح.
 
-#### الفصل 14: الـ Ingress
+## الفصل 14: الـ Ingress
 
 1. Load Balancer واحد بدل واحد لكل Service.
 2. الـ Resource قواعد، والـ Controller البرنامج اللي بينفذها.
@@ -133,7 +133,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) غلط: لازم تسطّب واحد. · (2) صح. · (3) غلط.
 
-#### الفصل 15: الـ TLS
+## الفصل 15: الـ TLS
 
 1. لأنه تقيل على الـ CPU جداً.
 2. لأنها مختومة من CA المتصفح واثق فيها.
@@ -142,7 +142,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) غلط: بيفضل مع السيرفر بس. · (2) صح. · (3) صح.
 
-#### الفصل 16: الـ Volumes
+## الفصل 16: الـ Volumes
 
 1. `volumes` المصدر في الـ Pod، و `volumeMounts` مكان التركيب في الـ Container.
 2. لأن البيانات على Node واحدة، ولو الـ Pod راح Node تانية مش هيلاقيها.
@@ -151,7 +151,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) غلط. · (2) غلط: Node واحدة. · (3) صح.
 
-#### الفصل 17: الـ ConfigMaps
+## الفصل 17: الـ ConfigMaps
 
 1. عشان تغير القيم في مكان واحد من غير ما تبني image جديدة.
 2. `valueFrom` متغير واحد باسم تختاره، و `envFrom` كل الـ keys.
@@ -159,7 +159,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) غلط: Secret. · (2) صح. · (3) صح.
 
-#### الفصل 18: الـ Secrets
+## الفصل 18: الـ Secrets
 
 1. لأنه ترميز أي حد يقدر يفكه.
 2. `data` قيم base64، و `stringData` نص عادي.
@@ -168,7 +168,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) غلط. · (2) صح. · (3) صح.
 
-#### الفصل 19: الـ RBAC
+## الفصل 19: الـ RBAC
 
 1. الـ Role لـ Namespace، والـ ClusterRole للـ Cluster كله.
 2. لأن الـ pods في الـ core group واسمه فاضي.
@@ -177,7 +177,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) غلط. · (2) صح. · (3) غلط.
 
-#### الفصل 20: الـ HPA
+## الفصل 20: الـ HPA
 
 1. مفيش metrics-server، أو مفيش CPU requests.
 2. `ceil(3 × 90 / 60) = ceil(4.5) = 5` Pods.
@@ -185,7 +185,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) غلط: الـ requests. · (2) صح. · (3) غلط.
 
-#### الفصل 21: الـ Troubleshooting
+## الفصل 21: الـ Troubleshooting
 
 1. `kubectl logs <pod> --previous` و `describe`.
 2. الـ Container اتقتل بـ SIGKILL، وغالباً OOMKilled.
@@ -194,7 +194,7 @@ sidebar:
 
 <strong>صح ولا غلط:</strong> (1) غلط: Scheduling. · (2) صح. · (3) صح.
 
-#### الفصل 22: الـ Helm
+## الفصل 22: الـ Helm
 
 1. الـ Chart الحزمة، والـ Release نسخة متسطبة منها.
 2. `--set`.

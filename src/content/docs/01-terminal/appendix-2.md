@@ -8,7 +8,7 @@ sidebar:
 
 كل مصطلح مهم في الكتاب في سطر واحد، مترتب أبجدياً. ارجعله كل ما تقابل كلمة ومش فاكر معناها.
 
-### A
+## A
 
 - **Alias**: اسم مختصر بيستبدله الـ Shell بأمر أطول قبل التنفيذ.
 
@@ -22,7 +22,7 @@ sidebar:
 
 - **Array**: متغير فيه أكتر من قيمة: `a=(x y)` و `"${a[@]}"`.
 
-### B
+## B
 
 - **Background job**: أمر شغال في الخلفية بـ `&` والـ Prompt راجعلك.
 
@@ -36,7 +36,7 @@ sidebar:
 
 - **Builtin**: أمر جوه الـ Shell نفسه (cd و export) مش برنامج على القرص.
 
-### C
+## C
 
 - **Cask**: حزمة Homebrew لبرنامج بواجهة (.app) زي VS Code: `brew install --cask`.
 
@@ -46,7 +46,7 @@ sidebar:
 
 - **cron**: خدمة بتشغّل أوامر على مواعيد متكررة (`crontab -e`).
 
-### D
+## D
 
 - **Daemon**: برنامج شغال في الخلفية على طول (sshd و nginx)، وغالباً اسمه بينتهي بـ d.
 
@@ -56,13 +56,13 @@ sidebar:
 
 - **dotfiles**: ملفات الإعدادات المخفية في الـ home (.bashrc و .zshrc و .ssh/config).
 
-### E
+## E
 
 - **Environment variable**: متغير بيتورّث للبرامج اللي بتتشغل (`export`).
 
 - **Exit code**: رقم بيرجّعه الأمر: 0 نجاح وأي حاجة تانية فشل (`$?`).
 
-### F
+## F
 
 - **FHS**: Filesystem Hierarchy Standard: مكان كل نوع ملفات في Linux. الماك قريب منه بس عنده /Users و /Applications و /Library و /System.
 
@@ -80,7 +80,7 @@ sidebar:
 
 - **Full Disk Access**: صلاحية في Privacy & Security بتسمح لبرنامج (زي Terminal) يوصل للفولدرات المحمية.
 
-### G
+## G
 
 - **Gatekeeper**: حماية الماك اللي بتفحص البرامج اللي نزلت من النت قبل أول تشغيل.
 
@@ -90,7 +90,7 @@ sidebar:
 
 - **Group**: مجموعة مستخدمين ليهم نفس الصلاحيات على ملفات.
 
-### H
+## H
 
 - **Hard link**: اسم تاني لنفس الـ inode على نفس الـ Filesystem.
 
@@ -102,25 +102,25 @@ sidebar:
 
 - **Homebrew**: مدير الحزم الأشهر على الماك (`brew`)، بيشتغل من غير sudo.
 
-### I
+## I
 
 - **inode**: السجل اللي فيه بيانات الملف (الحجم والصلاحيات ومكانه) من غير الاسم.
 
 - **Interactive shell**: Shell بتكتب فيه بنفسك، بيقرا `~/.zshrc` (أو `~/.bashrc` في bash).
 
-### J
+## J
 
 - **Job control**: التحكم في الأوامر: `&` و Ctrl+Z و fg و bg و jobs.
 
 - **journalctl**: أداة قراية لوجات systemd على Linux (المقابل على الماك: `log show`).
 
-### K
+## K
 
 - **Kernel**: قلب نظام التشغيل اللي بيدير العمليات والذاكرة والأجهزة.
 
 - **Keychain**: خزنة الباسوردات المتشفرة في الماك، وتوصلها من الـ Terminal بـ `security`.
 
-### L
+## L
 
 - **LaunchAgent**: خدمة بتشتغل في جلستك لما تعمل Login، ملفها plist في `~/Library/LaunchAgents`.
 
@@ -132,23 +132,23 @@ sidebar:
 
 - **Login shell**: أول Shell بعد الدخول (SSH أو su -، وكل تابة Terminal على الماك)، بيقرا .zprofile أو .bash\_profile.
 
-### M
+## M
 
 - **man page**: صفحة الدليل الرسمي لأي أمر (`man ls`).
 
 - **mDNS / Bonjour**: أسامي الأجهزة على الشبكة المحلية بـ `.local` من غير DNS server.
 
-### N
+## N
 
 - **noclobber**: Option بتمنع `>` من الكتابة فوق ملف موجود.
 
-### O
+## O
 
 - **Octal permissions**: الصلاحيات بالأرقام (755 و 644): r=4 و w=2 و x=1.
 
 - **openrsync**: نسخة rsync بترخيص BSD اللي بقت `/usr/bin/rsync` من macOS 15.4.
 
-### P
+## P
 
 - **Package manager**: أداة بتسطب وتحدّث البرامج من مخازن (brew على الماك، و apt و dnf على Linux).
 
@@ -174,13 +174,13 @@ sidebar:
 
 - **PTY**: Pseudo-terminal: Terminal افتراضية بتعملها برامج زي Terminal.app و iTerm2 و ssh (`/dev/ttys000` على الماك).
 
-### Q
+## Q
 
 - **Quarantine**: علامة `com.apple.quarantine` اللي المتصفح بيحطها على أي حاجة نزلت من النت.
 
 - **Quoting**: استخدام `'` و `"` و `\` عشان تتحكم في فهم الـ Shell للرموز.
 
-### R
+## R
 
 - **Readline**: المكتبة اللي بتدي اختصارات السطر (Ctrl+A و Ctrl+R) في bash وغيره؛ zsh عنده محرر خاص بيه اسمه ZLE بنفس الاختصارات.
 
@@ -196,7 +196,7 @@ sidebar:
 
 - **rsync**: أداة مزامنة بتنقل الفرق بس، محلياً أو عبر SSH.
 
-### S
+## S
 
 - **Script**: ملف فيه أوامر بتتنفذ ورا بعض، أوله Shebang.
 
@@ -230,7 +230,7 @@ sidebar:
 
 - **systemd**: نظام الـ Init وإدارة الخدمات في أغلب توزيعات Linux (PID 1). المقابل على الماك launchd.
 
-### T
+## T
 
 - **Tab completion**: Tab بيكمّل أسماء الأوامر والملفات.
 
@@ -246,22 +246,22 @@ sidebar:
 
 - **TTY**: TeleTYpewriter: اسم الـ Terminal (`/dev/ttys000` على الماك، و `/dev/pts/0` على Linux).
 
-### U
+## U
 
 - **UID / GID**: رقم المستخدم / رقم الجروب.
 
 - **umask**: قناع بيحدد الصلاحيات الافتراضية للملفات الجديدة.
 
-### W
+## W
 
 - **Word splitting**: تقسيم الـ Shell للقيم على المسافات لو مش جوه Quotes.
 
-### X
+## X
 
 - **xargs**: بيحوّل سطور stdin لـ Arguments لأمر.
 
 - **xattr**: Extended attributes: بيانات إضافية على الملف زي Quarantine، بتشوفها بـ `ls -l@` و `xattr -l`.
 
-### Z
+## Z
 
 - **zsh**: Shell متوافق تقريباً مع bash بمميزات أكتر، الافتراضي على macOS من Catalina (2019).

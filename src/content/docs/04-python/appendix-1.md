@@ -8,7 +8,7 @@ sidebar:
 
 ورقة مراجعة لأهم أوامر الـ Terminal وسطور Python و OpenAI و Gemini و OpenRouter اللي في الكتاب، مقسّمة حسب الموضوع، وبعدها جدول الـ Flags وجدول لكل رمز ممكن تقابله في اسكريبت Python.
 
-#### Terminal (macOS)التشغيل
+### Terminal (macOS) · التشغيل
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -23,7 +23,7 @@ sidebar:
 | `export OPENAI_API_KEY=...` | متغير بيئة للجلسة دي |
 | `grep -nE 'open\(\|unlink\|sk-' s.py` | دوّر على الخطر |
 
-#### Python basicsاللغة
+### Python basics · اللغة
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -38,7 +38,7 @@ sidebar:
 | `sorted(rows, key=lambda r: r["cost"])` | ترتيب |
 | `try / except X as e / else / finally` | الأخطاء |
 
-#### Files & dataالملفات
+### Files & data · الملفات
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -52,7 +52,7 @@ sidebar:
 | `pd.read_excel(p) / df.to_excel(p, index=False)` | Excel |
 | `df.to_csv(p, index=False, encoding="utf-8-sig")` | CSV لـ Excel |
 
-#### OpenAI SDKOpenAI
+### OpenAI SDKOpenAI
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -67,7 +67,7 @@ sidebar:
 | `client.responses.input_tokens.count(...)` | عدّ Tokens |
 | `client.embeddings.create(model=, input=[...])` | Embeddings |
 
-#### Google Gen AI SDKGemini
+### Google Gen AI SDKGemini
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -82,7 +82,7 @@ sidebar:
 | `client.models.count_tokens(model=, contents=)` | عدّ |
 | `client.aio.models.generate_content(...)` | async |
 
-#### OpenRouterOpenRouter
+### OpenRouterOpenRouter
 
 | الأمر | بيعمل إيه |
 |---|---|
@@ -93,7 +93,7 @@ sidebar:
 | `getattr(c.usage, "cost", None)` | التكلفة |
 | `completion.model` | الموديل اللي رد فعلاً |
 
-#### Scale & safetyعلى نطاق واسع
+### Scale & safety · على نطاق واسع
 
 | الأمر | بيعمل إيه |
 |---|---|

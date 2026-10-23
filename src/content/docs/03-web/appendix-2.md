@@ -8,7 +8,7 @@ sidebar:
 
 كل مصطلح مهم في الكتاب في سطر واحد، مترتب أبجدياً. ارجعله كل ما تقابل كلمة ومش فاكر معناها.
 
-### A
+## A
 
 - **ACAO**: اختصار `Access-Control-Allow-Origin`: الـ Header اللي السيرفر بيقول بيه مين مسموحله يقرا الرد (CORS).
 
@@ -20,11 +20,11 @@ sidebar:
 
 - **Authorization**: Header فيه إثبات الهوية، زي `Bearer <token>` أو `Basic`.
 
-### B
+## B
 
 - **Breakpoint**: علامة على سطر بتوقف الكود عنده عشان تبص على المتغيرات.
 
-### C
+## C
 
 - **CA**: Certificate Authority: جهة موثوقة بتمضي على شهادات المواقع.
 
@@ -52,7 +52,7 @@ sidebar:
 
 - **CSRF**: هجوم بيخلي موقع شرير يبعت طلب لموقع تاني بكوكيز اليوزر. SameSite بيمنعه.
 
-### D
+## D
 
 - **DevTools**: أدوات المطورين المدمجة في المتصفح.
 
@@ -64,17 +64,17 @@ sidebar:
 
 - **DOMContentLoaded**: حدث: الـ HTML اتقرا كله والـ DOM جاهز (الخط الأزرق).
 
-### E
+## E
 
 - **ETag**: بصمة لنسخة الرد، المتصفح بيسأل بيها `If-None-Match`.
 
-### F
+## F
 
 - **Fetch/XHR**: الطلبات اللي الـ JS بيعملها بـ `fetch` أو `XMLHttpRequest`، وفلتر في Network.
 
 - **Fragment**: الجزء بعد `#` في الـ URL، مبيتبعتش للسيرفر.
 
-### H
+## H
 
 - **Handshake**: تبادل رسايل أولي لفتح اتصال: TCP (SYN/SYN-ACK/ACK) أو TLS.
 
@@ -98,7 +98,7 @@ sidebar:
 
 - **HTTPS**: HTTP جوه نفق TLS.
 
-### I
+## I
 
 - **Idempotent**: طلب لو اتكرر نفس النتيجة: GET و PUT و DELETE.
 
@@ -106,13 +106,13 @@ sidebar:
 
 - **IP address**: عنوان الجهاز على الشبكة: IPv4 زي `104.20.23.154` أو IPv6.
 
-### J
+## J
 
 - **JSON**: صيغة نصية للبيانات شبه Objects الـ JS.
 
 - **JWT**: Token فيه بيانات Base64 وإمضا. بيتقري بسهولة.
 
-### L
+## L
 
 - **Latency**: وقت التأخير لحد أول رد.
 
@@ -122,7 +122,7 @@ sidebar:
 
 - **localStorage**: تخزين Key/Value في المتصفح لكل Origin، مبيتبعتش للسيرفر.
 
-### M
+## M
 
 - **Method**: الفعل في الطلب: GET و POST و PUT و PATCH و DELETE و OPTIONS.
 
@@ -132,7 +132,7 @@ sidebar:
 
 - **Multiplexing**: طلبات كتير متداخلة على اتصال واحد.
 
-### N
+## N
 
 - **NAT**: الراوتر بيخلي أجهزة البيت كلها تطلع بـ IP عام واحد.
 
@@ -140,13 +140,13 @@ sidebar:
 
 - **Network panel**: Panel في DevTools بيوري كل الطلبات وتفاصيلها.
 
-### O
+## O
 
 - **Origin**: scheme + host + port. أساس CORS والتخزين.
 
 - **Overrides**: تغيير رد أو Headers من DevTools على جهازك بس.
 
-### P
+## P
 
 - **Packet**: حتة بيانات صغيرة بتتنقل على الشبكة لوحدها.
 
@@ -162,13 +162,13 @@ sidebar:
 
 - **Proxy**: وسيط بيستقبل الطلب ويبعته لمكان تاني.
 
-### Q
+## Q
 
 - **Query string**: الجزء بعد `?` في الـ URL.
 
 - **QUIC**: بروتوكول نقل فوق UDP فيه TLS 1.3، أساس HTTP/3.
 
-### R
+## R
 
 - **Redirect**: رد 3xx فيه `Location` بيقول روح لعنوان تاني.
 
@@ -176,7 +176,7 @@ sidebar:
 
 - **RTT**: Round-trip time: وقت الرحلة رايح جاي.
 
-### S
+## S
 
 - **Same-origin policy**: قاعدة المتصفح: JS من Origin ميقراش ردود Origin تاني.
 
@@ -202,7 +202,7 @@ sidebar:
 
 - **Subdomain**: مستوى قبل الدومين زي `api.`.
 
-### T
+## T
 
 - **TCP**: بروتوكول نقل بيضمن وصول البيانات كاملة وبالترتيب.
 
@@ -218,7 +218,7 @@ sidebar:
 
 - **TTL**: مدة صلاحية: لـ DNS record، أو عدد القفزات في IP.
 
-### U
+## U
 
 - **UDP**: بروتوكول نقل سريع من غير ضمانات.
 
@@ -226,10 +226,10 @@ sidebar:
 
 - **User-Agent**: Header بيعرّف المتصفح أو البرنامج.
 
-### V
+## V
 
 - **Vary**: Header بيقول للكاش الرد بيختلف حسب أنهي Headers.
 
-### W
+## W
 
 - **Waterfall**: عمود في Network بيرسم كل طلب على محور الوقت.
