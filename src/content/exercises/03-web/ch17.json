@@ -1,0 +1,229 @@
+{
+ "book": "03-web",
+ "chapter": 17,
+ "chapterFile": "ch17",
+ "title": "DevTools: الشبابيك اللي جوه المتصفح",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "03-web-ch17-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الاختصار اللي يفتح الـ Console مباشرة على الماك؟",
+   "options": [
+    {
+     "text": "⌘⌥J",
+     "why": "صح."
+    },
+    {
+     "text": "⌘⌥I",
+     "why": "بيفتح DevTools على آخر Panel."
+    },
+    {
+     "text": "⌘⌥C",
+     "why": "اختيار عنصر."
+    },
+    {
+     "text": "⌘⇧P",
+     "why": "Command Menu."
+    }
+   ],
+   "correct": 0,
+   "explanation": "⌥ هي Option."
+  },
+  {
+   "id": "03-web-ch17-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Esc جوه DevTools بيعمل إيه؟",
+   "options": [
+    {
+     "text": "يفتح الـ Drawer (فيه Console تحت أي Panel)",
+     "why": "صح."
+    },
+    {
+     "text": "يقفل DevTools",
+     "why": "لأ."
+    },
+    {
+     "text": "يمسح الـ Console",
+     "why": "ده ⌘K."
+    },
+    {
+     "text": "يوقف الصفحة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Drawer و Command Menu."
+  },
+  {
+   "id": "03-web-ch17-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "تابة Elements بتوريك الـ HTML زي ما جه من السيرفر بالظبط؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بتوريك الـ DOM الحي بعد الـ JS."
+    },
+    {
+     "text": "لأ، بتوريك الـ DOM الحالي بتعديلات الـ JS",
+     "why": "صح، الأصلي في View Source أو Network."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ DOM مش الـ HTML."
+  },
+  {
+   "id": "03-web-ch17-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Disable cache بيفضل شغال بعد ما تقفل DevTools؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "شغال بس والـ DevTools مفتوح."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ابقى افتكر تفتحه وانت بتطور."
+  },
+  {
+   "id": "03-web-ch17-05",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الموقع بيتصرف غريب عندك بس، وعند زمايلك تمام.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أجرب في Incognito لأن ممكن Extension بيلخبط",
+     "why": "صح."
+    },
+    {
+     "text": "أعيد تسطيب الماك",
+     "why": "مبالغة."
+    },
+    {
+     "text": "السيرفر بيكرهني",
+     "why": "لأ."
+    },
+    {
+     "text": "أغيّر الدومين",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Extensions بتلخبط."
+  },
+  {
+   "id": "03-web-ch17-06",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب أول 5 دقايق مع DevTools:",
+   "items": [
+    "افتحه بـ ⌘⌥I",
+    "خليه بالإنجليزي",
+    "فعّل Disable cache و Preserve log في Network",
+    "جرّب ⌘⇧P",
+    "اعرف مكان Console في الـ Drawer"
+   ],
+   "explanation": "5 دقايق هتوفر عليك ساعات."
+  },
+  {
+   "id": "03-web-ch17-07",
+   "type": "command",
+   "level": "easy",
+   "prompt": "افتح Command Menu واكتب الأمر اللي ياخد Screenshot للصفحة كلها (اكتب نص الأمر).",
+   "accepted": [
+    "Capture full size screenshot",
+    "capture full size screenshot"
+   ],
+   "hint": "⌘⇧P ثم اكتب screenshot.",
+   "explanation": "Command Menu = أي أمر بالكتابة."
+  },
+  {
+   "id": "03-web-ch17-08",
+   "type": "command",
+   "level": "medium",
+   "prompt": "في Console، اطبع العنصر اللي انت مختاره في Elements.",
+   "accepted": [
+    "$0",
+    "console.log($0)"
+   ],
+   "hint": "متغير خاص بآخر عنصر مختار.",
+   "explanation": "$1 اللي قبله."
+  },
+  {
+   "id": "03-web-ch17-09",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: ⌘⌥___ بيفتح وضع اختيار عنصر من الصفحة.",
+   "template": "⌘⌥___",
+   "blanks": [
+    [
+     "C",
+     "c"
+    ]
+   ],
+   "hint": "C زي Choose.",
+   "explanation": "وبعدين تضغط على أي حاجة."
+  },
+  {
+   "id": "03-web-ch17-10",
+   "type": "mcq",
+   "level": "medium",
+   "question": "تستخدم أدوات الـ AI في DevTools على بيانات حساسة؟",
+   "options": [
+    {
+     "text": "بحذر، لأنها بتبعت بيانات لجوجل وممكن تغلط",
+     "why": "صح."
+    },
+    {
+     "text": "أيوه من غير تفكير",
+     "why": "لأ."
+    },
+    {
+     "text": "مش موجودة",
+     "why": "موجودة."
+    },
+    {
+     "text": "بتشتغل محلي بس",
+     "why": "بتبعت."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أدوات الـ AI ليها شروط."
+  },
+  {
+   "id": "03-web-ch17-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه الكتاب بينصحك تسيب DevTools بالإنجليزي؟",
+   "options": [
+    {
+     "text": "علشان أسماء الـ Panels والرسايل تطابق الشروحات والبحث على النت",
+     "why": "صح."
+    },
+    {
+     "text": "علشان العربي مش مدعوم",
+     "why": "مدعوم."
+    },
+    {
+     "text": "أسرع",
+     "why": "لأ."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Settings ← Language."
+  }
+ ]
+}

@@ -1,0 +1,255 @@
+{
+ "book": "02-git",
+ "chapter": 5,
+ "chapterFile": "ch05",
+ "title": "الـ .gitignore: حاجات Git ميشوفهاش",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "02-git-ch05-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "أنهي ملف لازم يتحط في .gitignore في مشروع JS؟",
+   "options": [
+    {
+     "text": "node_modules",
+     "why": "صح، بيتولّد بـ npm install."
+    },
+    {
+     "text": "package.json",
+     "why": "ده تعريف المشروع، لازم يتحفظ."
+    },
+    {
+     "text": "index.html",
+     "why": "كود المشروع."
+    },
+    {
+     "text": "README.md",
+     "why": "لازم يتحفظ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بنتجاهل اللي بيتولّد والأسرار وملفات النظام."
+  },
+  {
+   "id": "02-git-ch05-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "package-lock.json المفروض يتحط في .gitignore؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الـ lock file بيضمن نفس النسخ عند الكل."
+    },
+    {
+     "text": "لأ، لازم يتعمله Commit",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ده ملف مهم مش متولد عشوائي."
+  },
+  {
+   "id": "02-git-ch05-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Pattern `/build` في .gitignore معناه إيه؟",
+   "options": [
+    {
+     "text": "فولدر/ملف build في جذر الـ Repo بس",
+     "why": "صح، / في الأول = من الجذر."
+    },
+    {
+     "text": "أي build في أي مكان",
+     "why": "ده من غير / في الأول."
+    },
+    {
+     "text": "كل الملفات اللي فيها build",
+     "why": "لأ."
+    },
+    {
+     "text": "استثناء build",
+     "why": "الاستثناء بـ !."
+    }
+   ],
+   "correct": 0,
+   "explanation": "/ في الآخر = فولدر، في الأول = من الجذر."
+  },
+  {
+   "id": "02-git-ch05-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`**/logs` معناها إيه؟",
+   "options": [
+    {
+     "text": "فولدر logs في أي عمق",
+     "why": "صح."
+    },
+    {
+     "text": "logs في الجذر بس",
+     "why": "ده /logs."
+    },
+    {
+     "text": "أي ملف بينتهي بـ logs",
+     "why": "ده *logs."
+    },
+    {
+     "text": "ولا حاجة",
+     "why": "ليها معنى."
+    }
+   ],
+   "correct": 0,
+   "explanation": "** = أي عمق."
+  },
+  {
+   "id": "02-git-ch05-05",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "ضفت .env لـ .gitignore وبرضه git status بيوريه Modified.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الملف كان متابَع قبل كده، فأعمل `git rm --cached .env` وأعمل Commit",
+     "why": "صح."
+    },
+    {
+     "text": "أمسح .gitignore",
+     "why": "هيزود المشكلة."
+    },
+    {
+     "text": "أعمل git init تاني",
+     "why": "مش حل."
+    },
+    {
+     "text": "أستنى",
+     "why": "مش هيتحل لوحده."
+    }
+   ],
+   "correct": 0,
+   "explanation": ".gitignore مبيأثرش على ملف متابَع."
+  },
+  {
+   "id": "02-git-ch05-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`git rm --cached file` بيمسح الملف من جهازك؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "--cached بتشيله من Git بس."
+    },
+    {
+     "text": "لأ، بيشيله من الـ Index ويسيبه في الورشة",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ومن غير --cached هيمسحه من الجهاز كمان."
+  },
+  {
+   "id": "02-git-ch05-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرف ليه `.env` متجاهَل وأنهي قاعدة السبب.",
+   "accepted": [
+    "git check-ignore -v .env"
+   ],
+   "hint": "check-ignore مع -v.",
+   "explanation": "بيقولك الملف والسطر."
+  },
+  {
+   "id": "02-git-ch05-08",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شيل node_modules من Git (اتضاف بالغلط) من غير ما تمسحه من جهازك.",
+   "accepted": [
+    "git rm -r --cached node_modules",
+    "git rm --cached -r node_modules",
+    "git rm -r --cached node_modules/"
+   ],
+   "hint": "rm مع -r و --cached.",
+   "explanation": "وبعدين ضيفه في .gitignore و Commit."
+  },
+  {
+   "id": "02-git-ch05-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تعمل .gitignore عام لكل مشاريعك:",
+   "template": "git config --global ___ ~/.gitignore_global",
+   "blanks": [
+    [
+     "core.excludesFile",
+     "core.excludesfile"
+    ]
+   ],
+   "hint": "core.excludes...",
+   "explanation": "حط فيه .DS_Store وملفات الـ Editor."
+  },
+  {
+   "id": "02-git-ch05-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "عملت push لـ API key في .env بالغلط، وبعدين مسحته في Commit جديد.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أعتبر المفتاح محروق وأعمله Rotate (أغيّره) فوراً، لأنه لسه في التاريخ",
+     "why": "صح."
+    },
+    {
+     "text": "خلاص اتحلت",
+     "why": "المفتاح لسه في الـ Commits القديمة."
+    },
+    {
+     "text": "أعمل الـ Repo Private",
+     "why": "ممكن حد يكون خده خلاص."
+    },
+    {
+     "text": "أمسح الـ Commit الأخير",
+     "why": "الأقدم لسه فيه المفتاح."
+    }
+   ],
+   "correct": 0,
+   "explanation": "السر اللي اتعمله Push لازم يتغير."
+  },
+  {
+   "id": "02-git-ch05-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات شيل ملف اتضاف بالغلط وتجاهله:",
+   "items": [
+    "ضيف اسمه في .gitignore",
+    "git rm --cached الملف",
+    "git commit -m \"chore: stop tracking file\"",
+    "git push"
+   ],
+   "explanation": ".gitignore لوحده مش كفاية لملف متابَع."
+  },
+  {
+   "id": "02-git-ch05-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "عندك `logs/` متجاهَل، وكتبت `!logs/keep.log`. الملف هيتابَع؟",
+   "options": [
+    {
+     "text": "لأ، لأن الفولدر نفسه متجاهَل فـ Git مبيدخلوش أصلاً، فلازم `logs/*` بدل `logs/`",
+     "why": "صح، ده فخ الاستثناء."
+    },
+    {
+     "text": "أيوه",
+     "why": "ده الفخ."
+    },
+    {
+     "text": "هيطلع خطأ",
+     "why": "مفيش خطأ."
+    },
+    {
+     "text": "هيتابع الفولدر كله",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "استثناء جوه فولدر متجاهَل مبيشتغلش."
+  }
+ ]
+}

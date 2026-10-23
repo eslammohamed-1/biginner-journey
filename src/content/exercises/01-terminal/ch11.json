@@ -1,0 +1,244 @@
+{
+ "book": "01-terminal",
+ "chapter": 11,
+ "chapterFile": "ch11",
+ "title": "Homebrew ومديري الحزم: تسطيب البرامج صح",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "01-terminal-ch11-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "في Homebrew، إيه الفرق بين Formula و Cask؟",
+   "options": [
+    {
+     "text": "Formula أدوات سطر أوامر، و Cask برامج بواجهة (.app)",
+     "why": "صح."
+    },
+    {
+     "text": "Formula للماك و Cask لـ Linux",
+     "why": "الاتنين على الماك."
+    },
+    {
+     "text": "مفيش فرق",
+     "why": "فيه فرق."
+    },
+    {
+     "text": "Cask نسخة مضغوطة",
+     "why": "ده Bottle."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Bottle = نسخة جاهزة متجمعة."
+  },
+  {
+   "id": "01-terminal-ch11-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`brew update` بيرقّي البرامج المتسطبة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ده brew upgrade."
+    },
+    {
+     "text": "لأ، بيحدّث القائمة بس، والترقية بـ `brew upgrade`",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "update للقائمة، outdated ثم upgrade."
+  },
+  {
+   "id": "01-terminal-ch11-03",
+   "type": "command",
+   "level": "easy",
+   "prompt": "سطّب Visual Studio Code بـ Homebrew.",
+   "accepted": [
+    "brew install --cask visual-studio-code",
+    "brew install visual-studio-code"
+   ],
+   "hint": "ده برنامج بواجهة فهو cask.",
+   "explanation": "brew الحديث بيعرف الـ cask لوحده لو مفيش formula بنفس الاسم."
+  },
+  {
+   "id": "01-terminal-ch11-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل Brewfile فيه كل برامجك علشان تنقلها لماك جديد.",
+   "accepted": [
+    "brew bundle dump",
+    "brew bundle dump --file=~/Brewfile",
+    "brew bundle dump --file ~/Brewfile"
+   ],
+   "hint": "brew bundle مع dump.",
+   "explanation": "على الماك الجديد: brew bundle --file=~/Brewfile."
+  },
+  {
+   "id": "01-terminal-ch11-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "brew install محتاجة sudo؟",
+   "options": [
+    {
+     "text": "أيوه دايماً",
+     "why": "Homebrew معمول يشتغل من غير sudo."
+    },
+    {
+     "text": "لأ، ومتستخدمش sudo مع brew",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "sudo مع brew بيبوظ الملكية."
+  },
+  {
+   "id": "01-terminal-ch11-06",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "سطّبت Homebrew وكتبت brew فطلع `zsh: command not found: brew`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أضيف `eval \"$(/opt/homebrew/bin/brew shellenv)\"` في ~/.zprofile وأفتح تابة جديدة",
+     "why": "صح."
+    },
+    {
+     "text": "أعيد التسطيب",
+     "why": "مش هيحل لأن الـ PATH هو المشكلة."
+    },
+    {
+     "text": "أسطبه بـ sudo",
+     "why": "غلط."
+    },
+    {
+     "text": "أنقله لـ /usr/bin",
+     "why": "محمي ومش الطريقة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "/opt/homebrew/bin مش في الـ PATH افتراضياً."
+  },
+  {
+   "id": "01-terminal-ch11-07",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "على Ubuntu `apt install` بيقولك `Unable to locate package`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أعمل `sudo apt update` الأول علشان القائمة تتحدّث، وأتأكد من الاسم",
+     "why": "صح."
+    },
+    {
+     "text": "أسطب Homebrew",
+     "why": "مش الحل على السيرفر."
+    },
+    {
+     "text": "أعيد تشغيل السيرفر",
+     "why": "القائمة لسه قديمة."
+    },
+    {
+     "text": "أستخدم dnf",
+     "why": "ده لـ Fedora."
+    }
+   ],
+   "correct": 0,
+   "explanation": "apt update للقائمة، و apt upgrade للترقية."
+  },
+  {
+   "id": "01-terminal-ch11-08",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل الأمر على Ubuntu علشان تحدّث القائمة وترقّي:",
+   "template": "sudo apt ___ && sudo apt upgrade -y",
+   "blanks": [
+    [
+     "update"
+    ]
+   ],
+   "hint": "نفس كلمة brew اللي بتحدّث القائمة.",
+   "explanation": "على Fedora dnf بيحدّث القائمة لوحده."
+  },
+  {
+   "id": "01-terminal-ch11-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "على Arch، كمّل علشان تحدّث كل حاجة وتسطب neovim:",
+   "template": "sudo pacman ___ neovim",
+   "blanks": [
+    [
+     "-Syu"
+    ]
+   ],
+   "hint": "Sync + refresh + upgrade.",
+   "explanation": "متعملش -Sy لوحدها."
+  },
+  {
+   "id": "01-terminal-ch11-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب روتين الصيانة الأسبوعي لـ Homebrew:",
+   "items": [
+    "brew update",
+    "brew outdated",
+    "brew upgrade",
+    "brew cleanup",
+    "brew doctor"
+   ],
+   "explanation": "حدّث القائمة، شوف القديم، رقّي، نضّف، افحص."
+  },
+  {
+   "id": "01-terminal-ch11-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "`apt purge` مقابل `apt remove`، إيه الفرق؟",
+   "options": [
+    {
+     "text": "purge بيشيل البرنامج وملفات إعداداته كمان",
+     "why": "صح."
+    },
+    {
+     "text": "الاتنين واحد",
+     "why": "remove بيسيب الإعدادات."
+    },
+    {
+     "text": "purge بيمسح الـ Cache بس",
+     "why": "ده apt clean."
+    },
+    {
+     "text": "remove بيمسح الإعدادات بس",
+     "why": "العكس."
+    }
+   ],
+   "correct": 0,
+   "explanation": "لو عايز تبدأ من نضيف استخدم purge."
+  },
+  {
+   "id": "01-terminal-ch11-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "زميلك على Windows عايز يسطب Git بالطريقة الرسمية من سطر الأوامر. يستخدم إيه؟",
+   "options": [
+    {
+     "text": "winget",
+     "why": "صح، ده مدير الحزم الرسمي من مايكروسوفت."
+    },
+    {
+     "text": "brew",
+     "why": "Homebrew للماك و Linux."
+    },
+    {
+     "text": "apt",
+     "why": "ده Debian/Ubuntu."
+    },
+    {
+     "text": "pacman",
+     "why": "ده Arch."
+    }
+   ],
+   "correct": 0,
+   "explanation": "و choco بديل مجتمعي على Windows."
+  }
+ ]
+}

@@ -1,0 +1,272 @@
+{
+ "book": "03-web",
+ "chapter": 19,
+ "chapterFile": "ch19",
+ "title": "Network Panel (2): جوه الطلب الواحد",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "03-web-ch19-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "Request Headers في تابة Headers بتوريك إيه؟",
+   "options": [
+    {
+     "text": "اللي المتصفح بعته فعلاً",
+     "why": "صح."
+    },
+    {
+     "text": "رد السيرفر",
+     "why": "ده Response Headers."
+    },
+    {
+     "text": "الكود",
+     "why": "لأ."
+    },
+    {
+     "text": "الكوكيز بس",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "General و Response و Request و Raw."
+  },
+  {
+   "id": "03-web-ch19-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "\"Provisional headers are shown\" معناها إيه غالباً؟",
+   "options": [
+    {
+     "text": "الطلب غالباً موصلش أو جه من الكاش، فدي Headers مبدئية",
+     "why": "صح."
+    },
+    {
+     "text": "الطلب نجح",
+     "why": "مش شرط."
+    },
+    {
+     "text": "Headers مزيفة",
+     "why": "لأ."
+    },
+    {
+     "text": "خطأ في DevTools",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Provisional headers."
+  },
+  {
+   "id": "03-web-ch19-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Console بيقول `Unexpected token '<'` وانت بتعمل res.json().",
+   "options": [
+    {
+     "text": "الرد كان HTML (غالباً صفحة 404 أو index.html) مش JSON",
+     "why": "صح."
+    },
+    {
+     "text": "JSON فيه فاصلة زيادة",
+     "why": "الرسالة كانت هتبقى مختلفة."
+    },
+    {
+     "text": "CORS",
+     "why": "لأ."
+    },
+    {
+     "text": "الشبكة واقعة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "شوف Response في Network."
+  },
+  {
+   "id": "03-web-ch19-04",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "السيرفر بيقول `400: missing field 'email'` وانت باعته.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أفتح Payload وأشوف اللي اتبعت فعلاً (ممكن [object Object] أو اسم غلط أو Content-Type غلط)",
+     "why": "صح."
+    },
+    {
+     "text": "السيرفر بيكدب",
+     "why": "الـ Payload هيقولك."
+    },
+    {
+     "text": "أعيد المحاولة",
+     "why": "نفس النتيجة."
+    },
+    {
+     "text": "أمسح الكوكيز",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Payload: اللي انت بعته."
+  },
+  {
+   "id": "03-web-ch19-05",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الطلب المنسوخ كـ cURL نجح في الـ Terminal بس فشل في المتصفح.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "المشكلة غالباً حاجة خاصة بالمتصفح زي CORS أو Extension أو كوكي",
+     "why": "صح."
+    },
+    {
+     "text": "السيرفر واقع",
+     "why": "نجح من الـ Terminal."
+    },
+    {
+     "text": "curl بيكدب",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ DNS",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Copy as cURL يفصل المتصفح عن السيرفر."
+  },
+  {
+   "id": "03-web-ch19-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Overrides بيغيّر الرد للمستخدمين كلهم؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "عندك انت بس."
+    },
+    {
+     "text": "لأ، على جهازك بس",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "مفيد تجرب تعديل من غير ما تلمس السيرفر."
+  },
+  {
+   "id": "03-web-ch19-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Export HAR (sanitized) بيشيل الباسوردات اللي في الـ Body؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيشيل الكوكيز و Authorization، مش الـ Body."
+    },
+    {
+     "text": "لأ، ممكن الـ Body لسه فيه حاجات حساسة",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "حتى الـ sanitized ممكن يبقى فيه حاجات."
+  },
+  {
+   "id": "03-web-ch19-08",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات تجرب ترد API مختلف من غير السيرفر:",
+   "items": [
+    "Right-click على الطلب ← Override content",
+    "اختار فولدر للـ Overrides",
+    "عدّل الـ Response",
+    "Reload"
+   ],
+   "explanation": "ده بيتغير عندك انت بس."
+  },
+  {
+   "id": "03-web-ch19-09",
+   "type": "command",
+   "level": "medium",
+   "prompt": "في Console، ابعت نفس الطلب تاني بـ fetch بعد ما نسخته (اكتب الشكل العام): fetch لـ /api/orders وطباعة الـ status.",
+   "accepted": [
+    "await fetch(\"/api/orders\").then(r => r.status)",
+    "(await fetch(\"/api/orders\")).status",
+    "fetch(\"/api/orders\").then(r => console.log(r.status))",
+    "await fetch('/api/orders').then(r => r.status)",
+    "(await fetch('/api/orders')).status"
+   ],
+   "hint": "await fetch ثم status.",
+   "explanation": "Copy as fetch يديك الشكل كامل."
+  },
+  {
+   "id": "03-web-ch19-10",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: تابة بتوريك مين في الكود طلب الطلب ده:",
+   "template": "___",
+   "blanks": [
+    [
+     "Initiator"
+    ]
+   ],
+   "hint": "اللي بدأ الطلب.",
+   "explanation": "⇧+Hover في القايمة."
+  },
+  {
+   "id": "03-web-ch19-11",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "هتبعت ملف HAR لزميلك في Slack علشان يساعدك.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أصدّر sanitized، وأراجعه بـ jq أو بعيني قبل ما أبعته علشان أي Tokens أو بيانات في الـ Body",
+     "why": "صح."
+    },
+    {
+     "text": "أبعت with sensitive data",
+     "why": "فيه أسرارك."
+    },
+    {
+     "text": "أبعت Screenshot بس",
+     "why": "ممكن، بس HAR أدق."
+    },
+    {
+     "text": "مش مهم",
+     "why": "مهم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "HAR: الجلسة كلها في ملف."
+  },
+  {
+   "id": "03-web-ch19-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه Copy as cURL خطر لو لزقته في Chat؟",
+   "options": [
+    {
+     "text": "لأنه بيشمل الكوكيز و Authorization بتوعك، فأي حد يقدر يتصرف بحسابك",
+     "why": "صح."
+    },
+    {
+     "text": "علشان طويل",
+     "why": "لأ."
+    },
+    {
+     "text": "مش خطر",
+     "why": "خطر."
+    },
+    {
+     "text": "علشان curl قديم",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الطلب المنسوخ فيه أسرارك."
+  }
+ ]
+}

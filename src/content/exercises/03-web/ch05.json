@@ -1,0 +1,259 @@
+{
+ "book": "03-web",
+ "chapter": 5,
+ "chapterFile": "ch05",
+ "title": "DNS: دليل التليفونات بتاع الإنترنت",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "03-web-ch05-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الدومين `api.shop.example.com.` بيتقري من فين؟",
+   "options": [
+    {
+     "text": "من اليمين: Root ثم com ثم example ثم shop ثم api",
+     "why": "صح."
+    },
+    {
+     "text": "من الشمال",
+     "why": "العكس."
+    },
+    {
+     "text": "مش بيتقري بترتيب",
+     "why": "له ترتيب."
+    },
+    {
+     "text": "من النص",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "النقطة في الآخر هي الـ Root."
+  },
+  {
+   "id": "03-web-ch05-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Root server عارف الـ IP بتاع كل موقع؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيعرف مين المسؤول عن الـ TLD بس."
+    },
+    {
+     "text": "لأ، بيوجّهك لسيرفرات الـ TLD",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "شجرة موزعة."
+  },
+  {
+   "id": "03-web-ch05-03",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب رحلة سؤال DNS:",
+   "items": [
+    "كاش المتصفح",
+    "/etc/hosts",
+    "كاش الـ OS",
+    "الـ Resolver",
+    "Root",
+    "TLD",
+    "Authoritative"
+   ],
+   "explanation": "كل خطوة بتكاش لمدة الـ TTL."
+  },
+  {
+   "id": "03-web-ch05-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "أنهي سجل بيحدد سيرفر الإيميل؟",
+   "options": [
+    {
+     "text": "MX",
+     "why": "صح."
+    },
+    {
+     "text": "A",
+     "why": "IPv4."
+    },
+    {
+     "text": "CNAME",
+     "why": "Alias."
+    },
+    {
+     "text": "TXT",
+     "why": "نصوص للتحقق."
+    }
+   ],
+   "correct": 0,
+   "explanation": "AAAA لـ IPv6، و NS للمسؤول."
+  },
+  {
+   "id": "03-web-ch05-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اسأل عن الـ IPv6 بتاع example.com من 1.1.1.1 وطلّع الإجابة بس.",
+   "accepted": [
+    "dig +short AAAA example.com @1.1.1.1",
+    "dig AAAA example.com @1.1.1.1 +short",
+    "dig @1.1.1.1 +short AAAA example.com"
+   ],
+   "hint": "dig +short النوع @server.",
+   "explanation": "@ بتحدد مين تسأل."
+  },
+  {
+   "id": "03-web-ch05-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "امسح كاش الـ DNS على الماك.",
+   "accepted": [
+    "sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder",
+    "sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
+   ],
+   "hint": "dscacheutil و mDNSResponder.",
+   "explanation": "بعد أي تعديل في /etc/hosts."
+  },
+  {
+   "id": "03-web-ch05-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "dig بيقرا /etc/hosts؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "dig بيسأل الـ DNS مباشرة."
+    },
+    {
+     "text": "لأ، dig و nslookup مبيبصوش فيه، و dscacheutil -q host بيسأل زي المتصفح",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "علشان كده ممكن تختلف النتايج."
+  },
+  {
+   "id": "03-web-ch05-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الموقع بيقول `DNS_PROBE_FINISHED_NXDOMAIN`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أتأكد من الإملاء، وأجرب dig +short، وأجرب @1.1.1.1 علشان أعرف لو الـ Resolver هو المشكلة",
+     "why": "صح."
+    },
+    {
+     "text": "السيرفر واقع",
+     "why": "الاسم مش لاقيه أصلاً."
+    },
+    {
+     "text": "أمسح الكوكيز",
+     "why": "مالهاش علاقة."
+    },
+    {
+     "text": "مشكلة CORS",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "NXDOMAIN = الاسم مش موجود."
+  },
+  {
+   "id": "03-web-ch05-09",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "نقلت موقعك لسيرفر جديد، وصاحبك شايف الجديد وانت لسه شايف القديم.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "ده كاش DNS، أقارن dig العادي بـ @1.1.1.1، وأستنى الـ TTL أو أمسح الكاش، وأشيك على /etc/hosts",
+     "why": "صح."
+    },
+    {
+     "text": "السيرفر الجديد بايظ",
+     "why": "صاحبك شايفه."
+    },
+    {
+     "text": "أعمل restart للسيرفر",
+     "why": "مش المشكلة."
+    },
+    {
+     "text": "الموقع اتهكر",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "TTL بيحدد مدة الكاش."
+  },
+  {
+   "id": "03-web-ch05-10",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل سطر /etc/hosts علشان shop.test يروح لجهازك:",
+   "template": "___ shop.test",
+   "blanks": [
+    [
+     "127.0.0.1",
+     "::1"
+    ]
+   ],
+   "hint": "localhost IPv4.",
+   "explanation": "استخدم .test لأساميك."
+  },
+  {
+   "id": "03-web-ch05-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`www` إيه بالنسبة لـ DNS؟",
+   "options": [
+    {
+     "text": "Subdomain عادي",
+     "why": "صح."
+    },
+    {
+     "text": "جزء إجباري",
+     "why": "لأ."
+    },
+    {
+     "text": "TLD",
+     "why": "لأ."
+    },
+    {
+     "text": "Protocol",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ممكن يكون CNAME للدومين الأساسي."
+  },
+  {
+   "id": "03-web-ch05-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه DNS العادي ممكن يكشف المواقع اللي بتزورها حتى لو HTTPS؟",
+   "options": [
+    {
+     "text": "لأنه بيمشي على UDP 53 من غير تشفير، فالأسامي بتبان، والحل DoH",
+     "why": "صح."
+    },
+    {
+     "text": "مبيكشفش",
+     "why": "بيكشف الأسامي."
+    },
+    {
+     "text": "HTTPS بيشفّره",
+     "why": "الـ DNS بيحصل قبل."
+    },
+    {
+     "text": "علشان الكوكيز",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "DNS over HTTPS."
+  }
+ ]
+}

@@ -1,0 +1,240 @@
+{
+ "book": "02-git",
+ "chapter": 3,
+ "chapterFile": "ch03",
+ "title": "أول Repo: الأماكن التلاتة والـ Commit",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "02-git-ch03-01",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعمل فولدر اسمه portfolio وادخله وحوّله لـ Repo.",
+   "accepted": [
+    "mkdir portfolio && cd portfolio && git init"
+   ],
+   "hint": "mkdir و cd و git init.",
+   "explanation": "git init بيعمل فولدر .git."
+  },
+  {
+   "id": "02-git-ch03-02",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب رحلة التعديل في الأماكن التلاتة:",
+   "items": [
+    "Working Directory (بتعدّل)",
+    "git add",
+    "Staging Area (بتختار)",
+    "git commit",
+    "Repository (التاريخ)"
+   ],
+   "explanation": "ده قلب Git."
+  },
+  {
+   "id": "02-git-ch03-03",
+   "type": "mcq",
+   "level": "easy",
+   "question": "لو مسحت فولدر .git هيحصل إيه؟",
+   "options": [
+    {
+     "text": "التاريخ كله هيتمسح، والملفات الحالية تفضل",
+     "why": "صح."
+    },
+    {
+     "text": "الملفات هتتمسح",
+     "why": "الملفات في الورشة مش في .git."
+    },
+    {
+     "text": "مفيش حاجة",
+     "why": "هتخسر التاريخ."
+    },
+    {
+     "text": "Git هيعيده لوحده",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "متلمسش .git."
+  },
+  {
+   "id": "02-git-ch03-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`git commit -am` بيضيف الملفات الجديدة (Untracked)؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "-a بيضيف الملفات المتابعة بس."
+    },
+    {
+     "text": "لأ، بيضيف تعديلات الملفات اللي Git بيتابعها بس",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الملفات الجديدة لازم git add الأول."
+  },
+  {
+   "id": "02-git-ch03-05",
+   "type": "mcq",
+   "level": "think",
+   "question": "عملت `git add app.js` وبعدين عدّلت app.js تاني. لو عملت commit، التعديل التاني هيدخل؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الـ Staging فيه نسخة وقت الـ add."
+    },
+    {
+     "text": "لأ، الـ Commit هياخد نسخة الـ Staging وقت الـ add، والتعديل التاني هيفضل Modified",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "git status هيوريك الملف مرتين: staged و modified."
+  },
+  {
+   "id": "02-git-ch03-06",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض حالة الـ Repo بالشكل المختصر ومعاه اسم الـ Branch.",
+   "accepted": [
+    "git status -sb",
+    "git status -s -b",
+    "git status --short --branch"
+   ],
+   "hint": "short + branch.",
+   "explanation": "git status أهم أمر في Git."
+  },
+  {
+   "id": "02-git-ch03-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل Commit بعنوان \"feat: add form\" وجسم \"validate email\".",
+   "accepted": [
+    "git commit -m \"feat: add form\" -m \"validate email\""
+   ],
+   "hint": "-m مرتين.",
+   "explanation": "أول -m العنوان والتاني الجسم."
+  },
+  {
+   "id": "02-git-ch03-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عملت git commit فطلعلك `nothing added to commit but untracked files present`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أعمل git add للملفات الأول",
+     "why": "صح، الـ Commit بياخد من الـ Staging بس."
+    },
+    {
+     "text": "أعمل -am",
+     "why": "-am مبيضيفش Untracked."
+    },
+    {
+     "text": "أعمل git init تاني",
+     "why": "مش محتاج."
+    },
+    {
+     "text": "أمسح .git",
+     "why": "كارثة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اقرا رسايل Git، غالباً فيها الحل."
+  },
+  {
+   "id": "02-git-ch03-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "أول Commit طلّعلك `Author identity unknown`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أضبط user.name و user.email",
+     "why": "صح."
+    },
+    {
+     "text": "أعمل git init تاني",
+     "why": "مش المشكلة."
+    },
+    {
+     "text": "أسجل دخول GitHub",
+     "why": "Git محلي مش محتاج GitHub هنا."
+    },
+    {
+     "text": "أستخدم sudo",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "git config --global user.name و user.email."
+  },
+  {
+   "id": "02-git-ch03-10",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ملف جديد لسه عمره ما اتعمله add. حالته إيه؟",
+   "options": [
+    {
+     "text": "Untracked",
+     "why": "صح."
+    },
+    {
+     "text": "Modified",
+     "why": "ده ملف متابَع اتعدّل."
+    },
+    {
+     "text": "Staged",
+     "why": "لازم add."
+    },
+    {
+     "text": "Committed",
+     "why": "لسه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Untracked ← add ← Staged ← commit ← Unmodified."
+  },
+  {
+   "id": "02-git-ch03-11",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تضيف ملفين بس للـ Staging:",
+   "template": "git ___ index.html app.js",
+   "blanks": [
+    [
+     "add"
+    ]
+   ],
+   "hint": "حط في الـ Staging.",
+   "explanation": "git add . بيضيف كل حاجة، ومش دايماً صاحبك."
+  },
+  {
+   "id": "02-git-ch03-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه Git محتاج Staging Area أصلاً؟",
+   "options": [
+    {
+     "text": "علشان تختار إيه بالظبط يدخل الـ Commit، فتعمل Commits مركزة حتى لو عدّلت حاجات كتير",
+     "why": "صح."
+    },
+    {
+     "text": "علشان يبقى أبطأ",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان GitHub يشوف التعديلات",
+     "why": "GitHub مبيشوفش الـ Staging."
+    },
+    {
+     "text": "علشان الـ Backup",
+     "why": "مش وظيفته."
+    }
+   ],
+   "correct": 0,
+   "explanation": "\"ليه Staging Area؟ مش كفاية Save؟\"."
+  }
+ ]
+}

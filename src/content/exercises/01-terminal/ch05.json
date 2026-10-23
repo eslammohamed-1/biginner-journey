@@ -1,0 +1,271 @@
+{
+ "book": "01-terminal",
+ "chapter": 5,
+ "chapterFile": "ch05",
+ "title": "التنقل والتعامل مع الملفات",
+ "count": 13,
+ "exercises": [
+  {
+   "id": "01-terminal-ch05-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "إيه الأمر اللي يقولك انت فين دلوقتي؟",
+   "options": [
+    {
+     "text": "`pwd`",
+     "why": "صح، Print Working Directory."
+    },
+    {
+     "text": "`whoami`",
+     "why": "ده بيقولك اسم المستخدم."
+    },
+    {
+     "text": "`ls`",
+     "why": "بيعرض المحتوى مش المكان."
+    },
+    {
+     "text": "`cd`",
+     "why": "بيغيّر المكان."
+    }
+   ],
+   "correct": 0,
+   "explanation": "pwd انت فين، ls فيه إيه."
+  },
+  {
+   "id": "01-terminal-ch05-02",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض كل الملفات (حتى المخفية) بالتفاصيل وبأحجام مقروءة.",
+   "accepted": [
+    "ls -lah",
+    "ls -alh",
+    "ls -lha",
+    "ls -hal",
+    "ls -ahl",
+    "ls -hla",
+    "ls -lahG"
+   ],
+   "patterns": [
+    "^ls\\s+-(?=[lahG]*l)(?=[lahG]*a)(?=[lahG]*h)[lahG]+$"
+   ],
+   "hint": "ثلاث حروف: long و all و human.",
+   "explanation": "ترتيب الحروف مش بيفرق هنا لأن مفيش ولا واحد بياخد قيمة."
+  },
+  {
+   "id": "01-terminal-ch05-03",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعمل المسار `projects/web/css` مرة واحدة حتى لو `projects` مش موجود.",
+   "accepted": [
+    "mkdir -p projects/web/css",
+    "mkdir -pv projects/web/css"
+   ],
+   "hint": "mkdir مع Flag معناه parents.",
+   "explanation": "-p بيعمل كل المجلدات الناقصة ومبيشتكيش لو موجودة."
+  },
+  {
+   "id": "01-terminal-ch05-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل في سطر واحد المجلدات `css` و `js` و `img` جوه `site`.",
+   "accepted": [
+    "mkdir -p site/{css,js,img}",
+    "mkdir site/{css,js,img}",
+    "mkdir -pv site/{css,js,img}"
+   ],
+   "hint": "الأقواس المعووجة بتولد كلمات.",
+   "explanation": "`{css,js,img}` بيتوسع لـ 3 مسارات قبل ما mkdir يشتغل."
+  },
+  {
+   "id": "01-terminal-ch05-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "صح ولا غلط: `mv` محتاج `-r` علشان ينقل مجلد.",
+   "options": [
+    {
+     "text": "صح",
+     "why": "mv بيغيّر الاسم/المكان بس، مش بينسخ المحتوى."
+    },
+    {
+     "text": "غلط",
+     "why": "صح، cp و rm محتاجين -r للمجلدات، لكن mv لأ."
+    }
+   ],
+   "correct": 1,
+   "explanation": "mv بيشتغل مع المجلدات على طول."
+  },
+  {
+   "id": "01-terminal-ch05-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`tail -n +2 file` بيعمل إيه؟",
+   "options": [
+    {
+     "text": "يعرض آخر سطرين",
+     "why": "ده `tail -n 2`."
+    },
+    {
+     "text": "يعرض من السطر التاني للآخر (يشيل أول سطر)",
+     "why": "صح، الـ + معناها \"ابدأ من\"."
+    },
+    {
+     "text": "يعرض أول سطرين",
+     "why": "ده head -n 2."
+    },
+    {
+     "text": "يضيف سطرين",
+     "why": "tail مبيعدّلش الملف."
+    }
+   ],
+   "correct": 1,
+   "explanation": "مفيد جداً تشيل الـ Header من CSV."
+  },
+  {
+   "id": "01-terminal-ch05-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "تابع ملف لوج اسمه `app.log` وهو بيكبر لايف.",
+   "accepted": [
+    "tail -f app.log",
+    "tail -F app.log",
+    "tail -n 50 -f app.log",
+    "less +F app.log"
+   ],
+   "hint": "tail مع Flag معناه follow.",
+   "explanation": "Ctrl+C للخروج."
+  },
+  {
+   "id": "01-terminal-ch05-08",
+   "type": "mcq",
+   "level": "medium",
+   "question": "عايز تقرا ملف لوج كبير فيه 100 ألف سطر وتدوّر جواه. أنسب أمر؟",
+   "options": [
+    {
+     "text": "`cat`",
+     "why": "هيرمي كل السطور على الشاشة مرة واحدة."
+    },
+    {
+     "text": "`less`",
+     "why": "صح، بيفتحه صفحة صفحة وتقدر تدوّر بـ /."
+    },
+    {
+     "text": "`head`",
+     "why": "هيوريك أول 10 سطور بس."
+    },
+    {
+     "text": "`touch`",
+     "why": "ده بيعمل ملف أو يحدّث وقته."
+    }
+   ],
+   "correct": 1,
+   "explanation": "cat للصغير، less للكبير، head/tail للأطراف."
+  },
+  {
+   "id": "01-terminal-ch05-09",
+   "type": "mcq",
+   "level": "think",
+   "question": "على الماك، إيه الفرق بين `cp -r src backup/` و `cp -r src/ backup/`؟",
+   "options": [
+    {
+     "text": "الأولى بتنسخ المجلد src نفسه جوه backup، والتانية بتنسخ محتواه بس",
+     "why": "صح، الـ / في آخر المصدر بتفرق مع cp على الماك."
+    },
+    {
+     "text": "مفيش فرق",
+     "why": "على الماك فيه فرق (BSD cp)."
+    },
+    {
+     "text": "التانية بتمسح backup",
+     "why": "cp مبيمسحش."
+    },
+    {
+     "text": "الأولى غلط",
+     "why": "الاتنين صح بس النتيجة مختلفة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "نفس القاعدة دي هتقابلها في rsync."
+  },
+  {
+   "id": "01-terminal-ch05-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عملت `mv report.txt reports/` وكان فيه ملف بنفس الاسم هناك، واتمسح من غير ما يسأل.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أستخدم `mv -i` (أو alias) علشان يسأل قبل الكتابة فوق أي ملف",
+     "why": "صح."
+    },
+    {
+     "text": "أستخدم sudo",
+     "why": "sudo مش هيخليه يسأل."
+    },
+    {
+     "text": "mv بيعمل نسخة احتياطي لوحده",
+     "why": "مبيعملش."
+    },
+    {
+     "text": "أستخدم -r",
+     "why": "-r مالهاش علاقة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "-i (interactive) هي حمايتك مع cp و mv و rm."
+  },
+  {
+   "id": "01-terminal-ch05-11",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "كتبت `cp src backup` فطلعلك `cp: src is a directory (not copied)`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أضيف `-r` علشان أنسخ مجلد",
+     "why": "صح، cp -r src backup."
+    },
+    {
+     "text": "أستخدم mv بدلها",
+     "why": "كده هتنقل مش هتنسخ."
+    },
+    {
+     "text": "أعمل backup الأول بـ touch",
+     "why": "مش المشكلة."
+    },
+    {
+     "text": "أستخدم sudo",
+     "why": "مش مشكلة صلاحيات."
+    }
+   ],
+   "correct": 0,
+   "explanation": "cp و rm محتاجين -r للمجلدات."
+  },
+  {
+   "id": "01-terminal-ch05-12",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل الأمر علشان تعرف النوع الحقيقي للملف من محتواه:",
+   "template": "___ photo.jpg",
+   "blanks": [
+    [
+     "file"
+    ]
+   ],
+   "hint": "اسم الأمر زي الكلمة الإنجليزي \"ملف\".",
+   "explanation": "file بيبص على المحتوى مش على الامتداد."
+  },
+  {
+   "id": "01-terminal-ch05-13",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب الأوامر علشان تعمل مجلد، تدخله، تعمل جواه ملف فاضي، وتتأكد:",
+   "items": [
+    "mkdir -p notes",
+    "cd notes",
+    "touch todo.txt",
+    "ls -l"
+   ],
+   "explanation": "mkdir ← cd ← touch ← ls."
+  }
+ ]
+}

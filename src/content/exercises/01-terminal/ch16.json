@@ -1,0 +1,261 @@
+{
+ "book": "01-terminal",
+ "chapter": 16,
+ "chapterFile": "ch16",
+ "title": "المشروع النهائي: أداة opskit",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "01-terminal-ch16-01",
+   "type": "mcq",
+   "level": "medium",
+   "question": "opskit بيستخدم إيه علشان يعمل Subcommands زي `opskit backup` و `opskit deploy`؟",
+   "options": [
+    {
+     "text": "case على $1 ودوال لكل Subcommand",
+     "why": "صح."
+    },
+    {
+     "text": "Script لكل Subcommand",
+     "why": "كله Script واحد."
+    },
+    {
+     "text": "aliases",
+     "why": "مش الطريقة."
+    },
+    {
+     "text": "if متداخلة كتير",
+     "why": "case أنضف."
+    }
+   ],
+   "correct": 0,
+   "explanation": "case \"$1\" in backup) ... ;; esac."
+  },
+  {
+   "id": "01-terminal-ch16-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ليه opskit بيكتب الرسايل (log) على stderr؟",
+   "options": [
+    {
+     "text": "علشان stdout يفضل للنتايج بس، فلو عملت `| tee report.txt` الرسايل متختلطش بالتقرير",
+     "why": "صح."
+    },
+    {
+     "text": "علشان تطلع بالأحمر",
+     "why": "مالهاش لون افتراضي."
+    },
+    {
+     "text": "لأن stdout بطيء",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان متتسجلش",
+     "why": "ممكن تتسجل بـ 2>."
+    }
+   ],
+   "correct": 0,
+   "explanation": "stdout للنتايج و stderr للرسايل."
+  },
+  {
+   "id": "01-terminal-ch16-03",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرف نظام التشغيل جوه الـ Script (Darwin ولا Linux).",
+   "accepted": [
+    "uname -s",
+    "uname"
+   ],
+   "hint": "uname.",
+   "explanation": "Darwin = macOS."
+  },
+  {
+   "id": "01-terminal-ch16-04",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه opskit بيكتب `${dry[@]+\"${dry[@]}\"}` بدل `\"${dry[@]}\"`؟",
+   "options": [
+    {
+     "text": "علشان bash 3.2 مع set -u بيعتبر الـ Array الفاضي متغير مش متعرّف ويقع",
+     "why": "صح."
+    },
+    {
+     "text": "علشان الشكل",
+     "why": "لا، ليها سبب."
+    },
+    {
+     "text": "علشان zsh",
+     "why": "الـ Script bash."
+    },
+    {
+     "text": "علشان السرعة",
+     "why": "مالهاش علاقة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "وهي فاضية مبتضيفش أي Argument."
+  },
+  {
+   "id": "01-terminal-ch16-05",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تسيب آخر KEEP نسخ backup وتمسح الأقدم:",
+   "template": "ls -1t \"$DEST\"/*.tar.gz | tail -n +$((KEEP ___ 1)) | while IFS= read -r old; do rm -- \"$old\"; done",
+   "blanks": [
+    [
+     "+"
+    ]
+   ],
+   "hint": "ابدأ من النسخة اللي بعد آخر واحدة عايزها.",
+   "explanation": "ls -1t الأحدث الأول، و tail -n +N من السطر N."
+  },
+  {
+   "id": "01-terminal-ch16-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "على الماك، أنهي Flag في find مش موجود (فـ opskit متجنبه)؟",
+   "options": [
+    {
+     "text": "`-printf`",
+     "why": "صح، ده GNU بس."
+    },
+    {
+     "text": "`-name`",
+     "why": "موجود."
+    },
+    {
+     "text": "`-type`",
+     "why": "موجود."
+    },
+    {
+     "text": "`-mtime`",
+     "why": "موجود."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اكتب لأدوات BSD لو عايز الـ Script يشتغل في الاتنين."
+  },
+  {
+   "id": "01-terminal-ch16-07",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات تثبيت opskit:",
+   "items": [
+    "انسخ الملف لـ ~/.local/bin/opskit",
+    "chmod +x ~/.local/bin/opskit",
+    "اتأكد إن ~/.local/bin في الـ PATH",
+    "ضيف alias و compdef في ~/.zshrc",
+    "اعمل LaunchAgent للجدولة"
+   ],
+   "explanation": "نفس خطوات أي أداة CLI."
+  },
+  {
+   "id": "01-terminal-ch16-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عايز تجرب أمر deploy بـ rsync --delete على السيرفر لأول مرة.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشغّله الأول بـ Dry run (-n / --dry-run) وأشوف هيمسح إيه",
+     "why": "صح."
+    },
+    {
+     "text": "أشغّله على طول",
+     "why": "--delete ممكن يمسح ملفات على السيرفر."
+    },
+    {
+     "text": "أشيل --delete على طول",
+     "why": "ممكن تحتاجه، بس جرّب الأول."
+    },
+    {
+     "text": "أستخدم scp",
+     "why": "مبيعملش مزامنة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Dry run قبل أي مسح أو نشر."
+  },
+  {
+   "id": "01-terminal-ch16-09",
+   "type": "command",
+   "level": "think",
+   "prompt": "اعمل rsync للمجلد `site/` على `prod:/var/www/` مع الحذف والضغط وتجاهل .git (تجربة بس).",
+   "accepted": [
+    "rsync -az --delete --exclude='.git' --dry-run site/ prod:/var/www/",
+    "rsync -azn --delete --exclude='.git' site/ prod:/var/www/",
+    "rsync -az --delete --exclude=.git -n site/ prod:/var/www/",
+    "rsync -az --dry-run --delete --exclude='.git' site/ prod:/var/www/"
+   ],
+   "hint": "-a -z و --delete و --exclude و --dry-run.",
+   "explanation": "الـ / في آخر site مهمة."
+  },
+  {
+   "id": "01-terminal-ch16-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "opskit شغال من الـ Terminal بس فشل من الـ LaunchAgent وقال `command not found: jq`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ LaunchAgent مبيقراش ~/.zprofile، فأحط PATH كامل في الـ plist أو مسار jq الكامل",
+     "why": "صح."
+    },
+    {
+     "text": "أسطب jq تاني",
+     "why": "متسطب."
+    },
+    {
+     "text": "أشغّل launchd بـ sudo",
+     "why": "مش الحل."
+    },
+    {
+     "text": "jq مش شغال على الماك",
+     "why": "شغال."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ده نفس درس الـ PATH من فصل الخدمات."
+  },
+  {
+   "id": "01-terminal-ch16-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الإعدادات في opskit (زي DEST و KEEP) بتيجي منين؟",
+   "options": [
+    {
+     "text": "متغيرات بيئة ليها قيم افتراضية زي `${KEEP:-7}`",
+     "why": "صح."
+    },
+    {
+     "text": "مكتوبة جوه الكود ومينفعش تتغير",
+     "why": "بتتغير من البيئة."
+    },
+    {
+     "text": "من ملف JSON",
+     "why": "مش في الكود ده."
+    },
+    {
+     "text": "من الـ Keychain",
+     "why": "الـ Keychain للأسرار."
+    }
+   ],
+   "correct": 0,
+   "explanation": "${VAR:-default} قيمة افتراضية."
+  },
+  {
+   "id": "01-terminal-ch16-12",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل علشان الـ Script يختار حسب النظام:",
+   "template": "case \"$(uname -s)\" in ___) echo mac ;; Linux) echo linux ;; esac",
+   "blanks": [
+    [
+     "Darwin"
+    ]
+   ],
+   "hint": "اسم نواة الماك.",
+   "explanation": "Darwin هو اسم الـ Kernel بتاع macOS."
+  }
+ ]
+}

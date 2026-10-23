@@ -1,0 +1,229 @@
+{
+ "book": "03-web",
+ "chapter": 21,
+ "chapterFile": "ch21",
+ "title": "Application Panel و Safari: الكوكيز والتخزين بإيدك",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "03-web-ch21-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "فين تلاقي الكوكيز والـ localStorage في Chrome DevTools؟",
+   "options": [
+    {
+     "text": "Application ← Storage",
+     "why": "صح."
+    },
+    {
+     "text": "Network",
+     "why": "هناك الكوكيز اللي اتبعتت."
+    },
+    {
+     "text": "Elements",
+     "why": "لأ."
+    },
+    {
+     "text": "Sources",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Application Panel."
+  },
+  {
+   "id": "03-web-ch21-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الكوكي اللي عليها HttpOnly بتظهر في جدول Application؟",
+   "options": [
+    {
+     "text": "أيوه، بتظهر وعليها علامة HttpOnly",
+     "why": "صح، مخفية عن الـ JS بس."
+    },
+    {
+     "text": "لأ",
+     "why": "بتظهر."
+    }
+   ],
+   "correct": 0,
+   "explanation": "نفس الكوكي، 3 أماكن."
+  },
+  {
+   "id": "03-web-ch21-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Clear site data بيمسح بيانات كل المواقع؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الموقع الحالي بس."
+    },
+    {
+     "text": "لأ، الموقع الحالي بس",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "زي أول زيارة."
+  },
+  {
+   "id": "03-web-ch21-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "في Console، احفظ theme = dark في localStorage.",
+   "accepted": [
+    "localStorage.setItem(\"theme\", \"dark\")",
+    "localStorage.setItem('theme', 'dark')",
+    "localStorage.theme = \"dark\"",
+    "localStorage.theme = 'dark'"
+   ],
+   "hint": "setItem.",
+   "explanation": "وتشوفها في Application."
+  },
+  {
+   "id": "03-web-ch21-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "في Console، امسح كل الـ sessionStorage.",
+   "accepted": [
+    "sessionStorage.clear()"
+   ],
+   "hint": "clear.",
+   "explanation": "sessionStorage بيتمسح لما تقفل التابة."
+  },
+  {
+   "id": "03-web-ch21-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إيه الفرق بين localStorage و sessionStorage؟",
+   "options": [
+    {
+     "text": "localStorage بيفضل بعد قفل المتصفح، و sessionStorage للتابة دي بس",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "مختلفين."
+    },
+    {
+     "text": "sessionStorage بيتبعت للسيرفر",
+     "why": "لأ."
+    },
+    {
+     "text": "localStorage للكوكيز",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الاتنين مربوطين بالـ Origin."
+  },
+  {
+   "id": "03-web-ch21-07",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الثيم بيرجع Light كل مرة تفتح الموقع.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشوف Application: هل القيمة بتتحفظ؟ في localStorage ولا sessionStorage؟ وهل الكود بيقراها صح",
+     "why": "صح."
+    },
+    {
+     "text": "الكاش",
+     "why": "مش غالباً."
+    },
+    {
+     "text": "السيرفر",
+     "why": "لأ."
+    },
+    {
+     "text": "CORS",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مثال عملي في الفصل."
+  },
+  {
+   "id": "03-web-ch21-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الموقع شغال في Chrome وبايظ في Safari، وانت على الماك.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أفعّل Show features for web developers في Safari وأفتح Web Inspector بـ ⌥⌘I",
+     "why": "صح."
+    },
+    {
+     "text": "أتجاهل Safari",
+     "why": "مستخدمين iPhone كتير."
+    },
+    {
+     "text": "أستخدم User-Agent",
+     "why": "لأ."
+    },
+    {
+     "text": "أعيد تسطيب Safari",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Storage في Safari = Application."
+  },
+  {
+   "id": "03-web-ch21-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات تصلّح Service Worker قديم بيخدم ملفات قديمة:",
+   "items": [
+    "Application ← Service Workers",
+    "فعّل Update on reload",
+    "Reload",
+    "لو لسه: Unregister و Clear site data"
+   ],
+   "explanation": "Service Worker بيقف بين الصفحة والشبكة."
+  },
+  {
+   "id": "03-web-ch21-10",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: في جدول الكوكيز فيه Checkbox اسمه Only show cookies with an ___.",
+   "template": "Only show cookies with an ___",
+   "blanks": [
+    [
+     "issue"
+    ]
+   ],
+   "hint": "مشكلة.",
+   "explanation": "علشان تلاقي اللي اتمنعت."
+  },
+  {
+   "id": "03-web-ch21-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "نفس الكوكي ممكن تشوفها في 3 أماكن. إيه هما؟",
+   "options": [
+    {
+     "text": "Application (المحفوظة)، و Network ← Cookies (اللي اتبعتت)، و document.cookie (اللي الـ JS شايفها)",
+     "why": "صح."
+    },
+    {
+     "text": "Elements و Sources و Console",
+     "why": "لأ."
+    },
+    {
+     "text": "Network بس",
+     "why": "ناقص."
+    },
+    {
+     "text": "مفيش مكان",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "كل مكان بيجاوب سؤال مختلف."
+  }
+ ]
+}

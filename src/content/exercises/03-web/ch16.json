@@ -1,0 +1,251 @@
+{
+ "book": "03-web",
+ "chapter": 16,
+ "chapterFile": "ch16",
+ "title": "من HTML لبيكسلات: المتصفح بيرسم إزاي",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "03-web-ch16-01",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات الرسم:",
+   "items": [
+    "Parse HTML → DOM",
+    "Parse CSS → CSSOM",
+    "Render tree",
+    "Layout",
+    "Paint"
+   ],
+   "explanation": "من النص للشاشة."
+  },
+  {
+   "id": "03-web-ch16-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`<script>` عادي في `<head>` بيعمل إيه؟",
+   "options": [
+    {
+     "text": "بيوقف قراية الـ HTML لحد ما يتحمل ويتنفذ",
+     "why": "صح."
+    },
+    {
+     "text": "مبيأثرش",
+     "why": "بيوقف."
+    },
+    {
+     "text": "بيستنى الصفحة تخلص",
+     "why": "ده defer."
+    },
+    {
+     "text": "بيشتغل في الخلفية",
+     "why": "ده async جزئياً."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Render-blocking."
+  },
+  {
+   "id": "03-web-ch16-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "السكريبتات اللي عليها async بتتنفذ بترتيبها في الـ HTML دايماً؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "async أول ما يوصل."
+    },
+    {
+     "text": "لأ، كل واحد أول ما يوصل",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "defer بالترتيب."
+  },
+  {
+   "id": "03-web-ch16-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`<script type=\"module\">` بيتصرف زي إيه؟",
+   "options": [
+    {
+     "text": "defer",
+     "why": "صح."
+    },
+    {
+     "text": "async",
+     "why": "لأ افتراضياً."
+    },
+    {
+     "text": "script عادي",
+     "why": "لأ."
+    },
+    {
+     "text": "مبيشتغلش",
+     "why": "بيشتغل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بعد الـ HTML وبالترتيب."
+  },
+  {
+   "id": "03-web-ch16-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ CSS بيوقف إيه؟",
+   "options": [
+    {
+     "text": "الرسم (Render)، لحد ما الـ CSSOM يخلص",
+     "why": "صح."
+    },
+    {
+     "text": "قراية الـ HTML",
+     "why": "مش بشكل مباشر."
+    },
+    {
+     "text": "الشبكة",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ JS كله",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان كده الـ CSS في الـ head."
+  },
+  {
+   "id": "03-web-ch16-06",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الخط الأزرق في Waterfall معناه إيه؟",
+   "options": [
+    {
+     "text": "DOMContentLoaded",
+     "why": "صح."
+    },
+    {
+     "text": "Load",
+     "why": "ده الأحمر."
+    },
+    {
+     "text": "أول طلب",
+     "why": "لأ."
+    },
+    {
+     "text": "خطأ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Load بيحصل بعد DOMContentLoaded."
+  },
+  {
+   "id": "03-web-ch16-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان السكريبت يتحمل مع الـ HTML ويتنفذ بعده بالترتيب:",
+   "template": "<script src=\"app.js\" ___></script>",
+   "blanks": [
+    [
+     "defer"
+    ]
+   ],
+   "hint": "أجّل.",
+   "explanation": "القاعدة العملية."
+  },
+  {
+   "id": "03-web-ch16-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "السكريبت بيقول `Cannot read properties of null` لما بيعمل querySelector، وهو في الـ head.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "السكريبت اشتغل قبل ما الـ HTML يتقري، فأحط defer أو أنقله لآخر body",
+     "why": "صح."
+    },
+    {
+     "text": "العنصر مش موجود",
+     "why": "موجود بس لسه متقراش."
+    },
+    {
+     "text": "Chrome بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "أستخدم async",
+     "why": "ممكن يتنفذ بدري برضه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "defer بيحل."
+  },
+  {
+   "id": "03-web-ch16-09",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "سكريبت تحليلات (Analytics) مستقل ومش مهم يستنى أي حاجة.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "async، لأنه مش معتمد على سكريبتات تانية ولا على الـ DOM",
+     "why": "صح."
+    },
+    {
+     "text": "script عادي في الـ head",
+     "why": "هيوقف الصفحة."
+    },
+    {
+     "text": "defer لازم",
+     "why": "ينفع، بس async أنسب للمستقل."
+    },
+    {
+     "text": "أشيله",
+     "why": "مش الحل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "async أول ما يوصل."
+  },
+  {
+   "id": "03-web-ch16-10",
+   "type": "command",
+   "level": "think",
+   "prompt": "في Console، اطبع الوقت اللي الصفحة اتحملت فيه (من Performance API) لـ DOMContentLoaded.",
+   "accepted": [
+    "performance.getEntriesByType(\"navigation\")[0].domContentLoadedEventEnd",
+    "performance.getEntriesByType('navigation')[0].domContentLoadedEventEnd"
+   ],
+   "hint": "performance.getEntriesByType(\"navigation\").",
+   "explanation": "نفس الخط الأزرق بالأرقام."
+  },
+  {
+   "id": "03-web-ch16-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "الطلبات اللي Initiator بتاعها \"Parser\" غير اللي \"Script\" إزاي؟",
+   "options": [
+    {
+     "text": "Parser = المتصفح اكتشفها وهو بيقرا الـ HTML، و Script = كودك طلبها (زي fetch)",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "مختلفين."
+    },
+    {
+     "text": "Parser = خطأ",
+     "why": "لأ."
+    },
+    {
+     "text": "Script = CSS",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Initiator بيقولك مين طلب."
+  }
+ ]
+}

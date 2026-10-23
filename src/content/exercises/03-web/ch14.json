@@ -1,0 +1,262 @@
+{
+ "book": "03-web",
+ "chapter": 14,
+ "chapterFile": "ch14",
+ "title": "CORS: أشهر خطأ أحمر في الـ Console",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "03-web-ch14-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "CORS error معناه إن كودك فيه Syntax error؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ده قرار المتصفح على رد السيرفر."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "السيرفر هو اللي بيدّي الإذن."
+  },
+  {
+   "id": "03-web-ch14-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "مين اللي بيحل CORS؟",
+   "options": [
+    {
+     "text": "السيرفر، بإنه يرجّع access-control-allow-origin مناسب",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Frontend",
+     "why": "مش بإيده."
+    },
+    {
+     "text": "المستخدم",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ DNS",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أو Proxy وانت بتطور."
+  },
+  {
+   "id": "03-web-ch14-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "fetch بـ POST و `Content-Type: application/json` بيعمل Preflight؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح، JSON مش من الأنواع البسيطة."
+    },
+    {
+     "text": "لأ",
+     "why": "بيعمل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Preflight بـ OPTIONS."
+  },
+  {
+   "id": "03-web-ch14-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`mode: 'no-cors'` بيخليك تقرا الرد؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الرد بيبقى Opaque."
+    },
+    {
+     "text": "لأ، الرد بيبقى Opaque ومتقدرش تقراه",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "no-cors مش حل."
+  },
+  {
+   "id": "03-web-ch14-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ليه curl مبيتأثرش بـ CORS؟",
+   "options": [
+    {
+     "text": "لأن CORS قاعدة في المتصفح بتحمي المستخدم، و curl مش متصفح",
+     "why": "صح."
+    },
+    {
+     "text": "curl بيتخطاها بخدعة",
+     "why": "مفيش خدعة."
+    },
+    {
+     "text": "علشان curl أسرع",
+     "why": "لأ."
+    },
+    {
+     "text": "بيتأثر",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "استخدمه تعمل الـ Preflight بإيدك."
+  },
+  {
+   "id": "03-web-ch14-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل Preflight بإيدك بـ curl لـ https://httpbin.org/post من origin http://localhost:5173.",
+   "accepted": [
+    "curl -si -X OPTIONS https://httpbin.org/post -H 'Origin: http://localhost:5173' -H 'Access-Control-Request-Method: POST'",
+    "curl -i -X OPTIONS https://httpbin.org/post -H 'Origin: http://localhost:5173'",
+    "curl -si -X OPTIONS https://httpbin.org/post -H 'Origin: http://localhost:5173'"
+   ],
+   "hint": "-X OPTIONS و -H Origin.",
+   "explanation": "شوف الـ access-control-* في الرد."
+  },
+  {
+   "id": "03-web-ch14-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الـ Header اللي يسمح لـ Vite بالقراية:",
+   "template": "access-control-allow-origin: ___",
+   "blanks": [
+    [
+     "http://localhost:5173"
+    ]
+   ],
+   "hint": "الـ Origin بتاع Vite.",
+   "explanation": "لازم Scheme و Host و Port."
+  },
+  {
+   "id": "03-web-ch14-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "Console بيقول CORS error، وفي Network الـ Status الحقيقي 500.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "المشكلة الأساسية خطأ في السيرفر، والرد بتاع الخطأ ناقصه CORS Headers، فأصلّح الـ 500",
+     "why": "صح."
+    },
+    {
+     "text": "أحل CORS بس",
+     "why": "الـ 500 هيفضل."
+    },
+    {
+     "text": "أستخدم no-cors",
+     "why": "لأ."
+    },
+    {
+     "text": "أمسح الكاش",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ CORS error ساعات بيخبي خطأ تاني."
+  },
+  {
+   "id": "03-web-ch14-09",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "عايز تبعت كوكيز مع fetch لـ API على Origin تاني والسيرفر حاطط allow-origin: *.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "لازم السيرفر يحط الـ Origin بالظبط + allow-credentials: true، والكود يحط credentials: 'include'",
+     "why": "صح."
+    },
+    {
+     "text": "يكفي credentials: 'include'",
+     "why": "مع * مش هينفع."
+    },
+    {
+     "text": "أستخدم no-cors",
+     "why": "لأ."
+    },
+    {
+     "text": "مستحيل",
+     "why": "ممكن."
+    }
+   ],
+   "correct": 0,
+   "explanation": "allow-credentials مينفعش مع *."
+  },
+  {
+   "id": "03-web-ch14-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب اللي بيحصل في طلب غير بسيط:",
+   "items": [
+    "المتصفح يبعت OPTIONS (Preflight)",
+    "السيرفر يرد بـ access-control-allow-*",
+    "المتصفح يبعت الطلب الحقيقي",
+    "المتصفح يدّي الرد للـ JS لو الـ Headers مطابقة"
+   ],
+   "explanation": "Preflight = \"ممكن أبعت؟\"."
+  },
+  {
+   "id": "03-web-ch14-11",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "وانت بتطور بـ Vite على 5173 والـ API على 3000 بتاعك، وفيه CORS error.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أظبط CORS على سيرفر 3000 أو أستخدم Proxy في Vite",
+     "why": "صح."
+    },
+    {
+     "text": "Extension يقفل CORS",
+     "why": "حل غلط."
+    },
+    {
+     "text": "no-cors",
+     "why": "لأ."
+    },
+    {
+     "text": "أغيّر البورت لنفس الرقم",
+     "why": "مينفعش برنامجين على نفس البورت."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الحلول الصح."
+  },
+  {
+   "id": "03-web-ch14-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه الصور من مواقع تانية بتشتغل في `<img>` عادي من غير CORS؟",
+   "options": [
+    {
+     "text": "لأن Same-origin policy بتمنع الـ JS إنه \"يقرا\" الرد، مش إنه يعرضه، و `<img>` بيعرض بس",
+     "why": "صح."
+    },
+    {
+     "text": "الصور مش طلبات",
+     "why": "طلبات."
+    },
+    {
+     "text": "السيرفرات كلها بتسمح للصور",
+     "why": "مش السبب."
+    },
+    {
+     "text": "CORS للـ JSON بس",
+     "why": "مش بالظبط."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Opaque responses."
+  }
+ ]
+}

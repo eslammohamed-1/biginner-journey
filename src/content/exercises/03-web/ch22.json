@@ -1,0 +1,246 @@
+{
+ "book": "03-web",
+ "chapter": 22,
+ "chapterFile": "ch22",
+ "title": "الـ Debugging بطريقة: كودي ولا السيرفر؟",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "03-web-ch22-01",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خريطة الـ Debugging:",
+   "items": [
+    "Console: فيه أخطاء؟",
+    "Network: الطلب موجود؟",
+    "Status رقم ولا أقواس؟",
+    "الرقم 2xx؟",
+    "شكل الرد صح؟",
+    "يبقى كودك"
+   ],
+   "explanation": "5 أسئلة بالترتيب."
+  },
+  {
+   "id": "03-web-ch22-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لو الطلب شغال بـ curl وفاشل في المتصفح، المشكلة أكيد في السيرفر؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "نجح بـ curl."
+    },
+    {
+     "text": "لأ، غالباً في المتصفح (CORS، كوكيز) أو كودك",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Copy as cURL."
+  },
+  {
+   "id": "03-web-ch22-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Logpoint بيوقف الكود زي الـ Breakpoint؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيطبع بس."
+    },
+    {
+     "text": "لأ، بيطبع رسالة من غير ما يوقف",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "console.log من غير ما تعدّل الكود."
+  },
+  {
+   "id": "03-web-ch22-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Step over بيعمل إيه؟",
+   "options": [
+    {
+     "text": "ينفّذ السطر كله (والدالة اللي فيه) من غير ما يدخل جواها",
+     "why": "صح."
+    },
+    {
+     "text": "يدخل جوه الدالة",
+     "why": "ده Step into."
+    },
+    {
+     "text": "يخرج من الدالة",
+     "why": "ده Step out."
+    },
+    {
+     "text": "يكمل للآخر",
+     "why": "ده Resume."
+    }
+   ],
+   "correct": 0,
+   "explanation": "F10."
+  },
+  {
+   "id": "03-web-ch22-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اكتب السطر اللي يوقف الكود في المكان ده لما DevTools مفتوح.",
+   "accepted": [
+    "debugger;",
+    "debugger"
+   ],
+   "hint": "كلمة محجوزة في JS.",
+   "explanation": "بديل للضغط على رقم السطر."
+  },
+  {
+   "id": "03-web-ch22-06",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "`TypeError: Failed to fetch` ومفيش تفاصيل.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أفتح Network وأشوف الطلب: Status بأقواس؟ CORS؟ وأشوف الـ Console كله",
+     "why": "صح."
+    },
+    {
+     "text": "السيرفر واقع أكيد",
+     "why": "ممكن CORS أو شبكة."
+    },
+    {
+     "text": "أعيد المحاولة كتير",
+     "why": "مش تشخيص."
+    },
+    {
+     "text": "أمسح الكود",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Failed to fetch مفيهوش تفاصيل عن قصد."
+  },
+  {
+   "id": "03-web-ch22-07",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "شغال على جهازي ومش شغال بعد الرفع.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أقارن الطلبات في Network: المسارات (base)، و URL الـ API، والـ env، و Mixed content",
+     "why": "صح."
+    },
+    {
+     "text": "السيرفر بيكرهني",
+     "why": "لأ."
+    },
+    {
+     "text": "أعيد الرفع لحد ما يشتغل",
+     "why": "مش طريقة."
+    },
+    {
+     "text": "ده Bug في Chrome",
+     "why": "نادراً."
+    }
+   ],
+   "correct": 0,
+   "explanation": "حالة 3 من 7."
+  },
+  {
+   "id": "03-web-ch22-08",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "بيشتغل مرة ويفشل مرة.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أدوّر على Race condition أو كاش أو Rate limit، وأقارن الطلبات الناجحة والفاشلة في Network",
+     "why": "صح."
+    },
+    {
+     "text": "عشوائي ومالوش حل",
+     "why": "له سبب."
+    },
+    {
+     "text": "أعيد تشغيل الماك",
+     "why": "لأ."
+    },
+    {
+     "text": "أغيّر المتصفح",
+     "why": "مش تشخيص."
+    }
+   ],
+   "correct": 0,
+   "explanation": "حالة 6."
+  },
+  {
+   "id": "03-web-ch22-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: Breakpoint بيوقف بس لما شرط يتحقق اسمه ___ breakpoint.",
+   "template": "___ breakpoint",
+   "blanks": [
+    [
+     "Conditional",
+     "conditional"
+    ]
+   ],
+   "hint": "شرطي.",
+   "explanation": "Right-click على السطر."
+  },
+  {
+   "id": "03-web-ch22-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "إيه أهم حاجة في سؤال أو Bug report كويس؟",
+   "options": [
+    {
+     "text": "اللي عاوزه، واللي حصل فعلاً، واللي جربته، والبيئة، ومن غير أسرار",
+     "why": "صح."
+    },
+    {
+     "text": "\"مش شغال\" وخلاص",
+     "why": "مش كفاية."
+    },
+    {
+     "text": "الكود كله",
+     "why": "مش لازم، اختصر."
+    },
+    {
+     "text": "Screenshot بالـ Token",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "تسأل حد إزاي."
+  },
+  {
+   "id": "03-web-ch22-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "فيه طلب OPTIONS في Network انت ماعملتوش. ده إيه؟",
+   "options": [
+    {
+     "text": "Preflight بتاع CORS، المتصفح عمله لوحده",
+     "why": "صح."
+    },
+    {
+     "text": "هجوم",
+     "why": "لأ."
+    },
+    {
+     "text": "Bug",
+     "why": "لأ."
+    },
+    {
+     "text": "Extension",
+     "why": "غالباً لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "حالة 7."
+  }
+ ]
+}

@@ -1,0 +1,248 @@
+{
+ "book": "03-web",
+ "chapter": 6,
+ "chapterFile": "ch06",
+ "title": "الـ URL متشرّح: كل حرف في العنوان ليه شغلانة",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "03-web-ch06-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "في `https://shop.example.com:8443/products/shoes?color=red#reviews` الـ Path إيه؟",
+   "options": [
+    {
+     "text": "`/products/shoes`",
+     "why": "صح."
+    },
+    {
+     "text": "`shop.example.com`",
+     "why": "ده الـ Host."
+    },
+    {
+     "text": "`?color=red`",
+     "why": "ده الـ Query."
+    },
+    {
+     "text": "`#reviews`",
+     "why": "ده الـ Fragment."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Scheme + Host + Port + Path + Query + Fragment."
+  },
+  {
+   "id": "03-web-ch06-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "السيرفر يقدر يعرف انت فاتح `#section2`؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الـ Fragment مبيتبعتش."
+    },
+    {
+     "text": "لأ، الـ Fragment بيفضل في المتصفح",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "علشان كده بيستخدم للتنقل جوه الصفحة."
+  },
+  {
+   "id": "03-web-ch06-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`https://site.com` و `https://site.com:443` نفس الـ Origin؟",
+   "options": [
+    {
+     "text": "أيوه، لأن 443 هو الافتراضي لـ https",
+     "why": "صح."
+    },
+    {
+     "text": "لأ",
+     "why": "نفس الـ Port فعلياً."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Origin = Scheme + Host + Port."
+  },
+  {
+   "id": "03-web-ch06-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`http://localhost:3000` و `http://localhost:5173` نفس الـ Origin؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الـ Port مختلف."
+    },
+    {
+     "text": "لأ، الـ Port جزء من الـ Origin",
+     "why": "صح، وده سبب CORS في التطوير."
+    }
+   ],
+   "correct": 1,
+   "explanation": "التلاتة لازم يتطابقوا."
+  },
+  {
+   "id": "03-web-ch06-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ابعت طلب بـ curl لـ https://httpbin.org/get فيه color=red و size=42 من غير ما zsh يبوظه.",
+   "accepted": [
+    "curl 'https://httpbin.org/get?color=red&size=42'",
+    "curl \"https://httpbin.org/get?color=red&size=42\""
+   ],
+   "hint": "حط الـ URL بين quotes.",
+   "explanation": "من غير quotes zsh هيفهم ? و &."
+  },
+  {
+   "id": "03-web-ch06-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "المسافة في الـ URL بتتحول لإيه؟",
+   "options": [
+    {
+     "text": "%20 (أو + في الـ Query)",
+     "why": "صح."
+    },
+    {
+     "text": "_",
+     "why": "لأ."
+    },
+    {
+     "text": "بتتشال",
+     "why": "لأ."
+    },
+    {
+     "text": "-",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Percent-encoding."
+  },
+  {
+   "id": "03-web-ch06-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "في Console، حوّل النص \"قهوة باللبن\" لشكل ينفع يتحط في Query.",
+   "accepted": [
+    "encodeURIComponent(\"قهوة باللبن\")",
+    "encodeURIComponent('قهوة باللبن')"
+   ],
+   "hint": "encode + URI + Component.",
+   "explanation": "العربي بيتحول لـ %XX."
+  },
+  {
+   "id": "03-web-ch06-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الكود علشان تقرا قيمة color من الـ URL الحالي:",
+   "template": "new URLSearchParams(location.___).get(\"color\")",
+   "blanks": [
+    [
+     "search"
+    ]
+   ],
+   "hint": "الجزء اللي بيبدأ بـ ?.",
+   "explanation": "URL و URLSearchParams أحسن من التقطيع بإيدك."
+  },
+  {
+   "id": "03-web-ch06-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الصفحة على `/blog/post.html` وفيها `<img src=\"img/a.png\">` والصورة مش ظاهرة، والصورة فعلاً في `/img/a.png`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "المسار النسبي بيدوّر على /blog/img/a.png، فأخليه `../img/a.png` أو `/img/a.png`",
+     "why": "صح."
+    },
+    {
+     "text": "السيرفر واقع",
+     "why": "الصفحة اتحملت."
+    },
+    {
+     "text": "الصورة بايظة",
+     "why": "الطلب راح لمكان غلط."
+    },
+    {
+     "text": "CORS",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "نفس . و .. زي الـ Terminal."
+  },
+  {
+   "id": "03-web-ch06-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "في zsh كتبت `curl https://api.com/search?q=js&page=2` والنتيجة غريبة والـ Terminal طلّع رقم Job.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ & خلّى zsh يشغّل الأمر في الخلفية ويقطع الـ URL، فأحط الـ URL بين quotes",
+     "why": "صح."
+    },
+    {
+     "text": "الـ API بايظ",
+     "why": "الطلب اتقطع قبل ما يوصل."
+    },
+    {
+     "text": "curl قديم",
+     "why": "لأ."
+    },
+    {
+     "text": "محتاج sudo",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Quotes إجبارية."
+  },
+  {
+   "id": "03-web-ch06-11",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب أجزاء الـ URL:",
+   "items": [
+    "Scheme",
+    "Host",
+    "Port",
+    "Path",
+    "Query",
+    "Fragment"
+   ],
+   "explanation": "https://host:port/path?query#fragment."
+  },
+  {
+   "id": "03-web-ch06-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "إيه الفرق بين Origin و Site؟",
+   "options": [
+    {
+     "text": "الـ Origin لازم Scheme و Host و Port يتطابقوا، والـ Site أوسع (نفس الدومين المسجل زي example.com بكل الـ Subdomains)",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "مختلفين."
+    },
+    {
+     "text": "Site أضيق",
+     "why": "العكس."
+    },
+    {
+     "text": "مالهمش علاقة بالأمان",
+     "why": "الاتنين أساس قواعد أمان."
+    }
+   ],
+   "correct": 0,
+   "explanation": "SameSite بيستخدم Site، و CORS بيستخدم Origin."
+  }
+ ]
+}

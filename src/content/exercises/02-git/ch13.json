@@ -1,0 +1,246 @@
+{
+ "book": "02-git",
+ "chapter": 13,
+ "chapterFile": "ch13",
+ "title": "رسايل Commit محترمة و Commits مركّزة",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "02-git-ch13-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "أنهي عنوان Commit أحسن؟",
+   "options": [
+    {
+     "text": "fix: prevent double submit on login form",
+     "why": "صح، قصير وبصيغة الأمر وبيقول إيه."
+    },
+    {
+     "text": "fixed stuff",
+     "why": "مالوش معنى."
+    },
+    {
+     "text": "WIP",
+     "why": "مش واضح."
+    },
+    {
+     "text": "Updated the login form and also fixed some bugs and changed colors.",
+     "why": "طويل وفيه أكتر من تغيير ونقطة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "العنوان قصير، بصيغة الأمر، من غير نقطة."
+  },
+  {
+   "id": "02-git-ch13-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في Conventional Commits، `style:` معناه إيه؟",
+   "options": [
+    {
+     "text": "تغيير في الـ CSS",
+     "why": "ده سوء فهم مشهور."
+    },
+    {
+     "text": "تغيير شكل الكود (مسافات وفورمات) من غير ما يغيّر السلوك",
+     "why": "صح."
+    },
+    {
+     "text": "ميزة جديدة",
+     "why": "ده feat."
+    },
+    {
+     "text": "إصلاح Bug",
+     "why": "ده fix."
+    }
+   ],
+   "correct": 1,
+   "explanation": "تغيير الـ CSS اللي بيغيّر الشكل يبقى feat أو fix."
+  },
+  {
+   "id": "02-git-ch13-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`feat(cart)!: change price format to cents` الـ `!` معناها إيه؟",
+   "options": [
+    {
+     "text": "Breaking change",
+     "why": "صح."
+    },
+    {
+     "text": "مستعجل",
+     "why": "لأ."
+    },
+    {
+     "text": "Commit مهم",
+     "why": "لأ."
+    },
+    {
+     "text": "خطأ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أو BREAKING CHANGE: في الجسم."
+  },
+  {
+   "id": "02-git-ch13-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اختار أجزاء (hunks) من app.js تضيفها للـ Staging.",
+   "accepted": [
+    "git add -p app.js",
+    "git add --patch app.js"
+   ],
+   "hint": "patch.",
+   "explanation": "y و n و s و q."
+  },
+  {
+   "id": "02-git-ch13-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في git add -p، الحرف `s` بيعمل إيه؟",
+   "options": [
+    {
+     "text": "يقسّم الـ hunk لأجزاء أصغر",
+     "why": "صح."
+    },
+    {
+     "text": "يحفظ",
+     "why": "لأ."
+    },
+    {
+     "text": "يتخطى",
+     "why": "ده n."
+    },
+    {
+     "text": "يخرج",
+     "why": "ده q."
+    }
+   ],
+   "correct": 0,
+   "explanation": "y نعم، n لأ، s قسّم، q اخرج."
+  },
+  {
+   "id": "02-git-ch13-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل رسالة Conventional لإضافة توثيق:",
+   "template": "___: add setup steps to README",
+   "blanks": [
+    [
+     "docs"
+    ]
+   ],
+   "hint": "نوع خاص بالتوثيق.",
+   "explanation": "feat و fix و docs و style و refactor و test و chore."
+  },
+  {
+   "id": "02-git-ch13-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل رسالة لإصلاح Bug في scope الـ auth:",
+   "template": "fix(___): handle expired token",
+   "blanks": [
+    [
+     "auth"
+    ]
+   ],
+   "hint": "الـ scope بين قوسين.",
+   "explanation": "type(scope): description."
+  },
+  {
+   "id": "02-git-ch13-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عدّلت ملف فيه Bug fix وكمان إعادة تسمية متغيرات مالهاش علاقة. تعمل Commit إزاي؟",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أستخدم git add -p وأعمل Commitين: fix و refactor",
+     "why": "صح، Atomic commits."
+    },
+    {
+     "text": "Commit واحد",
+     "why": "بيخلط حاجتين."
+    },
+    {
+     "text": "أمسح التعديلات",
+     "why": "لأ."
+    },
+    {
+     "text": "أعمل stash للكل",
+     "why": "مش حل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Commit واحد = تغيير واحد."
+  },
+  {
+   "id": "02-git-ch13-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "لقيت غلطة إملائية في رسالة Commit عملته من أسبوع وموجود على main المشتركة.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أسيبها، تعديلها هيغيّر Hashes متشاركة",
+     "why": "صح."
+    },
+    {
+     "text": "أعمل rebase وforce push",
+     "why": "هيبوظ للفريق."
+    },
+    {
+     "text": "أعمل revert",
+     "why": "ده بيلغي الكود مش الرسالة."
+    },
+    {
+     "text": "أمسح الـ Repo",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "صلّح الرسايل بس قبل ما تتشارك."
+  },
+  {
+   "id": "02-git-ch13-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أجزاء رسالة Commit كاملة:",
+   "items": [
+    "العنوان (type(scope): description)",
+    "سطر فاضي",
+    "الجسم: بيشرح ليه",
+    "BREAKING CHANGE: لو فيه (Footer)"
+   ],
+   "explanation": "السطر الفاضي مهم."
+  },
+  {
+   "id": "02-git-ch13-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "\"اختبار الجملة\": العنوان الكويس يكمّل جملة إيه؟",
+   "options": [
+    {
+     "text": "\"If applied, this commit will ...\"",
+     "why": "صح، علشان كده صيغة الأمر."
+    },
+    {
+     "text": "\"Yesterday I ...\"",
+     "why": "صيغة ماضي."
+    },
+    {
+     "text": "\"This is ...\"",
+     "why": "لأ."
+    },
+    {
+     "text": "\"Please ...\"",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "add مش added."
+  }
+ ]
+}

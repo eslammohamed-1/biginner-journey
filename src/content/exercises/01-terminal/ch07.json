@@ -1,0 +1,281 @@
+{
+ "book": "01-terminal",
+ "chapter": 7,
+ "chapterFile": "ch07",
+ "title": "قوة الـ Shell: الـ Pipes والـ Redirection والـ Quoting",
+ "count": 13,
+ "exercises": [
+  {
+   "id": "01-terminal-ch07-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ stderr رقمه كام؟",
+   "options": [
+    {
+     "text": "0",
+     "why": "ده stdin."
+    },
+    {
+     "text": "1",
+     "why": "ده stdout."
+    },
+    {
+     "text": "2",
+     "why": "صح."
+    },
+    {
+     "text": "3",
+     "why": "مش من التلاتة الأساسيين."
+    }
+   ],
+   "correct": 2,
+   "explanation": "0 stdin، 1 stdout، 2 stderr."
+  },
+  {
+   "id": "01-terminal-ch07-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "إيه الفرق بين `>` و `>>`؟",
+   "options": [
+    {
+     "text": "`>` بيمسح الملف ويكتب، و `>>` بيضيف في الآخر",
+     "why": "صح."
+    },
+    {
+     "text": "الاتنين بيضيفوا",
+     "why": "> بيمسح الأول."
+    },
+    {
+     "text": "`>>` للأخطاء",
+     "why": "الأخطاء 2>."
+    },
+    {
+     "text": "`>` للقراية",
+     "why": "القراية بـ <."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خاف من > على ملفات مهمة، واستخدم noclobber."
+  },
+  {
+   "id": "01-terminal-ch07-03",
+   "type": "mcq",
+   "level": "think",
+   "question": "`cmd 2>&1 > f` بيحط الأخطاء في الملف؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الترتيب هنا بيبوظ الفكرة."
+    },
+    {
+     "text": "لأ، الأخطاء بتروح للشاشة لأن 2 اتوجّه لمكان 1 القديم (الشاشة) قبل ما 1 يروح للملف",
+     "why": "صح، الصح `cmd > f 2>&1`."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ Redirection بيتقري من الشمال لليمين، والترتيب مهم."
+  },
+  {
+   "id": "01-terminal-ch07-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شغّل `./backup.sh` وحط الناتج والأخطاء الاتنين في `backup.log`.",
+   "accepted": [
+    "./backup.sh > backup.log 2>&1",
+    "./backup.sh &> backup.log",
+    "./backup.sh &>backup.log",
+    "./backup.sh >backup.log 2>&1"
+   ],
+   "hint": "وجّه stdout للملف الأول وبعدين وجّه 2 لمكان 1.",
+   "explanation": "`&>` اختصار في bash و zsh."
+  },
+  {
+   "id": "01-terminal-ch07-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "عِد السطور اللي فيها \" 404 \" في `access.log` من غير cat زيادة.",
+   "accepted": [
+    "grep \" 404 \" access.log | wc -l",
+    "grep -c \" 404 \" access.log",
+    "grep -c ' 404 ' access.log",
+    "grep ' 404 ' access.log | wc -l"
+   ],
+   "hint": "grep يقدر يقرا الملف بنفسه، وفيه Flag للعد.",
+   "explanation": "`cat file | grep` فيها cat زيادة."
+  },
+  {
+   "id": "01-terminal-ch07-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في `rm *.txt`، مين اللي بيدوّر على الملفات اللي بتنتهي بـ .txt؟",
+   "options": [
+    {
+     "text": "rm",
+     "why": "rm بيستلم الأسماء جاهزة."
+    },
+    {
+     "text": "الـ Shell، بيوسّع الـ Glob قبل ما rm يشتغل",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Kernel",
+     "why": "الـ Kernel مالوش علاقة."
+    },
+    {
+     "text": "Finder",
+     "why": "لأ."
+    }
+   ],
+   "correct": 1,
+   "explanation": "علشان كده echo *.txt بيوريك اللي هيتمسح قبل ما تمسح."
+  },
+  {
+   "id": "01-terminal-ch07-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`echo '$HOME'` هتطبع إيه؟",
+   "options": [
+    {
+     "text": "`$HOME` زي ما هي",
+     "why": "صح، الـ Single quotes حرفية."
+    },
+    {
+     "text": "`/Users/ahmed`",
+     "why": "ده مع Double quotes أو من غير."
+    },
+    {
+     "text": "فاضي",
+     "why": "هتطبع النص."
+    },
+    {
+     "text": "خطأ",
+     "why": "مفيش خطأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "'...' حرفي، و \"...\" بيفك المتغيرات."
+  },
+  {
+   "id": "01-terminal-ch07-08",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "عملت `sort names.txt > names.txt` ولقيت الملف بقى فاضي.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ Shell فضّى الملف بالـ > قبل ما sort يقراه، فأكتب لملف مؤقت أو `sort -o names.txt names.txt`",
+     "why": "صح."
+    },
+    {
+     "text": "sort بايظ",
+     "why": "الـ Redirection هو اللي فضّاه."
+    },
+    {
+     "text": "الملف كان فاضي أصلاً",
+     "why": "لأ، > هو السبب."
+    },
+    {
+     "text": "لازم أستخدم sudo",
+     "why": "مالهاش علاقة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Redirection بيحصل قبل تشغيل الأمر."
+  },
+  {
+   "id": "01-terminal-ch07-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "Script بيعمل `rm $file`، وفيه ملف اسمه `my notes.txt` فمسح حاجات غلط وطلّع أخطاء.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أحط المتغير بين Double quotes: `rm \"$file\"`",
+     "why": "صح، من غير quotes الاسم بيتقسم لكلمتين."
+    },
+    {
+     "text": "أستخدم Single quotes `'$file'`",
+     "why": "كده هيمسح ملف اسمه $file حرفياً."
+    },
+    {
+     "text": "أغيّر أسماء الملفات بس",
+     "why": "مش حل دايم."
+    },
+    {
+     "text": "أضيف -f",
+     "why": "هيخليها أخطر."
+    }
+   ],
+   "correct": 0,
+   "explanation": "القاعدة الذهبية: \"$var\" دايماً."
+  },
+  {
+   "id": "01-terminal-ch07-10",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الأمر علشان تعمل أرشيف اسمه فيه تاريخ النهارده:",
+   "template": "tar -czf \"backup-___(date +%F).tar.gz\" ~/docs",
+   "blanks": [
+    [
+     "$"
+    ]
+   ],
+   "hint": "Command substitution.",
+   "explanation": "`$(date +%F)` بيتحول لـ 2026-10-24 مثلاً."
+  },
+  {
+   "id": "01-terminal-ch07-11",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان cd يشتغل بس لو mkdir نجح:",
+   "template": "mkdir -p build ___ cd build",
+   "blanks": [
+    [
+     "&&"
+    ]
+   ],
+   "hint": "\"و\" لو اللي قبله نجح.",
+   "explanation": "&& بيكمّل لو نجح، و || لو فشل، و ; في الحالتين."
+  },
+  {
+   "id": "01-terminal-ch07-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Exit code بتاع أمر نجح كام؟",
+   "options": [
+    {
+     "text": "0",
+     "why": "صح."
+    },
+    {
+     "text": "1",
+     "why": "أي رقم غير 0 = فشل."
+    },
+    {
+     "text": "255",
+     "why": "رقم فشل."
+    },
+    {
+     "text": "-1",
+     "why": "مش موجود."
+    }
+   ],
+   "correct": 0,
+   "explanation": "تشوفه بـ echo $?."
+  },
+  {
+   "id": "01-terminal-ch07-13",
+   "type": "order",
+   "level": "think",
+   "prompt": "رتّب الـ Pipeline علشان تطلع أكتر 5 IPs بيكرروا في اللوج (العمود الأول):",
+   "items": [
+    "awk '{print $1}' access.log",
+    "sort",
+    "uniq -c",
+    "sort -rn",
+    "head -5"
+   ],
+   "explanation": "أشهر Pipeline: sort | uniq -c | sort -rn | head."
+  }
+ ]
+}

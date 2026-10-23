@@ -1,0 +1,271 @@
+{
+ "book": "01-terminal",
+ "chapter": 3,
+ "chapterFile": "ch03",
+ "title": "الـ Shells: sh و bash و zsh و fish و PowerShell",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "01-terminal-ch03-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "إيه هو الـ Default Shell على الماك الحديث؟",
+   "options": [
+    {
+     "text": "zsh",
+     "why": "صح، من macOS Catalina الـ Default بقى zsh."
+    },
+    {
+     "text": "bash 5",
+     "why": "الماك جاي بـ bash 3.2 القديم، ومش هو الـ Default."
+    },
+    {
+     "text": "fish",
+     "why": "fish لازم تسطبه بنفسك."
+    },
+    {
+     "text": "PowerShell",
+     "why": "ده Shell مايكروسوفت، مش جاي مع الماك."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الماك ساب bash لـ zsh بسبب رخصة GPLv3 في bash الجديد."
+  },
+  {
+   "id": "01-terminal-ch03-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ليه bash اللي جاي مع الماك قديم (3.2 من 2007)؟",
+   "options": [
+    {
+     "text": "لأن Apple مش بتحدّث أي حاجة",
+     "why": "Apple بتحدّث، المشكلة في الرخصة."
+    },
+    {
+     "text": "بسبب الرخصة: النسخ الأحدث بقت GPLv3 و Apple مش عايزاها",
+     "why": "صح، وده سبب انتقالهم لـ zsh."
+    },
+    {
+     "text": "لأن bash الجديد مبيشتغلش على Apple Silicon",
+     "why": "bash الحديث شغال تمام وتقدر تسطبه بـ brew."
+    },
+    {
+     "text": "لأن 3.2 أسرع",
+     "why": "السرعة مش السبب."
+    }
+   ],
+   "correct": 1,
+   "explanation": "لو محتاج bash حديث: brew install bash."
+  },
+  {
+   "id": "01-terminal-ch03-03",
+   "type": "command",
+   "level": "easy",
+   "prompt": "سطّب نسخة bash حديثة على الماك.",
+   "accepted": [
+    "brew install bash"
+   ],
+   "hint": "بمدير الحزم بتاع الماك.",
+   "explanation": "هيتسطب في /opt/homebrew/bin/bash، والقديم يفضل في /bin/bash."
+  },
+  {
+   "id": "01-terminal-ch03-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرف الـ Shell اللي شغال دلوقتي فعلاً (مش الـ Default).",
+   "accepted": [
+    "ps -p $$",
+    "ps -p $$ -o comm=",
+    "echo $0",
+    "ps -o comm= -p $$"
+   ],
+   "hint": "$$ هو الـ PID بتاع الـ Shell الحالي.",
+   "explanation": "`$SHELL` بيقولك الـ Default بس، لكن ps -p $$ بيقولك اللي شغال فعلاً."
+  },
+  {
+   "id": "01-terminal-ch03-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "فتحت bash من جوه zsh وكتبت `echo $SHELL`. هيطلع إيه غالباً؟",
+   "options": [
+    {
+     "text": "`/bin/zsh`",
+     "why": "صح، $SHELL هو الـ Login Shell الافتراضي، مش اللي شغال دلوقتي."
+    },
+    {
+     "text": "`/bin/bash`",
+     "why": "ده اللي شغال فعلاً، بس $SHELL مش بيتغير."
+    },
+    {
+     "text": "فاضي",
+     "why": "المتغير متعرّف."
+    },
+    {
+     "text": "`$SHELL` زي ما هي",
+     "why": "هيتفك لأنه متغير."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان كده الفصل بيقول \"$SHELL مش الـ Shell الحالي\"."
+  },
+  {
+   "id": "01-terminal-ch03-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "يعني إيه POSIX؟",
+   "options": [
+    {
+     "text": "Shell جديد من Apple",
+     "why": "POSIX مش Shell."
+    },
+    {
+     "text": "معيار مشترك للـ Shell والأدوات، فلو كتبت Script بيه يشتغل في أي Unix",
+     "why": "صح، و sh هو الـ Shell المبني على المعيار ده."
+    },
+    {
+     "text": "نوع من الـ Terminals",
+     "why": "مالوش علاقة بالـ Terminal."
+    },
+    {
+     "text": "لغة برمجة زي Python",
+     "why": "ده معيار مش لغة منفصلة."
+    }
+   ],
+   "correct": 1,
+   "explanation": "على الماك sh هو bash في وضع POSIX، وعلى Ubuntu هو dash."
+  },
+  {
+   "id": "01-terminal-ch03-07",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "Script شغال على الماك بـ `#!/bin/sh`، ولما رفعته على سيرفر Ubuntu طلّع `[[: not found`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "على Ubuntu الـ sh هو dash ومبيعرفش [[ ]]، فأغيّر الـ Shebang لـ bash أو أستخدم [ ]",
+     "why": "صح، [[ ]] مش POSIX."
+    },
+    {
+     "text": "السيرفر بايظ",
+     "why": "السيرفر شغال، dash مختلف بس."
+    },
+    {
+     "text": "أشغّله بـ sudo",
+     "why": "الصلاحيات مالهاش دعوة بالـ Syntax."
+    },
+    {
+     "text": "أمسح السطر الأول",
+     "why": "من غير Shebang هيشتغل بـ sh برضه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "sh على جهازك مش نفس sh في كل حتة."
+  },
+  {
+   "id": "01-terminal-ch03-08",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إيه اللي بيميز PowerShell عن bash و zsh من الأساس؟",
+   "options": [
+    {
+     "text": "مبيشتغلش غير على Windows",
+     "why": "PowerShell شغال على الماك و Linux كمان."
+    },
+    {
+     "text": "الـ Pipe بيعدّي Objects مش نص",
+     "why": "صح، وعلشان كده تقدر تعمل Where-Object CPU -gt 100 مباشرة."
+    },
+    {
+     "text": "مفيهوش Pipe",
+     "why": "فيه Pipe بس بيعدّي Objects."
+    },
+    {
+     "text": "أوامره كلها حرف واحد",
+     "why": "بالعكس، أسماءه Verb-Noun طويلة زي Get-Process."
+    }
+   ],
+   "correct": 1,
+   "explanation": "فكرة الـ Objects بتغنيك عن cut و awk في PowerShell."
+  },
+  {
+   "id": "01-terminal-ch03-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "نسخت أمر bash زي `export X=1` في fish ومشتغلش.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "fish مش POSIX، فلازم أكتبه بطريقته (set -x X 1) أو أشغّله في bash",
+     "why": "صح، fish ليه Syntax مختلف."
+    },
+    {
+     "text": "أعيد تشغيل الـ Terminal",
+     "why": "الـ Syntax هيفضل غلط."
+    },
+    {
+     "text": "أكتبه بـ sudo",
+     "why": "مش مشكلة صلاحيات."
+    },
+    {
+     "text": "fish بايظ",
+     "why": "fish شغال بس لغته مختلفة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "fish أسهل تفاعلياً بس مش POSIX، فاكتب الـ Scripts بـ bash."
+  },
+  {
+   "id": "01-terminal-ch03-10",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الأمر علشان تخلي bash الجديد هو الـ Default Shell:",
+   "template": "___ -s /opt/homebrew/bin/bash",
+   "blanks": [
+    [
+     "chsh"
+    ]
+   ],
+   "hint": "change shell.",
+   "explanation": "وقبلها لازم تضيف المسار لـ /etc/shells."
+  },
+  {
+   "id": "01-terminal-ch03-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات إنك تخلي bash الحديث هو الـ Default:",
+   "items": [
+    "brew install bash",
+    "ضيف /opt/homebrew/bin/bash لـ /etc/shells",
+    "chsh -s /opt/homebrew/bin/bash",
+    "افتح Terminal جديد واتأكد بـ ps -p $$"
+   ],
+   "explanation": "chsh بيرفض أي Shell مش مكتوب في /etc/shells."
+  },
+  {
+   "id": "01-terminal-ch03-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "هتكتب Script هيشتغل على الماك وعلى سيرفرات Linux. أحسن اختيار؟",
+   "options": [
+    {
+     "text": "اكتبه بـ fish لأنه أسهل",
+     "why": "fish مش موجود على أغلب السيرفرات ومش POSIX."
+    },
+    {
+     "text": "اكتبه بـ zsh بكل مميزاته",
+     "why": "zsh مش موجود افتراضياً على كل السيرفرات."
+    },
+    {
+     "text": "اكتبه بـ bash (أو sh) مع Shebang واضح",
+     "why": "صح، bash هو المعيار الفعلي على السيرفرات."
+    },
+    {
+     "text": "مش مهم، كلهم زي بعض",
+     "why": "الفروق الصغيرة بتكسر الـ Scripts."
+    }
+   ],
+   "correct": 2,
+   "explanation": "اشتغل تفاعلياً باللي يريحك، واكتب الـ Scripts بـ bash/sh."
+  }
+ ]
+}

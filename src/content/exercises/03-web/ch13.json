@@ -1,0 +1,250 @@
+{
+ "book": "03-web",
+ "chapter": 13,
+ "chapterFile": "ch13",
+ "title": "الكوكيز والـ Sessions: إزاي السيرفر بيفتكرك",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "03-web-ch13-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "السيرفر بيبعت الكوكي إزاي؟",
+   "options": [
+    {
+     "text": "Header اسمه Set-Cookie، والمتصفح يرجعها في Cookie",
+     "why": "صح."
+    },
+    {
+     "text": "في الـ Body",
+     "why": "لأ."
+    },
+    {
+     "text": "في الـ URL",
+     "why": "لأ."
+    },
+    {
+     "text": "في localStorage",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الكوكي تذكرة."
+  },
+  {
+   "id": "03-web-ch13-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "كوكي عليها HttpOnly، تظهر في document.cookie؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "HttpOnly بتخبيها من JS."
+    },
+    {
+     "text": "لأ",
+     "why": "صح، وده بيحمي من XSS."
+    }
+   ],
+   "correct": 1,
+   "explanation": "بس بتتبعت مع الطلبات عادي."
+  },
+  {
+   "id": "03-web-ch13-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "localStorage بيتبعت للسيرفر مع كل طلب؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيفضل في المتصفح."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الكوكيز بس اللي بتتبعت لوحدها."
+  },
+  {
+   "id": "03-web-ch13-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "محتوى الـ JWT متشفّر؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ممضي مش متشفّر."
+    },
+    {
+     "text": "لأ، أي حد يقدر يقراه (Base64)، فمتحطش فيه أسرار",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الإمضا بتمنع التعديل بس."
+  },
+  {
+   "id": "03-web-ch13-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "SameSite=Lax بيحمي من إيه؟",
+   "options": [
+    {
+     "text": "CSRF: الطلبات اللي جاية من مواقع تانية مبتبعتش الكوكي (إلا التنقل العادي)",
+     "why": "صح."
+    },
+    {
+     "text": "XSS",
+     "why": "ده HttpOnly."
+    },
+    {
+     "text": "التصنت",
+     "why": "ده Secure و HTTPS."
+    },
+    {
+     "text": "السرقة من الجهاز",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الافتراضي في Chrome Lax."
+  },
+  {
+   "id": "03-web-ch13-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الكوكي علشان تتبعت على HTTPS بس:",
+   "template": "Set-Cookie: sid=a9f3; Path=/; ___; HttpOnly",
+   "blanks": [
+    [
+     "Secure"
+    ]
+   ],
+   "hint": "آمن.",
+   "explanation": "Secure = HTTPS بس."
+  },
+  {
+   "id": "03-web-ch13-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان الكوكي تعيش يوم:",
+   "template": "Set-Cookie: theme=dark; Max-Age=___",
+   "blanks": [
+    [
+     "86400"
+    ]
+   ],
+   "hint": "24 × 60 × 60.",
+   "explanation": "بالثواني."
+  },
+  {
+   "id": "03-web-ch13-08",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اطلب https://httpbin.org/cookies/set?name=sara وخلي curl يحفظ ويبعت الكوكيز ويتبع التحويل.",
+   "accepted": [
+    "curl -s -c jar.txt -b jar.txt -L 'https://httpbin.org/cookies/set?name=sara'",
+    "curl -c jar.txt -b jar.txt -L 'https://httpbin.org/cookies/set?name=sara'",
+    "curl -sL -c jar.txt -b jar.txt 'https://httpbin.org/cookies/set?name=sara'"
+   ],
+   "hint": "-c و -b و -L.",
+   "explanation": "jar.txt = علبة الكوكيز."
+  },
+  {
+   "id": "03-web-ch13-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عملت Login والسيرفر بعت Set-Cookie بس الكوكي مش بتتحفظ، وفي DevTools تحذير عن SameSite=None.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "SameSite=None لازم معاها Secure و HTTPS",
+     "why": "صح."
+    },
+    {
+     "text": "أمسح الكاش",
+     "why": "لأ."
+    },
+    {
+     "text": "أستخدم localStorage",
+     "why": "مش الحل للـ Session."
+    },
+    {
+     "text": "أغيّر الـ Path",
+     "why": "مش المشكلة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "DevTools بيقولك السبب."
+  },
+  {
+   "id": "03-web-ch13-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "بتصمم Login: تحفظ الـ Token في localStorage ولا كوكي HttpOnly؟",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "كوكي HttpOnly + Secure + SameSite أأمن، لأن أي XSS يقدر يقرا localStorage",
+     "why": "صح."
+    },
+    {
+     "text": "localStorage دايماً",
+     "why": "عرضة لـ XSS."
+    },
+    {
+     "text": "في الـ URL",
+     "why": "أسوأ."
+    },
+    {
+     "text": "مش فارق",
+     "why": "فارق."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Session على السيرفر ولا Token معاك."
+  },
+  {
+   "id": "03-web-ch13-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب رحلة الـ Session:",
+   "items": [
+    "المستخدم يبعت الباسورد",
+    "السيرفر يعمل Session ويبعت Set-Cookie: sid=...",
+    "المتصفح يحفظ الكوكي",
+    "كل طلب بعدها بيتبعت فيه Cookie: sid=...",
+    "السيرفر يدوّر على الـ Session بالـ sid"
+   ],
+   "explanation": "الكوكي فيها رقم بس."
+  },
+  {
+   "id": "03-web-ch13-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه Third-party cookies بقت مشكلة؟",
+   "options": [
+    {
+     "text": "علشان بتتبعك بين المواقع (الإعلان اللي بيمشي وراك)، فـ Safari بيمنع و Firefox بيعزل",
+     "why": "صح."
+    },
+    {
+     "text": "علشان بطيئة",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان كبيرة",
+     "why": "لأ."
+    },
+    {
+     "text": "مش مشكلة",
+     "why": "مشكلة خصوصية."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Partitioned (CHIPS) حل وسط."
+  }
+ ]
+}

@@ -1,0 +1,237 @@
+{
+ "book": "03-web",
+ "chapter": 10,
+ "chapterFile": "ch10",
+ "title": "معمل curl: متصفح في سطر واحد",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "03-web-ch10-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الفرق بين `curl -i` و `curl -I`؟",
+   "options": [
+    {
+     "text": "-i يعرض الـ Headers والـ Body، و -I يعمل HEAD ويعرض الـ Headers بس",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "مختلفين."
+    },
+    {
+     "text": "-I للأخطاء",
+     "why": "لأ."
+    },
+    {
+     "text": "-i للتحميل",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "i صغيرة و I كبيرة."
+  },
+  {
+   "id": "03-web-ch10-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "من غير -f، curl بيرجّع Exit code كام لو السيرفر رد 500؟",
+   "options": [
+    {
+     "text": "0، لأن الطلب نفسه نجح",
+     "why": "صح، ولهذا -f أو --fail-with-body في الـ Scripts."
+    },
+    {
+     "text": "22",
+     "why": "ده مع -f."
+    },
+    {
+     "text": "500",
+     "why": "Exit code مش Status."
+    },
+    {
+     "text": "1",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اسكت بس افشل بصوت عالي: -sSf."
+  },
+  {
+   "id": "03-web-ch10-03",
+   "type": "command",
+   "level": "medium",
+   "prompt": "امسح Post رقم 1 من jsonplaceholder واعرض الـ Headers.",
+   "accepted": [
+    "curl -i -X DELETE https://jsonplaceholder.typicode.com/posts/1",
+    "curl -X DELETE -i https://jsonplaceholder.typicode.com/posts/1"
+   ],
+   "hint": "-X DELETE و -i.",
+   "explanation": "CRUD كامل بـ curl."
+  },
+  {
+   "id": "03-web-ch10-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "حمّل https://example.com/files/report.pdf بنفس اسمه مع اتباع التحويلات.",
+   "accepted": [
+    "curl -LO https://example.com/files/report.pdf",
+    "curl -L -O https://example.com/files/report.pdf",
+    "curl -OL https://example.com/files/report.pdf"
+   ],
+   "hint": "-L و -O كبيرة.",
+   "explanation": "-o صغيرة لاسم تختاره."
+  },
+  {
+   "id": "03-web-ch10-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ابعت طلب ومعاه Token من متغير TOKEN.",
+   "accepted": [
+    "curl -H \"Authorization: Bearer $TOKEN\" URL",
+    "curl URL -H \"Authorization: Bearer $TOKEN\""
+   ],
+   "hint": "Double quotes علشان المتغير يتفك.",
+   "explanation": "Single quotes مش هتفك $TOKEN."
+  },
+  {
+   "id": "03-web-ch10-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان ترفع ملف avatar.png في فورم:",
+   "template": "curl ___ 'avatar=@avatar.png' https://httpbin.org/post",
+   "blanks": [
+    [
+     "-F"
+    ]
+   ],
+   "hint": "Form.",
+   "explanation": "-F بيعمل multipart."
+  },
+  {
+   "id": "03-web-ch10-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان curl يحفظ ويبعت الكوكيز من ملف:",
+   "template": "curl -c jar.txt ___ jar.txt URL",
+   "blanks": [
+    [
+     "-b"
+    ]
+   ],
+   "hint": "c = اكتب، والتاني = ابعت.",
+   "explanation": "مفيد للـ Login."
+  },
+  {
+   "id": "03-web-ch10-08",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في -w، `time_appconnect` بيقيس TLS لوحده؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الأرقام تراكمية."
+    },
+    {
+     "text": "لأ، الأرقام تراكمية من البداية، فـ TLS = appconnect − connect",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "خلي بالك: الأرقام تراكمية."
+  },
+  {
+   "id": "03-web-ch10-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عايز تجرب سيرفر جديد على IP معين قبل ما تغيّر الـ DNS.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "`curl --resolve shop.test:443:IP https://shop.test`",
+     "why": "صح."
+    },
+    {
+     "text": "أعدّل DNS على طول",
+     "why": "هيأثر على الكل."
+    },
+    {
+     "text": "أستخدم -k",
+     "why": "ده للشهادات."
+    },
+    {
+     "text": "مش ممكن",
+     "why": "ممكن."
+    }
+   ],
+   "correct": 0,
+   "explanation": "--resolve بدل /etc/hosts."
+  },
+  {
+   "id": "03-web-ch10-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "كتبت `curl -u sara:s3cret URL` في الـ Terminal.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الباسورد اتسجّل في تاريخ zsh، فأمسحه من History وأستخدم متغير أو `-u sara` وأكتبه لما يسأل",
+     "why": "صح."
+    },
+    {
+     "text": "عادي",
+     "why": "تاريخ zsh ملف نصي."
+    },
+    {
+     "text": "curl بيشفّره",
+     "why": "لأ."
+    },
+    {
+     "text": "أقفل الـ Terminal",
+     "why": "لسه في الملف."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الأسرار في تاريخ الـ zsh."
+  },
+  {
+   "id": "03-web-ch10-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Flags بتعمل Script صحي:",
+   "items": [
+    "-s (اسكت)",
+    "-S (بس اعرض الأخطاء)",
+    "-f (افشل على 4xx/5xx)",
+    "-L (اتبع التحويلات)"
+   ],
+   "explanation": "curl -sSfL."
+  },
+  {
+   "id": "03-web-ch10-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه curl مهم جنب DevTools؟",
+   "options": [
+    {
+     "text": "بيبعت الطلب من غير إضافات المتصفح (كوكيز، CORS، Extensions)، فبيفصل مشاكل السيرفر عن مشاكل المتصفح",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع من المتصفح",
+     "why": "مش الفكرة."
+    },
+    {
+     "text": "بيعرض الصفحة أحلى",
+     "why": "مبيعرضش."
+    },
+    {
+     "text": "مالوش فايدة",
+     "why": "ليه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "\"ليه curl لما عندي متصفح؟\"."
+  }
+ ]
+}

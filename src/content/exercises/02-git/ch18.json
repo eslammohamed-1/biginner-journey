@@ -1,0 +1,239 @@
+{
+ "book": "02-git",
+ "chapter": 18,
+ "chapterFile": "ch18",
+ "title": "Git والـ AI: اشتغل بأمان",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "02-git-ch18-01",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب الخطوات الآمنة قبل وبعد ما تدي مهمة للـ AI:",
+   "items": [
+    "git status (اتأكد إن الورشة نضيفة)",
+    "Commit checkpoint أو Branch ai/...",
+    "خلي الـ AI يشتغل",
+    "git diff --stat",
+    "git add -p للي هتقبله",
+    "git restore . و git clean -fd للباقي"
+   ],
+   "explanation": "Commit قبل الـ AI."
+  },
+  {
+   "id": "02-git-ch18-02",
+   "type": "command",
+   "level": "easy",
+   "prompt": "شوف الـ AI غيّر أنهي ملفات وكام سطر.",
+   "accepted": [
+    "git diff --stat"
+   ],
+   "hint": "--stat.",
+   "explanation": "ابدأ بالصورة الكبيرة."
+  },
+  {
+   "id": "02-git-ch18-03",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ارمي كل تعديلات الـ AI (ملفات متعدلة وملفات جديدة).",
+   "accepted": [
+    "git restore . && git clean -fd",
+    "git restore . && git clean -df",
+    "git reset --hard && git clean -fd"
+   ],
+   "hint": "restore للمتابَع و clean للجديد.",
+   "explanation": "علشان كده Commit قبل الـ AI."
+  },
+  {
+   "id": "02-git-ch18-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "مسحت المفتاح في Commit جديد وعملت push. المشكلة اتحلت؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لسه في التاريخ."
+    },
+    {
+     "text": "لأ، لازم Rotate للمفتاح لأنه لسه في الـ Commits القديمة",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Rotate الأول، وبعدين نضّف."
+  },
+  {
+   "id": "02-git-ch18-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": ".env.example فيه إيه؟",
+   "options": [
+    {
+     "text": "أسماء المتغيرات من غير القيم الحقيقية",
+     "why": "صح."
+    },
+    {
+     "text": "المفاتيح الحقيقية",
+     "why": "لأ أبداً."
+    },
+    {
+     "text": "نسخة من .env",
+     "why": "لأ."
+    },
+    {
+     "text": "إعدادات Git",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": ".env متجاهَل، و .env.example بيتعمله Commit."
+  },
+  {
+   "id": "02-git-ch18-06",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ AI عدّل 14 ملف وانت طلبت تعديل في ملف واحد.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشوف diff --stat، وآخد اللي محتاجه بـ add -p، وأرمي الباقي",
+     "why": "صح."
+    },
+    {
+     "text": "أقبل كله",
+     "why": "ممكن يكون كسر حاجات."
+    },
+    {
+     "text": "أمسح المشروع",
+     "why": "لأ."
+    },
+    {
+     "text": "أعمل push على طول",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اقرا قبل ما تقبل."
+  },
+  {
+   "id": "02-git-ch18-07",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ AI عدّل package.json و package-lock.json.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أراجعهم كويس لأن ممكن يضيف مكتبات مش محتاجها أو نسخ غريبة",
+     "why": "صح."
+    },
+    {
+     "text": "دول ملفات أوتوماتيك متهمش",
+     "why": "بتهم جداً."
+    },
+    {
+     "text": "أمسحهم",
+     "why": "لأ."
+    },
+    {
+     "text": "أحطهم في .gitignore",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "\"بصّ على package.json و lock files كويس\"."
+  },
+  {
+   "id": "02-git-ch18-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل اسم Branch للتجربة حسب الفصل:",
+   "template": "git switch -c ___/refactor-cart",
+   "blanks": [
+    [
+     "ai"
+    ]
+   ],
+   "hint": "prefix للتجارب بالـ AI.",
+   "explanation": "تدمجها أو تمسحها."
+  },
+  {
+   "id": "02-git-ch18-09",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "GitHub رفض الـ push وقال إن فيه Secret في الـ Commit (Push protection).",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشيل السر من الـ Commit (amend أو reset) قبل الـ push، وأعمله Rotate لو كان اتشارك في أي حتة",
+     "why": "صح."
+    },
+    {
+     "text": "أتخطى التحذير",
+     "why": "هيتسرّب."
+    },
+    {
+     "text": "أعمل Repo Private وأكمل",
+     "why": "لسه سر في التاريخ."
+    },
+    {
+     "text": "أمسح GitHub",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "GitHub بيساعدك: Secret scanning و Push protection."
+  },
+  {
+   "id": "02-git-ch18-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه Commits صغيرة أثناء الشغل مع الـ AI مفيدة؟",
+   "options": [
+    {
+     "text": "كل خطوة ليها Checkpoint، فلو الـ AI بوّظ حاجة ترجع خطوة واحدة بس",
+     "why": "صح."
+    },
+    {
+     "text": "علشان GitHub بيحب كده",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان الـ AI يفهم أحسن",
+     "why": "مش السبب."
+    },
+    {
+     "text": "مش مفيدة",
+     "why": "مفيدة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Commits صغيرة أثناء الشغل مع الـ AI."
+  },
+  {
+   "id": "02-git-ch18-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`git diff --stat` بيوريك إيه؟",
+   "options": [
+    {
+     "text": "أسماء الملفات اللي اتغيرت وكام سطر اتضاف/اتشال",
+     "why": "صح."
+    },
+    {
+     "text": "الكود كامل",
+     "why": "ده git diff."
+    },
+    {
+     "text": "الـ Commits",
+     "why": "ده log."
+    },
+    {
+     "text": "الـ Branches",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ابدأ بيه دايماً."
+  }
+ ]
+}

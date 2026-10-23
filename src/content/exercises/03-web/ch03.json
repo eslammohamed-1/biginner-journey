@@ -1,0 +1,258 @@
+{
+ "book": "03-web",
+ "chapter": 3,
+ "chapterFile": "ch03",
+ "title": "العناوين: IP والـ Ports و localhost",
+ "count": 13,
+ "exercises": [
+  {
+   "id": "03-web-ch03-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "`192.168.1.300` عنوان IPv4 صحيح؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "كل رقم من 0 لـ 255."
+    },
+    {
+     "text": "لأ، 300 أكبر من 255",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "IPv4 = 4 أرقام × 8 Bit."
+  },
+  {
+   "id": "03-web-ch03-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "المواقع اللي بتفتحها بتشوف الـ Private IP بتاعك (192.168.x.x)؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الراوتر بيترجم."
+    },
+    {
+     "text": "لأ، بتشوف الـ Public IP بتاع الراوتر، والـ NAT بيترجم",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "كل البيت بيطلع بعنوان عام واحد."
+  },
+  {
+   "id": "03-web-ch03-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ليه IPv6 موجود؟",
+   "options": [
+    {
+     "text": "لأن عناوين IPv4 خلصت، و IPv6 فيه 128 Bit",
+     "why": "صح."
+    },
+    {
+     "text": "علشان أسرع بس",
+     "why": "مش الهدف الأساسي."
+    },
+    {
+     "text": "علشان التشفير",
+     "why": "مش وظيفته."
+    },
+    {
+     "text": "علشان الواي فاي",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": ":: اختصار للأصفار."
+  },
+  {
+   "id": "03-web-ch03-04",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Port الافتراضي لـ HTTPS؟",
+   "options": [
+    {
+     "text": "443",
+     "why": "صح."
+    },
+    {
+     "text": "80",
+     "why": "ده HTTP."
+    },
+    {
+     "text": "3000",
+     "why": "تطوير."
+    },
+    {
+     "text": "22",
+     "why": "SSH."
+    }
+   ],
+   "correct": 0,
+   "explanation": "5173 بتاع Vite."
+  },
+  {
+   "id": "03-web-ch03-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرف IP الماك على الواي فاي.",
+   "accepted": [
+    "ipconfig getifaddr en0"
+   ],
+   "hint": "ipconfig getifaddr.",
+   "explanation": "ده الـ Private IP."
+  },
+  {
+   "id": "03-web-ch03-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شغّل سيرفر Python على البورت 8000 بيسمع على localhost بس.",
+   "accepted": [
+    "python3 -m http.server 8000 --bind 127.0.0.1",
+    "python3 -m http.server --bind 127.0.0.1 8000"
+   ],
+   "hint": "http.server و --bind.",
+   "explanation": "من غير --bind بيسمع على كل العناوين."
+  },
+  {
+   "id": "03-web-ch03-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرف مين ماسك البورت 8000 وسامع عليه.",
+   "accepted": [
+    "lsof -nP -iTCP:8000 -sTCP:LISTEN",
+    "lsof -i :8000",
+    "lsof -nP -i :8000",
+    "lsof -i:8000"
+   ],
+   "hint": "lsof مع -iTCP.",
+   "explanation": "بيطلع اسم البرنامج والـ PID."
+  },
+  {
+   "id": "03-web-ch03-08",
+   "type": "mcq",
+   "level": "medium",
+   "question": "سيرفر سامع على 127.0.0.1. تقدر تفتحه من موبايلك على نفس الواي فاي؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "127.0.0.1 جهازك بس."
+    },
+    {
+     "text": "لأ، لازم يسمع على 0.0.0.0 أو IP الشبكة",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "localhost = الجهاز بيكلم نفسه."
+  },
+  {
+   "id": "03-web-ch03-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "npm run dev طلّعلك `EADDRINUSE: address already in use :::3000`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "فيه برنامج تاني ماسك 3000، أعرفه بـ lsof وأقفله أو أستخدم بورت تاني",
+     "why": "صح."
+    },
+    {
+     "text": "أعيد تسطيب Node",
+     "why": "مش المشكلة."
+    },
+    {
+     "text": "أمسح node_modules",
+     "why": "مالهاش علاقة."
+    },
+    {
+     "text": "أغيّر الـ DNS",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "غالباً سيرفر قديم لسه شغال."
+  },
+  {
+   "id": "03-web-ch03-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "الكود بيحاول يتصل بـ localhost:5432 وبيفشل، و lsof بيقول السيرفر سامع على [::1]:5432 بس.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "localhost ممكن يتحول لـ 127.0.0.1 أو ::1، فأستخدم نفس العنوان اللي السيرفر سامع عليه أو أخليه يسمع على الاتنين",
+     "why": "صح."
+    },
+    {
+     "text": "Postgres بايظ",
+     "why": "شغال على IPv6."
+    },
+    {
+     "text": "أغيّر البورت",
+     "why": "مش المشكلة."
+    },
+    {
+     "text": "أقفل الواي فاي",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "\"localhost ممكن يبقى ::1 مش 127.0.0.1\"."
+  },
+  {
+   "id": "03-web-ch03-11",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: الـ Ports تحت ___ محتاجة صلاحيات خاصة على Unix.",
+   "template": "ports < ___",
+   "blanks": [
+    [
+     "1024"
+    ]
+   ],
+   "hint": "2 أس 10.",
+   "explanation": "علشان كده بنستخدم 3000 و 8000 في التطوير."
+  },
+  {
+   "id": "03-web-ch03-12",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب من الأقرب للأبعد:",
+   "items": [
+    "Port (البرنامج جوه الجهاز)",
+    "Private IP (الجهاز جوه البيت)",
+    "Public IP (الراوتر على الإنترنت)"
+   ],
+   "explanation": "زي رقم الشقة ثم العمارة ثم الشارع."
+  },
+  {
+   "id": "03-web-ch03-13",
+   "type": "mcq",
+   "level": "think",
+   "question": "إيه الفرق بين 0.0.0.0 لما تكتبه في السيرفر و localhost؟",
+   "options": [
+    {
+     "text": "0.0.0.0 = اسمع على كل الـ Interfaces (فالموبايل يقدر يوصل)، و localhost = الجهاز نفسه بس",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "مختلفين."
+    },
+    {
+     "text": "0.0.0.0 عنوان موقع",
+     "why": "لأ."
+    },
+    {
+     "text": "localhost أسرع",
+     "why": "مش الفرق."
+    }
+   ],
+   "correct": 0,
+   "explanation": "متفتحش 0.0.0.0 في المتصفح كعنوان."
+  }
+ ]
+}

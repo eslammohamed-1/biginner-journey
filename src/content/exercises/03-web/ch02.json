@@ -1,0 +1,232 @@
+{
+ "book": "03-web",
+ "chapter": 2,
+ "chapterFile": "ch02",
+ "title": "رحلة طلب واحد: من Enter لحد ما الصفحة تظهر",
+ "count": 10,
+ "exercises": [
+  {
+   "id": "03-web-ch02-01",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب محطات الرحلة من Enter للصفحة:",
+   "items": [
+    "المتصفح يفهم الـ URL ويشوف الكاش",
+    "DNS: الاسم لرقم",
+    "TCP: نفتح خط",
+    "TLS: نأمّن الخط",
+    "HTTP Request",
+    "السيرفر يشتغل",
+    "HTTP Response",
+    "المتصفح يرسم ويطلب الملفات التانية"
+   ],
+   "explanation": "كل محطة بتحل مشكلة."
+  },
+  {
+   "id": "03-web-ch02-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "المتصفح بيعمل طلب HTTP واحد بس لكل صفحة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "كل ملف طلب."
+    },
+    {
+     "text": "لأ، كل CSS و JS وصورة طلب لوحده، فالصفحة ممكن تبقى عشرات الطلبات",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "شوف تابة Network."
+  },
+  {
+   "id": "03-web-ch02-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ DNS بيحصل إمتى؟",
+   "options": [
+    {
+     "text": "قبل TCP و HTTP، لأن لازم نعرف الـ IP الأول",
+     "why": "صح."
+    },
+    {
+     "text": "بعد ما المتصفح يبعت HTTP",
+     "why": "مينفعش يبعت من غير IP."
+    },
+    {
+     "text": "بعد ما الصفحة ترسم",
+     "why": "لأ."
+    },
+    {
+     "text": "مبيحصلش لو الموقع HTTPS",
+     "why": "بيحصل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الاسم لرقم الأول."
+  },
+  {
+   "id": "03-web-ch02-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في ناتج `curl -v`، السطور اللي بتبدأ بـ `<` جاية منين؟",
+   "options": [
+    {
+     "text": "من السيرفر (الرد)",
+     "why": "صح."
+    },
+    {
+     "text": "منك (الطلب)",
+     "why": "دي بـ >."
+    },
+    {
+     "text": "معلومات curl",
+     "why": "دي بـ *."
+    },
+    {
+     "text": "أخطاء",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "> طالع، < داخل، * معلومة."
+  },
+  {
+   "id": "03-web-ch02-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "شوف الرحلة كلها بـ curl لـ https://example.com وارمي الـ Body.",
+   "accepted": [
+    "curl -v https://example.com -o /dev/null",
+    "curl -v -o /dev/null https://example.com",
+    "curl -sv https://example.com -o /dev/null"
+   ],
+   "hint": "-v و -o /dev/null.",
+   "explanation": "هتشوف DNS و TLS و الـ Headers."
+  },
+  {
+   "id": "03-web-ch02-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "أنهي محطة بتحل مشكلة \"حد في النص يقرا كلامي\"؟",
+   "options": [
+    {
+     "text": "TLS",
+     "why": "صح."
+    },
+    {
+     "text": "DNS",
+     "why": "بيترجم الاسم."
+    },
+    {
+     "text": "TCP",
+     "why": "بيضمن الوصول مش السرية."
+    },
+    {
+     "text": "HTTP",
+     "why": "اللغة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "HTTPS = HTTP جوه TLS."
+  },
+  {
+   "id": "03-web-ch02-07",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الصفحة HTML اتحملت بس الشكل بايظ ومفيش ألوان.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أفتح Network وأشوف طلب ملف الـ CSS: وصل ولا 404",
+     "why": "صح، كل ملف طلب لوحده."
+    },
+    {
+     "text": "السيرفر واقع",
+     "why": "الـ HTML وصل."
+    },
+    {
+     "text": "DNS بايظ",
+     "why": "لو بايظ مكانش حاجة وصلت."
+    },
+    {
+     "text": "أعيد تشغيل الماك",
+     "why": "مش أول خطوة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ده بيوضح إن الصفحة طلبات كتير."
+  },
+  {
+   "id": "03-web-ch02-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: الـ DNS بيحوّل ___ لـ IP.",
+   "template": "DNS: ___ → IP",
+   "blanks": [
+    [
+     "domain",
+     "name",
+     "الاسم",
+     "الدومين",
+     "hostname"
+    ]
+   ],
+   "hint": "اللي بتكتبه في العنوان.",
+   "explanation": "دليل التليفونات."
+  },
+  {
+   "id": "03-web-ch02-09",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه المحطات دي بتاخد وقت حتى لو السيرفر سريع جداً؟",
+   "options": [
+    {
+     "text": "لأن كل محطة (DNS و TCP و TLS) محتاجة رحلة رايح جاي على الشبكة قبل أول Byte من الصفحة",
+     "why": "صح."
+    },
+    {
+     "text": "علشان المتصفح بطيء",
+     "why": "مش السبب الأساسي."
+    },
+    {
+     "text": "علشان الـ HTML كبير",
+     "why": "ممكن، بس المحطات لوحدها بتاخد وقت."
+    },
+    {
+     "text": "مبتاخدش وقت",
+     "why": "بتاخد."
+    }
+   ],
+   "correct": 0,
+   "explanation": "تابة Timing بتوريك ده."
+  },
+  {
+   "id": "03-web-ch02-10",
+   "type": "mcq",
+   "level": "medium",
+   "question": "فين تشوف المحطات دي في DevTools؟",
+   "options": [
+    {
+     "text": "Network ← الطلب ← تابة Timing",
+     "why": "صح."
+    },
+    {
+     "text": "Elements",
+     "why": "ده الـ DOM."
+    },
+    {
+     "text": "Console",
+     "why": "الرسايل."
+    },
+    {
+     "text": "Sources",
+     "why": "الكود."
+    }
+   ],
+   "correct": 0,
+   "explanation": "DNS Lookup و Initial connection و SSL و Waiting."
+  }
+ ]
+}

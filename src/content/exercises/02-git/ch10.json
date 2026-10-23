@@ -1,0 +1,226 @@
+{
+ "book": "02-git",
+ "chapter": 10,
+ "chapterFile": "ch10",
+ "title": "clone و push و fetch و pull",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "02-git-ch10-01",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب اللي بيعمله git clone:",
+   "items": [
+    "mkdir للفولدر",
+    "git init",
+    "git remote add origin URL",
+    "git fetch",
+    "switch للـ Branch الافتراضي"
+   ],
+   "explanation": "clone = كل ده في أمر."
+  },
+  {
+   "id": "02-git-ch10-02",
+   "type": "command",
+   "level": "easy",
+   "prompt": "هات Repo `git@github.com:sara/portfolio.git` في فولدر اسمه my-site.",
+   "accepted": [
+    "git clone git@github.com:sara/portfolio.git my-site"
+   ],
+   "hint": "clone URL folder.",
+   "explanation": "من غير اسم بياخد اسم الـ Repo."
+  },
+  {
+   "id": "02-git-ch10-03",
+   "type": "command",
+   "level": "easy",
+   "prompt": "أول push لـ main مع ربط الـ Upstream.",
+   "accepted": [
+    "git push -u origin main",
+    "git push --set-upstream origin main"
+   ],
+   "hint": "-u.",
+   "explanation": "بعدها git push بس."
+  },
+  {
+   "id": "02-git-ch10-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`git fetch` ممكن يغيّر ملفاتك في الورشة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "fetch بيجيب معلومات بس."
+    },
+    {
+     "text": "لأ، بيحدّث origin/main بس",
+     "why": "صح، آمن."
+    }
+   ],
+   "correct": 1,
+   "explanation": "pull = fetch + merge."
+  },
+  {
+   "id": "02-git-ch10-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "origin/main بيتحدث لوحده كل ما حد يعمل push على GitHub؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لأ، صورة آخر مرة شفت فيها GitHub."
+    },
+    {
+     "text": "لأ، بيتحدث لما تعمل fetch أو pull",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "origin/main = آخر معلومة عندك."
+  },
+  {
+   "id": "02-git-ch10-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرض الـ Commits اللي على origin/main ومش عندك على main.",
+   "accepted": [
+    "git log --oneline main..origin/main",
+    "git log main..origin/main"
+   ],
+   "hint": "النقطتين.",
+   "explanation": "A..B = اللي في B ومش في A."
+  },
+  {
+   "id": "02-git-ch10-07",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "git push اترفض بـ `rejected (fetch first)`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أعمل git pull الأول (وأحل أي Conflict) وبعدين push",
+     "why": "صح."
+    },
+    {
+     "text": "git push --force",
+     "why": "هتمسح شغل غيرك."
+    },
+    {
+     "text": "أمسح الـ Repo",
+     "why": "لأ."
+    },
+    {
+     "text": "أعمل clone تاني",
+     "why": "هتخسر شغلك المحلي لو مش Pushed."
+    }
+   ],
+   "correct": 0,
+   "explanation": "--force مش الحل."
+  },
+  {
+   "id": "02-git-ch10-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "git pull طلّع `Need to specify how to reconcile divergent branches`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أختار طريقة: `git pull --no-rebase` (merge) أو `--rebase`، أو أضبط pull.rebase",
+     "why": "صح."
+    },
+    {
+     "text": "أمسح main",
+     "why": "لأ."
+    },
+    {
+     "text": "git push --force",
+     "why": "لأ."
+    },
+    {
+     "text": "أستنى",
+     "why": "مش هيتحل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ده معناه إن الاتنين اتحركوا (diverged)."
+  },
+  {
+   "id": "02-git-ch10-09",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`git status` بيقول \"ahead 2, behind 3\". معناها؟",
+   "options": [
+    {
+     "text": "عندك 2 Commits مش على GitHub، و GitHub عنده 3 مش عندك",
+     "why": "صح، يعني diverged."
+    },
+    {
+     "text": "ahead = متأخر",
+     "why": "العكس."
+    },
+    {
+     "text": "لازم clone تاني",
+     "why": "لأ."
+    },
+    {
+     "text": "فيه Conflict أكيد",
+     "why": "ممكن ميحصلش."
+    }
+   ],
+   "correct": 0,
+   "explanation": "pull ثم push."
+  },
+  {
+   "id": "02-git-ch10-10",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تمسح Branch من GitHub:",
+   "template": "git push origin ___ feature/nav",
+   "blanks": [
+    [
+     "--delete"
+    ]
+   ],
+   "hint": "delete.",
+   "explanation": "و git fetch --prune ينضف اللافتات القديمة عندك."
+  },
+  {
+   "id": "02-git-ch10-11",
+   "type": "command",
+   "level": "medium",
+   "prompt": "هات Repo كبير بآخر Commit بس (من غير التاريخ كله).",
+   "accepted": [
+    "git clone --depth 1 URL",
+    "git clone --depth=1 URL"
+   ],
+   "hint": "depth.",
+   "explanation": "Shallow clone أسرع."
+  },
+  {
+   "id": "02-git-ch10-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "الـ push طلع `has no upstream branch`. ليه؟",
+   "options": [
+    {
+     "text": "الـ Branch جديد ومش مربوط بـ Remote، فأول push لازم -u origin name (أو push.autoSetupRemote)",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Remote مش موجود أكيد",
+     "why": "ممكن موجود."
+    },
+    {
+     "text": "محتاج force",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Branch اتمسح",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "git push -u origin feature/nav."
+  }
+ ]
+}

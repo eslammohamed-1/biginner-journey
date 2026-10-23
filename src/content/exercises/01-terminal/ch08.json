@@ -1,0 +1,265 @@
+{
+ "book": "01-terminal",
+ "chapter": 8,
+ "chapterFile": "ch08",
+ "title": "معالجة النصوص والبحث",
+ "count": 13,
+ "exercises": [
+  {
+   "id": "01-terminal-ch08-01",
+   "type": "command",
+   "level": "easy",
+   "prompt": "دوّر على كلمة \"error\" في `app.log` من غير ما تفرق بين الحروف الكبيرة والصغيرة.",
+   "accepted": [
+    "grep -i error app.log",
+    "grep -i \"error\" app.log",
+    "grep -i 'error' app.log"
+   ],
+   "hint": "Flag معناه ignore case.",
+   "explanation": "-i بتخلي ERROR و Error و error كلهم يطلعوا."
+  },
+  {
+   "id": "01-terminal-ch08-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "`grep -v` معناها إيه؟",
+   "options": [
+    {
+     "text": "Verbose",
+     "why": "ده فخ مشهور."
+    },
+    {
+     "text": "اعرض السطور اللي مفيهاش الكلمة (Invert)",
+     "why": "صح."
+    },
+    {
+     "text": "اعرض رقم النسخة",
+     "why": "لأ."
+    },
+    {
+     "text": "اعرض عدد السطور",
+     "why": "ده -c."
+    }
+   ],
+   "correct": 1,
+   "explanation": "-v بتختلف من أمر للتاني."
+  },
+  {
+   "id": "01-terminal-ch08-03",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرض آخر عمود في كل سطر من `f` بـ awk.",
+   "accepted": [
+    "awk '{print $NF}' f",
+    "awk '{ print $NF }' f"
+   ],
+   "hint": "NF عدد الأعمدة.",
+   "explanation": "$NF آخر عمود، و $1 أول عمود."
+  },
+  {
+   "id": "01-terminal-ch08-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "على الماك، استبدل كل \"http\" بـ \"https\" جوه `config.txt` نفسه، من غير نسخة احتياطي.",
+   "accepted": [
+    "sed -i '' 's/http/https/g' config.txt",
+    "sed -i \"\" 's/http/https/g' config.txt",
+    "sed -i '' \"s/http/https/g\" config.txt"
+   ],
+   "hint": "BSD sed محتاج Argument بعد -i.",
+   "explanation": "على Linux `sed -i 's/.../g'` لوحدها، وعلى الماك `-i ''`. و `-i.bak` بتشتغل على الاتنين."
+  },
+  {
+   "id": "01-terminal-ch08-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`uniq` لوحده بيشيل كل التكرارات في الملف؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "uniq بيشيل المتكرر المتجاور بس."
+    },
+    {
+     "text": "لأ، بيشيل التكرار المتجاور بس، فلازم sort قبله",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "علشان كده sort | uniq."
+  },
+  {
+   "id": "01-terminal-ch08-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إيه الفرق بين find و grep -r؟",
+   "options": [
+    {
+     "text": "find بيدوّر على ملفات بخصائصها (اسم، حجم، تاريخ)، و grep -r بيدوّر جوه المحتوى",
+     "why": "صح."
+    },
+    {
+     "text": "مفيش فرق",
+     "why": "مختلفين تماماً."
+    },
+    {
+     "text": "find أسرع دايماً",
+     "why": "مش موضوع سرعة."
+    },
+    {
+     "text": "grep -r بيدوّر بالاسم",
+     "why": "بيدوّر في المحتوى."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ولو عايز سرعة بالاسم على الماك: mdfind من فهرس Spotlight."
+  },
+  {
+   "id": "01-terminal-ch08-07",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "grep بيطلّع `invalid option -- P` على الماك.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "grep بتاع الماك (BSD) مفيهوش -P، فأستخدم -E أو أسطب GNU grep بـ brew",
+     "why": "صح."
+    },
+    {
+     "text": "أعيد تسطيب الماك",
+     "why": "الأداة شغالة بس BSD."
+    },
+    {
+     "text": "أكتب -p صغيرة",
+     "why": "معناها مختلف."
+    },
+    {
+     "text": "أشغّله بـ sudo",
+     "why": "مالهاش دعوة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "فروقات BSD: sed -i ''، ومفيش grep -P."
+  },
+  {
+   "id": "01-terminal-ch08-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "بتدوّر على `1.2.3.4` بـ grep وبيطلّعلك سطور فيها `1x2y3z4` و `11.2.3.45`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "النقطة في الـ Regex معناها أي حرف، فأستخدم `grep -F` أو `-w` أو أعمل escape للنقط",
+     "why": "صح."
+    },
+    {
+     "text": "grep بايظ",
+     "why": "ده سلوك الـ Regex الطبيعي."
+    },
+    {
+     "text": "أستخدم sed",
+     "why": "نفس الـ Regex هيعمل نفس الحاجة."
+    },
+    {
+     "text": "أضيف -v",
+     "why": "هيعكس النتيجة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "-F للنص الحرفي، و -w للكلمة كاملة."
+  },
+  {
+   "id": "01-terminal-ch08-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تشيل أي حرف `\\r` (ملفات Windows):",
+   "template": "tr ___ '\\r' < win.txt > unix.txt",
+   "blanks": [
+    [
+     "-d"
+    ]
+   ],
+   "hint": "delete.",
+   "explanation": "tr -d بيمسح الحروف."
+  },
+  {
+   "id": "01-terminal-ch08-10",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تجمع العمود العاشر (الحجم) في اللوج:",
+   "template": "awk '{s+=$10} ___ {print s}' access.log",
+   "blanks": [
+    [
+     "END"
+    ]
+   ],
+   "hint": "الكتلة اللي بتشتغل بعد آخر سطر.",
+   "explanation": "END بتتنفذ مرة واحدة في الآخر."
+  },
+  {
+   "id": "01-terminal-ch08-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Pipeline تطلع أكتر 10 صفحات طلّعت 404:",
+   "items": [
+    "awk '$9==404 {print $7}' access.log",
+    "sort",
+    "uniq -c",
+    "sort -rn",
+    "head"
+   ],
+   "explanation": "فلتر بـ awk، بعدين \"الأكتر تكراراً\"."
+  },
+  {
+   "id": "01-terminal-ch08-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "عندك لستة ملفات من find وعايز تمسحهم كلهم. الـ Pipe لوحده `find ... | rm` مش هيشتغل. ليه؟ وإيه الحل؟",
+   "options": [
+    {
+     "text": "rm مبيشتغلش مع find",
+     "why": "بيشتغل بس محتاج الأسماء كـ Arguments."
+    },
+    {
+     "text": "rm بياخد الأسماء كـ Arguments مش من stdin، فتستخدم xargs (أو find -delete/-exec)",
+     "why": "صح."
+    },
+    {
+     "text": "لازم sudo",
+     "why": "مالهاش علاقة."
+    },
+    {
+     "text": "الـ Pipe مش بيشتغل على الماك",
+     "why": "بيشتغل."
+    }
+   ],
+   "correct": 1,
+   "explanation": "xargs بيحوّل السطور لـ Arguments."
+  },
+  {
+   "id": "01-terminal-ch08-13",
+   "type": "mcq",
+   "level": "medium",
+   "question": "على الماك، `find -name \"*.log\"` (من غير مسار) هيحصل إيه؟",
+   "options": [
+    {
+     "text": "خطأ، لأن find على الماك المسار فيه إجباري زي `find . -name \"*.log\"`",
+     "why": "صح."
+    },
+    {
+     "text": "هيدوّر في المجلد الحالي",
+     "why": "ده سلوك GNU find."
+    },
+    {
+     "text": "هيدوّر في الجهاز كله",
+     "why": "لأ."
+    },
+    {
+     "text": "هيدوّر في Spotlight",
+     "why": "ده mdfind."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خلّي المسار دايماً أول حاجة بعد find."
+  }
+ ]
+}

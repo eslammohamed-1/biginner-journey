@@ -1,0 +1,235 @@
+{
+ "book": "02-git",
+ "chapter": 12,
+ "chapterFile": "ch12",
+ "title": "Workflow للمبتدئين: GitHub Flow",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "02-git-ch12-01",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب الروتين اليومي في GitHub Flow:",
+   "items": [
+    "git switch main",
+    "git pull",
+    "git switch -c feature/x",
+    "Commits",
+    "git push -u origin feature/x",
+    "افتح PR وادمجه",
+    "git switch main && git pull",
+    "git branch -d feature/x"
+   ],
+   "explanation": "main شغال دايماً."
+  },
+  {
+   "id": "02-git-ch12-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في GitHub Flow مع فريق، بنعمل push مباشر على main للحاجات الصغيرة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "كل شغل في Branch."
+    },
+    {
+     "text": "لأ، حتى الصغير بيعدي بـ Branch و PR",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ودي فايدة حماية main."
+  },
+  {
+   "id": "02-git-ch12-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`git fetch --prune` بيمسح Branches من GitHub؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيمسح اللافتات المحلية بس."
+    },
+    {
+     "text": "لأ، بيمسح الـ Remote-tracking branches اللي اتمسحت على GitHub من عندك",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "نضّف الـ Branches القديمة."
+  },
+  {
+   "id": "02-git-ch12-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Branch protection rules (Rulesets) ممكن تعمل إيه؟",
+   "options": [
+    {
+     "text": "تمنع push --force على main وتخلي PR والـ Checks إجبارية",
+     "why": "صح."
+    },
+    {
+     "text": "تمسح الـ Branches القديمة",
+     "why": "لأ."
+    },
+    {
+     "text": "تعمل Merge أوتوماتيك",
+     "why": "مش وظيفتها."
+    },
+    {
+     "text": "تشفّر الكود",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "حماية main."
+  },
+  {
+   "id": "02-git-ch12-05",
+   "type": "mcq",
+   "level": "easy",
+   "question": "أنهي اسم Branch أحسن حسب الفصل؟",
+   "options": [
+    {
+     "text": "feature/login-form",
+     "why": "صح، نوع/وصف قصير."
+    },
+    {
+     "text": "Branch1",
+     "why": "مالوش معنى."
+    },
+    {
+     "text": "my stuff",
+     "why": "فيه مسافة."
+    },
+    {
+     "text": "FINAL_final_v2",
+     "why": "مش واضح."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Git بيخزن الـ / كفولدرات جوه refs."
+  },
+  {
+   "id": "02-git-ch12-06",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعمل Branch اسمه fix/form-validation من main واتنقل عليه.",
+   "accepted": [
+    "git switch -c fix/form-validation main",
+    "git switch -c fix/form-validation",
+    "git checkout -b fix/form-validation main",
+    "git checkout -b fix/form-validation"
+   ],
+   "hint": "switch -c name start.",
+   "explanation": "نقطة البداية اختيارية."
+  },
+  {
+   "id": "02-git-ch12-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "نضّف اللافتات المحلية للـ Branches اللي اتمسحت على GitHub.",
+   "accepted": [
+    "git fetch --prune",
+    "git fetch -p",
+    "git remote prune origin"
+   ],
+   "hint": "fetch مع prune.",
+   "explanation": "git config --global fetch.prune true يخليها دايماً."
+  },
+  {
+   "id": "02-git-ch12-08",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: بعد الـ Merge، امسح الـ Branch المحلي بأمان:",
+   "template": "git branch ___ feature/x",
+   "blanks": [
+    [
+     "-d"
+    ]
+   ],
+   "hint": "delete صغيرة.",
+   "explanation": "-D لو اتعمله Squash."
+  },
+  {
+   "id": "02-git-ch12-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "شغال لوحدك على Portfolio. تعمل إيه لتجربة كبيرة بالـ AI؟",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "Branch للتجربة، ولو نجحت PR لنفسي وأدمج",
+     "why": "صح."
+    },
+    {
+     "text": "أعدّل على main على طول",
+     "why": "لو باظت هتتعب."
+    },
+    {
+     "text": "أعمل Repo جديد",
+     "why": "مش لازم."
+    },
+    {
+     "text": "أنسخ الفولدر",
+     "why": "ده رجوع لأيام قبل Git."
+    }
+   ],
+   "correct": 0,
+   "explanation": "\"وانت شغال لوحدك؟\"."
+  },
+  {
+   "id": "02-git-ch12-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "الفريق عايز يمنع أي حد يعمل force push على main بالغلط.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "Ruleset على main يمنع Force push ويخلي PR إجباري",
+     "why": "صح."
+    },
+    {
+     "text": "يتفقوا شفوياً",
+     "why": "مش كفاية."
+    },
+    {
+     "text": "يمسحوا main",
+     "why": "لأ."
+    },
+    {
+     "text": "يخلوا الـ Repo Private",
+     "why": "مالوش علاقة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "حماية main على GitHub."
+  },
+  {
+   "id": "02-git-ch12-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "إيه الفرق الأساسي بين GitHub Flow و Git Flow؟",
+   "options": [
+    {
+     "text": "GitHub Flow فيه main + Branches قصيرة، و Git Flow فيه develop و release و hotfix",
+     "why": "صح."
+    },
+    {
+     "text": "Git Flow أوامر مختلفة",
+     "why": "نفس الأوامر بقواعد مختلفة."
+    },
+    {
+     "text": "GitHub Flow مبيستخدمش Branches",
+     "why": "بيستخدم."
+    },
+    {
+     "text": "مفيش فرق",
+     "why": "فيه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "و Trunk-based = Branches قصيرة جداً على main."
+  }
+ ]
+}

@@ -1,0 +1,272 @@
+{
+ "book": "01-terminal",
+ "chapter": 9,
+ "chapterFile": "ch09",
+ "title": "العمليات والخدمات",
+ "count": 13,
+ "exercises": [
+  {
+   "id": "01-terminal-ch09-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "على الماك، مين الـ Process رقم 1؟",
+   "options": [
+    {
+     "text": "launchd",
+     "why": "صح."
+    },
+    {
+     "text": "systemd",
+     "why": "ده على أغلب Linux."
+    },
+    {
+     "text": "zsh",
+     "why": "الـ Shell عملية عادية."
+    },
+    {
+     "text": "kernel_task",
+     "why": "ده PID 0."
+    }
+   ],
+   "correct": 0,
+   "explanation": "launchd هو الجد الكبير لكل العمليات على الماك."
+  },
+  {
+   "id": "01-terminal-ch09-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`kill PID` من غير رقم Signal بتبعت إيه؟",
+   "options": [
+    {
+     "text": "SIGKILL (9)",
+     "why": "ده لما تكتب -9."
+    },
+    {
+     "text": "SIGTERM (15)",
+     "why": "صح، طلب مهذب إن البرنامج يقفل."
+    },
+    {
+     "text": "SIGHUP",
+     "why": "لازم تكتبه."
+    },
+    {
+     "text": "SIGSTOP",
+     "why": "لأ."
+    }
+   ],
+   "correct": 1,
+   "explanation": "TERM الأول، و KILL آخر حل."
+  },
+  {
+   "id": "01-terminal-ch09-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "البرنامج يقدر يتجاهل أنهي Signal؟",
+   "options": [
+    {
+     "text": "SIGTERM آه، SIGKILL لأ",
+     "why": "صح، SIGKILL مبيوصلش للبرنامج أصلاً، الـ Kernel بيقتله."
+    },
+    {
+     "text": "الاتنين ينفع يتجاهلهم",
+     "why": "SIGKILL لأ."
+    },
+    {
+     "text": "مفيش ولا واحد يتجاهله",
+     "why": "SIGTERM ممكن يتمسك أو يتجاهل."
+    },
+    {
+     "text": "SIGKILL آه و SIGTERM لأ",
+     "why": "العكس."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان كده -9 آخر حل، لأن البرنامج مش هيلحق ينضف."
+  },
+  {
+   "id": "01-terminal-ch09-04",
+   "type": "command",
+   "level": "easy",
+   "prompt": "دوّر على أي Process فيها \"node\" واعرض الـ PID والأمر كامل.",
+   "accepted": [
+    "pgrep -lf node",
+    "pgrep -fl node",
+    "ps aux | grep node",
+    "ps aux | grep [n]ode"
+   ],
+   "hint": "pgrep مع -l و -f.",
+   "explanation": "pgrep أنضف من ps | grep."
+  },
+  {
+   "id": "01-terminal-ch09-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرف مين بيستخدم البورت 3000.",
+   "accepted": [
+    "lsof -i :3000",
+    "lsof -nP -i :3000",
+    "lsof -i:3000",
+    "lsof -nP -iTCP:3000 -sTCP:LISTEN"
+   ],
+   "hint": "list open files مع -i.",
+   "explanation": "على الماك lsof، وعلى Linux ss."
+  },
+  {
+   "id": "01-terminal-ch09-06",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "شغّلت السيرفر فطلعلك `Address already in use` على البورت 3000.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أعرف مين ماسك البورت بـ `lsof -i :3000` وأقفله بـ kill (TERM الأول)",
+     "why": "صح."
+    },
+    {
+     "text": "أعيد تشغيل الماك على طول",
+     "why": "هيشتغل بس مش لازم."
+    },
+    {
+     "text": "أغيّر الكود",
+     "why": "المشكلة إن فيه عملية قديمة شغالة."
+    },
+    {
+     "text": "kill -9 لأي node",
+     "why": "ممكن تقتل حاجة تانية، وابدأ بـ TERM."
+    }
+   ],
+   "correct": 0,
+   "explanation": "lsof -t -i :3000 بيطلع الـ PID بس."
+  },
+  {
+   "id": "01-terminal-ch09-07",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "البورت 5000 مشغول على الماك ومفيش أي برنامج بتاعك شغال.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "ده غالباً AirPlay Receiver بتاع الماك، أقفله من System Settings أو أستخدم بورت تاني",
+     "why": "صح، ده مذكور في مشاكل الفصل."
+    },
+    {
+     "text": "الماك فيه فيروس",
+     "why": "لأ، دي خدمة نظام."
+    },
+    {
+     "text": "kill -9 1",
+     "why": "ده launchd، متعملش كده."
+    },
+    {
+     "text": "أمسح /etc/hosts",
+     "why": "مالوش علاقة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "lsof -i :5000 هيوريك ControlCenter."
+  },
+  {
+   "id": "01-terminal-ch09-08",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات إيقاف برنامج مش بيرد:",
+   "items": [
+    "kill -TERM PID",
+    "استنى ثواني واتأكد بـ ps",
+    "kill -KILL PID لو لسه شغال"
+   ],
+   "explanation": "TERM يدّي البرنامج فرصة ينضف، و KILL آخر حل."
+  },
+  {
+   "id": "01-terminal-ch09-09",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ضغطت Ctrl+Z على برنامج شغال. حصل إيه؟",
+   "options": [
+    {
+     "text": "البرنامج اتقفل نهائياً",
+     "why": "ده Ctrl+C."
+    },
+    {
+     "text": "البرنامج وقف مؤقتاً (Suspended) وتقدر ترجعه بـ fg أو bg",
+     "why": "صح."
+    },
+    {
+     "text": "البرنامج اشتغل في الخلفية على طول",
+     "why": "لازم bg."
+    },
+    {
+     "text": "الـ Terminal اتقفل",
+     "why": "لأ."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Ctrl+Z ثم bg = اشتغل في الخلفية."
+  },
+  {
+   "id": "01-terminal-ch09-10",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان السيرفر يفضل شغال حتى لو قفلت الـ Terminal:",
+   "template": "___ python3 server.py > server.log 2>&1 &",
+   "blanks": [
+    [
+     "nohup"
+    ]
+   ],
+   "hint": "no hang up.",
+   "explanation": "nohup بيخلي العملية تتجاهل SIGHUP."
+  },
+  {
+   "id": "01-terminal-ch09-11",
+   "type": "command",
+   "level": "easy",
+   "prompt": "شغّل postgresql كخدمة بـ Homebrew.",
+   "accepted": [
+    "brew services start postgresql",
+    "brew services start postgresql@17",
+    "brew services start postgresql@16"
+   ],
+   "hint": "brew services.",
+   "explanation": "تحتها launchd وملف plist في ~/Library/LaunchAgents."
+  },
+  {
+   "id": "01-terminal-ch09-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "الـ LaunchAgent بتاعك مش لاقي أمر من Homebrew مع إنه شغال في الـ Terminal. ليه؟",
+   "options": [
+    {
+     "text": "launchd مبيقراش ~/.zshrc، فالـ PATH بتاعك مش موجود، فلازم مسار كامل أو PATH في الـ plist",
+     "why": "صح."
+    },
+    {
+     "text": "Homebrew مش متسطب",
+     "why": "متسطب بدليل إنه شغال عندك."
+    },
+    {
+     "text": "لازم sudo",
+     "why": "مش المشكلة."
+    },
+    {
+     "text": "launchd بيقرا .zprofile بس",
+     "why": "مبيقراش أي ملف إعدادات."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ده من غلطات الصح ولا غلط في الفصل."
+  },
+  {
+   "id": "01-terminal-ch09-13",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرض لوجات آخر 5 دقايق من عملية اسمها node على الماك.",
+   "accepted": [
+    "log show --last 5m --predicate 'process == \"node\"'",
+    "log show --predicate 'process == \"node\"' --last 5m"
+   ],
+   "hint": "log show مع --last و --predicate.",
+   "explanation": "وعلى Linux: journalctl -u."
+  }
+ ]
+}
