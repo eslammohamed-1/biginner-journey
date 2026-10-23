@@ -46,7 +46,9 @@ for (const book of catalog.books) {
 		/>
 	)
 }
-<Default><slot /></Default>
+<div class:list={['bj-doc-body', { 'is-book-index': Boolean(bookEntry), 'is-chapter-page': Boolean(chapterMatch) }]}>
+	<Default><slot /></Default>
+</div>
 {
 	exerciseData && (
 		<>
@@ -75,6 +77,66 @@ for (const book of catalog.books) {
 	)
 }
 <script is:inline define:vars={{ chapterTotals }}>
+	function enhanceDocumentVisuals() {
+		const content = document.querySelector('.bj-doc-body .sl-markdown-content');
+		if (!content) return;
+
+		// 1. Style "تشريح الأمر" blocks and their numbered breakdown lists
+		content.querySelectorAll('p > strong:only-child').forEach((strong) => {
+			const txt = (strong.textContent || '').trim();
+			const parentP = strong.parentElement;
+			if (!parentP) return;
+			if (txt === 'تشريح الأمر') {
+				parentP.classList.add('cmd-anatomy-label');
+				let next = parentP.nextElementSibling;
+				if (next && (next.classList.contains('expressive-code') || next.tagName === 'PRE' || next.tagName === 'FIGURE')) {
+					next.classList.add('cmd-anatomy-code');
+					const list = next.nextElementSibling;
+					if (list && list.tagName === 'OL') {
+						list.classList.add('cmd-anatomy-steps');
+					}
+				}
+			} else if (parentP.nextElementSibling && parentP.nextElementSibling.tagName === 'TABLE') {
+				parentP.classList.add('table-caption-title');
+			}
+		});
+
+		// 2. Style cross-reference chips [↩ ...]
+		content.querySelectorAll('a[href]').forEach((a) => {
+			const text = (a.textContent || '').trim();
+			if (text.startsWith('↩')) {
+				a.classList.add('xref-chip');
+			}
+		});
+
+		// 3. Style end-of-chapter review headings ("صح ولا غلط؟", "أسئلة مراجعة", "تحديات الفصل")
+		content.querySelectorAll('h3').forEach((h3) => {
+			const title = (h3.textContent || '').trim();
+			if (title === 'صح ولا غلط؟' || title === 'أسئلة مراجعة' || title === 'تحديات الفصل') {
+				h3.classList.add('chapter-end-heading');
+				if (title === 'تحديات الفصل') {
+					h3.classList.add('is-challenges-heading');
+				}
+				let el = h3.nextElementSibling;
+				while (el && el.tagName !== 'H3' && el.tagName !== 'H2') {
+					if (el.tagName === 'OL' || el.tagName === 'UL') {
+						el.classList.add('chapter-end-list');
+						if (title === 'تحديات الفصل') {
+							el.classList.add('is-challenges-list');
+							el.querySelectorAll('li > strong:first-child').forEach((badge) => {
+								const bText = (badge.textContent || '').trim();
+								if (bText.includes('سهل')) badge.classList.add('ch-lvl-badge', 'is-easy');
+								else if (bText.includes('متوسط')) badge.classList.add('ch-lvl-badge', 'is-medium');
+								else if (bText.includes('صعب')) badge.classList.add('ch-lvl-badge', 'is-hard');
+							});
+						}
+					}
+					el = el.nextElementSibling;
+				}
+			}
+		});
+	}
+
 	function decorateSidebarAndReview() {
 		try {
 			const raw = localStorage.getItem('bj-progress-v1');
@@ -116,6 +178,8 @@ for (const book of catalog.books) {
 			});
 		} catch {}
 	}
+
+	enhanceDocumentVisuals();
 	decorateSidebarAndReview();
 	window.addEventListener('bj-progress', decorateSidebarAndReview);
 	window.addEventListener('storage', decorateSidebarAndReview);

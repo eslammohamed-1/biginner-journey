@@ -25,6 +25,7 @@ type Props = {
 };
 
 export default function HomeGrid({ base, books }: Props) {
+	const normalizedBase = base.endsWith('/') ? base : `${base}/`;
 	const [store, setStore] = useState<ProgressStore | null>(null);
 
 	useEffect(() => {
@@ -56,7 +57,7 @@ export default function HomeGrid({ base, books }: Props) {
 				const needReview = ch.revealed + (ch.complete ? 0 : ch.retried);
 				if (ch.revealed > 0 || (!ch.complete && ch.retried > 0)) {
 					reviewLinks.push({
-						href: `${base}${book.slug}/${ch.file}/`,
+						href: `${normalizedBase}${book.slug}/${ch.file}/`,
 						label: `${book.title} · ${ch.file.toUpperCase()}`,
 						count: needReview,
 					});
@@ -101,7 +102,7 @@ export default function HomeGrid({ base, books }: Props) {
 					const total = book.chapters.reduce((sum, chapter) => sum + chapter.ids.length, 0);
 					const stats = store ? bookStats(book.chapters, store) : null;
 					const isBookDone = stats && total > 0 && stats.done === total;
-					const href = `${base}${book.slug}/`;
+					const href = `${normalizedBase}${book.slug}/`;
 					return (
 						<article class={`book-card${isBookDone ? ' is-book-complete' : ''}`} key={book.slug}>
 							<a class="book-card-link" href={href}>

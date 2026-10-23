@@ -5,7 +5,8 @@ import ProgressTools from './ProgressTools';
 import { loadCatalog } from '../lib/catalog';
 
 const { books } = await loadCatalog();
-const base = import.meta.env.BASE_URL;
+const rawBase = import.meta.env.BASE_URL;
+const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`;
 ---
 
 <div class="home-intro">

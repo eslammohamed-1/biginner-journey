@@ -7,17 +7,18 @@ type Props = {
 
 /** Primary call to action: the last chapter the reader opened, or book 01 for first-timers. */
 export default function ResumeLink({ base }: Props) {
+	const normalizedBase = base.endsWith('/') ? base : `${base}/`;
 	const [last, setLast] = useState<LastVisited | null>(null);
 
 	useEffect(() => {
 		const saved = readLastVisited();
 		// Ignore entries from a different base path (e.g. after a repo rename).
-		if (saved && saved.href.startsWith(base)) setLast(saved);
-	}, [base]);
+		if (saved && saved.href.startsWith(normalizedBase)) setLast(saved);
+	}, [normalizedBase]);
 
 	if (!last) {
 		return (
-			<a class="start-link" href={`${base}01-terminal/`}>
+			<a class="start-link" href={`${normalizedBase}01-terminal/`}>
 				ابدأ بالكتاب الأول
 			</a>
 		);

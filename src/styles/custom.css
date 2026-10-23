@@ -59,35 +59,179 @@ body {
 	line-height: 1.92;
 }
 
-/* Typography & Chapter Content Enhancements */
+/* 1. Stage Badge & Lead Paragraph at top of every chapter */
+.is-chapter-page .sl-markdown-content > p:first-child:has(> small:only-child) {
+	margin: 0 0 0.75rem;
+}
+
+.is-chapter-page .sl-markdown-content > p:first-child > small:only-child {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35rem;
+	padding: 0.24rem 0.8rem;
+	border-radius: 999px;
+	font-size: var(--sl-text-xs);
+	font-weight: 700;
+	background: color-mix(in srgb, var(--brand) 20%, var(--sl-color-bg-nav));
+	color: var(--sl-color-text-accent);
+	border: 1px solid color-mix(in srgb, var(--brand) 38%, transparent);
+}
+
+.is-chapter-page .sl-markdown-content > p:first-child:has(> small:only-child) + p {
+	font-size: 1.08rem;
+	line-height: 1.95;
+	color: var(--sl-color-gray-1);
+	margin-top: 0;
+}
+
+/* 2. Typography & Section Headings */
 .sl-markdown-content h2 {
-	margin-top: 2.4rem;
-	padding-bottom: 0.45rem;
-	border-bottom: 1px solid var(--sl-color-gray-5);
+	margin-top: 2.5rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 2px solid color-mix(in srgb, var(--brand) 30%, var(--sl-color-gray-5));
 	line-height: 1.4;
 }
 
 .sl-markdown-content h3 {
-	margin-top: 1.75rem;
+	margin-top: 1.8rem;
 	color: var(--sl-color-white);
 }
 
 .sl-markdown-content h4 {
-	margin-top: 1.25rem;
+	margin-top: 1.3rem;
 	color: var(--sl-color-text-accent);
 	font-weight: 700;
 }
 
+/* 3. Framed Diagrams & Attached Figure Captions */
 .sl-markdown-content img {
-	border-radius: 0.85rem;
+	border-radius: 0.9rem;
 	border: 1px solid var(--sl-color-gray-5);
-	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
-	margin: 1rem auto;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+	margin: 1.25rem auto 0.45rem;
 	display: block;
+	background: var(--sl-color-bg-nav);
 }
 
-/* Professional Tables */
-.sl-markdown-content table {
+.sl-markdown-content p:has(> img) + p:has(> em:only-child) {
+	text-align: center;
+	font-size: var(--sl-text-sm);
+	color: var(--sl-color-gray-2);
+	margin: 0.25rem auto 1.4rem;
+	padding: 0.35rem 0.85rem;
+	max-width: 92%;
+	border-radius: 0.6rem;
+	background: color-mix(in srgb, var(--sl-color-bg-nav) 75%, transparent);
+}
+
+.sl-markdown-content p:has(> img) + p:has(> em:only-child) > em {
+	font-style: normal;
+	font-weight: 600;
+}
+
+/* 4. Command Anatomy ("تشريح الأمر") Visual System */
+.sl-markdown-content p.cmd-anatomy-label {
+	margin: 1.35rem 0 0.4rem;
+}
+
+.sl-markdown-content p.cmd-anatomy-label > strong {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	padding: 0.2rem 0.75rem;
+	border-radius: 0.55rem;
+	font-size: var(--sl-text-xs);
+	font-weight: 700;
+	background: color-mix(in srgb, var(--brand) 18%, var(--sl-color-bg-nav));
+	color: var(--sl-color-text-accent);
+	border: 1px solid color-mix(in srgb, var(--brand) 35%, transparent);
+}
+
+.sl-markdown-content p.cmd-anatomy-label > strong::before {
+	content: '❯_';
+	font-family: var(--sl-font-mono);
+	font-size: 0.85em;
+}
+
+.sl-markdown-content ol.cmd-anatomy-steps {
+	list-style: none;
+	counter-reset: cmd-step;
+	padding: 0.8rem 0.95rem;
+	margin: 0.5rem 0 1.35rem;
+	border-radius: 0.85rem;
+	background: color-mix(in srgb, var(--sl-color-bg-nav) 85%, var(--brand) 5%);
+	border: 1px solid var(--sl-color-gray-5);
+	display: flex;
+	flex-direction: column;
+	gap: 0.55rem;
+}
+
+.sl-markdown-content ol.cmd-anatomy-steps > li {
+	counter-increment: cmd-step;
+	position: relative;
+	padding-inline-start: 2.1rem;
+	margin: 0;
+	line-height: 1.75;
+}
+
+.sl-markdown-content ol.cmd-anatomy-steps > li::before {
+	content: counter(cmd-step);
+	position: absolute;
+	inset-inline-start: 0;
+	top: 0.22rem;
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 999px;
+	background: var(--brand);
+	color: #fff;
+	font-size: 0.75rem;
+	font-weight: 700;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* 5. Cross-Reference Chips [↩ ...] */
+.sl-markdown-content a.xref-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25rem;
+	padding: 0.08rem 0.55rem;
+	border-radius: 999px;
+	font-size: 0.84em;
+	font-weight: 700;
+	text-decoration: none;
+	background: color-mix(in srgb, var(--brand) 15%, var(--sl-color-bg-nav));
+	color: var(--sl-color-text-accent);
+	border: 1px solid color-mix(in srgb, var(--brand) 30%, transparent);
+	transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.sl-markdown-content a.xref-chip:hover {
+	background: color-mix(in srgb, var(--brand) 26%, var(--sl-color-bg-nav));
+	border-color: var(--brand);
+}
+
+/* 6. Professional Tables & Table Caption Headers */
+.sl-markdown-content p.table-caption-title {
+	margin: 1.5rem 0 0;
+	padding: 0.55rem 0.95rem;
+	background: color-mix(in srgb, var(--brand) 22%, var(--sl-color-bg-nav));
+	border: 1px solid var(--sl-color-gray-5);
+	border-bottom: none;
+	border-radius: 0.85rem 0.85rem 0 0;
+	color: var(--sl-color-white);
+	font-size: var(--sl-text-sm);
+}
+
+.sl-markdown-content p.table-caption-title + table {
+	margin-top: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.sl-markdown-content table,
+.sl-markdown-content table.cmp {
 	width: 100%;
 	display: table;
 	border-collapse: separate;
@@ -98,19 +242,20 @@ body {
 	overflow: hidden;
 	background: var(--sl-color-bg-nav);
 	font-size: 0.95rem;
+	box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
 }
 
 .sl-markdown-content th {
-	background: color-mix(in srgb, var(--brand) 16%, var(--sl-color-bg-nav));
+	background: color-mix(in srgb, var(--brand) 14%, var(--sl-color-bg-nav));
 	color: var(--sl-color-white);
 	font-weight: 700;
 	text-align: start;
-	padding: 0.7rem 0.9rem;
+	padding: 0.72rem 0.95rem;
 	border-bottom: 1px solid var(--sl-color-gray-5);
 }
 
 .sl-markdown-content td {
-	padding: 0.65rem 0.9rem;
+	padding: 0.68rem 0.95rem;
 	border-bottom: 1px solid color-mix(in srgb, var(--sl-color-gray-5) 65%, transparent);
 	vertical-align: top;
 }
@@ -121,6 +266,109 @@ body {
 
 .sl-markdown-content tbody tr:nth-child(even) td {
 	background: color-mix(in srgb, var(--sl-color-bg) 50%, transparent);
+}
+
+.sl-markdown-content tbody tr:hover td {
+	background: color-mix(in srgb, var(--brand) 7%, var(--sl-color-bg-nav));
+}
+
+/* 7. Book Landing Page (`is-book-index`) Stage & Chapter Cards */
+.is-book-index .sl-markdown-content > p:has(> strong:only-child) {
+	margin: 1.65rem 0 0.65rem;
+	padding: 0.45rem 0.9rem;
+	border-radius: 0.65rem;
+	background: color-mix(in srgb, var(--brand) 14%, var(--sl-color-bg-nav));
+	border-inline-start: 4px solid var(--brand);
+	color: var(--sl-color-white);
+}
+
+.is-book-index .sl-markdown-content > p:has(> strong:only-child) + ul {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 1.25rem;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 0.5rem;
+}
+
+.is-book-index .sl-markdown-content > p:has(> strong:only-child) + ul > li {
+	margin: 0;
+	padding: 0.65rem 0.95rem;
+	border-radius: 0.8rem;
+	border: 1px solid var(--sl-color-gray-5);
+	background: var(--sl-color-bg-nav);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+	transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.is-book-index .sl-markdown-content > p:has(> strong:only-child) + ul > li:hover {
+	border-color: var(--brand);
+	transform: translateX(-2px);
+}
+
+.is-book-index .sl-markdown-content > p:has(> strong:only-child) + ul > li > a {
+	font-weight: 700;
+	text-decoration: none;
+	color: var(--sl-color-white);
+	flex: 1;
+}
+
+.is-book-index .sl-markdown-content > p:has(> strong:only-child) + ul > li > a:hover {
+	color: var(--sl-color-text-accent);
+}
+
+/* 8. End-of-Chapter Static Review & Practical Challenges Styling */
+.sl-markdown-content h3.chapter-end-heading {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45rem;
+	margin-top: 2rem;
+	margin-bottom: 0.65rem;
+	padding: 0.3rem 0.85rem;
+	border-radius: 0.65rem;
+	font-size: var(--sl-text-base);
+	background: color-mix(in srgb, var(--sl-color-bg-nav) 90%, var(--brand) 10%);
+	border: 1px solid var(--sl-color-gray-5);
+}
+
+.sl-markdown-content ol.chapter-end-list {
+	padding-inline-start: 1.5rem;
+	padding-inline-end: 1rem;
+	padding-top: 0.85rem;
+	padding-bottom: 0.85rem;
+	margin: 0 0 1.25rem;
+	border-radius: 0.9rem;
+	background: var(--sl-color-bg-nav);
+	border: 1px solid var(--sl-color-gray-5);
+	display: flex;
+	flex-direction: column;
+	gap: 0.55rem;
+}
+
+.sl-markdown-content strong.ch-lvl-badge {
+	display: inline-block;
+	padding: 0.08rem 0.5rem;
+	margin-inline-end: 0.35rem;
+	border-radius: 999px;
+	font-size: 0.74rem;
+}
+
+.sl-markdown-content strong.ch-lvl-badge.is-easy {
+	background: var(--sl-color-green-low);
+	color: var(--sl-color-green-high);
+}
+
+.sl-markdown-content strong.ch-lvl-badge.is-medium {
+	background: var(--sl-color-orange-low);
+	color: var(--sl-color-orange-high);
+}
+
+.sl-markdown-content strong.ch-lvl-badge.is-hard {
+	background: color-mix(in srgb, var(--brand) 22%, var(--sl-color-bg));
+	color: var(--sl-color-text-accent);
 }
 
 /* Callout / Aside boxes */
@@ -503,6 +751,11 @@ body {
 	border-radius: 999px;
 	font-size: 0.74rem;
 	font-weight: 700;
+	flex-shrink: 0;
+}
+
+.ch-inline-status:empty {
+	display: none;
 }
 
 .ch-inline-status.is-complete {
