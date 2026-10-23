@@ -1,0 +1,229 @@
+{
+ "book": "05-apis",
+ "chapter": 1,
+ "chapterFile": "ch01",
+ "title": "الحكاية من الأول: الـ API اتعمل ليه أصلاً؟",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "05-apis-ch01-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "يعني إيه API؟",
+   "options": [
+    {
+     "text": "باب مخصوص للبرامج عليه عقد: تبعت فين وإيه، وهيرجع إيه، والأخطاء والحدود",
+     "why": "صح."
+    },
+    {
+     "text": "صفحة ويب",
+     "why": "دي للعين."
+    },
+    {
+     "text": "قاعدة بيانات",
+     "why": "ممكن تبقى ورا الـ API."
+    },
+    {
+     "text": "لغة برمجة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "عقد بين برنامجين."
+  },
+  {
+   "id": "05-apis-ch01-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Scraping أضمن من الـ API لأنه بياخد اللي المستخدم شايفه؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيتكسر مع أي تغيير في الشكل."
+    },
+    {
+     "text": "لأ، الـ HTML معمول للعين وبيتغير، والـ API عليه وعد بالثبات",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ده سبب اختراع الـ APIs."
+  },
+  {
+   "id": "05-apis-ch01-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "document.querySelector تعتبر API؟",
+   "options": [
+    {
+     "text": "أيوه، API بتاع المتصفح (DOM)",
+     "why": "صح."
+    },
+    {
+     "text": "لأ، الـ API لازم يبقى على HTTP",
+     "why": "الـ Web API بس اللي على HTTP."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ APIs في كل حتة: map و DOM و fs."
+  },
+  {
+   "id": "05-apis-ch01-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "قسم \"Web APIs\" في MDN بيشرح إيه؟",
+   "options": [
+    {
+     "text": "APIs المتصفح زي fetch و DOM",
+     "why": "صح."
+    },
+    {
+     "text": "إزاي تبني REST API على السيرفر",
+     "why": "لأ."
+    },
+    {
+     "text": "GraphQL",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Webhooks",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "فخ الأسامي."
+  },
+  {
+   "id": "05-apis-ch01-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "ابعت أول طلب API لأسعار العملات بـ curl (base=USD و quotes=EGP,EUR).",
+   "accepted": [
+    "curl -s \"https://api.frankfurter.dev/v2/rates?base=USD&quotes=EGP,EUR\"",
+    "curl \"https://api.frankfurter.dev/v2/rates?base=USD&quotes=EGP,EUR\""
+   ],
+   "hint": "curl -s والـ URL بين علامتين تنصيص.",
+   "explanation": "التنصيص علشان & في zsh."
+  },
+  {
+   "id": "05-apis-ch01-06",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "كتبت الـ URL من غير علامات تنصيص و zsh عمل حاجة غريبة بعد &.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ & بتشغّل الأمر في الخلفية في الـ Shell، فأحط الـ URL بين \"\"",
+     "why": "صح."
+    },
+    {
+     "text": "الـ API بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "أشيل الـ Query",
+     "why": "هتخسر البيانات."
+    },
+    {
+     "text": "أستخدم sudo",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "التنصيص دايماً."
+  },
+  {
+   "id": "05-apis-ch01-07",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أجزاء URL الـ API:",
+   "items": [
+    "Host (api.frankfurter.dev)",
+    "Version (/v2)",
+    "Resource (/rates)",
+    "Query parameters (?base=USD&quotes=EGP)"
+   ],
+   "explanation": "? تبدأ و & تفصل."
+  },
+  {
+   "id": "05-apis-ch01-08",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: الحرف اللي بيبدأ الـ Query parameters:",
+   "template": "/rates___base=USD",
+   "blanks": [
+    [
+     "?"
+    ]
+   ],
+   "hint": "علامة سؤال.",
+   "explanation": "و & بين كل واحد والتاني."
+  },
+  {
+   "id": "05-apis-ch01-09",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: API اختصار لـ Application Programming ___",
+   "template": "Application Programming ___",
+   "blanks": [
+    [
+     "Interface"
+    ]
+   ],
+   "hint": "واجهة.",
+   "explanation": "واجهة برمجية للتطبيقات."
+  },
+  {
+   "id": "05-apis-ch01-10",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الفرق بين Consumer و Provider؟",
+   "options": [
+    {
+     "text": "الـ Consumer بيستخدم API غيره، والـ Provider بيبني API لغيره",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "طاقيتين مختلفتين."
+    },
+    {
+     "text": "الـ Consumer هو السيرفر",
+     "why": "العكس غالباً."
+    },
+    {
+     "text": "الـ Provider هو المتصفح",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الكتاب بيبدأ Consumer."
+  },
+  {
+   "id": "05-apis-ch01-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه الكتاب بيبدأ بالـ Consumer؟",
+   "options": [
+    {
+     "text": "علشان تفهم الـ APIs من ناحية المستخدم الأول، فلما تبني تعرف تعمل API مريح",
+     "why": "صح."
+    },
+    {
+     "text": "علشان البناء صعب بس",
+     "why": "مش السبب الأساسي."
+    },
+    {
+     "text": "علشان محدش بيبني",
+     "why": "لأ."
+    },
+    {
+     "text": "صدفة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ليه الترتيب ده."
+  }
+ ]
+}

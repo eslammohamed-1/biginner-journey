@@ -1,0 +1,240 @@
+{
+ "book": "07-docker",
+ "chapter": 5,
+ "chapterFile": "ch05",
+ "title": "مراقبة وفحص الـ Containers: logs و inspect و stats",
+ "count": 13,
+ "exercises": [
+  {
+   "id": "07-docker-ch05-01",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض logs بتاعة Container اسمه web.",
+   "accepted": [
+    "docker logs web",
+    "docker container logs web"
+   ],
+   "hint": "logs.",
+   "explanation": "stdout و stderr."
+  },
+  {
+   "id": "07-docker-ch05-02",
+   "type": "command",
+   "level": "medium",
+   "prompt": "تابع logs بتاعة web لحظة بلحظة.",
+   "accepted": [
+    "docker logs -f web",
+    "docker logs --follow web"
+   ],
+   "hint": "-f.",
+   "explanation": "Ctrl+C للخروج."
+  },
+  {
+   "id": "07-docker-ch05-03",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرض آخر 50 سطر بس من logs بتاعة web.",
+   "accepted": [
+    "docker logs --tail 50 web",
+    "docker logs -n 50 web"
+   ],
+   "hint": "--tail.",
+   "explanation": "و --since 10m."
+  },
+  {
+   "id": "07-docker-ch05-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرف حالة web بس (Status) بـ inspect.",
+   "accepted": [
+    "docker inspect -f '{{.State.Status}}' web",
+    "docker inspect --format '{{.State.Status}}' web",
+    "docker inspect -f \"{{.State.Status}}\" web"
+   ],
+   "hint": "-f و Go template.",
+   "explanation": "بدل JSON كامل."
+  },
+  {
+   "id": "07-docker-ch05-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض استهلاك الموارد للـ Containers لحظياً.",
+   "accepted": [
+    "docker stats"
+   ],
+   "hint": "stats.",
+   "explanation": "CPU و Memory."
+  },
+  {
+   "id": "07-docker-ch05-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "docker logs بيعرض إيه؟",
+   "options": [
+    {
+     "text": "stdout و stderr بتوع الـ Process الأساسية",
+     "why": "صح."
+    },
+    {
+     "text": "كل ملفات الـ Logs جوه",
+     "why": "لأ، الـ stdout بس."
+    },
+    {
+     "text": "Logs بتاعة Docker نفسه",
+     "why": "لأ."
+    },
+    {
+     "text": "Logs الماك",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان كده الـ apps بتكتب على stdout."
+  },
+  {
+   "id": "07-docker-ch05-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "docker inspect بيرجّع إيه؟",
+   "options": [
+    {
+     "text": "كل تفاصيل الـ Container في JSON",
+     "why": "صح."
+    },
+    {
+     "text": "الـ logs",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ CPU بس",
+     "why": "ده stats."
+    },
+    {
+     "text": "الكود",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "-f لقيمة واحدة."
+  },
+  {
+   "id": "07-docker-ch05-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تحدد ذاكرة Container بـ 512 ميجا:",
+   "template": "docker run ___=512m nginx",
+   "blanks": [
+    [
+     "--memory",
+     "-m"
+    ]
+   ],
+   "hint": "ذاكرة.",
+   "explanation": "و --cpus."
+  },
+  {
+   "id": "07-docker-ch05-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "Container بيقف بعد ثواني ومش عارف ليه.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشوف docker logs بتاعه علشان أعرف الخطأ",
+     "why": "صح."
+    },
+    {
+     "text": "أمسحه وأعيد",
+     "why": "نفس المشكلة."
+    },
+    {
+     "text": "أمسح الـ Image",
+     "why": "لأ."
+    },
+    {
+     "text": "أعيد تشغيل الماك",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أول خطوة: logs."
+  },
+  {
+   "id": "07-docker-ch05-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الديسك بيتملى من Docker.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشوف docker system df وبعدين أمسح الحاجات الواقفة بـ prune بحذر",
+     "why": "صح."
+    },
+    {
+     "text": "أمسح Docker",
+     "why": "مبالغة."
+    },
+    {
+     "text": "أتجاهل",
+     "why": "هيتملى."
+    },
+    {
+     "text": "أمسح ملفاتي",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "docker container prune."
+  },
+  {
+   "id": "07-docker-ch05-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب تشخيص Container مش شغال:",
+   "items": [
+    "docker ps -a (الحالة)",
+    "docker logs (الرسالة)",
+    "docker inspect (التفاصيل)",
+    "docker exec (لو شغال)"
+   ],
+   "explanation": "بالترتيب."
+  },
+  {
+   "id": "07-docker-ch05-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه تطبيقك جوه Container يكتب Logs على stdout مش ملف؟",
+   "options": [
+    {
+     "text": "علشان docker logs والأدوات تقدر تقراها من غير ما تدخل الـ Container",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع",
+     "why": "مش الأساس."
+    },
+    {
+     "text": "الملفات ممنوعة",
+     "why": "لأ."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Best practice."
+  },
+  {
+   "id": "07-docker-ch05-13",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرف البورتات المفتوحة لـ web.",
+   "accepted": [
+    "docker port web"
+   ],
+   "hint": "port.",
+   "explanation": "الربط host:container."
+  }
+ ]
+}

@@ -1,0 +1,232 @@
+{
+ "book": "07-docker",
+ "chapter": 11,
+ "chapterFile": "ch11",
+ "title": "ملف .dockerignore: متبعتش الكراكيب للـ build",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "07-docker-ch11-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": ".dockerignore بيعمل إيه؟",
+   "options": [
+    {
+     "text": "بيستبعد ملفات من الـ Build Context",
+     "why": "صح."
+    },
+    {
+     "text": "بيمسح ملفات",
+     "why": "لأ."
+    },
+    {
+     "text": "بيخبّي Containers",
+     "why": "لأ."
+    },
+    {
+     "text": "بيتجاهل أوامر",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "شبه .gitignore."
+  },
+  {
+   "id": "07-docker-ch11-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ليه node_modules في .dockerignore؟",
+   "options": [
+    {
+     "text": "ضخمة ومبنية لنظامك، والـ Image بتعمل npm ci بنفسها",
+     "why": "صح."
+    },
+    {
+     "text": "مش مهمة",
+     "why": "لأ."
+    },
+    {
+     "text": "Docker مبيقبلهاش",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان Git",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بيصغّر الـ Context."
+  },
+  {
+   "id": "07-docker-ch11-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ليه .env في .dockerignore؟",
+   "options": [
+    {
+     "text": "علشان الأسرار متتنسخش في الـ Image",
+     "why": "صح."
+    },
+    {
+     "text": "علشان الحجم",
+     "why": "صغيرة."
+    },
+    {
+     "text": "علشان Git",
+     "why": "ده .gitignore."
+    },
+    {
+     "text": "مش مهم",
+     "why": "مهم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أمان."
+  },
+  {
+   "id": "07-docker-ch11-04",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل اسم الملف:",
+   "template": ".docker___",
+   "blanks": [
+    [
+     "ignore"
+    ]
+   ],
+   "hint": "تجاهل.",
+   "explanation": "في جذر الـ Context."
+  },
+  {
+   "id": "07-docker-ch11-05",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل سطر يتجاهل فولدر Git:",
+   "template": "___",
+   "blanks": [
+    [
+     ".git"
+    ]
+   ],
+   "hint": "نقطة git.",
+   "explanation": "كبير ومش محتاجه."
+  },
+  {
+   "id": "07-docker-ch11-06",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "docker build بيقول \"Sending build context 1.2GB\".",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ Context فيه كراكيب (node_modules و .git و dist)، فأعمل .dockerignore",
+     "why": "صح."
+    },
+    {
+     "text": "Docker بطيء",
+     "why": "الـ Context كبير."
+    },
+    {
+     "text": "أمسح ملفاتي",
+     "why": "لأ."
+    },
+    {
+     "text": "أعيد التشغيل",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "متبعتش الكراكيب."
+  },
+  {
+   "id": "07-docker-ch11-07",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "COPY . . نسخ .env فيه Secrets جوه Image اترفعت Public.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أقفل الأسرار وأغيّرها فوراً، وأضيف .env لـ .dockerignore وأعيد البناء",
+     "why": "صح."
+    },
+    {
+     "text": "أمسح الـ Image بس",
+     "why": "ممكن حد سحبها."
+    },
+    {
+     "text": "عادي",
+     "why": "تسرّب."
+    },
+    {
+     "text": "أغيّر اسم الملف",
+     "why": "لسه هيتنسخ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أمان."
+  },
+  {
+   "id": "07-docker-ch11-08",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أهم حاجات تتجاهلها:",
+   "items": [
+    "node_modules",
+    ".git",
+    ".env",
+    "dist (ناتج قديم)"
+   ],
+   "explanation": "القايمة."
+  },
+  {
+   "id": "07-docker-ch11-09",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعمل ملف .dockerignore فاضي في الفولدر الحالي.",
+   "accepted": [
+    "touch .dockerignore"
+   ],
+   "hint": "touch.",
+   "explanation": "بعدين اكتب فيه."
+  },
+  {
+   "id": "07-docker-ch11-10",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ضيف node_modules لـ .dockerignore من الـ Terminal.",
+   "accepted": [
+    "echo \"node_modules\" >> .dockerignore",
+    "echo node_modules >> .dockerignore",
+    "echo 'node_modules' >> .dockerignore"
+   ],
+   "hint": "echo و >>.",
+   "explanation": ">> بيزوّد."
+  },
+  {
+   "id": "07-docker-ch11-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه .dockerignore بيسرّع الـ build حتى لو الملفات مش منسوخة بـ COPY؟",
+   "options": [
+    {
+     "text": "الـ Context كله بيتبعت لـ Docker قبل البناء، وكمان بيأثر على الكاش",
+     "why": "صح."
+    },
+    {
+     "text": "مش بيسرّع",
+     "why": "بيسرّع."
+    },
+    {
+     "text": "بيضغط",
+     "why": "لأ."
+    },
+    {
+     "text": "بيشغّل parallel",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Context بيتبعت كله."
+  }
+ ]
+}

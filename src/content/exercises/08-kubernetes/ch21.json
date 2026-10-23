@@ -1,0 +1,264 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 21,
+ "chapterFile": "ch21",
+ "title": "الـ Troubleshooting: إزاي تحل أي مشكلة",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch21-01",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أوامر التشخيص:",
+   "items": [
+    "kubectl get",
+    "kubectl describe (Events)",
+    "kubectl logs (--previous)",
+    "kubectl exec / debug"
+   ],
+   "explanation": "الترتيب."
+  },
+  {
+   "id": "08-kubernetes-ch21-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "Pending معناها غالباً؟",
+   "options": [
+    {
+     "text": "مشكلة Scheduling: مفيش Node مناسبة (موارد أو taints أو PVC)",
+     "why": "صح."
+    },
+    {
+     "text": "الـ image فيها مشكلة",
+     "why": "ده ImagePullBackOff."
+    },
+    {
+     "text": "التطبيق بيقع",
+     "why": "CrashLoopBackOff."
+    },
+    {
+     "text": "الـ Memory",
+     "why": "OOMKilled."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ STATUS بيحدد الطريق."
+  },
+  {
+   "id": "08-kubernetes-ch21-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في port-forward 8080:80، الرقم الأول؟",
+   "options": [
+    {
+     "text": "البورت على جهازك",
+     "why": "صح."
+    },
+    {
+     "text": "بورت الـ Pod",
+     "why": "ده التاني."
+    },
+    {
+     "text": "nodePort",
+     "why": "لأ."
+    },
+    {
+     "text": "مش مهم",
+     "why": "مهم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "زي -p في Docker."
+  },
+  {
+   "id": "08-kubernetes-ch21-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "CreateContainerConfigError ممكن يكون سببه Secret مش موجود؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح."
+    },
+    {
+     "text": "لأ",
+     "why": "ممكن."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أو ConfigMap."
+  },
+  {
+   "id": "08-kubernetes-ch21-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ImagePullBackOff معناها؟",
+   "options": [
+    {
+     "text": "مش قادر يسحب الـ image (اسم أو tag غلط أو Registry خاص)",
+     "why": "صح."
+    },
+    {
+     "text": "التطبيق بيقع",
+     "why": "CrashLoop."
+    },
+    {
+     "text": "مفيش Node",
+     "why": "Pending."
+    },
+    {
+     "text": "Memory",
+     "why": "OOMKilled."
+    }
+   ],
+   "correct": 0,
+   "explanation": "شوف describe."
+  },
+  {
+   "id": "08-kubernetes-ch21-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرض logs الـ Container app في web-7d4b من التشغيل اللي قبل.",
+   "accepted": [
+    "kubectl logs web-7d4b -c app --previous",
+    "kubectl logs web-7d4b -c app -p",
+    "kubectl logs web-7d4b --previous -c app"
+   ],
+   "hint": "--previous و -c.",
+   "explanation": "لما يعمل CrashLoop."
+  },
+  {
+   "id": "08-kubernetes-ch21-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ادخل Container debug بـ busybox جنب الـ Container app في web-7d4b.",
+   "accepted": [
+    "kubectl debug -it web-7d4b --image=busybox --target=app",
+    "kubectl debug web-7d4b -it --image=busybox --target=app"
+   ],
+   "hint": "kubectl debug.",
+   "explanation": "لما الـ image مفيهاش shell."
+  },
+  {
+   "id": "08-kubernetes-ch21-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "CrashLoopBackOff.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشوف logs --previous وال Events علشان أعرف ليه التطبيق بيقع",
+     "why": "صح."
+    },
+    {
+     "text": "أمسح الـ Pod وخلاص",
+     "why": "هيرجع نفس المشكلة."
+    },
+    {
+     "text": "أزوّد replicas",
+     "why": "كلهم هيقعوا."
+    },
+    {
+     "text": "أستنى",
+     "why": "مش هيتصلّح."
+    }
+   ],
+   "correct": 0,
+   "explanation": "BackOff = تشغيل."
+  },
+  {
+   "id": "08-kubernetes-ch21-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "Pod بيقع بـ OOMKilled.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "التطبيق عدّى الـ Memory limit، فأرفع الـ limit أو أصلّح استهلاك الذاكرة",
+     "why": "صح."
+    },
+    {
+     "text": "أرفع CPU",
+     "why": "مش المشكلة."
+    },
+    {
+     "text": "أشيل الـ Probe",
+     "why": "لأ."
+    },
+    {
+     "text": "أغيّر الـ image tag",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Memory."
+  },
+  {
+   "id": "08-kubernetes-ch21-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "الـ Service مش شغالة بس port-forward للـ Pod مباشرة شغال.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "المشكلة في الـ Service (selector أو targetPort)، فأشوف get endpoints",
+     "why": "صح."
+    },
+    {
+     "text": "التطبيق بايظ",
+     "why": "شغال مع port-forward."
+    },
+    {
+     "text": "الـ image",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Node",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "port-forward بيعزل المشكلة."
+  },
+  {
+   "id": "08-kubernetes-ch21-11",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تشوف آخر حالة للـ Container:",
+   "template": "kubectl get pod web-7d4b -o jsonpath='{.status.containerStatuses[0].___}'",
+   "blanks": [
+    [
+     "lastState"
+    ]
+   ],
+   "hint": "آخر حالة.",
+   "explanation": "فيها سبب الخروج."
+  },
+  {
+   "id": "08-kubernetes-ch21-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه --previous مهم مع CrashLoop؟",
+   "options": [
+    {
+     "text": "الـ Container الحالي لسه قايم جديد، والسبب في logs التشغيل اللي وقع",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع",
+     "why": "لأ."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    },
+    {
+     "text": "بيعيد التشغيل",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "logs اللي فات."
+  }
+ ]
+}

@@ -1,0 +1,230 @@
+{
+ "book": "06-frontend",
+ "chapter": 11,
+ "chapterFile": "ch11",
+ "title": "ليه الـ Frameworks اتعملت أصلاً؟ مشكلة مزامنة الـ DOM",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "06-frontend-ch11-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "المشكلة اللي الـ Frameworks حلّتها؟",
+   "options": [
+    {
+     "text": "مزامنة نفس البيانات في كذا مكان في الـ DOM",
+     "why": "صح."
+    },
+    {
+     "text": "CSS",
+     "why": "لأ."
+    },
+    {
+     "text": "السيرفر",
+     "why": "لأ."
+    },
+    {
+     "text": "الصور",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الكود الـ Imperative."
+  },
+  {
+   "id": "06-frontend-ch11-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "innerHTML بيحافظ على الـ Focus لو الشكل متغيرش؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيعيد بناء العناصر."
+    },
+    {
+     "text": "لأ، بيضيّع الـ Focus والكتابة",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "5 حروف وصل منهم 1."
+  },
+  {
+   "id": "06-frontend-ch11-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الإجمالي في السلة مثال على؟",
+   "options": [
+    {
+     "text": "Derived state",
+     "why": "صح، بيتحسب."
+    },
+    {
+     "text": "State",
+     "why": "بيتحسب من العناصر."
+    },
+    {
+     "text": "Props",
+     "why": "لأ."
+    },
+    {
+     "text": "DOM",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "متخزنهوش."
+  },
+  {
+   "id": "06-frontend-ch11-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "كل موقع محترم لازم Framework؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مش لازم."
+    },
+    {
+     "text": "لأ، صفحة بسيطة ممكن HTML و CSS بس",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "إمتى متحتاجش Framework."
+  },
+  {
+   "id": "06-frontend-ch11-05",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل الفكرة اللي غيّرت كل حاجة:",
+   "template": "UI = f(___)",
+   "blanks": [
+    [
+     "state"
+    ]
+   ],
+   "hint": "الحالة.",
+   "explanation": "توصف الشكل."
+  },
+  {
+   "id": "06-frontend-ch11-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: البيانات اللي بتنزل لـ Component من الأب اسمها:",
+   "template": "___",
+   "blanks": [
+    [
+     "props",
+     "Props"
+    ]
+   ],
+   "hint": "properties.",
+   "explanation": "Components قطع ليها اسم."
+  },
+  {
+   "id": "06-frontend-ch11-07",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب: تغيير في state بيوصل للشاشة إزاي:",
+   "items": [
+    "البيانات (state) تتغير",
+    "الـ Framework يحسب الشكل الجديد",
+    "يقارن بالقديم",
+    "يغيّر الفرق بس في الـ DOM"
+   ],
+   "explanation": "Declarative."
+  },
+  {
+   "id": "06-frontend-ch11-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "كود jQuery بيحدّث العداد في الهيدر ونسي يحدّثه في الـ Sidebar.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "دي مشكلة الـ Imperative، والحل state واحد والـ UI يتحسب منه",
+     "why": "صح."
+    },
+    {
+     "text": "أزوّد سطر",
+     "why": "هيتكرر."
+    },
+    {
+     "text": "أشيل الـ Sidebar",
+     "why": "لأ."
+    },
+    {
+     "text": "أستخدم innerHTML",
+     "why": "مشاكل تانية."
+    }
+   ],
+   "correct": 0,
+   "explanation": "UI = f(state)."
+  },
+  {
+   "id": "06-frontend-ch11-09",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه innerHTML مع بيانات المستخدم خطر؟",
+   "options": [
+    {
+     "text": "XSS: لو فيه <script> أو onerror هيتنفّذ",
+     "why": "صح."
+    },
+    {
+     "text": "بطيء بس",
+     "why": "وخطر."
+    },
+    {
+     "text": "مش بيشتغل",
+     "why": "بيشتغل."
+    },
+    {
+     "text": "بيمسح الـ CSS",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الحل الساذج."
+  },
+  {
+   "id": "06-frontend-ch11-10",
+   "type": "mcq",
+   "level": "medium",
+   "question": "تلات مدارس تحديث الـ DOM؟",
+   "options": [
+    {
+     "text": "Virtual DOM و Signals و Compiler",
+     "why": "صح."
+    },
+    {
+     "text": "HTML و CSS و JS",
+     "why": "لأ."
+    },
+    {
+     "text": "SSR و CSR و SSG",
+     "why": "ده مكان البناء."
+    },
+    {
+     "text": "npm و pnpm و yarn",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "React و Vue/Angular و Svelte."
+  },
+  {
+   "id": "06-frontend-ch11-11",
+   "type": "command",
+   "level": "medium",
+   "prompt": "(JS) احسب total من items (كل عنصر فيه price) من غير ما تخزّنه.",
+   "accepted": [
+    "const total = items.reduce((s, i) => s + i.price, 0)",
+    "const total = items.reduce((sum, item) => sum + item.price, 0)"
+   ],
+   "hint": "reduce.",
+   "explanation": "Derived state."
+  }
+ ]
+}

@@ -1,0 +1,214 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 20,
+ "chapterFile": "ch20",
+ "title": "الـ HPA: الـ Scaling الأوتوماتيك",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch20-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ HPA بيعمل إيه؟",
+   "options": [
+    {
+     "text": "يغيّر عدد الـ Pods حسب الاستهلاك بين min و max",
+     "why": "صح."
+    },
+    {
+     "text": "يزوّد Nodes",
+     "why": "Cluster Autoscaler."
+    },
+    {
+     "text": "يكبّر الـ Pod",
+     "why": "ده VPA."
+    },
+    {
+     "text": "يعمل Backup",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Horizontal."
+  },
+  {
+   "id": "08-kubernetes-ch20-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ HPA بيحسب النسبة من الـ limits؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "من الـ requests."
+    },
+    {
+     "text": "لأ، من الـ requests",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "علشان كده requests ضروري."
+  },
+  {
+   "id": "08-kubernetes-ch20-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "--rm في kubectl run بتعمل إيه؟",
+   "options": [
+    {
+     "text": "تمسح الـ Pod بعد ما تخرج",
+     "why": "صح."
+    },
+    {
+     "text": "بتمسح الـ Deployment",
+     "why": "لأ."
+    },
+    {
+     "text": "read-only",
+     "why": "لأ."
+    },
+    {
+     "text": "بتعيد",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مفيد للاختبار."
+  },
+  {
+   "id": "08-kubernetes-ch20-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ HPA بيزوّد عدد الـ Nodes؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "Pods بس."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Nodes محتاج Cluster Autoscaler."
+  },
+  {
+   "id": "08-kubernetes-ch20-05",
+   "type": "mcq",
+   "level": "think",
+   "question": "4 Pods بتستهلك 90% والهدف 60%. الـ HPA هيوصل لكام؟",
+   "options": [
+    {
+     "text": "6",
+     "why": "صح، ceil(4 × 90 / 60) = 6."
+    },
+    {
+     "text": "4",
+     "why": "هيزوّد."
+    },
+    {
+     "text": "5",
+     "why": "ceil(6) = 6."
+    },
+    {
+     "text": "8",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "المعادلة."
+  },
+  {
+   "id": "08-kubernetes-ch20-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل HPA لـ deployment web بهدف 50% CPU ومن 2 لـ 10.",
+   "accepted": [
+    "kubectl autoscale deployment web --cpu-percent=50 --min=2 --max=10",
+    "kubectl autoscale deploy web --cpu-percent=50 --min=2 --max=10",
+    "kubectl autoscale deployment web --min=2 --max=10 --cpu-percent=50"
+   ],
+   "hint": "autoscale.",
+   "explanation": "أو YAML autoscaling/v2."
+  },
+  {
+   "id": "08-kubernetes-ch20-07",
+   "type": "command",
+   "level": "easy",
+   "prompt": "تابع الـ HPA لحظياً.",
+   "accepted": [
+    "kubectl get hpa -w",
+    "kubectl get hpa --watch"
+   ],
+   "hint": "-w.",
+   "explanation": "TARGETS و REPLICAS."
+  },
+  {
+   "id": "08-kubernetes-ch20-08",
+   "type": "command",
+   "level": "easy",
+   "prompt": "فعّل metrics-server على minikube.",
+   "accepted": [
+    "minikube addons enable metrics-server"
+   ],
+   "hint": "addons enable.",
+   "explanation": "الـ HPA محتاجه."
+  },
+  {
+   "id": "08-kubernetes-ch20-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الـ apiVersion:",
+   "template": "apiVersion: autoscaling/___",
+   "blanks": [
+    [
+     "v2"
+    ]
+   ],
+   "hint": "النسخة.",
+   "explanation": "فيها metrics متعددة."
+  },
+  {
+   "id": "08-kubernetes-ch20-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ HPA بيقول TARGETS <unknown>/50%.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "مفيش metrics-server أو الـ Pods ملهاش CPU requests",
+     "why": "صح."
+    },
+    {
+     "text": "الـ HPA بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "الحمل صفر",
+     "why": "كانت هتبقى 0%."
+    },
+    {
+     "text": "أزوّد max",
+     "why": "مش المشكلة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الشرطين."
+  },
+  {
+   "id": "08-kubernetes-ch20-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب اختبار HPA:",
+   "items": [
+    "metrics-server شغال",
+    "Deployment بـ CPU requests",
+    "اعمل HPA",
+    "اعمل حمل بـ Pod busybox",
+    "تابع get hpa -w"
+   ],
+   "explanation": "بضغط حقيقي."
+  }
+ ]
+}

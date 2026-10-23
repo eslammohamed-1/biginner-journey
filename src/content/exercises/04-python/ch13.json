@@ -1,0 +1,238 @@
+{
+ "book": "04-python",
+ "chapter": 13,
+ "chapterFile": "ch13",
+ "title": "print و logging و argparse: الاسكريبت بيتكلم وبياخد أوامر",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch13-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "ليه logging أحسن من print في اسكريبت طويل؟",
+   "options": [
+    {
+     "text": "بيدّي وقت ودرجة لكل رسالة ويقدر يكتب في ملف",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع",
+     "why": "مش السبب."
+    },
+    {
+     "text": "print هتتشال",
+     "why": "لأ."
+    },
+    {
+     "text": "logging بيلوّن",
+     "why": "مش الفكرة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مستويات DEBUG و INFO و WARNING و ERROR."
+  },
+  {
+   "id": "04-python-ch13-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "مع level=logging.WARNING رسايل log.info هتظهر؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "INFO أقل من WARNING."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "المستوى بيحدد أقل حاجة تظهر."
+  },
+  {
+   "id": "04-python-ch13-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`--dry-run` بيتقري في الكود إزاي؟",
+   "options": [
+    {
+     "text": "args.dry_run",
+     "why": "صح، الشرطة بتبقى _."
+    },
+    {
+     "text": "args.dry-run",
+     "why": "ده طرح."
+    },
+    {
+     "text": "args[\"dry-run\"]",
+     "why": "Namespace مش dict."
+    },
+    {
+     "text": "args.dryrun",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "argparse بيغيّر - لـ _."
+  },
+  {
+   "id": "04-python-ch13-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "من غير type=int، args.limit هيبقى إيه؟",
+   "options": [
+    {
+     "text": "نص",
+     "why": "صح."
+    },
+    {
+     "text": "رقم",
+     "why": "لأ."
+    },
+    {
+     "text": "None دايماً",
+     "why": "لو مبعتهوش."
+    },
+    {
+     "text": "خطأ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "type=int أو type=Path."
+  },
+  {
+   "id": "04-python-ch13-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "شوف تعليمات اسكريبت run.py.",
+   "accepted": [
+    "python3 run.py --help",
+    "python3 run.py -h",
+    "python run.py --help"
+   ],
+   "hint": "--help.",
+   "explanation": "argparse بيعملها لوحده."
+  },
+  {
+   "id": "04-python-ch13-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ضيف Flag اسمه --dry-run (true/false) لـ parser.",
+   "accepted": [
+    "parser.add_argument(\"--dry-run\", action=\"store_true\")",
+    "parser.add_argument('--dry-run', action='store_true')"
+   ],
+   "hint": "action=store_true.",
+   "explanation": "من غير قيمة."
+  },
+  {
+   "id": "04-python-ch13-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شغّل run.py على فولدر notes بس على أول 3 ملفات ومن غير نداءات حقيقية (لو فيه --limit و --dry-run).",
+   "accepted": [
+    "python3 run.py notes --limit 3 --dry-run",
+    "python3 run.py notes --dry-run --limit 3",
+    "python3 run.py --dry-run --limit 3 notes"
+   ],
+   "hint": "Positional و --limit و --dry-run.",
+   "explanation": "النمط الذهبي قبل أي تشغيل مكلف."
+  },
+  {
+   "id": "04-python-ch13-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تشوف Requests الـ OpenAI SDK من جوه:",
+   "template": "___=info python3 run.py",
+   "blanks": [
+    [
+     "OPENAI_LOG"
+    ]
+   ],
+   "hint": "متغير بيئة.",
+   "explanation": "بيوريك الـ Retries."
+  },
+  {
+   "id": "04-python-ch13-09",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "في سطر usage، الحاجة اللي بين [ ] معناها:",
+   "template": "[ ] = ___",
+   "blanks": [
+    [
+     "اختياري",
+     "optional"
+    ]
+   ],
+   "hint": "مش إجباري.",
+   "explanation": "والكلمات الكابيتال = قيمة."
+  },
+  {
+   "id": "04-python-ch13-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الاسكريبت بيعالج 500 ملف بفلوس وعايز تتأكد قبل التشغيل.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشغّله بـ --dry-run الأول وبعدين --limit 3 وأراجع النتايج",
+     "why": "صح."
+    },
+    {
+     "text": "أشغّله على الكل",
+     "why": "مخاطرة."
+    },
+    {
+     "text": "أشيل logging",
+     "why": "لأ."
+    },
+    {
+     "text": "أقلل الملفات بالمسح",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "احسب قبل ما تدفع."
+  },
+  {
+   "id": "04-python-ch13-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب مستويات logging من الأقل للأعلى:",
+   "items": [
+    "DEBUG",
+    "INFO",
+    "WARNING",
+    "ERROR"
+   ],
+   "explanation": "DEBUG للتفاصيل و ERROR للفشل."
+  },
+  {
+   "id": "04-python-ch13-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه متسجّلش الـ Headers كاملة في اللوج؟",
+   "options": [
+    {
+     "text": "فيها الـ API key، واللوج بيتشارك ويتحفظ",
+     "why": "صح."
+    },
+    {
+     "text": "علشان طويلة",
+     "why": "مش السبب الأساسي."
+    },
+    {
+     "text": "ممنوع تقنياً",
+     "why": "مش ممنوع."
+    },
+    {
+     "text": "بتبطّأ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "متسجّلش Keys."
+  }
+ ]
+}

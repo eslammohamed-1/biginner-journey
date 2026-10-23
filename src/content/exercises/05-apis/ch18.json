@@ -1,0 +1,247 @@
+{
+ "book": "05-apis",
+ "chapter": 18,
+ "chapterFile": "ch18",
+ "title": "الفلترة والترتيب والـ Pagination",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "05-apis-ch18-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "ليه Pagination من أول يوم؟",
+   "options": [
+    {
+     "text": "البيانات بتكبر، ورد ضخم بيبطّأ ويوقع، وإضافتها بعدين بتكسر الـ Clients",
+     "why": "صح."
+    },
+    {
+     "text": "علشان شكل",
+     "why": "لأ."
+    },
+    {
+     "text": "إجباري في HTTP",
+     "why": "لأ."
+    },
+    {
+     "text": "للبيانات الصغيرة بس",
+     "why": "العكس."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بـ Default و Maximum."
+  },
+  {
+   "id": "05-apis-ch18-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`sort=-title` معناها؟",
+   "options": [
+    {
+     "text": "ترتيب تنازلي بالعنوان",
+     "why": "صح."
+    },
+    {
+     "text": "استبعاد title",
+     "why": "لأ."
+    },
+    {
+     "text": "تصاعدي",
+     "why": "ده من غير -."
+    },
+    {
+     "text": "خطأ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "sort=-createdAt,title."
+  },
+  {
+   "id": "05-apis-ch18-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Client يفك الـ Cursor ويعدّل فيه؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "معتم."
+    },
+    {
+     "text": "لأ، يرجّعه زي ما هو",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Opaque."
+  },
+  {
+   "id": "05-apis-ch18-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Cursor بيخليك تروح لصفحة 37 على طول؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لأ."
+    },
+    {
+     "text": "لأ، بيمشي \"بعد العنصر ده\" بس",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ده عيبه."
+  },
+  {
+   "id": "05-apis-ch18-05",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "في Offset pagination، المستخدم شاف نفس العنصر في صفحة 1 وصفحة 2.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "اتضاف عنصر جديد في الأول فالعناصر اتزحلقت، والحل Cursor",
+     "why": "صح."
+    },
+    {
+     "text": "Bug في الـ Database",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Client غلط",
+     "why": "لأ."
+    },
+    {
+     "text": "عادي ومفيش حل",
+     "why": "الـ Cursor."
+    }
+   ],
+   "correct": 0,
+   "explanation": "شفناها بعينينا."
+  },
+  {
+   "id": "05-apis-ch18-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "هات أحدث 3 مقالات منشورة بـ id و createdAt بس.",
+   "accepted": [
+    "?status=published&sort=-createdAt&limit=3&fields=id,createdAt"
+   ],
+   "patterns": [
+    "status=published.*sort=-createdAt.*limit=3.*fields=id,createdAt|^\\?(?=.*status=published)(?=.*sort=-createdAt)(?=.*limit=3)(?=.*fields=id,createdAt)"
+   ],
+   "hint": "status و sort و limit و fields.",
+   "explanation": "كل حاجة في الـ Query."
+  },
+  {
+   "id": "05-apis-ch18-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل في Link header:",
+   "template": "<https://api.github.com/...&page=3>; rel=\"___\"",
+   "blanks": [
+    [
+     "next"
+    ]
+   ],
+   "hint": "اللي بعدها.",
+   "explanation": "و last و prev."
+  },
+  {
+   "id": "05-apis-ch18-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الـ RFC بتاع Link header:",
+   "template": "RFC ___",
+   "blanks": [
+    [
+     "8288"
+    ]
+   ],
+   "hint": "أربع أرقام.",
+   "explanation": "Web Linking."
+  },
+  {
+   "id": "05-apis-ch18-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Client بيمشي ورا Link:",
+   "items": [
+    "يطلب أول صفحة",
+    "يقرا Link header",
+    "لو فيه rel=\"next\" يطلبه",
+    "يقف لما مفيش next"
+   ],
+   "explanation": "متركبش URLs."
+  },
+  {
+   "id": "05-apis-ch18-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه متسمحش بالترتيب والفلترة على أي Field؟",
+   "options": [
+    {
+     "text": "Fields من غير Index بتبطّأ الـ Database جداً",
+     "why": "صح."
+    },
+    {
+     "text": "علشان الخصوصية بس",
+     "why": "مش السبب الأساسي."
+    },
+    {
+     "text": "ممنوع في REST",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Client مش محتاج",
+     "why": "ممكن يحتاج."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خطر."
+  },
+  {
+   "id": "05-apis-ch18-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ميزة Offset/Limit؟",
+   "options": [
+    {
+     "text": "بسيط وتقدر تنط لأي صفحة",
+     "why": "صح."
+    },
+    {
+     "text": "ثابت مع التغيير",
+     "why": "لأ."
+    },
+    {
+     "text": "أسرع مع البيانات الكبيرة",
+     "why": "بيبطأ."
+    },
+    {
+     "text": "معتم",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ومشاكله التكرار والبطء."
+  },
+  {
+   "id": "05-apis-ch18-12",
+   "type": "command",
+   "level": "medium",
+   "prompt": "(curl) هات أول صفحة Issues من GitHub بحجم 2 وشوف الـ Headers.",
+   "accepted": [
+    "curl -i \"https://api.github.com/repos/OWNER/REPO/issues?per_page=2\"",
+    "curl -sI \"https://api.github.com/repos/OWNER/REPO/issues?per_page=2\"",
+    "curl -D - \"https://api.github.com/repos/OWNER/REPO/issues?per_page=2\""
+   ],
+   "patterns": [
+    "^curl\\s+.*(-i|-I|-sI|-si|-D\\s*-).*per_page=2"
+   ],
+   "hint": "-i و per_page.",
+   "explanation": "شوف link:."
+  }
+ ]
+}

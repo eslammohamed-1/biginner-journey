@@ -1,0 +1,224 @@
+{
+ "book": "06-frontend",
+ "chapter": 14,
+ "chapterFile": "ch14",
+ "title": "package.json مفتاح مفتاح",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "06-frontend-ch14-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "أول حاجة تقراها في package.json مشروع جديد؟",
+   "options": [
+    {
+     "text": "الـ scripts",
+     "why": "صح، بتقولك تشغّله إزاي."
+    },
+    {
+     "text": "version",
+     "why": "أقل أهمية."
+    },
+    {
+     "text": "license",
+     "why": "لأ."
+    },
+    {
+     "text": "author",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بطاقة الهوية."
+  },
+  {
+   "id": "06-frontend-ch14-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "مع \"type\": \"commonjs\"، import في ملف .js هيشتغل؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "هيطلع Error."
+    },
+    {
+     "text": "لأ، محتاج \"type\": \"module\" أو .mjs",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ليه import بيضرب."
+  },
+  {
+   "id": "06-frontend-ch14-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`npm run build --minify` بيبعت --minify للأمر؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "npm بياخدها لنفسه."
+    },
+    {
+     "text": "لأ، لازم npm run build -- --minify",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ --."
+  },
+  {
+   "id": "06-frontend-ch14-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "react-dom بيعلن react كـ؟",
+   "options": [
+    {
+     "text": "peerDependency",
+     "why": "صح، \"سطّبه انت\"."
+    },
+    {
+     "text": "dependency",
+     "why": "لأ."
+    },
+    {
+     "text": "devDependency",
+     "why": "لأ."
+    },
+    {
+     "text": "optional",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان نسخة واحدة من React."
+  },
+  {
+   "id": "06-frontend-ch14-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شغّل build وابعت --minify للأمر.",
+   "accepted": [
+    "npm run build -- --minify"
+   ],
+   "hint": "--.",
+   "explanation": "فاصل."
+  },
+  {
+   "id": "06-frontend-ch14-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرف قيمة name من package.json من الـ Terminal.",
+   "accepted": [
+    "npm pkg get name"
+   ],
+   "hint": "npm pkg get.",
+   "explanation": "وset للتعديل."
+  },
+  {
+   "id": "06-frontend-ch14-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "خلي المشروع ESM من الـ Terminal.",
+   "accepted": [
+    "npm pkg set type=module",
+    "npm pkg set type=\"module\""
+   ],
+   "hint": "npm pkg set.",
+   "explanation": "من غير ما تفتح الملف."
+  },
+  {
+   "id": "06-frontend-ch14-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان npm ميرفعش التطبيق للـ Registry بالغلط:",
+   "template": "\"private\": ___",
+   "blanks": [
+    [
+     "true"
+    ]
+   ],
+   "hint": "صح.",
+   "explanation": "لأي تطبيق."
+  },
+  {
+   "id": "06-frontend-ch14-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل اسم الـ Script اللي بيشتغل قبل build لوحده:",
+   "template": "\"___build\": \"...\"",
+   "blanks": [
+    [
+     "pre"
+    ]
+   ],
+   "hint": "قبل.",
+   "explanation": "وpost بعد."
+  },
+  {
+   "id": "06-frontend-ch14-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "Dependency جوه الشجرة فيه ثغرة والمكتبة الأم لسه محدّثتش.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أستخدم overrides أجبر النسخة المصلّحة",
+     "why": "صح."
+    },
+    {
+     "text": "أعدّل node_modules بإيدي",
+     "why": "هيتمسح."
+    },
+    {
+     "text": "أستنى للأبد",
+     "why": "لأ."
+    },
+    {
+     "text": "أمسح المكتبة",
+     "why": "ممكن مش عملي."
+    }
+   ],
+   "correct": 0,
+   "explanation": "overrides."
+  },
+  {
+   "id": "06-frontend-ch14-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أنواع dependencies (من الأكثر للأقل إلزاماً):",
+   "items": [
+    "dependencies",
+    "peerDependencies",
+    "optionalDependencies"
+   ],
+   "explanation": "و devDependencies للأدوات."
+  },
+  {
+   "id": "06-frontend-ch14-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "npm start و npm test بيحتاجوا run؟",
+   "options": [
+    {
+     "text": "لأ، ليهم اختصار",
+     "why": "صح."
+    },
+    {
+     "text": "أيوه دايماً",
+     "why": "الاتنين دول لأ."
+    },
+    {
+     "text": "مش موجودين",
+     "why": "موجودين."
+    },
+    {
+     "text": "start بس",
+     "why": "الاتنين."
+    }
+   ],
+   "correct": 0,
+   "explanation": "باقي الـ scripts بـ run."
+  }
+ ]
+}

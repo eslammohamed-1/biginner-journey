@@ -1,0 +1,209 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 19,
+ "chapterFile": "ch19",
+ "title": "الـ RBAC: مين يقدر يعمل إيه؟",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch19-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "Role ضد RoleBinding؟",
+   "options": [
+    {
+     "text": "الـ Role إيه المسموح، والـ RoleBinding لمين",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "العكس",
+     "why": "لأ."
+    },
+    {
+     "text": "Role للـ Nodes",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "جوه Namespace."
+  },
+  {
+   "id": "08-kubernetes-ch19-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ RBAC فيه قواعد \"ممنوع\" صريحة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "كله سماح."
+    },
+    {
+     "text": "لأ، أي حاجة مش مسموحة ممنوعة",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Additive."
+  },
+  {
+   "id": "08-kubernetes-ch19-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ينفع تربط ClusterRole بـ RoleBinding في Namespace واحدة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح، الصلاحيات تطبق على الـ Namespace دي بس."
+    },
+    {
+     "text": "لأ",
+     "why": "ينفع."
+    }
+   ],
+   "correct": 0,
+   "explanation": "زي view."
+  },
+  {
+   "id": "08-kubernetes-ch19-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "فيه Object اسمه User بتعمله بـ kubectl create user؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مش موجود."
+    },
+    {
+     "text": "لأ، المستخدمين من برّه (شهادات أو OIDC)",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ServiceAccount للـ Pods."
+  },
+  {
+   "id": "08-kubernetes-ch19-05",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل قاعدة Role:",
+   "template": "rules: - apiGroups: [\"\"] resources: [\"pods\"] ___: [\"get\", \"list\"]",
+   "blanks": [
+    [
+     "verbs"
+    ]
+   ],
+   "hint": "أفعال.",
+   "explanation": "apiGroups + resources + verbs."
+  },
+  {
+   "id": "08-kubernetes-ch19-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان Pod تستخدم هوية:",
+   "template": "spec: ___: app-sa",
+   "blanks": [
+    [
+     "serviceAccountName"
+    ]
+   ],
+   "hint": "service...Name.",
+   "explanation": "هوية للـ Pods."
+  },
+  {
+   "id": "08-kubernetes-ch19-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اربط ClusterRole view بالمستخدم ahmed في dev.",
+   "accepted": [
+    "kubectl create rolebinding dev-view --clusterrole=view --user=ahmed -n dev",
+    "kubectl create rolebinding dev-view --clusterrole=view --user=ahmed --namespace=dev"
+   ],
+   "hint": "create rolebinding.",
+   "explanation": "قراية بس."
+  },
+  {
+   "id": "08-kubernetes-ch19-08",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اتأكد هل ahmed يقدر يمسح pods في dev.",
+   "accepted": [
+    "kubectl auth can-i delete pods -n dev --as=ahmed",
+    "kubectl auth can-i delete pods --namespace=dev --as=ahmed",
+    "kubectl auth can-i delete pods --as=ahmed -n dev"
+   ],
+   "hint": "auth can-i --as.",
+   "explanation": "yes أو no."
+  },
+  {
+   "id": "08-kubernetes-ch19-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "Pod تطبيقك بيحاول يعمل list pods وبياخد Forbidden.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أعمل ServiceAccount و Role بـ get/list على pods و RoleBinding، وأحط serviceAccountName",
+     "why": "صح."
+    },
+    {
+     "text": "أدّيه cluster-admin",
+     "why": "صلاحيات زيادة خطيرة."
+    },
+    {
+     "text": "أشيل RBAC",
+     "why": "لأ."
+    },
+    {
+     "text": "أعيد التشغيل",
+     "why": "هيفضل Forbidden."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Least privilege."
+  },
+  {
+   "id": "08-kubernetes-ch19-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب إعطاء صلاحية لـ Pod:",
+   "items": [
+    "ServiceAccount",
+    "Role (القواعد)",
+    "RoleBinding (يربطهم)",
+    "serviceAccountName في الـ Pod",
+    "اختبر بـ auth can-i"
+   ],
+   "explanation": "الخطوات."
+  },
+  {
+   "id": "08-kubernetes-ch19-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "إمتى ClusterRole بدل Role؟",
+   "options": [
+    {
+     "text": "للـ Cluster كله أو لـ Objects مش تبع Namespace زي Nodes",
+     "why": "صح."
+    },
+    {
+     "text": "دايماً",
+     "why": "صلاحيات زيادة."
+    },
+    {
+     "text": "أبداً",
+     "why": "محتاجها أحياناً."
+    },
+    {
+     "text": "للـ Pods بس",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Cluster-scoped."
+  }
+ ]
+}

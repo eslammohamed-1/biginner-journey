@@ -1,0 +1,236 @@
+{
+ "book": "06-frontend",
+ "chapter": 19,
+ "chapterFile": "ch19",
+ "title": "متغيرات البيئة و .env: الإعدادات والأسرار",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "06-frontend-ch19-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "VITE_SECRET في .env.local آمن لأنه مش على Git؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "أي VITE_ بيتكتب في الـ Bundle."
+    },
+    {
+     "text": "لأ، أي VITE_ عام",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الأسرار على السيرفر."
+  },
+  {
+   "id": "06-frontend-ch19-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "import.meta.env.VITE_PORT=3000 قيمته رقم؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "كله نصوص."
+    },
+    {
+     "text": "لأ، \"3000\" String",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Number()."
+  },
+  {
+   "id": "06-frontend-ch19-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`npm run build --mode staging` بيحمّل .env.staging؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "--mode راح لـ npm."
+    },
+    {
+     "text": "لأ، لازم npm run build -- --mode staging",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ --."
+  },
+  {
+   "id": "06-frontend-ch19-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اقرا VITE_API_URL في كود Vite.",
+   "accepted": [
+    "import.meta.env.VITE_API_URL"
+   ],
+   "hint": "import.meta.env.",
+   "explanation": "مش process.env."
+  },
+  {
+   "id": "06-frontend-ch19-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شغّل Node بملف .env.",
+   "accepted": [
+    "node --env-file=.env server.js",
+    "node --env-file .env server.js"
+   ],
+   "hint": "--env-file.",
+   "explanation": "process.env."
+  },
+  {
+   "id": "06-frontend-ch19-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل لاستخدام متغير في index.html:",
+   "template": "<title>___VITE_APP_TITLE___</title>",
+   "blanks": [
+    [
+     "%"
+    ],
+    [
+     "%"
+    ]
+   ],
+   "hint": "علامة نسبة.",
+   "explanation": "%VITE_X%."
+  },
+  {
+   "id": "06-frontend-ch19-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: المتغير اللي بيقولك انت في dev ولا لأ:",
+   "template": "if (import.meta.env.___) { ... }",
+   "blanks": [
+    [
+     "DEV"
+    ]
+   ],
+   "hint": "كابيتال.",
+   "explanation": "و PROD و MODE."
+  },
+  {
+   "id": "06-frontend-ch19-08",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أولوية ملفات .env (الأضعف للأقوى):",
+   "items": [
+    ".env",
+    ".env.local",
+    ".env.[mode]",
+    ".env.[mode].local"
+   ],
+   "explanation": "والـ Shell فوق الكل."
+  },
+  {
+   "id": "06-frontend-ch19-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "غيّرت قيمة في .env والتطبيق لسه بيقرا القديم.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أعيد تشغيل الـ Dev server",
+     "why": "صح."
+    },
+    {
+     "text": "أمسح node_modules",
+     "why": "لأ."
+    },
+    {
+     "text": "Cache المتصفح",
+     "why": "مش السبب."
+    },
+    {
+     "text": "أغيّر الاسم",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "لازم Restart."
+  },
+  {
+   "id": "06-frontend-ch19-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "محتاج تكلم OpenAI من تطبيق React.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أعمل سيرفر صغير (Node) يحتفظ بالـ Key في process.env، والـ Frontend يكلم السيرفر",
+     "why": "صح."
+    },
+    {
+     "text": "VITE_OPENAI_KEY",
+     "why": "مكشوف."
+    },
+    {
+     "text": "أشفّره في JS",
+     "why": "مكشوف."
+    },
+    {
+     "text": "أحطه في localStorage",
+     "why": "مكشوف."
+    }
+   ],
+   "correct": 0,
+   "explanation": "القاعدة الذهبية."
+  },
+  {
+   "id": "06-frontend-ch19-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "القيم بتتحط في الكود إمتى؟",
+   "options": [
+    {
+     "text": "وقت البناء (Build)",
+     "why": "صح، فتغيير بعدها محتاج Build جديد."
+    },
+    {
+     "text": "وقت التشغيل في المتصفح",
+     "why": "لأ."
+    },
+    {
+     "text": "كل Request",
+     "why": "لأ."
+    },
+    {
+     "text": "مش بتتحط",
+     "why": "بتتحط."
+    }
+   ],
+   "correct": 0,
+   "explanation": "نصوص."
+  },
+  {
+   "id": "06-frontend-ch19-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "متغير اسمه API_URL من غير VITE_ في .env، Vite بيعمل إيه؟",
+   "options": [
+    {
+     "text": "مش بيعرّضه للكود",
+     "why": "صح، حماية."
+    },
+    {
+     "text": "بيعرّضه",
+     "why": "لأ."
+    },
+    {
+     "text": "Error",
+     "why": "لأ."
+    },
+    {
+     "text": "بيمسحه",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "البادئة إجبارية."
+  }
+ ]
+}

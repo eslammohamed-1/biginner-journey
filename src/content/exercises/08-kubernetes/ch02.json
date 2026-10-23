@@ -1,0 +1,244 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 2,
+ "chapterFile": "ch02",
+ "title": "الـ Structure بتاع Kubernetes",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch02-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "مكونات الـ Cluster الكبيرة؟",
+   "options": [
+    {
+     "text": "Control Plane (الإدارة) و Worker Nodes (العمال)",
+     "why": "صح."
+    },
+    {
+     "text": "Docker و Git",
+     "why": "لأ."
+    },
+    {
+     "text": "Frontend و Backend",
+     "why": "لأ."
+    },
+    {
+     "text": "Pods بس",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "التقسيم."
+  },
+  {
+   "id": "08-kubernetes-ch02-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ kubelet موجود فين؟",
+   "options": [
+    {
+     "text": "على كل Worker Node",
+     "why": "صح."
+    },
+    {
+     "text": "على الـ Control Plane بس",
+     "why": "لأ."
+    },
+    {
+     "text": "جوه كل Pod",
+     "why": "لأ."
+    },
+    {
+     "text": "على جهازك",
+     "why": "ده kubectl."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بيشغّل الـ Pods على الـ Node."
+  },
+  {
+   "id": "08-kubernetes-ch02-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Kubernetes بيشغّل الـ Containers بنفسه من غير Runtime؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "محتاج Runtime."
+    },
+    {
+     "text": "لأ، محتاج Container Runtime زي containerd",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ kubelet بيكلم الـ Runtime."
+  },
+  {
+   "id": "08-kubernetes-ch02-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Scheduler هو اللي بيعمل restart للـ Pods اللي وقعت؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ده شغل الـ kubelet والـ Controllers."
+    },
+    {
+     "text": "لأ، الـ Scheduler بيختار الـ Node بس",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "توزيع الشغل."
+  },
+  {
+   "id": "08-kubernetes-ch02-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "etcd دوره إيه؟",
+   "options": [
+    {
+     "text": "ذاكرة الـ Cluster: بيخزّن الحالة كلها",
+     "why": "صح."
+    },
+    {
+     "text": "بيستقبل الطلبات",
+     "why": "API Server."
+    },
+    {
+     "text": "بيوزّع الـ Pods",
+     "why": "Scheduler."
+    },
+    {
+     "text": "بيوجّه الشبكة",
+     "why": "kube-proxy."
+    }
+   ],
+   "correct": 0,
+   "explanation": "key-value store."
+  },
+  {
+   "id": "08-kubernetes-ch02-06",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب اللي بيحصل لما تعمل kubectl apply لـ Deployment:",
+   "items": [
+    "kubectl يبعت لـ API Server",
+    "الحالة تتخزن في etcd",
+    "Controller Manager يعمل الـ Pods المطلوبة",
+    "Scheduler يختار Node",
+    "kubelet على الـ Node يشغّلها بالـ Runtime"
+   ],
+   "explanation": "Reconciliation."
+  },
+  {
+   "id": "08-kubernetes-ch02-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: المكون اللي بيقارن المطلوب بالواقع ويصلّح:",
+   "template": "Controller ___",
+   "blanks": [
+    [
+     "Manager"
+    ]
+   ],
+   "hint": "مدير.",
+   "explanation": "Desired State Reconciliation."
+  },
+  {
+   "id": "08-kubernetes-ch02-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: المكون اللي بيظبط قواعد الشبكة للـ Services على كل Node:",
+   "template": "kube-___",
+   "blanks": [
+    [
+     "proxy"
+    ]
+   ],
+   "hint": "وسيط.",
+   "explanation": "مع kubelet والـ Runtime."
+  },
+  {
+   "id": "08-kubernetes-ch02-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "kubectl بيقول \"connection refused\" لما تكلم الـ Cluster.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ API Server مش متاح (الـ Cluster واقف أو الـ context غلط)",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Pods بايظة",
+     "why": "kubectl مش واصل أصلاً."
+    },
+    {
+     "text": "etcd فاضي",
+     "why": "مش أول احتمال."
+    },
+    {
+     "text": "الـ Image غلط",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "كل حاجة بتعدّي على الـ API Server."
+  },
+  {
+   "id": "08-kubernetes-ch02-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "يعني إيه Desired State Reconciliation؟",
+   "options": [
+    {
+     "text": "Loop بيقارن المطلوب بالواقع طول الوقت ويصلّح أي فرق",
+     "why": "صح."
+    },
+    {
+     "text": "تنفيذ أمر مرة واحدة",
+     "why": "لأ."
+    },
+    {
+     "text": "Backup",
+     "why": "لأ."
+    },
+    {
+     "text": "Logging",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "قلب Kubernetes."
+  },
+  {
+   "id": "08-kubernetes-ch02-11",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض الـ Nodes في الـ Cluster.",
+   "accepted": [
+    "kubectl get nodes",
+    "kubectl get node",
+    "kubectl get no"
+   ],
+   "hint": "get nodes.",
+   "explanation": "-o wide لتفاصيل أكتر."
+  },
+  {
+   "id": "08-kubernetes-ch02-12",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرض Pods الـ Control Plane في kube-system.",
+   "accepted": [
+    "kubectl get pods -n kube-system",
+    "kubectl get pods --namespace kube-system",
+    "kubectl get po -n kube-system"
+   ],
+   "hint": "-n kube-system.",
+   "explanation": "هتلاقي etcd و apiserver و scheduler."
+  }
+ ]
+}

@@ -1,0 +1,242 @@
+{
+ "book": "04-python",
+ "chapter": 21,
+ "chapterFile": "ch21",
+ "title": "الـ Structured output: JSON مضمون بـ Schema",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch21-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الفرق بين JSON mode و Structured outputs؟",
+   "options": [
+    {
+     "text": "JSON mode بيضمن JSON صحيح، و Structured outputs بيضمن إنه مطابق لـ Schema",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "JSON mode أقوى",
+     "why": "العكس."
+    },
+    {
+     "text": "Structured للصور",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "JSON mode مش بيضمن الحقول."
+  },
+  {
+   "id": "04-python-ch21-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في Strict mode تقدر تسيب حقل برّه required علشان يبقى اختياري؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "كل الحقول required."
+    },
+    {
+     "text": "لأ، الاختياري بيبقى type فيه null",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "X | None في Pydantic."
+  },
+  {
+   "id": "04-python-ch21-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "response.output_parsed بيرجّع إيه؟",
+   "options": [
+    {
+     "text": "Object من الـ Class اللي اديتها",
+     "why": "صح."
+    },
+    {
+     "text": "نص JSON",
+     "why": "لأ."
+    },
+    {
+     "text": "dict",
+     "why": "Object."
+    },
+    {
+     "text": "None دايماً",
+     "why": "لو refusal أو incomplete."
+    }
+   ],
+   "correct": 0,
+   "explanation": "responses.parse."
+  },
+  {
+   "id": "04-python-ch21-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اطلب Structured output من OpenAI بـ Pydantic Class اسمها ArticleInfo (model M و input text).",
+   "accepted": [
+    "response = client.responses.parse(model=M, input=text, text_format=ArticleInfo)",
+    "client.responses.parse(model=M, input=text, text_format=ArticleInfo)"
+   ],
+   "hint": "responses.parse و text_format.",
+   "explanation": "output_parsed للنتيجة."
+  },
+  {
+   "id": "04-python-ch21-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "حوّل رد Gemini النصي لـ Object من ArticleInfo.",
+   "accepted": [
+    "ArticleInfo.model_validate_json(response.text)",
+    "info = ArticleInfo.model_validate_json(response.text)"
+   ],
+   "hint": "model_validate_json.",
+   "explanation": "بيرمي ValidationError لو مش مطابق."
+  },
+  {
+   "id": "04-python-ch21-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل إعداد Gemini:",
+   "template": "response_mime_type=\"application/json\", response_json_schema=ArticleInfo.___()",
+   "blanks": [
+    [
+     "model_json_schema"
+    ]
+   ],
+   "hint": "model_..._schema.",
+   "explanation": "Pydantic بيطلّع الـ Schema."
+  },
+  {
+   "id": "04-python-ch21-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل قيمة strict:",
+   "template": "\"additionalProperties\": ___",
+   "blanks": [
+    [
+     "False",
+     "false"
+    ]
+   ],
+   "hint": "ممنوع حقول زيادة.",
+   "explanation": "من قواعد الـ strict."
+  },
+  {
+   "id": "04-python-ch21-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "output_parsed رجع None.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشيك على status (incomplete) أو refusal قبل ما أستخدمه",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Schema بايظ أكيد",
+     "why": "مش أكيد."
+    },
+    {
+     "text": "أعيد على طول",
+     "why": "من غير ما تعرف السبب."
+    },
+    {
+     "text": "أستخدم output_text وخلاص",
+     "why": "هيبقى ناقص."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الحالات الحدية."
+  },
+  {
+   "id": "04-python-ch21-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات Structured output:",
+   "items": [
+    "عرّف Class بـ Pydantic",
+    "ابعت الـ Schema مع الطلب",
+    "اقرا النتيجة كـ Object",
+    "اتأكد من المنطق بالكود"
+   ],
+   "explanation": "الـ Schema مش بيضمن المنطق."
+  },
+  {
+   "id": "04-python-ch21-10",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إزاي تحدد قيم مسموحة بس لحقل (زي \"high\" و \"low\")؟",
+   "options": [
+    {
+     "text": "Literal[\"high\", \"low\"]",
+     "why": "صح."
+    },
+    {
+     "text": "str",
+     "why": "أي نص."
+    },
+    {
+     "text": "list",
+     "why": "لأ."
+    },
+    {
+     "text": "Enum في التعليق",
+     "why": "مش بيتفحص."
+    }
+   ],
+   "correct": 0,
+   "explanation": "و Field(description=) تعليمات للموديل."
+  },
+  {
+   "id": "04-python-ch21-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "الـ Structured output بيضمن إن الإجابة صح؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الشكل بس."
+    },
+    {
+     "text": "لأ، بيضمن الشكل، والمنطق لازم تتأكد منه بالكود",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "زي Zod في JS."
+  },
+  {
+   "id": "04-python-ch21-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إمتى تستخدم text={\"format\": {\"type\": \"json_schema\", ...}}؟",
+   "options": [
+    {
+     "text": "لما مش عايز Pydantic وعندك JSON Schema جاهز",
+     "why": "صح."
+    },
+    {
+     "text": "دايماً",
+     "why": "parse أسهل."
+    },
+    {
+     "text": "مع Gemini",
+     "why": "ده OpenAI."
+    },
+    {
+     "text": "للصور",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "لازم strict: True."
+  }
+ ]
+}

@@ -1,0 +1,235 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 17,
+ "chapterFile": "ch17",
+ "title": "الـ ConfigMaps: الإعدادات برّه الكود",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch17-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ ConfigMap بيفصل إيه؟",
+   "options": [
+    {
+     "text": "الإعدادات غير السرية عن الـ image",
+     "why": "صح."
+    },
+    {
+     "text": "الأسرار",
+     "why": "ده Secret."
+    },
+    {
+     "text": "الكود",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Logs",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "image واحدة لكل البيئات."
+  },
+  {
+   "id": "08-kubernetes-ch17-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ ConfigMap مكان مناسب لباسورد الـ Database؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ده Secret."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ConfigMap للإعدادات العادية."
+  },
+  {
+   "id": "08-kubernetes-ch17-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "علامة \\ في آخر سطر الأمر معناها؟",
+   "options": [
+    {
+     "text": "الأمر مكمّل في السطر اللي بعده",
+     "why": "صح."
+    },
+    {
+     "text": "تعليق",
+     "why": "لأ."
+    },
+    {
+     "text": "Escape للمسافة",
+     "why": "لأ هنا."
+    },
+    {
+     "text": "Error",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "في zsh و bash."
+  },
+  {
+   "id": "08-kubernetes-ch17-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في --from-file=nginx.conf اسم الملف بيبقى؟",
+   "options": [
+    {
+     "text": "الـ key",
+     "why": "صح."
+    },
+    {
+     "text": "القيمة",
+     "why": "المحتوى القيمة."
+    },
+    {
+     "text": "اسم الـ ConfigMap",
+     "why": "لأ."
+    },
+    {
+     "text": "مش موجود",
+     "why": "موجود."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بيتركب كملف."
+  },
+  {
+   "id": "08-kubernetes-ch17-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل ConfigMap اسمه app-config فيه APP_COLOR=blue.",
+   "accepted": [
+    "kubectl create configmap app-config --from-literal=APP_COLOR=blue",
+    "kubectl create cm app-config --from-literal=APP_COLOR=blue"
+   ],
+   "hint": "--from-literal.",
+   "explanation": "أو YAML."
+  },
+  {
+   "id": "08-kubernetes-ch17-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل ConfigMap nginx-conf من ملف nginx.conf.",
+   "accepted": [
+    "kubectl create configmap nginx-conf --from-file=nginx.conf",
+    "kubectl create cm nginx-conf --from-file=nginx.conf"
+   ],
+   "hint": "--from-file.",
+   "explanation": "بعدين Volume."
+  },
+  {
+   "id": "08-kubernetes-ch17-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اطبع LOG_LEVEL جوه my-pod.",
+   "accepted": [
+    "kubectl exec my-pod -- printenv LOG_LEVEL",
+    "kubectl exec my-pod -- sh -c 'echo $LOG_LEVEL'",
+    "kubectl exec -it my-pod -- printenv LOG_LEVEL"
+   ],
+   "hint": "exec و printenv.",
+   "explanation": "تتأكد إن الإعداد وصل."
+  },
+  {
+   "id": "08-kubernetes-ch17-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تاخد كل مفاتيح ConfigMap كـ env:",
+   "template": "___: - configMapRef: name: app-config",
+   "blanks": [
+    [
+     "envFrom"
+    ]
+   ],
+   "hint": "env من.",
+   "explanation": "أو valueFrom لمفتاح واحد."
+  },
+  {
+   "id": "08-kubernetes-ch17-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عدّلت ConfigMap والتطبيق لسه بيقرا القيمة القديمة من env.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ env مش بيتحدّث غير بعد Restart، فأعمل rollout restart",
+     "why": "صح."
+    },
+    {
+     "text": "الـ ConfigMap متحفظش",
+     "why": "اتحفظ."
+    },
+    {
+     "text": "Bug",
+     "why": "لأ."
+    },
+    {
+     "text": "أمسح الـ Namespace",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Volume بيتحدّث لوحده."
+  },
+  {
+   "id": "08-kubernetes-ch17-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب استخدام ConfigMap كملف:",
+   "items": [
+    "اعمل ConfigMap بـ --from-file",
+    "في الـ Pod: volumes بـ configMap name",
+    "volumeMounts بـ mountPath",
+    "التطبيق يقرا الملف"
+   ],
+   "explanation": "كملفات."
+  },
+  {
+   "id": "08-kubernetes-ch17-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه تفصل الإعدادات عن الـ image؟",
+   "options": [
+    {
+     "text": "نفس الـ image تشتغل في dev و prod بإعدادات مختلفة من غير إعادة بناء",
+     "why": "صح."
+    },
+    {
+     "text": "أصغر",
+     "why": "مش الأساس."
+    },
+    {
+     "text": "أسرع",
+     "why": "لأ."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "12-factor."
+  },
+  {
+   "id": "08-kubernetes-ch17-12",
+   "type": "command",
+   "level": "medium",
+   "prompt": "أعد تشغيل pods الـ deployment webapp علشان تقرا الإعدادات الجديدة.",
+   "accepted": [
+    "kubectl rollout restart deploy/webapp",
+    "kubectl rollout restart deployment/webapp",
+    "kubectl rollout restart deployment webapp"
+   ],
+   "hint": "rollout restart.",
+   "explanation": "Pods جديدة."
+  }
+ ]
+}

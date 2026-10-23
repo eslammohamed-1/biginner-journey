@@ -1,0 +1,248 @@
+{
+ "book": "06-frontend",
+ "chapter": 17,
+ "chapterFile": "ch17",
+ "title": "الـ Modules وليه محتاجين Bundler",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "06-frontend-ch17-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الفرق بين ESM و CommonJS؟",
+   "options": [
+    {
+     "text": "CommonJS بـ require (قديم في Node)، و ESM بـ import (الرسمي)",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "ESM أقدم",
+     "why": "العكس."
+    },
+    {
+     "text": "CommonJS للمتصفح",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ESM المستقبل."
+  },
+  {
+   "id": "06-frontend-ch17-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "import x from 'react' بيشتغل في المتصفح من غير أداة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "Bare specifier."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ Bundler بيحلّه (أو import maps)."
+  },
+  {
+   "id": "06-frontend-ch17-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Tree-shaking بيشتغل أحسن مع import/export ولا require؟",
+   "options": [
+    {
+     "text": "import/export",
+     "why": "صح، ثابتة وتتحلل وقت البناء."
+    },
+    {
+     "text": "require",
+     "why": "ديناميكي."
+    },
+    {
+     "text": "مش فارقة",
+     "why": "فارقة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بيشيل اللي مش مستخدم."
+  },
+  {
+   "id": "06-frontend-ch17-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Vite 8 بيستخدم إيه للبناء؟",
+   "options": [
+    {
+     "text": "Rolldown",
+     "why": "صح."
+    },
+    {
+     "text": "webpack",
+     "why": "لأ."
+    },
+    {
+     "text": "Browserify",
+     "why": "لأ."
+    },
+    {
+     "text": "Gulp",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "التاريخ."
+  },
+  {
+   "id": "06-frontend-ch17-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "شغّل Module في المتصفح (اكتب الـ script tag لـ main.js).",
+   "accepted": [
+    "<script type=\"module\" src=\"main.js\"></script>",
+    "<script type=\"module\" src=\"./main.js\"></script>",
+    "<script src=\"main.js\" type=\"module\"></script>"
+   ],
+   "hint": "type=\"module\".",
+   "explanation": "بشرط سيرفر."
+  },
+  {
+   "id": "06-frontend-ch17-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شغّل سيرفر بسيط في الفولدر الحالي على الماك بـ Python علشان تجرب Modules.",
+   "accepted": [
+    "python3 -m http.server",
+    "python3 -m http.server 8000",
+    "npx serve"
+   ],
+   "hint": "http.server.",
+   "explanation": "file:// بيضرب CORS."
+  },
+  {
+   "id": "06-frontend-ch17-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل Code splitting:",
+   "template": "const mod = await ___(\"./chart.js\")",
+   "blanks": [
+    [
+     "import"
+    ]
+   ],
+   "hint": "import كـ Function.",
+   "explanation": "بيتحمّل وقت الحاجة."
+  },
+  {
+   "id": "06-frontend-ch17-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "فتحت index.html بـ Double click وطلع CORS error مع type=\"module\".",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "Modules مش بتشتغل من file://، فأشغّل سيرفر محلي",
+     "why": "صح."
+    },
+    {
+     "text": "أشيل type=\"module\"",
+     "why": "import هيقع."
+    },
+    {
+     "text": "أغيّر المتصفح",
+     "why": "كلهم كده."
+    },
+    {
+     "text": "أعطّل الأمان",
+     "why": "خطر."
+    }
+   ],
+   "correct": 0,
+   "explanation": "file:// بيضرب CORS."
+  },
+  {
+   "id": "06-frontend-ch17-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب تاريخ الأدوات:",
+   "items": [
+    "Browserify",
+    "webpack",
+    "Rollup",
+    "esbuild",
+    "Rolldown"
+   ],
+   "explanation": "تاريخ سريع."
+  },
+  {
+   "id": "06-frontend-ch17-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه Bundler لو المتصفح بيفهم Modules؟",
+   "options": [
+    {
+     "text": "بيحل الـ Bare specifiers والـ Waterfall و JSX/TS و CSS والحجم والـ Cache",
+     "why": "صح."
+    },
+    {
+     "text": "المتصفح مبيفهمش",
+     "why": "بيفهم ESM."
+    },
+    {
+     "text": "علشان Node",
+     "why": "لأ."
+    },
+    {
+     "text": "مش محتاجينه",
+     "why": "محتاجينه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "المشاكل."
+  },
+  {
+   "id": "06-frontend-ch17-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Waterfall في Modules من غير Bundler يعني إيه؟",
+   "options": [
+    {
+     "text": "كل ملف بيطلب اللي بعده فالتحميل بيبقى طلبات ورا بعض",
+     "why": "صح."
+    },
+    {
+     "text": "شلال صور",
+     "why": "لأ."
+    },
+    {
+     "text": "Error",
+     "why": "لأ."
+    },
+    {
+     "text": "CSS",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Bundler بيجمّع."
+  },
+  {
+   "id": "06-frontend-ch17-12",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: الـ Module لازم يتعمل export علشان ملف تاني ياخده:",
+   "template": "___ function add(a, b) { ... }",
+   "blanks": [
+    [
+     "export"
+    ]
+   ],
+   "hint": "صدّر.",
+   "explanation": "import { add } from \"./math.js\"."
+  }
+ ]
+}

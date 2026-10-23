@@ -1,0 +1,235 @@
+{
+ "book": "07-docker",
+ "chapter": 7,
+ "chapterFile": "ch07",
+ "title": "الـ Volumes: البيانات اللي لازم تعيش",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "07-docker-ch07-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "ليه Volume؟",
+   "options": [
+    {
+     "text": "البيانات تتخزن برّه الـ Container وتفضل لو اتمسح",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع",
+     "why": "مش الأساس."
+    },
+    {
+     "text": "بيصغّر الـ Image",
+     "why": "لأ."
+    },
+    {
+     "text": "للشبكة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "زي قواعد البيانات."
+  },
+  {
+   "id": "07-docker-ch07-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "أنهي نوع مناسب للتطوير علشان تعدّل الكود من الماك ويبان جوه؟",
+   "options": [
+    {
+     "text": "Bind Mount",
+     "why": "صح."
+    },
+    {
+     "text": "Named Volume",
+     "why": "للإنتاج."
+    },
+    {
+     "text": "tmpfs",
+     "why": "RAM."
+    },
+    {
+     "text": "Anonymous",
+     "why": "مؤقت."
+    }
+   ],
+   "correct": 0,
+   "explanation": "-v $(pwd):/app."
+  },
+  {
+   "id": "07-docker-ch07-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "tmpfs مناسب لإيه؟",
+   "options": [
+    {
+     "text": "بيانات مؤقتة أو Secrets في الـ RAM من غير ما تتكتب على الديسك",
+     "why": "صح."
+    },
+    {
+     "text": "قواعد بيانات",
+     "why": "هتضيع."
+    },
+    {
+     "text": "الكود",
+     "why": "Bind."
+    },
+    {
+     "text": "الصور",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بتضيع مع الـ Container."
+  },
+  {
+   "id": "07-docker-ch07-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "اتنين Containers بيكتبوا نفس الملف في Volume مشترك. Docker بيعمل إيه؟",
+   "options": [
+    {
+     "text": "مبيحلش التعارض، والكتابة الأخيرة بتكسب",
+     "why": "صح."
+    },
+    {
+     "text": "بيمنع التاني",
+     "why": "لأ."
+    },
+    {
+     "text": "بيدمج",
+     "why": "لأ."
+    },
+    {
+     "text": "بيعمل نسخة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Last Write Wins."
+  },
+  {
+   "id": "07-docker-ch07-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعمل Volume اسمه db-data.",
+   "accepted": [
+    "docker volume create db-data"
+   ],
+   "hint": "volume create.",
+   "explanation": "بعدين -v db-data:/path."
+  },
+  {
+   "id": "07-docker-ch07-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شغّل postgres:16 بـ Volume db-data على /var/lib/postgresql/data.",
+   "accepted": [
+    "docker run -d -v db-data:/var/lib/postgresql/data postgres:16",
+    "docker run -d -v db-data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=secret postgres:16"
+   ],
+   "patterns": [
+    "^docker run\\s+(?=.*-v\\s+db-data:/var/lib/postgresql/data)(?=.*postgres:16).*$"
+   ],
+   "hint": "-v name:path.",
+   "explanation": "البيانات هتعيش."
+  },
+  {
+   "id": "07-docker-ch07-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اربط الفولدر الحالي بـ /app جوه Container من node:22 بـ shell.",
+   "accepted": [
+    "docker run -it -v \"$(pwd)\":/app node:22 sh",
+    "docker run -it -v $(pwd):/app node:22 sh",
+    "docker run -it -v \"$PWD\":/app node:22 sh"
+   ],
+   "patterns": [
+    "^docker run\\s+-it\\s+-v\\s+\"?\\$(\\(pwd\\)|PWD)\"?:/app\\s+node:22\\s+(sh|bash)$"
+   ],
+   "hint": "-v $(pwd):/app.",
+   "explanation": "Bind Mount."
+  },
+  {
+   "id": "07-docker-ch07-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان Volume يبقى قراية بس:",
+   "template": "-v config:/etc/app___",
+   "blanks": [
+    [
+     ":ro"
+    ]
+   ],
+   "hint": "read only.",
+   "explanation": "حل للتعارض."
+  },
+  {
+   "id": "07-docker-ch07-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "مسحت Container الـ Database وكل البيانات ضاعت.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "كان لازم Named Volume للبيانات، والمرة الجاية أشغّله بـ -v",
+     "why": "صح."
+    },
+    {
+     "text": "Docker بايظ",
+     "why": "ده الطبيعي."
+    },
+    {
+     "text": "أرجّع الـ Container",
+     "why": "البيانات راحت."
+    },
+    {
+     "text": "الـ Image فيها البيانات",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "البيانات اللي لازم تعيش."
+  },
+  {
+   "id": "07-docker-ch07-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب إدارة Volume:",
+   "items": [
+    "docker volume create",
+    "docker volume ls",
+    "docker volume inspect",
+    "docker volume rm"
+   ],
+   "explanation": "و prune للي مش مستخدم."
+  },
+  {
+   "id": "07-docker-ch07-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه docker volume prune خطر؟",
+   "options": [
+    {
+     "text": "بيمسح كل الـ Volumes اللي مش متوصلة بـ Container، وممكن يكون فيها بيانات مهمة",
+     "why": "صح."
+    },
+    {
+     "text": "بيمسح Docker",
+     "why": "لأ."
+    },
+    {
+     "text": "مش خطر",
+     "why": "خطر."
+    },
+    {
+     "text": "بيمسح الـ Images",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بحذر."
+  }
+ ]
+}

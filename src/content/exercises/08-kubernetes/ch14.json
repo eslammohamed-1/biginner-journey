@@ -1,0 +1,257 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 14,
+ "chapterFile": "ch14",
+ "title": "الـ Ingress: باب واحد لكل الـ Traffic",
+ "count": 13,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch14-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Ingress بيحل إيه؟",
+   "options": [
+    {
+     "text": "Load Balancer واحد بيوزّع على Services كتير بدل LB لكل Service",
+     "why": "صح."
+    },
+    {
+     "text": "بيعمل Pods",
+     "why": "لأ."
+    },
+    {
+     "text": "بيخزّن بيانات",
+     "why": "لأ."
+    },
+    {
+     "text": "DNS",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "التكلفة."
+  },
+  {
+   "id": "08-kubernetes-ch14-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Kubernetes بييجي معاه Ingress Controller جاهز؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لازم تركّبه."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "زي nginx-ingress."
+  },
+  {
+   "id": "08-kubernetes-ch14-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Ingress بيقرر على حسب إيه؟",
+   "options": [
+    {
+     "text": "الـ Host والـ Path",
+     "why": "صح."
+    },
+    {
+     "text": "الـ IP بس",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Body",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Image",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Routing."
+  },
+  {
+   "id": "08-kubernetes-ch14-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "pathType: Exact مع /app هيطابق /app/users؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ده Prefix."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Exact بالظبط."
+  },
+  {
+   "id": "08-kubernetes-ch14-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "فعّل Ingress على minikube.",
+   "accepted": [
+    "minikube addons enable ingress"
+   ],
+   "hint": "addons enable.",
+   "explanation": "بيركّب nginx controller."
+  },
+  {
+   "id": "08-kubernetes-ch14-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ركّب ingress-nginx بـ Helm في namespace ingress-nginx.",
+   "accepted": [
+    "helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx",
+    "helm install ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx --create-namespace",
+    "helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx --create-namespace"
+   ],
+   "hint": "helm install.",
+   "explanation": "بعد repo add."
+  },
+  {
+   "id": "08-kubernetes-ch14-07",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض الـ Ingress resources.",
+   "accepted": [
+    "kubectl get ingress",
+    "kubectl get ing"
+   ],
+   "hint": "get ingress.",
+   "explanation": "ADDRESS."
+  },
+  {
+   "id": "08-kubernetes-ch14-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل:",
+   "template": "pathType: ___",
+   "blanks": [
+    [
+     "Prefix",
+     "Exact",
+     "ImplementationSpecific"
+    ]
+   ],
+   "hint": "أشهرهم Prefix.",
+   "explanation": "Prefix لأي مسار بيبدأ بيه."
+  },
+  {
+   "id": "08-kubernetes-ch14-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل ربط الـ Ingress بالـ Controller:",
+   "template": "ingress___Name: nginx",
+   "blanks": [
+    [
+     "Class"
+    ]
+   ],
+   "hint": "الفئة.",
+   "explanation": "kubectl get ingressclass."
+  },
+  {
+   "id": "08-kubernetes-ch14-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عملت Ingress والـ ADDRESS فاضي.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "غالباً مفيش Ingress Controller شغال، أو لسه بيستلم",
+     "why": "صح."
+    },
+    {
+     "text": "الـ YAML غلط أكيد",
+     "why": "مش أكيد."
+    },
+    {
+     "text": "الـ DNS",
+     "why": "بعدين."
+    },
+    {
+     "text": "الـ Pods واقعة",
+     "why": "مش ده."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ركّب Controller."
+  },
+  {
+   "id": "08-kubernetes-ch14-11",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "404 من nginx بس الـ Service شغالة.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "قاعدة الـ Host أو الـ Path مش مطابقة للطلب، فأراجعها وأشوف logs الـ Controller",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Service واقعة",
+     "why": "شغالة."
+    },
+    {
+     "text": "أعيد الـ Cluster",
+     "why": "لأ."
+    },
+    {
+     "text": "أمسح الـ Ingress",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Routing."
+  },
+  {
+   "id": "08-kubernetes-ch14-12",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب طلب https://app.example.com/api/users:",
+   "items": [
+    "DNS يوجّه للـ LoadBalancer",
+    "الـ Ingress Controller يستلم",
+    "يطابق Host و Path",
+    "يبعت للـ Service المناسبة",
+    "الـ Service توصّل لـ Pod"
+   ],
+   "explanation": "المسار."
+  },
+  {
+   "id": "08-kubernetes-ch14-13",
+   "type": "mcq",
+   "level": "think",
+   "question": "Ingress Resource ضد Ingress Controller؟",
+   "options": [
+    {
+     "text": "الـ Resource القواعد (YAML)، والـ Controller البرنامج اللي بينفّذها",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "العكس",
+     "why": "لأ."
+    },
+    {
+     "text": "الاتنين YAML",
+     "why": "الـ Controller Pods."
+    }
+   ],
+   "correct": 0,
+   "explanation": "محتاج الاتنين."
+  }
+ ]
+}

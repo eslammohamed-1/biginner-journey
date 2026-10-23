@@ -50,6 +50,8 @@ export type FillExercise = Base & {
 	/** `blanks[i]` is the list of accepted answers for placeholder i. */
 	blanks: string[][];
 	hint?: string;
+	/** Code language for the template, when the author set one. */
+	lang?: string;
 };
 
 export type Exercise =

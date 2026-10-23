@@ -1,0 +1,216 @@
+{
+ "book": "04-python",
+ "chapter": 1,
+ "chapterFile": "ch01",
+ "title": "حكاية Python: يعني إيه اسكريبت وبيشتغل إزاي",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "04-python-ch01-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "يعني إيه Interpreter في Python؟",
+   "options": [
+    {
+     "text": "البرنامج (python3) اللي بيقرا ملف .py وينفّذه",
+     "why": "صح."
+    },
+    {
+     "text": "محرر الكود",
+     "why": "ده VS Code."
+    },
+    {
+     "text": "مكتبة",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Terminal",
+     "why": "الـ Terminal بيشغّله بس."
+    }
+   ],
+   "correct": 0,
+   "explanation": "python3 hello.py."
+  },
+  {
+   "id": "04-python-ch01-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لو فيه SyntaxError في آخر سطر، Python هتنفّذ اللي قبله؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الفحص الأول للملف كله."
+    },
+    {
+     "text": "لأ، Python بتفحص الكتابة كلها الأول، فمفيش ولا سطر هيتنفّذ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "بعدين التنفيذ من فوق لتحت."
+  },
+  {
+   "id": "04-python-ch01-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "المسافات في أول السطر في Python مجرد تنسيق زي JS؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "في Python جزء من اللغة."
+    },
+    {
+     "text": "لأ، هي اللي بتحدد الـ Blocks",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "4 مسافات لكل مستوى، والـ : بتفتح Block."
+  },
+  {
+   "id": "04-python-ch01-04",
+   "type": "command",
+   "level": "easy",
+   "prompt": "شغّل الاسكريبت hello.py.",
+   "accepted": [
+    "python3 hello.py"
+   ],
+   "hint": "python3 واسم الملف.",
+   "explanation": "على الماك python3 مش python."
+  },
+  {
+   "id": "04-python-ch01-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "افتح الـ REPL علشان تجرب سطر.",
+   "accepted": [
+    "python3"
+   ],
+   "hint": "من غير اسم ملف.",
+   "explanation": ">>> ولما تخلص exit()."
+  },
+  {
+   "id": "04-python-ch01-06",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "طلعلك `IndentationError: unexpected indent`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "فيه سطر عليه مسافات زيادة في الأول من غير ما يكون جوه Block، فأظبط المسافات",
+     "why": "صح."
+    },
+    {
+     "text": "أسطب Python تاني",
+     "why": "مش المشكلة."
+    },
+    {
+     "text": "الملف بايظ",
+     "why": "المسافات بس."
+    },
+    {
+     "text": "أشيل كل المسافات",
+     "why": "هتكسر الـ Blocks."
+    }
+   ],
+   "correct": 0,
+   "explanation": "المسافات مش زينة."
+  },
+  {
+   "id": "04-python-ch01-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "تقدر تمسح فولدر __pycache__؟",
+   "options": [
+    {
+     "text": "أيوه، Python بتعمله تاني لوحدها",
+     "why": "صح، ده كاش."
+    },
+    {
+     "text": "لأ، هيبوظ المشروع",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ومتحطوش في Git."
+  },
+  {
+   "id": "04-python-ch01-08",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب اللي بيحصل لما تكتب python3 hello.py:",
+   "items": [
+    "Python تقرا الملف",
+    "تفحص الكتابة كلها (Syntax)",
+    "تنفّذ من أول سطر لآخر سطر"
+   ],
+   "explanation": "SyntaxError بيوقف كل حاجة."
+  },
+  {
+   "id": "04-python-ch01-09",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل علشان تكتب تعليق في Python:",
+   "template": "___ ده تعليق",
+   "blanks": [
+    [
+     "#"
+    ]
+   ],
+   "hint": "مش // زي JS.",
+   "explanation": "التعليقات للقارئ."
+  },
+  {
+   "id": "04-python-ch01-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه Python بقت لغة الـ AI؟",
+   "options": [
+    {
+     "text": "العلماء والمكتبات كانوا فيها، فشركات الـ AI نزّلت الـ SDKs بتاعتها ليها الأول",
+     "why": "صح."
+    },
+    {
+     "text": "علشان أسرع لغة",
+     "why": "مش الأسرع."
+    },
+    {
+     "text": "علشان الوحيدة اللي بتكلم APIs",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان Google عملتها",
+     "why": "لأ، Guido."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الحكاية: من \"مهام مملة\" لـ \"لغة الـ AI\"."
+  },
+  {
+   "id": "04-python-ch01-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في Python، إيه اللي بيفتح Block بعد if؟",
+   "options": [
+    {
+     "text": "`:` والسطر اللي بعده بمسافات",
+     "why": "صح."
+    },
+    {
+     "text": "`{`",
+     "why": "ده في JS."
+    },
+    {
+     "text": "`then`",
+     "why": "ده Bash."
+    },
+    {
+     "text": "`do`",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "نفس فكرة if في JS بلهجة تانية."
+  }
+ ]
+}

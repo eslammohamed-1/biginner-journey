@@ -1,0 +1,243 @@
+{
+ "book": "04-python",
+ "chapter": 14,
+ "chapterFile": "ch14",
+ "title": "الـ LLM API بيشتغل إزاي: Tokens و Roles والإعدادات",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch14-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Token يعني إيه؟",
+   "options": [
+    {
+     "text": "حتة صغيرة من النص الموديل بيقرا ويكتب بيها، وبيها السعر",
+     "why": "صح."
+    },
+    {
+     "text": "كلمة كاملة دايماً",
+     "why": "مش دايماً."
+    },
+    {
+     "text": "حرف",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ API key",
+     "why": "ده اسمه key."
+    }
+   ],
+   "correct": 0,
+   "explanation": "العربي غالباً بياخد توكنز أكتر."
+  },
+  {
+   "id": "04-python-ch14-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "أنهي أغلى عادةً، Input ولا Output tokens؟",
+   "options": [
+    {
+     "text": "Output",
+     "why": "صح."
+    },
+    {
+     "text": "Input",
+     "why": "أرخص."
+    },
+    {
+     "text": "نفس السعر",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان كده max output مهم."
+  },
+  {
+   "id": "04-python-ch14-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الموديل فاكر الملف اللي بعته في الـ Request اللي فات؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الـ API مبيفتكرش."
+    },
+    {
+     "text": "لأ، كل Request لوحده إلا لو بعت المحادثة أو previous_response_id",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Stateless."
+  },
+  {
+   "id": "04-python-ch14-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "توكنز الـ Reasoning مجانية علشان مش بتظهر؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بتتحسب."
+    },
+    {
+     "text": "لأ، بتتحسب Output",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "وبتاكل من max output tokens."
+  },
+  {
+   "id": "04-python-ch14-05",
+   "type": "mcq",
+   "level": "think",
+   "question": "في gemini-3.8-flash، temperature=0 بتخلي الرد ثابت؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيتجاهلها."
+    },
+    {
+     "text": "لأ، الموديلات دي بتتجاهل temperature",
+     "why": "صح حسب الكتاب."
+    }
+   ],
+   "correct": 1,
+   "explanation": "وفي GPT-6 مسموحة بس مع effort=\"none\"."
+  },
+  {
+   "id": "04-python-ch14-06",
+   "type": "command",
+   "level": "easy",
+   "prompt": "حدد سقف 500 توكن للرد في responses.create.",
+   "accepted": [
+    "max_output_tokens=500"
+   ],
+   "hint": "max_output_tokens.",
+   "explanation": "في Chat Completions/Claude اسمها max_tokens."
+  },
+  {
+   "id": "04-python-ch14-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: القواعد بتتحط في role اسمه:",
+   "template": "\"role\": \"___\"",
+   "blanks": [
+    [
+     "system",
+     "developer"
+    ]
+   ],
+   "hint": "مش user.",
+   "explanation": "البيانات في user."
+  },
+  {
+   "id": "04-python-ch14-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: في Gemini، القواعد بتتحط في:",
+   "template": "config=types.GenerateContentConfig(___=\"...\")",
+   "blanks": [
+    [
+     "system_instruction"
+    ]
+   ],
+   "hint": "system_...",
+   "explanation": "وفي OpenAI instructions."
+  },
+  {
+   "id": "04-python-ch14-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الرد بيوصل مقطوع في النص.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الرد عدّى max output tokens (ومعاه توكنز التفكير)، فأكبّر السقف أو أقلل effort",
+     "why": "صح."
+    },
+    {
+     "text": "الإنترنت",
+     "why": "لأ."
+    },
+    {
+     "text": "الموديل بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "أغيّر اللغة",
+     "why": "مش الحل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "شيك status/finish_reason."
+  },
+  {
+   "id": "04-python-ch14-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب الـ Roles في محادثة نموذجية:",
+   "items": [
+    "system/developer (القواعد)",
+    "user (الطلب)",
+    "assistant (رد الموديل)",
+    "user (متابعة)"
+   ],
+   "explanation": "الـ API محتاج المحادثة كلها."
+  },
+  {
+   "id": "04-python-ch14-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Context window يعني إيه؟",
+   "options": [
+    {
+     "text": "أقصى عدد توكنز (Input + Output) الموديل يقدر يتعامل معاه في Request",
+     "why": "صح."
+    },
+    {
+     "text": "عدد الـ Requests في الدقيقة",
+     "why": "ده Rate limit."
+    },
+    {
+     "text": "حجم الشاشة",
+     "why": "لأ."
+    },
+    {
+     "text": "الذاكرة بين المحادثات",
+     "why": "مفيش."
+    }
+   ],
+   "correct": 0,
+   "explanation": "كبير بس مش مجاني."
+  },
+  {
+   "id": "04-python-ch14-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "فين تحط بيانات الملف اللي عايز تلخّصه؟",
+   "options": [
+    {
+     "text": "في user/input، والقواعد في instructions",
+     "why": "صح."
+    },
+    {
+     "text": "في system",
+     "why": "القواعد هناك."
+    },
+    {
+     "text": "في اسم الموديل",
+     "why": "لأ."
+    },
+    {
+     "text": "في الـ Headers",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "افصل القواعد عن البيانات."
+  }
+ ]
+}

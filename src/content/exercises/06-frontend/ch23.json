@@ -1,0 +1,230 @@
+{
+ "book": "06-frontend",
+ "chapter": 23,
+ "chapterFile": "ch23",
+ "title": "ESLint و Prettier: مصحح ومنسّق أوتوماتيك",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "06-frontend-ch23-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الفرق بين Linter و Formatter؟",
+   "options": [
+    {
+     "text": "Linter بيدوّر على أخطاء، و Formatter بيوحّد الشكل",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "العكس",
+     "why": "لأ."
+    },
+    {
+     "text": "Linter للـ CSS بس",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ESLint و Prettier."
+  },
+  {
+   "id": "06-frontend-ch23-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Prettier هيقولك إن consol مش معرّف؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ده شغل ESLint."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Prettier شكل بس."
+  },
+  {
+   "id": "06-frontend-ch23-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "eslint --fix بيصلّح كل المشاكل؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "المضمون بس."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الباقي بإيدك."
+  },
+  {
+   "id": "06-frontend-ch23-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "eslint-config-prettier مكانه؟",
+   "options": [
+    {
+     "text": "آخر حاجة في الـ config علشان يقفل قواعد الشكل المتعارضة",
+     "why": "صح."
+    },
+    {
+     "text": "أول حاجة",
+     "why": "هيتغطى."
+    },
+    {
+     "text": "مش مهم",
+     "why": "مهم."
+    },
+    {
+     "text": "جوه Prettier",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان مايتخانقوش."
+  },
+  {
+   "id": "06-frontend-ch23-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "شغّل ESLint على المشروع كله.",
+   "accepted": [
+    "npx eslint .",
+    "npm run lint",
+    "eslint ."
+   ],
+   "hint": "npx eslint .",
+   "explanation": "النقطة = الفولدر."
+  },
+  {
+   "id": "06-frontend-ch23-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "نسّق كل الملفات بـ Prettier.",
+   "accepted": [
+    "npx prettier . --write",
+    "npx prettier --write .",
+    "prettier --write ."
+   ],
+   "hint": "--write.",
+   "explanation": "--check للـ CI."
+  },
+  {
+   "id": "06-frontend-ch23-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "سطّب Prettier بنسخة بالظبط.",
+   "accepted": [
+    "npm install -D --save-exact prettier",
+    "npm i -D -E prettier",
+    "npm install --save-dev --save-exact prettier"
+   ],
+   "hint": "--save-exact.",
+   "explanation": "علشان التنسيق ميتغيرش بين الأجهزة."
+  },
+  {
+   "id": "06-frontend-ch23-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل اسم ملف Flat config:",
+   "template": "eslint.___.js",
+   "blanks": [
+    [
+     "config"
+    ]
+   ],
+   "hint": "إعدادات.",
+   "explanation": "ESLint 10."
+  },
+  {
+   "id": "06-frontend-ch23-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل اسم ملف تجاهل Prettier:",
+   "template": ".prettier___",
+   "blanks": [
+    [
+     "ignore"
+    ]
+   ],
+   "hint": "تجاهل.",
+   "explanation": "و .prettierrc."
+  },
+  {
+   "id": "06-frontend-ch23-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "اقرا سطر Output بتاع ESLint بالترتيب:",
+   "items": [
+    "السطر:العمود",
+    "الخطورة (error/warning)",
+    "الرسالة",
+    "اسم الـ Rule"
+   ],
+   "explanation": "12:5 error 'x' is not defined no-undef."
+  },
+  {
+   "id": "06-frontend-ch23-11",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "ESLint بيشتكي من مسافات و Prettier بيرجّعها.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أضيف eslint-config-prettier في آخر الـ config",
+     "why": "صح."
+    },
+    {
+     "text": "أشيل Prettier",
+     "why": "مش لازم."
+    },
+    {
+     "text": "أتجاهل",
+     "why": "هيفضلوا يتخانقوا."
+    },
+    {
+     "text": "أشيل ESLint",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مايتخانقوش."
+  },
+  {
+   "id": "06-frontend-ch23-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "فين تشغّل --check بتاع Prettier؟",
+   "options": [
+    {
+     "text": "في الـ CI علشان يرفض كود مش منسّق",
+     "why": "صح."
+    },
+    {
+     "text": "على جهازك بس",
+     "why": "--write."
+    },
+    {
+     "text": "في المتصفح",
+     "why": "لأ."
+    },
+    {
+     "text": "مش مهم",
+     "why": "مهم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Format on save محلي."
+  }
+ ]
+}

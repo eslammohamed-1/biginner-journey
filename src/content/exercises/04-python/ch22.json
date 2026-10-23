@@ -1,0 +1,264 @@
+{
+ "book": "04-python",
+ "chapter": 22,
+ "chapterFile": "ch22",
+ "title": "Function calling: الموديل يطلب، والاسكريبت ينفّذ",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch22-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "في Function calling، مين بينفّذ الفانكشن؟",
+   "options": [
+    {
+     "text": "الاسكريبت بتاعك",
+     "why": "صح، الموديل بيطلب بس."
+    },
+    {
+     "text": "الموديل على سيرفرات OpenAI",
+     "why": "لأ."
+    },
+    {
+     "text": "Python لوحدها",
+     "why": "لأ."
+    },
+    {
+     "text": "المتصفح",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أهم جملة في الفصل."
+  },
+  {
+   "id": "04-python-ch22-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في OpenAI، call.arguments بييجي dict جاهز؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "نص JSON."
+    },
+    {
+     "text": "لأ، نص JSON محتاج json.loads",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "في Gemini fc.args dict."
+  },
+  {
+   "id": "04-python-ch22-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في Gemini، لو الرد فيه طلب أداة بس، response.text...",
+   "options": [
+    {
+     "text": "بيبقى None",
+     "why": "صح."
+    },
+    {
+     "text": "فيه اسم الأداة",
+     "why": "لأ."
+    },
+    {
+     "text": "خطأ",
+     "why": "لأ."
+    },
+    {
+     "text": "JSON",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اقرا response.function_calls."
+  },
+  {
+   "id": "04-python-ch22-04",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Loop الـ Function calling في OpenAI:",
+   "items": [
+    "تبعت الطلب مع tools",
+    "الموديل يرجّع function_call",
+    "الاسكريبت ينفّذ الفانكشن",
+    "تبعت function_call_output بنفس call_id",
+    "الموديل يرجّع الإجابة النهائية"
+   ],
+   "explanation": "مع سقف لفّات."
+  },
+  {
+   "id": "04-python-ch22-05",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل تعريف Tool في OpenAI:",
+   "template": "{\"type\": \"___\", \"name\": \"lookup_term\", \"description\": \"...\", \"parameters\": {...}}",
+   "blanks": [
+    [
+     "function"
+    ]
+   ],
+   "hint": "نوع.",
+   "explanation": "و strict: True."
+  },
+  {
+   "id": "04-python-ch22-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: النتيجة بترجع مربوطة بالطلب عن طريق:",
+   "template": "\"___\": call.call_id",
+   "blanks": [
+    [
+     "call_id"
+    ]
+   ],
+   "hint": "id الطلب.",
+   "explanation": "function_call_output."
+  },
+  {
+   "id": "04-python-ch22-07",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "الموديل طلب أداة اسمها delete_all_files مع إنك مش معرّفها.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "مبنفّذش غير أدوات موجودة في dict أدوات صريح، والباقي أرجّع خطأ",
+     "why": "صح."
+    },
+    {
+     "text": "أنفّذ بـ eval",
+     "why": "كارثة."
+    },
+    {
+     "text": "أنفّذ أي حاجة الموديل يطلبها",
+     "why": "خطر."
+    },
+    {
+     "text": "أوقف الاسكريبت للأبد",
+     "why": "مبالغة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "انت اللي ماسك الزرار."
+  },
+  {
+   "id": "04-python-ch22-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ Loop مبتخلصش والموديل بيطلب أدوات على طول.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أحط سقف لعدد اللفّات وأوقف لما يتعدّى",
+     "why": "صح."
+    },
+    {
+     "text": "أستنى",
+     "why": "فلوس."
+    },
+    {
+     "text": "أشيل الأدوات في النص",
+     "why": "مش منظم."
+    },
+    {
+     "text": "أكبّر max_tokens",
+     "why": "مش المشكلة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "سقف لفّات."
+  },
+  {
+   "id": "04-python-ch22-09",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Automatic function calling في Gemini Python SDK بيعتمد على إيه كوصف للأداة؟",
+   "options": [
+    {
+     "text": "الـ Docstring والـ Type hints بتوع الفانكشن",
+     "why": "صح."
+    },
+    {
+     "text": "اسم الملف",
+     "why": "لأ."
+    },
+    {
+     "text": "التعليقات #",
+     "why": "لأ."
+    },
+    {
+     "text": "مفيش وصف",
+     "why": "فيه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بتديله الفانكشن نفسها."
+  },
+  {
+   "id": "04-python-ch22-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "إيه الأأمن تبدأ بيه: أدوات قراية ولا كتابة؟",
+   "options": [
+    {
+     "text": "أدوات قراية الأول",
+     "why": "صح، الكتابة والمسح بعد ما تتأكد."
+    },
+    {
+     "text": "كتابة",
+     "why": "أخطر."
+    },
+    {
+     "text": "مسح",
+     "why": "أخطر."
+    },
+    {
+     "text": "مش فارقة",
+     "why": "فارقة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "احمي نفسك."
+  },
+  {
+   "id": "04-python-ch22-11",
+   "type": "command",
+   "level": "medium",
+   "prompt": "حوّل arguments بتاعة call (نص JSON) لـ dict في args.",
+   "accepted": [
+    "args = json.loads(call.arguments)"
+   ],
+   "hint": "json.loads.",
+   "explanation": "بعدين نادي الفانكشن بـ **args."
+  },
+  {
+   "id": "04-python-ch22-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "tool_choice بيعمل إيه؟",
+   "options": [
+    {
+     "text": "بيتحكم هل الموديل لازم/ممكن/ممنوع يستخدم أداة",
+     "why": "صح."
+    },
+    {
+     "text": "بيختار الموديل",
+     "why": "لأ."
+    },
+    {
+     "text": "بينفّذ الأداة",
+     "why": "لأ."
+    },
+    {
+     "text": "بيمسح الأدوات",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "auto افتراضياً."
+  }
+ ]
+}

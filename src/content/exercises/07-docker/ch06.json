@@ -1,0 +1,236 @@
+{
+ "book": "07-docker",
+ "chapter": 6,
+ "chapterFile": "ch06",
+ "title": "فهم Structure الـ Image: الـ Layers",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "07-docker-ch06-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Image مكونة من إيه؟",
+   "options": [
+    {
+     "text": "Layers للقراءة فقط فوق بعض",
+     "why": "صح."
+    },
+    {
+     "text": "ملف واحد قابل للتعديل",
+     "why": "لأ."
+    },
+    {
+     "text": "VM",
+     "why": "لأ."
+    },
+    {
+     "text": "Container",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Immutable."
+  },
+  {
+   "id": "07-docker-ch06-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Container بيكتب فين؟",
+   "options": [
+    {
+     "text": "في Container Layer رقيقة قابلة للكتابة فوق الـ Image",
+     "why": "صح."
+    },
+    {
+     "text": "في الـ Image نفسها",
+     "why": "Read-only."
+    },
+    {
+     "text": "على الماك مباشرة",
+     "why": "لأ."
+    },
+    {
+     "text": "مش بيكتب",
+     "why": "بيكتب."
+    }
+   ],
+   "correct": 0,
+   "explanation": "وبتضيع لما يتمسح."
+  },
+  {
+   "id": "07-docker-ch06-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لما Container يعدّل ملف من الـ Image بيحصل إيه؟",
+   "options": [
+    {
+     "text": "Copy-on-Write: بيتنسخ للـ Container Layer ويتعدّل هناك",
+     "why": "صح."
+    },
+    {
+     "text": "بيتعدّل في الـ Image",
+     "why": "لأ."
+    },
+    {
+     "text": "Error",
+     "why": "لأ."
+    },
+    {
+     "text": "بيتمسح",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الأصل مبيتغيرش."
+  },
+  {
+   "id": "07-docker-ch06-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الحذف في Container بيتعمل إزاي؟",
+   "options": [
+    {
+     "text": "Whiteout: علامة بتخبّي الملف، والأصل في الـ Image موجود",
+     "why": "صح."
+    },
+    {
+     "text": "بيتمسح من الـ Image",
+     "why": "لأ."
+    },
+    {
+     "text": "مستحيل",
+     "why": "ممكن."
+    },
+    {
+     "text": "بيتنقل",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Union File System."
+  },
+  {
+   "id": "07-docker-ch06-05",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: النظام اللي بيخلي الطبقات تبان File System واحد:",
+   "template": "___ File System",
+   "blanks": [
+    [
+     "Union"
+    ]
+   ],
+   "hint": "اتحاد.",
+   "explanation": "OverlayFS مثلاً."
+  },
+  {
+   "id": "07-docker-ch06-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: آلية التعديل:",
+   "template": "Copy-on-___",
+   "blanks": [
+    [
+     "Write"
+    ]
+   ],
+   "hint": "كتابة.",
+   "explanation": "CoW."
+  },
+  {
+   "id": "07-docker-ch06-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرض طبقات Image nginx وتاريخها.",
+   "accepted": [
+    "docker history nginx",
+    "docker image history nginx"
+   ],
+   "hint": "history.",
+   "explanation": "كل سطر Layer."
+  },
+  {
+   "id": "07-docker-ch06-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "10 Containers من نفس الـ Image. بتاخد 10 أضعاف المساحة؟",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "لأ، الـ Layers مشتركة، وكل Container ليه Layer رقيقة بس",
+     "why": "صح."
+    },
+    {
+     "text": "أيوه",
+     "why": "الطبقات مشتركة."
+    },
+    {
+     "text": "أكتر",
+     "why": "لأ."
+    },
+    {
+     "text": "صفر",
+     "why": "فيه Layer رقيقة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ميزة الطبقات."
+  },
+  {
+   "id": "07-docker-ch06-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب من تحت لفوق في Container شغال:",
+   "items": [
+    "Base Image Layer",
+    "Layers التعديلات (RUN و COPY)",
+    "Container Layer (قابلة للكتابة)"
+   ],
+   "explanation": "الأخيرة بتضيع."
+  },
+  {
+   "id": "07-docker-ch06-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه الـ Layers بتسرّع الـ pull؟",
+   "options": [
+    {
+     "text": "الطبقات اللي عندك بالفعل مش بتتنزل تاني",
+     "why": "صح."
+    },
+    {
+     "text": "مضغوطة",
+     "why": "مش السبب الأساسي."
+    },
+    {
+     "text": "السيرفر أسرع",
+     "why": "لأ."
+    },
+    {
+     "text": "مفيش فرق",
+     "why": "فيه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مشاركة."
+  },
+  {
+   "id": "07-docker-ch06-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Image فيها ملف 1GB واتمسح في Layer بعدها. حجم الـ Image قل؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لأ، الـ Layer القديمة لسه موجودة."
+    },
+    {
+     "text": "لأ، الطبقة القديمة لسه جزء من الـ Image",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "علشان كده نضّف في نفس الـ RUN."
+  }
+ ]
+}

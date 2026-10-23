@@ -1,0 +1,234 @@
+{
+ "book": "05-apis",
+ "chapter": 10,
+ "chapterFile": "ch10",
+ "title": "الـ API من JavaScript: fetch صح من أول مرة",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "05-apis-ch10-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "`await fetch(url)` بيرمي Error لو الـ API رجّع 500؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الفخ الأشهر."
+    },
+    {
+     "text": "لأ، لازم تشيك res.ok",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "بيرمي بس لو مفيش رد."
+  },
+  {
+   "id": "05-apis-ch10-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`body: { title: \"x\" }` من غير stringify بيتبعت JSON صح؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيتبعت \"[object Object]\"."
+    },
+    {
+     "text": "لأ، لازم JSON.stringify",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ومعاه Content-Type."
+  },
+  {
+   "id": "05-apis-ch10-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "تقدر تنادي res.json() مرتين؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الـ Body بيتقري مرة."
+    },
+    {
+     "text": "لأ",
+     "why": "صح، Body is unusable."
+    }
+   ],
+   "correct": 1,
+   "explanation": "خزّنه في متغير."
+  },
+  {
+   "id": "05-apis-ch10-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل timeout 2000ms لـ fetch (اكتب الـ option).",
+   "accepted": [
+    "signal: AbortSignal.timeout(2000)"
+   ],
+   "hint": "AbortSignal.timeout.",
+   "explanation": "TimeoutError."
+  },
+  {
+   "id": "05-apis-ch10-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اقرا Header اسمه x-ratelimit-remaining من res.",
+   "accepted": [
+    "res.headers.get(\"x-ratelimit-remaining\")",
+    "res.headers.get('x-ratelimit-remaining')"
+   ],
+   "hint": "headers.get.",
+   "explanation": "case-insensitive."
+  },
+  {
+   "id": "05-apis-ch10-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل:",
+   "template": "if (!res.___) throw new Error(res.status)",
+   "blanks": [
+    [
+     "ok"
+    ]
+   ],
+   "hint": "200-299.",
+   "explanation": "بعدين res.json()."
+  },
+  {
+   "id": "05-apis-ch10-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تبني Query string صح:",
+   "template": "const qs = new ___({ q: \"API\", page: 2 })",
+   "blanks": [
+    [
+     "URLSearchParams"
+    ]
+   ],
+   "hint": "URL Search...",
+   "explanation": "بيعمل encoding."
+  },
+  {
+   "id": "05-apis-ch10-08",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب POST بـ JSON في fetch:",
+   "items": [
+    "method: \"POST\"",
+    "headers: { \"Content-Type\": \"application/json\" }",
+    "body: JSON.stringify(data)",
+    "شيك res.ok",
+    "await res.json()"
+   ],
+   "explanation": "صح من أول مرة."
+  },
+  {
+   "id": "05-apis-ch10-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "`TypeError: Body is unusable: Body has already been read`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "قريت الـ Body مرتين (مثلاً text() ثم json())، فأقراه مرة وأخزّنه",
+     "why": "صح."
+    },
+    {
+     "text": "النت",
+     "why": "لأ."
+    },
+    {
+     "text": "السيرفر",
+     "why": "لأ."
+    },
+    {
+     "text": "أحدّث Node",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Body مرة واحدة."
+  },
+  {
+   "id": "05-apis-ch10-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "نفس كود fetch شغّال في Node ومش شغّال في المتصفح.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "غالباً CORS: السيرفر مش سامح للـ Origin، والمتصفح بيمنع، و Node مالوش CORS",
+     "why": "صح."
+    },
+    {
+     "text": "المتصفح قديم",
+     "why": "غالباً لأ."
+    },
+    {
+     "text": "fetch مش موجود في المتصفح",
+     "why": "موجود."
+    },
+    {
+     "text": "الـ JSON غلط",
+     "why": "كان هيقع في Node."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Node ضد المتصفح."
+  },
+  {
+   "id": "05-apis-ch10-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "أنواع الفشل التلاتة في fetch؟",
+   "options": [
+    {
+     "text": "TypeError (مفيش رد)، و TimeoutError، و !res.ok",
+     "why": "صح."
+    },
+    {
+     "text": "404 و 500 بس",
+     "why": "ناقص."
+    },
+    {
+     "text": "SyntaxError بس",
+     "why": "لأ."
+    },
+    {
+     "text": "مفيش فشل",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Helper بيجمعهم."
+  },
+  {
+   "id": "05-apis-ch10-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "Loop بيمشي ورا next في Pagination بيقف إمتى؟",
+   "options": [
+    {
+     "text": "لما next يبقى null",
+     "why": "صح."
+    },
+    {
+     "text": "بعد 10 صفحات",
+     "why": "مش بالضرورة."
+    },
+    {
+     "text": "لما يحصل 404",
+     "why": "مش الطبيعي."
+    },
+    {
+     "text": "مبيقفش",
+     "why": "لازم يقف."
+    }
+   ],
+   "correct": 0,
+   "explanation": "while (url) { ... url = page.info.next }."
+  }
+ ]
+}

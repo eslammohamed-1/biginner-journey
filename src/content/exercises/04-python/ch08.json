@@ -1,0 +1,232 @@
+{
+ "book": "04-python",
+ "chapter": 8,
+ "chapterFile": "ch08",
+ "title": "الـ Classes والـ Objects: يعني إيه client.responses.create",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch08-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "`client = OpenAI()` هنا client إيه؟",
+   "options": [
+    {
+     "text": "Object (Instance) من Class اسمها OpenAI",
+     "why": "صح."
+    },
+    {
+     "text": "فانكشن",
+     "why": "OpenAI() نداء Class."
+    },
+    {
+     "text": "Module",
+     "why": "لأ."
+    },
+    {
+     "text": "نص",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Class فورمة والـ Object حاجة اتعملت منها."
+  },
+  {
+   "id": "04-python-ch08-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`client.responses.create(...)` معناها إيه؟",
+   "options": [
+    {
+     "text": "Object جواه Object (responses) جواه Method (create)",
+     "why": "صح."
+    },
+    {
+     "text": "3 فانكشنز ورا بعض",
+     "why": "مش بالظبط."
+    },
+    {
+     "text": "ملف ثم فولدر",
+     "why": "لأ."
+    },
+    {
+     "text": "خطأ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "النقطة = \"اللي جوه\"."
+  },
+  {
+   "id": "04-python-ch08-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لما تنادي `luna.cost(100, 50)` لازم تبعت self بإيدك؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "Python بتبعته."
+    },
+    {
+     "text": "لأ، Python بتبعت الـ Object نفسه كـ self",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "self = الـ Object."
+  },
+  {
+   "id": "04-python-ch08-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اطبع الرد response كله كـ JSON منسق علشان تعرف جواه إيه.",
+   "accepted": [
+    "print(response.model_dump_json(indent=2))"
+   ],
+   "hint": "model_dump_json.",
+   "explanation": "متخمّنش جوه الرد إيه."
+  },
+  {
+   "id": "04-python-ch08-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرف نوع response.",
+   "accepted": [
+    "print(type(response))",
+    "type(response)"
+   ],
+   "hint": "type().",
+   "explanation": "dir() تشوف الـ Attributes."
+  },
+  {
+   "id": "04-python-ch08-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`response.output_text` و `response[\"output_text\"]` نفس الحاجة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ده Object مش dict."
+    },
+    {
+     "text": "لأ، الأولى Attribute على Object، والتانية هترمي خطأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "model_dump() يحوّله dict."
+  },
+  {
+   "id": "04-python-ch08-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في Pydantic، الـ Type hints بتتفحص فعلاً؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح، Pydantic بيتأكد من الأنواع."
+    },
+    {
+     "text": "لأ",
+     "why": "ده الفرق عن الـ Type hints العادية."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أساس الـ Structured output."
+  },
+  {
+   "id": "04-python-ch08-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تعمل Class بيانات بسيطة:",
+   "template": "@___",
+   "blanks": [
+    [
+     "dataclass"
+    ]
+   ],
+   "hint": "from dataclasses import ...",
+   "explanation": "بتعمل __init__ لوحدها."
+  },
+  {
+   "id": "04-python-ch08-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان الملف يتقفل لوحده:",
+   "template": "___ open(path, encoding=\"utf-8\") as f:",
+   "blanks": [
+    [
+     "with"
+    ]
+   ],
+   "hint": "Context manager.",
+   "explanation": "with بتفتح وتقفل لوحدها."
+  },
+  {
+   "id": "04-python-ch08-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "`AttributeError: 'NoneType' object has no attribute 'text'`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "القيمة كانت None (مثلاً مفيش نتيجة)، فأشيك عليها قبل ما أستخدمها",
+     "why": "صح."
+    },
+    {
+     "text": "المكتبة بايظة",
+     "why": "لأ."
+    },
+    {
+     "text": "أعمل import تاني",
+     "why": "لأ."
+    },
+    {
+     "text": "أغيّر .text لـ [\"text\"]",
+     "why": "مش المشكلة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أشهر خطأ في قراية الردود."
+  },
+  {
+   "id": "04-python-ch08-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب ما بيحصل في `luna = Model(\"gpt-6-luna\")`:",
+   "items": [
+    "Python تعمل Object جديد",
+    "تنادي __init__ وتبعت الـ Object كـ self",
+    "__init__ يحط self.name = ...",
+    "ترجّع الـ Object في luna"
+   ],
+   "explanation": "__init__ وقت الإنشاء."
+  },
+  {
+   "id": "04-python-ch08-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه Pydantic BaseModel مهم للـ AI؟",
+   "options": [
+    {
+     "text": "بيوصف شكل البيانات اللي عايزها من الموديل وبيتأكد إن الرد مطابق",
+     "why": "صح."
+    },
+    {
+     "text": "علشان أسرع",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان الـ API key",
+     "why": "لأ."
+    },
+    {
+     "text": "مش مهم",
+     "why": "أساس Structured output."
+    }
+   ],
+   "correct": 0,
+   "explanation": "model_json_schema و model_validate_json."
+  }
+ ]
+}

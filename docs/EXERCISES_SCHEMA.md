@@ -44,7 +44,7 @@ Every item in `exercises` has:
 | `options` | `{ text, why }[]` | At least two. `why` is the feedback for choosing that option. |
 | `correct` | number | Zero-based index into `options`. |
 
-Choosing an option immediately shows صح or غلط, that option's `why`, and `explanation`.
+Choosing an option immediately shows صح or غلط, that option's `why`, and `explanation`. A wrong choice also shows the correct option's text and `why`.
 
 ## `scenario`
 
@@ -69,12 +69,19 @@ The learner reorders with drag or with فوق / تحت, then presses تحقق. `
 | --- | --- | --- |
 | `prompt` | string | What to type. |
 | `accepted` | string[] | Accepted answers. At least one. |
-| `patterns` | string[] | Optional. A full-string regex. Any match also counts as correct. |
+| `patterns` | string[] | Optional. JavaScript `RegExp` sources with no flags (`new RegExp(p)`). Any match on the normalized input also counts as correct. |
 | `hint` | string | Optional. Shown only after تلميح. |
 
-Whitespace is trimmed and collapsed. Curly quotes (`“”‘’«»`) become straight quotes. `'` and `"` are treated as the same quote style. The comparison is case-sensitive.
+The same rules apply to shell commands and to code lines (Python, JS, CSS, YAML). Comparison is case-sensitive.
 
-A command is correct when the normalized input equals any normalized `accepted` value, or when the trimmed input matches any `patterns` regex.
+Normalization, applied to the learner's input and to every `accepted` entry:
+
+1. Trim leading and trailing whitespace.
+2. Strip one leading prompt `$ ` or `% `.
+3. Collapse runs of whitespace into a single space.
+4. Drop one trailing `;`, then trim again.
+
+An answer is correct when the normalized input equals any normalized `accepted` entry, or when a `patterns` regex matches that normalized input. The first `accepted` entry is the one shown by اعرض الإجابة.
 
 ## `fill`
 
@@ -84,10 +91,11 @@ A command is correct when the normalized input equals any normalized `accepted` 
 | `template` | string | Text containing one `___` per blank. |
 | `blanks` | string[][] | `blanks[i]` is every accepted string for placeholder `i`. |
 | `hint` | string | Optional. |
+| `lang` | string | Optional. Code language for the template. |
 
-The number of `___` markers must equal `blanks.length`. Current files use a single blank, and several accepted spellings are listed in `blanks[0]` (for example `["ppid"]` or `["Closes", "closes", "Fixes"]`).
+The number of `___` markers must equal `blanks.length`. A blank may list several accepted spellings (for example `["ppid"]` or `["Closes", "closes", "Fixes"]`).
 
-Each blank is checked with the same normalization as `command`.
+Each blank is trimmed and compared case-sensitively. Arabic diacritics and tatweel are ignored, so `كِتاب` matches `كتاب`. Command normalization (`$`, `%`, trailing `;`) is not applied to blanks.
 
 ## Progress
 

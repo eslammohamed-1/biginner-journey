@@ -2,7 +2,7 @@
 
 Book and cheat-sheet PDFs are linked from each book index as `/biginner-journey/downloads/<file>.pdf`.
 
-The PDFs are not in the repo yet. Drop them in this folder (keeping the names below) and the existing links will start working. The site build does not require the files to exist.
+The 8 books and 8 cheat sheets are in this folder, under the names below.
 
 ## Expected files
 
@@ -25,4 +25,4 @@ The PDFs are not in the repo yet. Drop them in this folder (keeping the names be
 
 ## التحميل
 
-روابط الـ PDF في صفحة كل كتاب بتشير للمسار `/biginner-journey/downloads/`. حط الملفات هنا بنفس الأسماء اللي فوق، واللينكات هتشتغل من غير أي تعديل في الكود. البناء مش بيفشل لو الملفات لسه مش موجودة.
+روابط الـ PDF في صفحة كل كتاب بتشير للمسار `/biginner-journey/downloads/`. الملفات الثمانية للكتب وملفات المراجعة الثمانية موجودة هنا بنفس الأسماء اللي فوق.

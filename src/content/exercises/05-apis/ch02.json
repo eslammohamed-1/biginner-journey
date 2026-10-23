@@ -1,0 +1,254 @@
+{
+ "book": "05-apis",
+ "chapter": 2,
+ "chapterFile": "ch02",
+ "title": "أنواع الـ APIs: REST و GraphQL و Webhooks وأصحابهم",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "05-apis-ch02-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "في REST، إيه اللي بيقول الفعل؟",
+   "options": [
+    {
+     "text": "الـ HTTP Method (GET و POST و ...)",
+     "why": "صح."
+    },
+    {
+     "text": "الـ URL",
+     "why": "الـ URL للـ Resource."
+    },
+    {
+     "text": "الـ Body",
+     "why": "لأ."
+    },
+    {
+     "text": "اسم الفانكشن",
+     "why": "ده RPC."
+    }
+   ],
+   "correct": 0,
+   "explanation": "والـ Status code بيقول النتيجة."
+  },
+  {
+   "id": "05-apis-ch02-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في GraphQL كل Resource ليه URL مختلف؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "Endpoint واحد."
+    },
+    {
+     "text": "لأ، Endpoint واحد والـ Query بتحدد الحقول",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "بيحل Over/Under-fetching."
+  },
+  {
+   "id": "05-apis-ch02-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "رد GraphQL بـ 200 معناه إن الـ Query نجحت أكيد؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الأخطاء ممكن تيجي مع 200."
+    },
+    {
+     "text": "لأ، لازم تشيك على \"errors\" في الـ Body",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "فرق كبير عن REST."
+  },
+  {
+   "id": "05-apis-ch02-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في الـ Webhook، مين بيبعت الـ HTTP request؟",
+   "options": [
+    {
+     "text": "الخدمة التانية بتبعت POST لسيرفرك لما حدث يحصل",
+     "why": "صح."
+    },
+    {
+     "text": "انت بتسأل كل شوية",
+     "why": "ده Polling."
+    },
+    {
+     "text": "المتصفح",
+     "why": "لأ."
+    },
+    {
+     "text": "محدش",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "السيرفر بيكلّمك."
+  },
+  {
+   "id": "05-apis-ch02-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Over-fetching معناها؟",
+   "options": [
+    {
+     "text": "الـ API بيرجّع حقول كتير مش محتاجها",
+     "why": "صح."
+    },
+    {
+     "text": "بيرجّع أقل من المطلوب",
+     "why": "ده Under-fetching."
+    },
+    {
+     "text": "طلبات كتير",
+     "why": "نتيجة Under-fetching."
+    },
+    {
+     "text": "رد بطيء",
+     "why": "مش التعريف."
+    }
+   ],
+   "correct": 0,
+   "explanation": "GraphQL بيحلها."
+  },
+  {
+   "id": "05-apis-ch02-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ابعت Query GraphQL بـ curl كـ POST بـ JSON (اكتب الـ Header بس).",
+   "accepted": [
+    "-H 'Content-Type: application/json'",
+    "-H \"Content-Type: application/json\""
+   ],
+   "hint": "Content-Type.",
+   "explanation": "و -d '{\"query\": \"{ ... }\"}'."
+  },
+  {
+   "id": "05-apis-ch02-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل Query GraphQL تجيب اسم وعاصمة مصر:",
+   "template": "{ country(code: \"EG\") { name ___ } }",
+   "blanks": [
+    [
+     "capital"
+    ]
+   ],
+   "hint": "العاصمة.",
+   "explanation": "بتختار الحقول."
+  },
+  {
+   "id": "05-apis-ch02-08",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب من الأقدم للأحدث:",
+   "items": [
+    "SOAP و XML",
+    "REST",
+    "GraphQL"
+   ],
+   "explanation": "الناس هربت من تقل SOAP."
+  },
+  {
+   "id": "05-apis-ch02-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "محتاج إشعار لحظي لما عميل يدفع، بدل ما تسأل كل دقيقة.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "Webhook: الخدمة تبعتلك POST لما الدفع يحصل",
+     "why": "صح."
+    },
+    {
+     "text": "Polling كل ثانية",
+     "why": "إهدار."
+    },
+    {
+     "text": "GraphQL",
+     "why": "مش للإشعارات."
+    },
+    {
+     "text": "SOAP",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بدل الـ Polling."
+  },
+  {
+   "id": "05-apis-ch02-10",
+   "type": "mcq",
+   "level": "medium",
+   "question": "محتاج اتصال في الاتجاهين بشكل مستمر (زي شات). تختار؟",
+   "options": [
+    {
+     "text": "WebSockets",
+     "why": "صح."
+    },
+    {
+     "text": "SSE",
+     "why": "من السيرفر بس."
+    },
+    {
+     "text": "REST",
+     "why": "طلب ورد."
+    },
+    {
+     "text": "Webhook",
+     "why": "سيرفر لسيرفر."
+    }
+   ],
+   "correct": 0,
+   "explanation": "gRPC بين السيرفرات بـ Protobuf."
+  },
+  {
+   "id": "05-apis-ch02-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "مش كل اللي اسمه \"REST API\" هو REST فعلاً. ليه؟",
+   "options": [
+    {
+     "text": "ناس كتير بتسمّي أي API على HTTP بـ JSON \"REST\" حتى لو مش ماشي على المبادئ",
+     "why": "صح."
+    },
+    {
+     "text": "علشان REST اتشالت",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان لازم XML",
+     "why": "لأ."
+    },
+    {
+     "text": "كله REST",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خلي بالك."
+  },
+  {
+   "id": "05-apis-ch02-12",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: في SOAP، معظم الطلبات بتبقى Method:",
+   "template": "___",
+   "blanks": [
+    [
+     "POST"
+    ]
+   ],
+   "hint": "لنفس الـ URL.",
+   "explanation": "HTTP مجرد ناقل."
+  }
+ ]
+}

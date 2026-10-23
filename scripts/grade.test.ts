@@ -5,21 +5,26 @@ import {
 	matchesAccepted,
 	matchesCommand,
 	matchesFill,
+	normalizeAnswer,
 	sameOrder,
 	seededShuffle,
 } from '../src/lib/grade.ts';
 
 assert.equal(matchesAccepted('  type   -a \t echo  ', ['type -a echo']), true);
-assert.equal(matchesAccepted('git config --global user.name “Sara Ahmed”', ['git config --global user.name "Sara Ahmed"']), true);
-assert.equal(matchesAccepted(`git config --global user.name 'Sara Ahmed'`, ['git config --global user.name "Sara Ahmed"']), true);
+assert.equal(matchesAccepted('$ type -a echo', ['type -a echo']), true);
+assert.equal(matchesAccepted('% type -a echo;', ['type -a echo']), true);
+assert.equal(matchesAccepted('type -a echo;', ['type -a echo']), true);
+assert.equal(matchesAccepted('type -a echo;;', ['type -a echo;;']), true);
+assert.equal(matchesAccepted(`git config --global user.name 'Sara Ahmed'`, ['git config --global user.name "Sara Ahmed"']), false);
 assert.equal(matchesAccepted('ls', ['pwd']), false);
 
 assert.equal(matchesFill(['  ppid '], [['ppid']]), true);
 assert.equal(matchesFill(['PPID'], [['ppid']]), false);
+assert.equal(matchesFill(['كِتاب'], [['كتاب']]), true);
 assert.equal(matchesFill(['Closes'], [['Fixes', 'closes', 'Closes']]), true);
 
 const lsPattern = String.raw`^ls\s+-(?=[lahG]*l)(?=[lahG]*a)(?=[lahG]*h)[lahG]+$`;
-assert.equal(matchesCommand('ls -lah', ['ls -lah'], [lsPattern]), true);
+assert.equal(matchesCommand('$ ls   -lah;', ['ls -lah'], [lsPattern]), true);
 assert.equal(matchesCommand('ls   -ahl', ['ls -lah'], [lsPattern]), true);
 assert.equal(matchesCommand('ls -la', ['ls -lah'], [lsPattern]), false);
 assert.equal(matchesCommand('definitely-not', ['ls -lah'], [lsPattern]), false);
@@ -64,6 +69,13 @@ for (const file of walk(root.pathname)) {
 				true,
 				file,
 			);
+			const canonical = normalizeAnswer(exercise.accepted[0] ?? '');
+			assert.equal(matchesCommand(`$ ${canonical};`, exercise.accepted, exercise.patterns ?? []), true, file);
+			for (const pattern of exercise.patterns ?? []) {
+				const re = new RegExp(pattern);
+				const hit = exercise.accepted.some((answer) => re.test(normalizeAnswer(answer)));
+				assert.equal(hit, true, `${file} pattern ${pattern}`);
+			}
 			assert.equal(matchesCommand('___nope___', exercise.accepted, exercise.patterns ?? []), false, file);
 		}
 		if (exercise.type === 'fill' && exercise.blanks) {

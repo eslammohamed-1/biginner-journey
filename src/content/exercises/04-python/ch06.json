@@ -1,0 +1,231 @@
+{
+ "book": "04-python",
+ "chapter": 6,
+ "chapterFile": "ch06",
+ "title": "الدوال: def و return و الـ Arguments والـ Type hints",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "04-python-ch06-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "فانكشن مفيهاش return بترجّع إيه؟",
+   "options": [
+    {
+     "text": "None",
+     "why": "صح."
+    },
+    {
+     "text": "0",
+     "why": "لأ."
+    },
+    {
+     "text": "خطأ",
+     "why": "لأ."
+    },
+    {
+     "text": "آخر سطر",
+     "why": "لأ في Python."
+    }
+   ],
+   "correct": 0,
+   "explanation": "من غير return النتيجة None."
+  },
+  {
+   "id": "04-python-ch06-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`def f(x: int)` وناديت `f(\"hi\")`. Python هترمي خطأ قبل التنفيذ؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الـ Type hints للقراية."
+    },
+    {
+     "text": "لأ، Python مبتفحصهاش وقت التشغيل",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "أدوات زي mypy بتفحص."
+  },
+  {
+   "id": "04-python-ch06-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في `def f(*, a, b)` لازم تبعت a و b إزاي؟",
+   "options": [
+    {
+     "text": "بالاسم: f(a=1, b=2)",
+     "why": "صح."
+    },
+    {
+     "text": "بالترتيب",
+     "why": "النجمة بتمنع."
+    },
+    {
+     "text": "ليست لازم",
+     "why": "إجباريين."
+    },
+    {
+     "text": "كـ List",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ودي اللي الـ SDKs بتعمله."
+  },
+  {
+   "id": "04-python-ch06-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`**kwargs` معناها إيه في التوقيع؟",
+   "options": [
+    {
+     "text": "بتلم أي Keyword arguments زيادة في dict",
+     "why": "صح."
+    },
+    {
+     "text": "اتنين أس",
+     "why": "لأ."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    },
+    {
+     "text": "List",
+     "why": "ده *args."
+    }
+   ],
+   "correct": 0,
+   "explanation": "f(**d) بتفك dict."
+  },
+  {
+   "id": "04-python-ch06-05",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان ترتّب scores على أساس العنصر التاني من الأكبر:",
+   "template": "ranked = sorted(scores, key=___ x: x[1], reverse=True)",
+   "blanks": [
+    [
+     "lambda"
+    ]
+   ],
+   "hint": "فانكشن من غير اسم.",
+   "explanation": "key = رتّب على أساس إيه."
+  },
+  {
+   "id": "04-python-ch06-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تبعت dict كـ Keyword arguments:",
+   "template": "client.responses.create(___config)",
+   "blanks": [
+    [
+     "**"
+    ]
+   ],
+   "hint": "نجمتين.",
+   "explanation": "بيفك الـ dict."
+  },
+  {
+   "id": "04-python-ch06-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اكتب توقيع فانكشن summarize بتاخد text (str) و max_words (int افتراضي 100) وبترجّع str.",
+   "accepted": [
+    "def summarize(text: str, max_words: int = 100) -> str:",
+    "def summarize(text: str, max_words: int=100) -> str:"
+   ],
+   "hint": "Type hints و -> و default.",
+   "explanation": "الـ Type hints كلام للقارئ."
+  },
+  {
+   "id": "04-python-ch06-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "ناديت `client.responses.create(\"gpt-6-luna\", \"Hi\")` وطلع TypeError.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ SDK بيجبر Keyword arguments (* في التوقيع)، فأكتب model= و input=",
+     "why": "صح."
+    },
+    {
+     "text": "الموديل غلط",
+     "why": "الخطأ عن الـ Arguments."
+    },
+    {
+     "text": "أسطب المكتبة تاني",
+     "why": "لأ."
+    },
+    {
+     "text": "Python قديمة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "= جوه النداء مش إسناد."
+  },
+  {
+   "id": "04-python-ch06-09",
+   "type": "mcq",
+   "level": "think",
+   "question": "في `create(model=\"x\", input=\"hi\")`، الـ = هنا إسناد متغير؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لأ."
+    },
+    {
+     "text": "لأ، ده اسم الـ Argument وقيمته",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "model مش متغير اتعمل."
+  },
+  {
+   "id": "04-python-ch06-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أجزاء تعريف فانكشن:",
+   "items": [
+    "def",
+    "الاسم",
+    "(الـ Parameters)",
+    "-> نوع الرجوع",
+    ":",
+    "الجسم بمسافات و return"
+   ],
+   "explanation": "def name(params) -> type:"
+  },
+  {
+   "id": "04-python-ch06-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`str | None` في Type hint معناها؟",
+   "options": [
+    {
+     "text": "القيمة ممكن تبقى نص أو None",
+     "why": "صح."
+    },
+    {
+     "text": "نص أو خطأ",
+     "why": "لأ."
+    },
+    {
+     "text": "OR منطقي",
+     "why": "مش هنا."
+    },
+    {
+     "text": "None بس",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Optional."
+  }
+ ]
+}

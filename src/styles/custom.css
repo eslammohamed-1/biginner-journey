@@ -383,6 +383,11 @@ body {
 	background: color-mix(in srgb, var(--sl-color-red) 16%, var(--sl-color-bg));
 }
 
+.ex-opt.is-answer {
+	border-color: var(--sl-color-green);
+	background: color-mix(in srgb, var(--sl-color-green) 10%, var(--sl-color-bg));
+}
+
 .ex-verdict {
 	display: inline-block;
 	margin-inline-start: 0.4rem;

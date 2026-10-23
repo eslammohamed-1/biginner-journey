@@ -1,0 +1,274 @@
+{
+ "book": "05-apis",
+ "chapter": 13,
+ "chapterFile": "ch13",
+ "title": "الـ Auth الجزء 2: OAuth 2.0 ببساطة، والـ CORS من ناحية السيرفر",
+ "count": 13,
+ "exercises": [
+  {
+   "id": "05-apis-ch13-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "OAuth بيحل مشكلة إيه؟",
+   "options": [
+    {
+     "text": "التطبيق ياخد مفتاح محدود ومؤقت بدل ما ياخد باسوردك",
+     "why": "صح."
+    },
+    {
+     "text": "بيشفّر الباسورد",
+     "why": "لأ."
+    },
+    {
+     "text": "بيعمل حساب",
+     "why": "لأ."
+    },
+    {
+     "text": "بيسرّع الـ API",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مفتاح الـ Valet."
+  },
+  {
+   "id": "05-apis-ch13-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "client_id في OAuth سر لازم يتخبّى؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "client_id عام."
+    },
+    {
+     "text": "لأ، الـ client_secret هو السر",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "والـ Public clients بيستخدموا PKCE."
+  },
+  {
+   "id": "05-apis-ch13-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "POST بـ Content-Type: application/json من المتصفح بيعمل Preflight؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح."
+    },
+    {
+     "text": "لأ",
+     "why": "بيعمل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "وكمان Authorization."
+  },
+  {
+   "id": "05-apis-ch13-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لو الـ API مش راجع Headers الـ CORS، curl مش هيقدر يكلّمه؟",
+   "options": [
+    {
+     "text": "صح",
+     "why": "CORS في المتصفح بس."
+    },
+    {
+     "text": "غلط، curl عادي",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "CORS مش حماية للـ API."
+  },
+  {
+   "id": "05-apis-ch13-05",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Authorization Code + PKCE:",
+   "items": [
+    "التطبيق يعمل code_verifier و code_challenge",
+    "يحوّل المستخدم لـ /authorize بـ state و code_challenge",
+    "المستخدم يوافق ويرجع بـ code",
+    "POST /token بـ code و code_verifier",
+    "ياخد access_token و refresh_token"
+   ],
+   "explanation": "الـ Flow الأساسي."
+  },
+  {
+   "id": "05-apis-ch13-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل طريقة الـ challenge:",
+   "template": "code_challenge_method=___",
+   "blanks": [
+    [
+     "S256"
+    ]
+   ],
+   "hint": "SHA-256.",
+   "explanation": "plain مش مستحب."
+  },
+  {
+   "id": "05-apis-ch13-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الـ grant_type لتبديل الـ code:",
+   "template": "grant_type=___",
+   "blanks": [
+    [
+     "authorization_code"
+    ]
+   ],
+   "hint": "نوع الـ Flow.",
+   "explanation": "و refresh_token للتجديد."
+  },
+  {
+   "id": "05-apis-ch13-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "سيرفر عايز يكلم API تاني من غير مستخدم.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "Client Credentials flow",
+     "why": "صح."
+    },
+    {
+     "text": "Authorization Code",
+     "why": "محتاج مستخدم."
+    },
+    {
+     "text": "Implicit",
+     "why": "ممنوع."
+    },
+    {
+     "text": "Password",
+     "why": "ممنوع."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Device flow للـ TV والـ CLI."
+  },
+  {
+   "id": "05-apis-ch13-09",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "الـ API بيرجّع Access-Control-Allow-Origin: * مع Credentials.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "ده مش مسموح، لازم Origin من قايمة معروفة + Vary: Origin",
+     "why": "صح."
+    },
+    {
+     "text": "عادي",
+     "why": "المتصفح هيرفض."
+    },
+    {
+     "text": "أحسن",
+     "why": "خطر."
+    },
+    {
+     "text": "أرجّع الـ Origin اللي جاي زي المراية",
+     "why": "أي موقع هيعدّي."
+    }
+   ],
+   "correct": 0,
+   "explanation": "قايمة Origins مش مراية."
+  },
+  {
+   "id": "05-apis-ch13-10",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Implicit و Password flows حالتهم إيه؟",
+   "options": [
+    {
+     "text": "اتشالوا في RFC 9700 و OAuth 2.1",
+     "why": "صح."
+    },
+    {
+     "text": "الأفضل",
+     "why": "لأ."
+    },
+    {
+     "text": "إجباريين",
+     "why": "لأ."
+    },
+    {
+     "text": "جداد",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "استخدم Code + PKCE."
+  },
+  {
+   "id": "05-apis-ch13-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "OpenID Connect بيزوّد إيه على OAuth؟",
+   "options": [
+    {
+     "text": "تسجيل الدخول: scope=openid بيرجّع id_token فيه مين المستخدم",
+     "why": "صح."
+    },
+    {
+     "text": "تشفير",
+     "why": "لأ."
+    },
+    {
+     "text": "CORS",
+     "why": "لأ."
+    },
+    {
+     "text": "Rate limit",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "OAuth للـ Login."
+  },
+  {
+   "id": "05-apis-ch13-12",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل Header CORS يسمح بـ https://app.example.com (اكتب الـ Header).",
+   "accepted": [
+    "Access-Control-Allow-Origin: https://app.example.com"
+   ],
+   "hint": "Allow-Origin.",
+   "explanation": "ومعاه Vary: Origin."
+  },
+  {
+   "id": "05-apis-ch13-13",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ state Parameter بيحمي من إيه؟",
+   "options": [
+    {
+     "text": "CSRF، إن حد يحقنلك code مش بتاعك",
+     "why": "صح."
+    },
+    {
+     "text": "سرقة الباسورد",
+     "why": "لأ."
+    },
+    {
+     "text": "Rate limit",
+     "why": "لأ."
+    },
+    {
+     "text": "XSS",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "لازم تتأكد إنه رجع زي ما بعته."
+  }
+ ]
+}

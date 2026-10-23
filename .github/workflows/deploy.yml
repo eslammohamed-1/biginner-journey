@@ -23,7 +23,10 @@ jobs:
       - name: Install, build, and upload your site
         uses: withastro/action@v6
         with:
-          node-version: 22
+          # Astro 7.4 refuses to start below Node 22.23.4. The major
+          # version "22" resolved to 22.23.3 and `astro build` exited.
+          node-version: 22.23.4
+          package-manager: npm
 
   deploy:
     needs: build

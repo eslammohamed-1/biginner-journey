@@ -1,0 +1,252 @@
+{
+ "book": "06-frontend",
+ "chapter": 13,
+ "chapterFile": "ch13",
+ "title": "Node و npm: المخزن اللي فيه ملايين الحتت الجاهزة",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "06-frontend-ch13-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "npm عبارة عن إيه؟",
+   "options": [
+    {
+     "text": "Registry و CLI وموقع",
+     "why": "صح."
+    },
+    {
+     "text": "لغة",
+     "why": "لأ."
+    },
+    {
+     "text": "متصفح",
+     "why": "لأ."
+    },
+    {
+     "text": "Framework",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بييجي مع Node."
+  },
+  {
+   "id": "06-frontend-ch13-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "npm i -D vite بيكتب Vite فين؟",
+   "options": [
+    {
+     "text": "devDependencies",
+     "why": "صح."
+    },
+    {
+     "text": "dependencies",
+     "why": "من غير -D."
+    },
+    {
+     "text": "مش بيكتب",
+     "why": "بيكتب."
+    },
+    {
+     "text": "scripts",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "-D للأدوات."
+  },
+  {
+   "id": "06-frontend-ch13-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ينفع تنسخ node_modules من الماك لـ Linux؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "فيه Packages مخصوصة لكل نظام."
+    },
+    {
+     "text": "لأ، اعمل npm ci على السيرفر",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Native binaries."
+  },
+  {
+   "id": "06-frontend-ch13-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "npm create vite@latest بيشغّل Package اسمه؟",
+   "options": [
+    {
+     "text": "create-vite",
+     "why": "صح."
+    },
+    {
+     "text": "vite",
+     "why": "لأ."
+    },
+    {
+     "text": "npm-vite",
+     "why": "لأ."
+    },
+    {
+     "text": "vite-create",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "npm create X = create-X."
+  },
+  {
+   "id": "06-frontend-ch13-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعمل package.json بالقيم الافتراضية.",
+   "accepted": [
+    "npm init -y",
+    "npm init --yes"
+   ],
+   "hint": "-y.",
+   "explanation": "type commonjs في الجديد."
+  },
+  {
+   "id": "06-frontend-ch13-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "سطّب Prettier بنسخة بالظبط كأداة تطوير.",
+   "accepted": [
+    "npm install -D -E prettier",
+    "npm i -D -E prettier",
+    "npm i -DE prettier",
+    "npm install --save-dev --save-exact prettier"
+   ],
+   "hint": "-D و -E.",
+   "explanation": "-E بالظبط."
+  },
+  {
+   "id": "06-frontend-ch13-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرف ليه Package اسمه picocolors موجود في node_modules.",
+   "accepted": [
+    "npm explain picocolors",
+    "npm why picocolors",
+    "npm ls picocolors"
+   ],
+   "hint": "npm explain.",
+   "explanation": "Transitive dependency."
+  },
+  {
+   "id": "06-frontend-ch13-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: فولدر الأوامر جوه node_modules:",
+   "template": "node_modules/___",
+   "blanks": [
+    [
+     ".bin"
+    ]
+   ],
+   "hint": "نقطة bin.",
+   "explanation": "npx بيشغّل منه."
+  },
+  {
+   "id": "06-frontend-ch13-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات npm install:",
+   "items": [
+    "Resolve",
+    "Fetch",
+    "Verify",
+    "Extract",
+    "Save",
+    "Audit"
+   ],
+   "explanation": "خطوة بخطوة."
+  },
+  {
+   "id": "06-frontend-ch13-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "npm install -g طلّع EACCES والنصيحة كانت sudo.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "متستخدمش sudo؛ سطّب محلي في المشروع أو استخدم مدير نسخ Node",
+     "why": "صح."
+    },
+    {
+     "text": "sudo",
+     "why": "بيبوّظ الصلاحيات."
+    },
+    {
+     "text": "chmod 777",
+     "why": "خطر."
+    },
+    {
+     "text": "أمسح Node",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Global لأدوات الجهاز بس."
+  },
+  {
+   "id": "06-frontend-ch13-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه المحلي أحسن من الـ Global؟",
+   "options": [
+    {
+     "text": "كل مشروع ليه نسخته ومحددة في package.json، فمحدش يقول \"بيشتغل عندي\"",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع",
+     "why": "مش السبب."
+    },
+    {
+     "text": "أصغر",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Global ممنوع",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "npx للتشغيل."
+  },
+  {
+   "id": "06-frontend-ch13-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ -- في npm create vite@latest app -- --template react بتعمل إيه؟",
+   "options": [
+    {
+     "text": "بتعدّي الـ Flags للأمر اللي جوه (create-vite) مش لـ npm",
+     "why": "صح."
+    },
+    {
+     "text": "تعليق",
+     "why": "لأ."
+    },
+    {
+     "text": "بتلغي الأمر",
+     "why": "لأ."
+    },
+    {
+     "text": "إجبارية دايماً",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "فاصل."
+  }
+ ]
+}

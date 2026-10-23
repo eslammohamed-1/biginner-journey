@@ -1,0 +1,218 @@
+{
+ "book": "04-python",
+ "chapter": 3,
+ "chapterFile": "ch03",
+ "title": "خطة قراية أي اسكريبت: تدخل منين وتمشي إزاي",
+ "count": 10,
+ "exercises": [
+  {
+   "id": "04-python-ch03-01",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطة قراية أي اسكريبت:",
+   "items": [
+    "الـ imports",
+    "الإعدادات (CAPITALS)",
+    "المدخل (__main__)",
+    "تتبّع الدوال",
+    "البيانات داخلة وطالعة",
+    "الخطر"
+   ],
+   "explanation": "مش من فوق لتحت زي رواية."
+  },
+  {
+   "id": "04-python-ch03-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "أحسن طريقة تقرا اسكريبت إنك تبدأ من أول سطر لآخر سطر؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الاسكريبت مكتوب بترتيب التعريف."
+    },
+    {
+     "text": "لأ، ابدأ بالـ imports وبعدين المدخل وتتبّع",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "خطة الست خطوات."
+  },
+  {
+   "id": "04-python-ch03-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "المتغيرات اللي أساميها CAPITAL مينفعش Python تغيّرها؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ده اتفاق بس."
+    },
+    {
+     "text": "لأ، ده اتفاق إنها ثوابت، Python مش بتمنع",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "بتقولك \"دي إعدادات\"."
+  },
+  {
+   "id": "04-python-ch03-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في VS Code، Cmd + Click على اسم فانكشن بيعمل إيه؟",
+   "options": [
+    {
+     "text": "يوديك لتعريفها",
+     "why": "صح."
+    },
+    {
+     "text": "يمسحها",
+     "why": "لأ."
+    },
+    {
+     "text": "يشغّلها",
+     "why": "لأ."
+    },
+    {
+     "text": "يعمل Rename",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Shift + F12 لكل الأماكن اللي اتنادت."
+  },
+  {
+   "id": "04-python-ch03-05",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "هتشغّل اسكريبت حد بعتهولك على فولدر ملفاتك المهمة.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أقراه بالخطة وأدوّر على كتابة فوق ملفات، ومسح، وعدد Requests مدفوعة، وبيانات طالعة برّه",
+     "why": "صح."
+    },
+    {
+     "text": "أشغّله على طول",
+     "why": "خطر."
+    },
+    {
+     "text": "أشغّله بـ sudo",
+     "why": "أسوأ."
+    },
+    {
+     "text": "أطلب من AI يقولي آمن ولا لأ وخلاص",
+     "why": "مش كفاية."
+    }
+   ],
+   "correct": 0,
+   "explanation": "دوّر دايماً على الخطر."
+  },
+  {
+   "id": "04-python-ch03-06",
+   "type": "mcq",
+   "level": "think",
+   "question": "إمتى تعرف إنك فهمت الاسكريبت؟",
+   "options": [
+    {
+     "text": "لما تقدر تلخّصه في جملة \"بياخد X ويعمل Y ويكتب Z\"",
+     "why": "صح."
+    },
+    {
+     "text": "لما تقرا كل سطر",
+     "why": "مش كفاية."
+    },
+    {
+     "text": "لما يشتغل",
+     "why": "مش كفاية."
+    },
+    {
+     "text": "لما تحفظه",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الملخص في جملة."
+  },
+  {
+   "id": "04-python-ch03-07",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اختار Interpreter الـ venv في VS Code (اكتب اسم الأمر في Command Palette).",
+   "accepted": [
+    "Python: Select Interpreter"
+   ],
+   "hint": "Python: Select ...",
+   "explanation": "علشان VS Code يفهم المكتبات."
+  },
+  {
+   "id": "04-python-ch03-08",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: الاختصار اللي يوريك كل الـ Symbols في الملف في VS Code: Cmd + Shift + ___",
+   "template": "Cmd + Shift + ___",
+   "blanks": [
+    [
+     "O",
+     "o"
+    ]
+   ],
+   "hint": "حرف O.",
+   "explanation": "بتتنقل بين الدوال بسرعة."
+  },
+  {
+   "id": "04-python-ch03-09",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "في summarize_notes.py، لو حصل خطأ في الملف 90 من 100، النتايج الـ 89 هتتحفظ؟",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "حسب الكود: لو بيكتب في الآخر بس، هتضيع، وده من الحاجات اللي لازم تلاحظها وانت بتقرا",
+     "why": "صح، الخطة بتوصلك لده."
+    },
+    {
+     "text": "أكيد هتتحفظ",
+     "why": "مش أكيد."
+    },
+    {
+     "text": "Python بتحفظ لوحدها",
+     "why": "لأ."
+    },
+    {
+     "text": "مش مهم",
+     "why": "مهم في التكلفة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ده بيمهّد لفكرة الـ Resume."
+  },
+  {
+   "id": "04-python-ch03-10",
+   "type": "mcq",
+   "level": "medium",
+   "question": "تتبّع فانكشن معناه إيه؟",
+   "options": [
+    {
+     "text": "تبدأ من مكان استدعائها وتروح لتعريفها وترجع",
+     "why": "صح."
+    },
+    {
+     "text": "تقرا كل الدوال بالترتيب",
+     "why": "مش تتبّع."
+    },
+    {
+     "text": "تمسحها",
+     "why": "لأ."
+    },
+    {
+     "text": "تشغّلها في REPL",
+     "why": "ممكن يساعد، بس مش المعنى."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Cmd + Click و Back."
+  }
+ ]
+}

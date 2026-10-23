@@ -1,0 +1,249 @@
+{
+ "book": "06-frontend",
+ "chapter": 22,
+ "chapterFile": "ch22",
+ "title": "CSR و SSR و SSG و ISR و Hydration: الصفحة بتتبني فين؟",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "06-frontend-ch22-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "CSR يعني إيه؟",
+   "options": [
+    {
+     "text": "HTML فاضي و JS بيبني كل حاجة في المتصفح",
+     "why": "صح."
+    },
+    {
+     "text": "السيرفر بيبني مع كل Request",
+     "why": "SSR."
+    },
+    {
+     "text": "مرة وقت البناء",
+     "why": "SSG."
+    },
+    {
+     "text": "Static بيتجدد",
+     "why": "ISR."
+    }
+   ],
+   "correct": 0,
+   "explanation": "سهل ورخيص."
+  },
+  {
+   "id": "06-frontend-ch22-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في CSR، محرك البحث اللي مبيشغّلش JS بيشوف المحتوى؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيشوف HTML فاضي."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "SEO ضعيف."
+  },
+  {
+   "id": "06-frontend-ch22-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "صفحة SSG بتتبني مع كل زيارة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مرة وقت البناء."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ISR بيجدد."
+  },
+  {
+   "id": "06-frontend-ch22-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "new Date() جوه Component بيتعمله SSR ممكن يعمل Hydration mismatch؟",
+   "options": [
+    {
+     "text": "أيوه، الوقت مختلف بين السيرفر والمتصفح",
+     "why": "صح."
+    },
+    {
+     "text": "لأ",
+     "why": "ممكن."
+    }
+   ],
+   "correct": 0,
+   "explanation": "حاجات بتختلف."
+  },
+  {
+   "id": "06-frontend-ch22-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Hydration يعني إيه؟",
+   "options": [
+    {
+     "text": "ربط JS بـ HTML جاهز جه من السيرفر علشان يبقى تفاعلي",
+     "why": "صح."
+    },
+    {
+     "text": "تحميل صور",
+     "why": "لأ."
+    },
+    {
+     "text": "تنضيف الـ Cache",
+     "why": "لأ."
+    },
+    {
+     "text": "ضغط الملفات",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "\"ترطيب\"."
+  },
+  {
+   "id": "06-frontend-ch22-06",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب حسب إمتى الصفحة بتتبني (من الأبكر):",
+   "items": [
+    "SSG (وقت البناء)",
+    "ISR (وقت البناء وتتجدد)",
+    "SSR (مع كل Request)",
+    "CSR (في المتصفح)"
+   ],
+   "explanation": "الصفحة بتتبني فين."
+  },
+  {
+   "id": "06-frontend-ch22-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الـ Directive في Next.js 16:",
+   "template": "'___ cache'",
+   "blanks": [
+    [
+     "use"
+    ]
+   ],
+   "hint": "استخدم.",
+   "explanation": "Cache Components."
+  },
+  {
+   "id": "06-frontend-ch22-08",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: علامة الصفحة Static في جدول next build:",
+   "template": "___ Static",
+   "blanks": [
+    [
+     "○"
+    ]
+   ],
+   "hint": "دايرة فاضية.",
+   "explanation": "◐ Partial Prerender."
+  },
+  {
+   "id": "06-frontend-ch22-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "مدونة محتواها بيتغير مرة في الأسبوع ومحتاجة SEO.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "SSG أو ISR",
+     "why": "صح."
+    },
+    {
+     "text": "CSR",
+     "why": "SEO ضعيف."
+    },
+    {
+     "text": "SSR لكل Request",
+     "why": "تكلفة من غير لازمة."
+    },
+    {
+     "text": "مش مهم",
+     "why": "مهم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اختار حسب البيانات."
+  },
+  {
+   "id": "06-frontend-ch22-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "لوحة تحكم داخلية بعد تسجيل دخول.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "Vite + React (CSR) كفاية",
+     "why": "صح، مش محتاجة SEO."
+    },
+    {
+     "text": "لازم Next.js",
+     "why": "مش لازم."
+    },
+    {
+     "text": "SSG",
+     "why": "بيانات خاصة."
+    },
+    {
+     "text": "HTML بس",
+     "why": "محتاجة تفاعل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "إمتى Vite كفاية."
+  },
+  {
+   "id": "06-frontend-ch22-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "Suspense و Streaming بيعملوا إيه؟",
+   "options": [
+    {
+     "text": "السيرفر يبعت الأجزاء الجاهزة الأول والباقي بيتبعت لما يخلص",
+     "why": "صح."
+    },
+    {
+     "text": "بيوقفوا الصفحة",
+     "why": "لأ."
+    },
+    {
+     "text": "CSS",
+     "why": "لأ."
+    },
+    {
+     "text": "بيمسحوا",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Partial Prerendering."
+  },
+  {
+   "id": "06-frontend-ch22-12",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعمل مشروع Next.js جديد.",
+   "accepted": [
+    "npx create-next-app@latest",
+    "npm create next-app@latest",
+    "npx create-next-app@latest my-app"
+   ],
+   "hint": "create-next-app.",
+   "explanation": "Routing بالفولدرات."
+  }
+ ]
+}

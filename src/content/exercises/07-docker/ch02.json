@@ -1,0 +1,232 @@
+{
+ "book": "07-docker",
+ "chapter": 2,
+ "chapterFile": "ch02",
+ "title": "Docker: الفكرة وطريقة الشغل",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "07-docker-ch02-01",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب دورة Docker:",
+   "items": [
+    "Dockerfile",
+    "build",
+    "Image",
+    "run",
+    "Container"
+   ],
+   "explanation": "الفكرة كلها."
+  },
+  {
+   "id": "07-docker-ch02-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Image إيه؟",
+   "options": [
+    {
+     "text": "قالب جاهز فيه الـ app والـ runtime والمكتبات والـ filesystem",
+     "why": "صح."
+    },
+    {
+     "text": "Process شغالة",
+     "why": "ده الـ Container."
+    },
+    {
+     "text": "صورة PNG",
+     "why": "لأ."
+    },
+    {
+     "text": "سيرفر",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Container بيطلع منها."
+  },
+  {
+   "id": "07-docker-ch02-03",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Container إيه؟",
+   "options": [
+    {
+     "text": "Process معزولة شغالة من الـ Image",
+     "why": "صح."
+    },
+    {
+     "text": "ملف",
+     "why": "ده الـ Image/Dockerfile."
+    },
+    {
+     "text": "VM",
+     "why": "لأ."
+    },
+    {
+     "text": "Registry",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "تقدر تعمل كذا Container من نفس الـ Image."
+  },
+  {
+   "id": "07-docker-ch02-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Docker Hub إيه؟",
+   "options": [
+    {
+     "text": "Registry بتترفع عليه الـ Images ويتسحب منه",
+     "why": "صح."
+    },
+    {
+     "text": "مكان تكتب فيه الكود",
+     "why": "ده GitHub."
+    },
+    {
+     "text": "برنامج على الماك",
+     "why": "ده Docker Desktop."
+    },
+    {
+     "text": "VM",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "pull و push."
+  },
+  {
+   "id": "07-docker-ch02-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "السيرفر محتاج إيه علشان يشغّل الـ app بتاعك كـ Container؟",
+   "options": [
+    {
+     "text": "Docker بس",
+     "why": "صح، الباقي جوه الـ Image."
+    },
+    {
+     "text": "كل الـ dependencies",
+     "why": "جوه الـ Image."
+    },
+    {
+     "text": "نفس الـ OS بتاعك",
+     "why": "لأ."
+    },
+    {
+     "text": "IDE",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "حل مشكلة الـ compatibility."
+  },
+  {
+   "id": "07-docker-ch02-06",
+   "type": "command",
+   "level": "easy",
+   "prompt": "شغّل Container تجريبي hello-world.",
+   "accepted": [
+    "docker run hello-world"
+   ],
+   "hint": "docker run.",
+   "explanation": "بيعمل pull لو مش موجودة."
+  },
+  {
+   "id": "07-docker-ch02-07",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: الملف اللي فيه وصفة البناء:",
+   "template": "___",
+   "blanks": [
+    [
+     "Dockerfile"
+    ]
+   ],
+   "hint": "بحرف D كابيتال.",
+   "explanation": "بالظبط كده."
+  },
+  {
+   "id": "07-docker-ch02-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: الأمر اللي بيحوّل الـ Dockerfile لـ Image:",
+   "template": "docker ___",
+   "blanks": [
+    [
+     "build"
+    ]
+   ],
+   "hint": "ابني.",
+   "explanation": "و run للتشغيل."
+  },
+  {
+   "id": "07-docker-ch02-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عايز تشغّل نفس الـ app 3 مرات على نفس السيرفر.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أعمل 3 Containers من نفس الـ Image",
+     "why": "صح."
+    },
+    {
+     "text": "أبني 3 Images",
+     "why": "مش لازم."
+    },
+    {
+     "text": "3 سيرفرات",
+     "why": "مش لازم."
+    },
+    {
+     "text": "مستحيل",
+     "why": "ممكن."
+    }
+   ],
+   "correct": 0,
+   "explanation": "القالب واحد."
+  },
+  {
+   "id": "07-docker-ch02-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب نشر app بـ Docker:",
+   "items": [
+    "تبني Image على جهازك",
+    "ترفعها على Registry (push)",
+    "السيرفر يسحبها (pull)",
+    "السيرفر يشغّلها (run)"
+   ],
+   "explanation": "الطريقة."
+  },
+  {
+   "id": "07-docker-ch02-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "تشبيه الـ Image والـ Container الأقرب؟",
+   "options": [
+    {
+     "text": "الـ Image زي Class والـ Container زي Object منها",
+     "why": "صح."
+    },
+    {
+     "text": "الاتنين نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Container هو الـ Class",
+     "why": "العكس."
+    },
+    {
+     "text": "الـ Image هي الـ Process",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "قالب ونسخة شغالة."
+  }
+ ]
+}

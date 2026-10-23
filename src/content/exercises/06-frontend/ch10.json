@@ -1,0 +1,226 @@
+{
+ "book": "06-frontend",
+ "chapter": 10,
+ "chapterFile": "ch10",
+ "title": "CSS الحديثة: الحاجات اللي خلّت Sass مش ضرورية",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "06-frontend-ch10-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "متغيرات CSS (--x) بتختفي بعد الـ Build زي Sass؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "حية في المتصفح."
+    },
+    {
+     "text": "لأ، حية وتتغير بالـ JS والـ Media",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ليها Scope وبتتورث."
+  },
+  {
+   "id": "06-frontend-ch10-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "margin-inline-start في dir=\"rtl\" يساوي؟",
+   "options": [
+    {
+     "text": "margin-right",
+     "why": "صح."
+    },
+    {
+     "text": "margin-left",
+     "why": "ده في LTR."
+    },
+    {
+     "text": "margin-top",
+     "why": "لأ."
+    },
+    {
+     "text": "مفيش",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Logical properties."
+  },
+  {
+   "id": "06-frontend-ch10-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لو المتصفح مش فاهم خاصية CSS، الصفحة كلها بتبوظ؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيتجاهل السطر بس."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "@supports للتحسين التدريجي."
+  },
+  {
+   "id": "06-frontend-ch10-04",
+   "type": "command",
+   "level": "medium",
+   "prompt": "استخدم متغير --brand بقيمة احتياطية blue.",
+   "accepted": [
+    "color: var(--brand, blue);",
+    "var(--brand, blue)"
+   ],
+   "hint": "var() بـ fallback.",
+   "explanation": "لو مش معرّف."
+  },
+  {
+   "id": "06-frontend-ch10-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اختار .card اللي جواها img.",
+   "accepted": [
+    ".card:has(img)",
+    ".card:has(img) {"
+   ],
+   "hint": ":has.",
+   "explanation": "بتختار الأب حسب ولاده."
+  },
+  {
+   "id": "06-frontend-ch10-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الـ Nesting:",
+   "template": ".btn { ___:hover { color: red; } }",
+   "blanks": [
+    [
+     "&"
+    ]
+   ],
+   "hint": "الأب.",
+   "explanation": "متعششش كتير."
+  },
+  {
+   "id": "06-frontend-ch10-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل خلط لونين:",
+   "template": "color-___(in oklch, red 50%, blue)",
+   "blanks": [
+    [
+     "mix"
+    ]
+   ],
+   "hint": "خلط.",
+   "explanation": "ومعاه oklch()."
+  },
+  {
+   "id": "06-frontend-ch10-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عايز تستخدم خاصية CSS جديدة بس خايف متبقاش مدعومة.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشيك Baseline، وأستخدم @supports مع بديل",
+     "why": "صح."
+    },
+    {
+     "text": "متستخدمهاش أبداً",
+     "why": "مبالغة."
+    },
+    {
+     "text": "أستخدمها وخلاص",
+     "why": "ممكن متشتغلش."
+    },
+    {
+     "text": "أعمل JS",
+     "why": "مش لازم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Baseline."
+  },
+  {
+   "id": "06-frontend-ch10-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Dark mode بالمتغيرات:",
+   "items": [
+    "عرّف --bg و --fg في :root",
+    "استخدمهم في القواعد",
+    "غيّر قيمهم في @media (prefers-color-scheme: dark)"
+   ],
+   "explanation": "متغيرات حية."
+  },
+  {
+   "id": "06-frontend-ch10-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه Logical properties مهمة للمواقع العربي؟",
+   "options": [
+    {
+     "text": "بتقلب لوحدها مع dir فمش محتاج تكتب CSS تاني لـ RTL",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع",
+     "why": "لأ."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    },
+    {
+     "text": "للألوان",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "inline و block."
+  },
+  {
+   "id": "06-frontend-ch10-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Sass بقى مش ضروري ليه؟",
+   "options": [
+    {
+     "text": "CSS نفسها بقى فيها متغيرات و Nesting و دوال",
+     "why": "صح."
+    },
+    {
+     "text": "اتشال",
+     "why": "موجود."
+    },
+    {
+     "text": "بطيء",
+     "why": "مش السبب."
+    },
+    {
+     "text": "ممنوع",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "CSS الحديثة."
+  },
+  {
+   "id": "06-frontend-ch10-12",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اكتب لون بـ oklch (lightness 70% و chroma 0.15 و hue 250).",
+   "accepted": [
+    "oklch(70% 0.15 250)",
+    "oklch(0.7 0.15 250)"
+   ],
+   "hint": "oklch(L C H).",
+   "explanation": "ألوان متناسقة."
+  }
+ ]
+}

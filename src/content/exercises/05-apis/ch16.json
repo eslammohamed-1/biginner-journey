@@ -1,0 +1,262 @@
+{
+ "book": "05-apis",
+ "chapter": 16,
+ "chapterFile": "ch16",
+ "title": "الـ Status codes وتصميم الـ Body",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "05-apis-ch16-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "القاعدة في الـ Status code والـ Body؟",
+   "options": [
+    {
+     "text": "الكود للآلة والـ Body للإنسان",
+     "why": "صح."
+    },
+    {
+     "text": "الكود للإنسان",
+     "why": "العكس."
+    },
+    {
+     "text": "الـ Body مش مهم",
+     "why": "مهم."
+    },
+    {
+     "text": "مفيش قاعدة",
+     "why": "فيه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "200 بـ Error جوه غلط."
+  },
+  {
+   "id": "05-apis-ch16-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "توكن سليم بس ملوش صلاحية، الرد؟",
+   "options": [
+    {
+     "text": "401",
+     "why": "انت معروف."
+    },
+    {
+     "text": "403",
+     "why": "صح."
+    },
+    {
+     "text": "404 دايماً",
+     "why": "ممكن تخبّي بيه، بس الأصل 403."
+    },
+    {
+     "text": "500",
+     "why": "لأ."
+    }
+   ],
+   "correct": 1,
+   "explanation": "401 = مين انت."
+  },
+  {
+   "id": "05-apis-ch16-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "بحث ملوش نتايج المفروض يرجّع؟",
+   "options": [
+    {
+     "text": "200 و []",
+     "why": "صح."
+    },
+    {
+     "text": "404",
+     "why": "الـ Collection موجودة."
+    },
+    {
+     "text": "204",
+     "why": "مش مناسب لقايمة."
+    },
+    {
+     "text": "500",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "قايمة فاضية مش خطأ."
+  },
+  {
+   "id": "05-apis-ch16-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "تخزين السعر 49.99 كـ JSON Number فكرة كويسة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مشاكل الـ Float."
+    },
+    {
+     "text": "لأ، Integer بأصغر وحدة (4999 قرش) مع العملة",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "فلوس Integer."
+  },
+  {
+   "id": "05-apis-ch16-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "400 ضد 422؟",
+   "options": [
+    {
+     "text": "400 = مش قادر أقرا الطلب، و 422 = قريته بس البيانات مش مقبولة",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "العكس",
+     "why": "لأ."
+    },
+    {
+     "text": "422 = السيرفر وقع",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مثلاً JSON بايظ = 400."
+  },
+  {
+   "id": "05-apis-ch16-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: بعد إنشاء Resource بترجّع 201 ومعاها Header:",
+   "template": "___: /articles/42",
+   "blanks": [
+    [
+     "Location"
+    ]
+   ],
+   "hint": "المكان.",
+   "explanation": "202 للشغل الطويل."
+  },
+  {
+   "id": "05-apis-ch16-07",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: Status من غير Body بعد مسح ناجح:",
+   "template": "___ No Content",
+   "blanks": [
+    [
+     "204"
+    ]
+   ],
+   "hint": "2xx.",
+   "explanation": "DELETE."
+  },
+  {
+   "id": "05-apis-ch16-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ API بيرجّع 200 و {\"error\": \"not found\"}.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "ده بيبوّظ res.ok والـ Cache والـ Monitoring، فأرجّع 404 مع Body فيه التفاصيل",
+     "why": "صح."
+    },
+    {
+     "text": "عادي",
+     "why": "غلط."
+    },
+    {
+     "text": "أرجّع 500",
+     "why": "مش مشكلة سيرفر."
+    },
+    {
+     "text": "أشيل الـ Body",
+     "why": "الإنسان محتاجه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الكود للآلة."
+  },
+  {
+   "id": "05-apis-ch16-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب: طلب طويل (تصدير فيديو):",
+   "items": [
+    "Client يبعت POST",
+    "السيرفر يرد 202 Accepted مع لينك للحالة",
+    "Client يسأل على الحالة",
+    "لما تخلص ياخد النتيجة"
+   ],
+   "explanation": "202 للشغل الطويل."
+  },
+  {
+   "id": "05-apis-ch16-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "null ضد Field مش موجود ضد قيمة فاضية؟",
+   "options": [
+    {
+     "text": "null = معروف إن مفيش قيمة، ومش موجود = مش متبعت، وفاضي (\"\" أو []) = قيمة فاضية حقيقية",
+     "why": "صح."
+    },
+    {
+     "text": "كلهم نفس المعنى",
+     "why": "لأ."
+    },
+    {
+     "text": "null دايماً أحسن",
+     "why": "Arrays فاضية مش null."
+    },
+    {
+     "text": "ممنوع null",
+     "why": "مسموح."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اختار وكن ثابت."
+  },
+  {
+   "id": "05-apis-ch16-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "زوّدت Field جديد في الرد. ده كسر للـ Clients؟",
+   "options": [
+    {
+     "text": "لأ عادة، Field جديد = مش كسر",
+     "why": "صح."
+    },
+    {
+     "text": "أيوه دايماً",
+     "why": "لأ."
+    },
+    {
+     "text": "لازم Version جديد",
+     "why": "لأ."
+    },
+    {
+     "text": "لازم تمسح Field قديم",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Best Practice."
+  },
+  {
+   "id": "05-apis-ch16-12",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل الـ Enum بتاع status كقيمة String في JSON (draft).",
+   "accepted": [
+    "\"status\": \"draft\""
+   ],
+   "hint": "String.",
+   "explanation": "Enums Strings مش أرقام."
+  }
+ ]
+}

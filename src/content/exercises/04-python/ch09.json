@@ -1,0 +1,247 @@
+{
+ "book": "04-python",
+ "chapter": 9,
+ "chapterFile": "ch09",
+ "title": "الملفات والفولدرات: pathlib و open و glob",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch09-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "`Path(\"notes\") / \"a.md\"` بتعمل إيه؟",
+   "options": [
+    {
+     "text": "بتلزق المسارين: notes/a.md",
+     "why": "صح، / هنا لزق مسارات."
+    },
+    {
+     "text": "بتقسم",
+     "why": "مش قسمة مع Path."
+    },
+    {
+     "text": "خطأ",
+     "why": "بتشتغل."
+    },
+    {
+     "text": "بتعمل فولدر",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أحسن من لزق نصوص بإيدك."
+  },
+  {
+   "id": "04-python-ch09-02",
+   "type": "mcq",
+   "level": "easy",
+   "question": "لو path = Path(\"docs/report.md\")، إيه قيمة path.stem؟",
+   "options": [
+    {
+     "text": "report",
+     "why": "صح، الاسم من غير الامتداد."
+    },
+    {
+     "text": "report.md",
+     "why": "ده .name."
+    },
+    {
+     "text": ".md",
+     "why": "ده .suffix."
+    },
+    {
+     "text": "docs",
+     "why": "ده .parent."
+    }
+   ],
+   "correct": 0,
+   "explanation": "name و stem و suffix و parent."
+  },
+  {
+   "id": "04-python-ch09-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`folder.glob(\"*.md\")` بتدوّر في الفولدرات الفرعية؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "glob للفولدر نفسه بس."
+    },
+    {
+     "text": "لأ، علشان كده فيه rglob",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "أو glob(\"**/*.md\")."
+  },
+  {
+   "id": "04-python-ch09-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`open(p, \"w\")` على ملف موجود بتعمل إيه؟",
+   "options": [
+    {
+     "text": "بتمسح محتواه وتكتب من الأول",
+     "why": "صح، أخطر حرف."
+    },
+    {
+     "text": "بتزوّد في الآخر",
+     "why": "ده \"a\"."
+    },
+    {
+     "text": "بترفض",
+     "why": "ده \"x\"."
+    },
+    {
+     "text": "بتقرا",
+     "why": "ده \"r\"."
+    }
+   ],
+   "correct": 0,
+   "explanation": "\"x\" لو عايز ترفض الكتابة فوق ملف موجود."
+  },
+  {
+   "id": "04-python-ch09-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "لف على كل ملفات .md في folder والفولدرات اللي جواه.",
+   "accepted": [
+    "folder.rglob(\"*.md\")",
+    "folder.glob(\"**/*.md\")"
+   ],
+   "hint": "r قبل glob.",
+   "explanation": "sorted() علشان ترتيب ثابت."
+  },
+  {
+   "id": "04-python-ch09-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل فولدر out.parent ومتشتكيش لو موجود أو لو اللي قبله مش موجود.",
+   "accepted": [
+    "out.parent.mkdir(parents=True, exist_ok=True)",
+    "out.parent.mkdir(exist_ok=True, parents=True)"
+   ],
+   "hint": "parents و exist_ok.",
+   "explanation": "زي mkdir -p."
+  },
+  {
+   "id": "04-python-ch09-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اقرا ملف path كنص بالعربي بأمان.",
+   "accepted": [
+    "text = path.read_text(encoding=\"utf-8\")",
+    "text = path.read_text(encoding='utf-8')"
+   ],
+   "hint": "read_text مع encoding.",
+   "explanation": "من غيرها ممكن مشاكل مع العربي."
+  },
+  {
+   "id": "04-python-ch09-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تعمل مسار مبني على مكان الاسكريبت نفسه:",
+   "template": "BASE = Path(___).resolve().parent",
+   "blanks": [
+    [
+     "__file__"
+    ]
+   ],
+   "hint": "متغير فيه مسار الملف الحالي.",
+   "explanation": "المسار النسبي نسبي للـ Terminal مش للاسكريبت."
+  },
+  {
+   "id": "04-python-ch09-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "`UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0` وانت بتلف على ملفات الفولدر.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "غالباً بيقرا ملف مش نص (زي .DS_Store أو صورة)، فأفلتر الملفات بالامتداد",
+     "why": "صح."
+    },
+    {
+     "text": "أشيل encoding",
+     "why": "هيبوظ العربي."
+    },
+    {
+     "text": "Python مش بتدعم العربي",
+     "why": "بتدعم."
+    },
+    {
+     "text": "أمسح الفولدر",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "فلتر .DS_Store و ._ ملفات الماك."
+  },
+  {
+   "id": "04-python-ch09-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "AI كتبلك اسكريبت فيه `shutil.rmtree(folder)`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أقف عنده وأتأكد إيه folder بالظبط قبل أي تشغيل، وأجرّب على نسخة",
+     "why": "صح، بيمسح فولدر كامل."
+    },
+    {
+     "text": "عادي",
+     "why": "خطر كبير."
+    },
+    {
+     "text": "أشغّله بـ sudo",
+     "why": "أسوأ."
+    },
+    {
+     "text": "أشيل سطر الـ import بس",
+     "why": "هيكسر من غير ما تفهم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "unlink و rmtree سطور لازم تقف عندها."
+  },
+  {
+   "id": "04-python-ch09-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات حفظ نتيجة كل ملف في results/:",
+   "items": [
+    "out = Path(\"results\") / f\"{path.stem}.json\"",
+    "out.parent.mkdir(parents=True, exist_ok=True)",
+    "out.write_text(..., encoding=\"utf-8\")"
+   ],
+   "explanation": "الفولدر الأول بعدين الملف."
+  },
+  {
+   "id": "04-python-ch09-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "شغّلت الاسكريبت من فولدر تاني وطلع FileNotFoundError لملف موجود جنب الاسكريبت. ليه؟",
+   "options": [
+    {
+     "text": "المسار النسبي محسوب من فولدر الـ Terminal مش من فولدر الاسكريبت",
+     "why": "صح."
+    },
+    {
+     "text": "الملف اتمسح",
+     "why": "موجود."
+    },
+    {
+     "text": "Python بايظة",
+     "why": "لأ."
+    },
+    {
+     "text": "لازم sudo",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "استخدم Path(__file__).resolve().parent."
+  }
+ ]
+}

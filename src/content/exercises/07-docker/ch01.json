@@ -1,0 +1,276 @@
+{
+ "book": "07-docker",
+ "chapter": 1,
+ "chapterFile": "ch01",
+ "title": "المقدمة: ليه Docker اتعمل أصلاً؟",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "07-docker-ch01-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "جملة \"It works on my machine\" بتوصف أنهي مشكلة؟",
+   "options": [
+    {
+     "text": "الـ app شغال على جهازك ومش شغال على السيرفر لأن الـ dependencies والـ versions مختلفة",
+     "why": "صح."
+    },
+    {
+     "text": "الجهاز بطيء",
+     "why": "مش المشكلة."
+    },
+    {
+     "text": "الكود فيه Syntax error",
+     "why": "كان هيقع عندك برضه."
+    },
+    {
+     "text": "الإنترنت فاصل",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Docker بيشيل البيئة كلها مع الـ app."
+  },
+  {
+   "id": "07-docker-ch01-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الفرق الأساسي بين الـ VM والـ Container؟",
+   "options": [
+    {
+     "text": "الـ VM فيها Guest OS كامل فوق Hypervisor، والـ Container Process معزولة بتشارك Kernel الـ Host",
+     "why": "صح."
+    },
+    {
+     "text": "الاتنين فيهم OS كامل",
+     "why": "الـ Container لأ."
+    },
+    {
+     "text": "الـ Container أتقل",
+     "why": "العكس."
+    },
+    {
+     "text": "الـ VM مبتعزلش",
+     "why": "بتعزل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان كده الـ Container أخف وأسرع."
+  },
+  {
+   "id": "07-docker-ch01-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "العزل في Linux Containers بيتم بإيه، والتحكم في الموارد بإيه؟",
+   "options": [
+    {
+     "text": "العزل بالـ Namespaces، والموارد بالـ cgroups",
+     "why": "صح."
+    },
+    {
+     "text": "العزل بالـ cgroups",
+     "why": "العكس."
+    },
+    {
+     "text": "بالـ Hypervisor",
+     "why": "ده الـ VMs."
+    },
+    {
+     "text": "بالـ Firewall",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ودول من Kernel Linux."
+  },
+  {
+   "id": "07-docker-ch01-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "أول فكرة للعزل كانت إيه؟",
+   "options": [
+    {
+     "text": "chroot",
+     "why": "صح."
+    },
+    {
+     "text": "Docker",
+     "why": "جه بعدين."
+    },
+    {
+     "text": "Kubernetes",
+     "why": "بعدين خالص."
+    },
+    {
+     "text": "VirtualBox",
+     "why": "VM."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الأساس للـ VMs والـ Containers."
+  },
+  {
+   "id": "07-docker-ch01-05",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب طبقات الـ VM من تحت لفوق:",
+   "items": [
+    "Infrastructure",
+    "Host OS",
+    "Hypervisor",
+    "Guest OS",
+    "التطبيق"
+   ],
+   "explanation": "الـ Container مفيهوش Guest OS."
+  },
+  {
+   "id": "07-docker-ch01-06",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "سيرفر عليه app محتاج Python 3.10 و app تاني محتاج 3.13 وبيبوّظوا بعض.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشغّل كل app في Container ليه بيئته المعزولة",
+     "why": "صح."
+    },
+    {
+     "text": "أسطب نسخة واحدة وأتمنى",
+     "why": "هيبوظوا."
+    },
+    {
+     "text": "سيرفر لكل app",
+     "why": "غالي."
+    },
+    {
+     "text": "أعدّل الكود",
+     "why": "مش عملي."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مشكلة التعارض والعزل."
+  },
+  {
+   "id": "07-docker-ch01-07",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه الـ Container بيبدأ في ثواني والـ VM في دقايق؟",
+   "options": [
+    {
+     "text": "الـ Container مجرد Process، والـ VM لازم تشغّل OS كامل",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Container أصغر في الكود بس",
+     "why": "مش السبب."
+    },
+    {
+     "text": "الـ VM بتنزل من النت",
+     "why": "لأ."
+    },
+    {
+     "text": "صدفة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Process معزولة."
+  },
+  {
+   "id": "07-docker-ch01-08",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: البرنامج اللي بيشغّل الـ VMs اسمه:",
+   "template": "___",
+   "blanks": [
+    [
+     "Hypervisor",
+     "hypervisor"
+    ]
+   ],
+   "hint": "Hyper...",
+   "explanation": "زي VirtualBox و VMware."
+  },
+  {
+   "id": "07-docker-ch01-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: الـ Container بيشارك ___ بتاع الـ Host:",
+   "template": "الـ ___",
+   "blanks": [
+    [
+     "Kernel",
+     "kernel"
+    ]
+   ],
+   "hint": "نواة النظام.",
+   "explanation": "علشان كده خفيف."
+  },
+  {
+   "id": "07-docker-ch01-10",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اتأكد إن Docker متسطّب على الماك.",
+   "accepted": [
+    "docker --version",
+    "docker version",
+    "docker -v"
+   ],
+   "hint": "--version.",
+   "explanation": "Docker Desktop على الماك."
+  },
+  {
+   "id": "07-docker-ch01-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Docker عمل إيه جديد لو الـ Linux Containers كانت موجودة؟",
+   "options": [
+    {
+     "text": "خلّاها Platform سهلة وموحّدة وقابلة للتوزيع (Images و Registry)",
+     "why": "صح."
+    },
+    {
+     "text": "اخترع العزل",
+     "why": "كان موجود."
+    },
+    {
+     "text": "اخترع Linux",
+     "why": "لأ."
+    },
+    {
+     "text": "عمل VM أسرع",
+     "why": "مش VM."
+    }
+   ],
+   "correct": 0,
+   "explanation": "السهولة والتوزيع."
+  },
+  {
+   "id": "07-docker-ch01-12",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "على الماك، الـ Containers بتاعة Linux بتشتغل إزاي مع إن الماك مش Linux؟",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "Docker Desktop بيشغّل Linux VM خفيفة والـ Containers جواها",
+     "why": "صح."
+    },
+    {
+     "text": "الماك Linux",
+     "why": "لأ، macOS."
+    },
+    {
+     "text": "مبتشتغلش",
+     "why": "بتشتغل."
+    },
+    {
+     "text": "بتتحول لـ macOS apps",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان الـ Container محتاج Kernel Linux."
+  }
+ ]
+}

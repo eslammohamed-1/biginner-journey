@@ -1,0 +1,241 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 11,
+ "chapterFile": "ch11",
+ "title": "الـ DaemonSet: Pod على كل Node",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch11-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ DaemonSet بيعمل إيه؟",
+   "options": [
+    {
+     "text": "يشغّل Pod واحدة على كل Node (أو Nodes مختارة)",
+     "why": "صح."
+    },
+    {
+     "text": "عدد ثابت من النسخ",
+     "why": "Deployment."
+    },
+    {
+     "text": "Job",
+     "why": "لأ."
+    },
+    {
+     "text": "Service",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مفيهوش replicas."
+  },
+  {
+   "id": "08-kubernetes-ch11-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لو ضفت Node جديدة، الـ DaemonSet بيعمل عليها Pod؟",
+   "options": [
+    {
+     "text": "أيوه أوتوماتيك",
+     "why": "صح."
+    },
+    {
+     "text": "لأ",
+     "why": "بيعمل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ده الهدف."
+  },
+  {
+   "id": "08-kubernetes-ch11-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "operator Exists محتاج values؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مش محتاج."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "In و NotIn محتاجين."
+  },
+  {
+   "id": "08-kubernetes-ch11-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "kube-proxy شغال كـ؟",
+   "options": [
+    {
+     "text": "DaemonSet",
+     "why": "صح."
+    },
+    {
+     "text": "Deployment",
+     "why": "لأ."
+    },
+    {
+     "text": "Job",
+     "why": "لأ."
+    },
+    {
+     "text": "Pod عادية",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "على كل Node."
+  },
+  {
+   "id": "08-kubernetes-ch11-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "استخدامات DaemonSet الشهيرة؟",
+   "options": [
+    {
+     "text": "جمع Logs ومراقبة وشبكات",
+     "why": "صح."
+    },
+    {
+     "text": "Website",
+     "why": "Deployment."
+    },
+    {
+     "text": "Backup بالليل",
+     "why": "CronJob."
+    },
+    {
+     "text": "Database",
+     "why": "StatefulSet."
+    }
+   ],
+   "correct": 0,
+   "explanation": "غالباً بـ hostPath."
+  },
+  {
+   "id": "08-kubernetes-ch11-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "حط Label hardware=gpu على node-1.",
+   "accepted": [
+    "kubectl label nodes node-1 hardware=gpu",
+    "kubectl label node node-1 hardware=gpu"
+   ],
+   "hint": "label nodes.",
+   "explanation": "بعدين nodeSelector."
+  },
+  {
+   "id": "08-kubernetes-ch11-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل:",
+   "template": "___: hardware: gpu",
+   "blanks": [
+    [
+     "nodeSelector"
+    ]
+   ],
+   "hint": "node...",
+   "explanation": "الـ match البسيط."
+  },
+  {
+   "id": "08-kubernetes-ch11-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: المسار على الـ Node نفسه في volumes:",
+   "template": "___: path: /var/log",
+   "blanks": [
+    [
+     "hostPath"
+    ]
+   ],
+   "hint": "host...",
+   "explanation": "وvolumeMounts جوه."
+  },
+  {
+   "id": "08-kubernetes-ch11-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ DaemonSet مش بيعمل Pod على Nodes الـ control plane.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "عليها taint، فأضيف toleration مناسبة لو محتاج",
+     "why": "صح."
+    },
+    {
+     "text": "Bug",
+     "why": "لأ."
+    },
+    {
+     "text": "أمسح الـ Node",
+     "why": "لأ."
+    },
+    {
+     "text": "أزوّد replicas",
+     "why": "مفيش."
+    }
+   ],
+   "correct": 0,
+   "explanation": "taints و tolerations."
+  },
+  {
+   "id": "08-kubernetes-ch11-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب الربط بين volumes و volumeMounts:",
+   "items": [
+    "volumes: اسم + hostPath على الـ Node",
+    "volumeMounts: نفس الاسم + mountPath جوه الـ Container",
+    "الـ Container يقرا ملفات الـ Node"
+   ],
+   "explanation": "الربط بالاسم."
+  },
+  {
+   "id": "08-kubernetes-ch11-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "الـ taint ضد الـ toleration؟",
+   "options": [
+    {
+     "text": "الـ taint على الـ Node بيمنع، والـ toleration على الـ Pod بيسمح لها تتجاهل المنع",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "العكس",
+     "why": "لأ."
+    },
+    {
+     "text": "للـ Services",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الحل الشائع."
+  },
+  {
+   "id": "08-kubernetes-ch11-12",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض الـ DaemonSets في كل الـ Namespaces.",
+   "accepted": [
+    "kubectl get daemonsets -A",
+    "kubectl get ds -A",
+    "kubectl get ds --all-namespaces"
+   ],
+   "hint": "ds.",
+   "explanation": "DESIRED و READY."
+  }
+ ]
+}

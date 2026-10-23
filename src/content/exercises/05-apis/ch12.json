@@ -1,0 +1,235 @@
+{
+ "book": "05-apis",
+ "chapter": 12,
+ "chapterFile": "ch12",
+ "title": "الـ Auth الجزء 1: API keys و Basic و Bearer، والـ JWT متشرّح",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "05-apis-ch12-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "401 ضد 403؟",
+   "options": [
+    {
+     "text": "401 = مش عارفينك (AuthN)، و 403 = عارفينك بس مش مسموحلك (AuthZ)",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "العكس",
+     "why": "لأ."
+    },
+    {
+     "text": "403 = مش موجود",
+     "why": "ده 404."
+    }
+   ],
+   "correct": 0,
+   "explanation": "كلمتين منفصلين."
+  },
+  {
+   "id": "05-apis-ch12-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Basic auth بيشفّر الباسورد؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "Base64 مش تشفير."
+    },
+    {
+     "text": "لأ، Base64 أي حد يفكّه",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "لازم HTTPS."
+  },
+  {
+   "id": "05-apis-ch12-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "أي حد معاه JWT يقدر يقرا الـ Payload؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح، Base64url بس."
+    },
+    {
+     "text": "لأ",
+     "why": "مقروء."
+    }
+   ],
+   "correct": 0,
+   "explanation": "متحطش أسرار فيه."
+  },
+  {
+   "id": "05-apis-ch12-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "تقدر تغيّر role في JWT وتخلي الختم القديم صالح؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "التوقيع هيفشل."
+    },
+    {
+     "text": "لأ، أي تعديل بيبوّظ الـ Signature",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "محدش يعدّله من غير السر."
+  },
+  {
+   "id": "05-apis-ch12-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "فك Base64 لـ dXNlcjpwYXNz على الماك.",
+   "accepted": [
+    "echo \"dXNlcjpwYXNz\" | base64 -d",
+    "echo dXNlcjpwYXNz | base64 -d",
+    "echo -n dXNlcjpwYXNz | base64 -d",
+    "echo 'dXNlcjpwYXNz' | base64 -D"
+   ],
+   "hint": "base64 -d.",
+   "explanation": "هتطلع user:pass."
+  },
+  {
+   "id": "05-apis-ch12-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ابعت Basic auth بـ curl (user و pass) لـ https://httpbin.org/basic-auth/user/pass.",
+   "accepted": [
+    "curl -u user:pass https://httpbin.org/basic-auth/user/pass",
+    "curl -s -u user:pass https://httpbin.org/basic-auth/user/pass"
+   ],
+   "hint": "-u.",
+   "explanation": "curl بيعمل الـ Base64."
+  },
+  {
+   "id": "05-apis-ch12-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل Header الـ Bearer:",
+   "template": "Authorization: ___ <token>",
+   "blanks": [
+    [
+     "Bearer"
+    ]
+   ],
+   "hint": "حامل.",
+   "explanation": "أي حد شايله = صاحبه."
+  },
+  {
+   "id": "05-apis-ch12-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: الـ Claim اللي بيقول الـ Token بينتهي إمتى:",
+   "template": "\"___\": 1767225600",
+   "blanks": [
+    [
+     "exp"
+    ]
+   ],
+   "hint": "expiry.",
+   "explanation": "و iat و iss و sub و aud."
+  },
+  {
+   "id": "05-apis-ch12-09",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب أجزاء الـ JWT:",
+   "items": [
+    "Header",
+    "Payload",
+    "Signature"
+   ],
+   "explanation": "مفصولين بنقط."
+  },
+  {
+   "id": "05-apis-ch12-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "الـ API بيقبل JWT فيه \"alg\": \"none\".",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "دي ثغرة مشهورة، لازم السيرفر يحدد الـ algorithms المسموحة ويرفض none",
+     "why": "صح."
+    },
+    {
+     "text": "عادي",
+     "why": "أي حد يزوّر."
+    },
+    {
+     "text": "أحسن للسرعة",
+     "why": "كارثة."
+    },
+    {
+     "text": "مش مهم",
+     "why": "مهم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أخطاء JWT المشهورة."
+  },
+  {
+   "id": "05-apis-ch12-11",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "لقيت Secret key بتاع Stripe في كود الـ Frontend.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أقفله فوراً وأعمل جديد، والـ Secret يتحط على السيرفر بس",
+     "why": "صح."
+    },
+    {
+     "text": "عادي، الكود Minified",
+     "why": "مكشوف."
+    },
+    {
+     "text": "أشفّره في JS",
+     "why": "مكشوف."
+    },
+    {
+     "text": "أغيّر اسم المتغير",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Publishable ضد Secret."
+  },
+  {
+   "id": "05-apis-ch12-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه الـ Keys ليها Prefix زي ghp_ و sk_؟",
+   "options": [
+    {
+     "text": "علشان أدوات الفحص تكتشفها لو اتسربت، وتعرف نوعها",
+     "why": "صح."
+    },
+    {
+     "text": "علشان الشكل",
+     "why": "لأ."
+    },
+    {
+     "text": "تشفير",
+     "why": "لأ."
+    },
+    {
+     "text": "إجباري في HTTP",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "GitHub secret scanning."
+  }
+ ]
+}

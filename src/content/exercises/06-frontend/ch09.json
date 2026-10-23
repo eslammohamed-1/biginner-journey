@@ -1,0 +1,233 @@
+{
+ "book": "06-frontend",
+ "chapter": 9,
+ "chapterFile": "ch09",
+ "title": "الـ Responsive Design: صفحة واحدة لكل الشاشات",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "06-frontend-ch09-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "من غير meta viewport الموبايل بيعمل إيه؟",
+   "options": [
+    {
+     "text": "بيتظاهر إن عرضه 980px ويصغّر الصفحة",
+     "why": "صح."
+    },
+    {
+     "text": "بيعرضها صح",
+     "why": "لأ."
+    },
+    {
+     "text": "مبيعرضهاش",
+     "why": "لأ."
+    },
+    {
+     "text": "بيكبّرها",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "لازم في كل صفحة."
+  },
+  {
+   "id": "06-frontend-ch09-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Media queries بتشتغل عادي على الموبايل من غير meta viewport؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "العرض بيبقى 980."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ viewport الأول."
+  },
+  {
+   "id": "06-frontend-ch09-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "@container بيسأل عن عرض الشاشة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "عرض العلبة."
+    },
+    {
+     "text": "لأ، عرض الـ Container الأب",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "container-type: inline-size."
+  },
+  {
+   "id": "06-frontend-ch09-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "loading=\"lazy\" على أول صورة كبيرة؟",
+   "options": [
+    {
+     "text": "كويس",
+     "why": "بيأخر الـ LCP."
+    },
+    {
+     "text": "وحش، lazy للي تحت بس",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "أول صورة تتحمل فوراً."
+  },
+  {
+   "id": "06-frontend-ch09-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اكتب meta viewport.",
+   "accepted": [
+    "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+    "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+    "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
+   ],
+   "hint": "width=device-width.",
+   "explanation": "في الـ head."
+  },
+  {
+   "id": "06-frontend-ch09-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اكتب Media query Mobile-first للشاشات من 768px وأكبر.",
+   "accepted": [
+    "@media (min-width: 768px)",
+    "@media (width >= 768px)"
+   ],
+   "hint": "min-width.",
+   "explanation": "الافتراضي للصغير."
+  },
+  {
+   "id": "06-frontend-ch09-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل خط بيكبر بنعومة:",
+   "template": "font-size: ___(1rem, 2.5vw, 2rem);",
+   "blanks": [
+    [
+     "clamp"
+    ]
+   ],
+   "hint": "min, preferred, max.",
+   "explanation": "معاها rem."
+  },
+  {
+   "id": "06-frontend-ch09-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الوحدة المناسبة لعرض الفقرات:",
+   "template": "max-width: 65___;",
+   "blanks": [
+    [
+     "ch"
+    ]
+   ],
+   "hint": "عرض حرف.",
+   "explanation": "60-75 حرف مريح."
+  },
+  {
+   "id": "06-frontend-ch09-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "قسم بارتفاع 100vh بيبقى أطول من الشاشة على الموبايل.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أستخدم svh بدل vh علشان شريط المتصفح",
+     "why": "صح."
+    },
+    {
+     "text": "أقلل لـ 90vh",
+     "why": "ترقيع."
+    },
+    {
+     "text": "px",
+     "why": "مش Responsive."
+    },
+    {
+     "text": "عادي",
+     "why": "مشكلة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "svh للارتفاعات."
+  },
+  {
+   "id": "06-frontend-ch09-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Mobile-first:",
+   "items": [
+    "اكتب الافتراضي للموبايل",
+    "@media (min-width: 640px) للتابلت",
+    "@media (min-width: 1024px) للديسكتوب"
+   ],
+   "explanation": "زوّد مش اشيل."
+  },
+  {
+   "id": "06-frontend-ch09-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه rem للخطوط بدل px؟",
+   "options": [
+    {
+     "text": "بيحترم حجم الخط اللي المستخدم اختاره في المتصفح",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع",
+     "why": "لأ."
+    },
+    {
+     "text": "أدق",
+     "why": "لأ."
+    },
+    {
+     "text": "px ممنوع",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "a11y."
+  },
+  {
+   "id": "06-frontend-ch09-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Container queries أحسن من Media queries في إيه؟",
+   "options": [
+    {
+     "text": "الكومبوننت يتصرف حسب مكانه (sidebar أو main) مش حسب الشاشة",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع",
+     "why": "لأ."
+    },
+    {
+     "text": "أقدم",
+     "why": "أحدث."
+    },
+    {
+     "text": "للطباعة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "كومبوننت قابل لإعادة الاستخدام."
+  }
+ ]
+}

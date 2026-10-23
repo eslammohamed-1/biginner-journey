@@ -1,0 +1,233 @@
+{
+ "book": "04-python",
+ "chapter": 26,
+ "chapterFile": "ch26",
+ "title": "معالجة ملفات كتير: Batch و Threads و asyncio و Resume",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch26-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الوقت في اسكريبت AI بيروح فين غالباً؟",
+   "options": [
+    {
+     "text": "في انتظار رد السيرفر",
+     "why": "صح."
+    },
+    {
+     "text": "في حسابات Python",
+     "why": "قليل."
+    },
+    {
+     "text": "في قراية الملفات",
+     "why": "قليل."
+    },
+    {
+     "text": "في الطباعة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان كده نستنى كذا رد مع بعض."
+  },
+  {
+   "id": "04-python-ch26-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "as_completed بيرجّع النتايج بنفس ترتيب الـ submit؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بترتيب الخلصان."
+    },
+    {
+     "text": "لأ، بترتيب اللي يخلص الأول",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "اربط النتيجة بالملف."
+  },
+  {
+   "id": "04-python-ch26-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "تفتح ملف النتايج بـ \"w\" للـ Resume؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "هيمسح القديم."
+    },
+    {
+     "text": "لأ، \"a\" علشان تزوّد",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ومعاها flush."
+  },
+  {
+   "id": "04-python-ch26-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في OpenAI Batch، السطر رقم 5 في النتيجة هو الطلب رقم 5؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الترتيب مش مضمون."
+    },
+    {
+     "text": "لأ، اربط بـ custom_id",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "custom_id: path.name."
+  },
+  {
+   "id": "04-python-ch26-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "سطّب مكتبة الـ Progress bar.",
+   "accepted": [
+    "pip install tqdm",
+    "python -m pip install tqdm",
+    "python3 -m pip install tqdm"
+   ],
+   "hint": "tqdm.",
+   "explanation": "for p in tqdm(paths)."
+  },
+  {
+   "id": "04-python-ch26-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل Semaphore في asyncio بحد 8.",
+   "accepted": [
+    "sem = asyncio.Semaphore(8)"
+   ],
+   "hint": "asyncio.Semaphore.",
+   "explanation": "بيحدد كام طلب في نفس الوقت."
+  },
+  {
+   "id": "04-python-ch26-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان gather متقعش من أول Exception:",
+   "template": "results = await asyncio.gather(*tasks, ___=True)",
+   "blanks": [
+    [
+     "return_exceptions"
+    ]
+   ],
+   "hint": "return_...",
+   "explanation": "وبعدين isinstance(r, Exception)."
+  },
+  {
+   "id": "04-python-ch26-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تشغّل الـ async main:",
+   "template": "asyncio.___(main())",
+   "blanks": [
+    [
+     "run"
+    ]
+   ],
+   "hint": "شغّل.",
+   "explanation": "مرة واحدة في الآخر."
+  },
+  {
+   "id": "04-python-ch26-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الاسكريبت وقع عند ملف 300 من 1000.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "لو فيه Resume بـ JSONL، أقرا اللي خلص في set وأكمّل الباقي",
+     "why": "صح."
+    },
+    {
+     "text": "أبدأ من الأول",
+     "why": "فلوس ووقت."
+    },
+    {
+     "text": "أمسح النتايج",
+     "why": "لأ."
+    },
+    {
+     "text": "أعدّ بإيدي",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أهم حاجة في الفصل."
+  },
+  {
+   "id": "04-python-ch26-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Resume بـ JSONL:",
+   "items": [
+    "اقرا results.jsonl واعمل done-set",
+    "فلتر الملفات اللي مش في done",
+    "افتح results.jsonl بـ \"a\"",
+    "اكتب سطر لكل نتيجة و flush"
+   ],
+   "explanation": "لو وقع، تكمّل."
+  },
+  {
+   "id": "04-python-ch26-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه الكتابة في الملف تبقى من الـ Thread الرئيسي مع ThreadPoolExecutor؟",
+   "options": [
+    {
+     "text": "علشان أكتر من Thread ميكتبوش في نفس الملف في نفس الوقت ويبوظوه",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع",
+     "why": "مش السبب."
+    },
+    {
+     "text": "إجباري في Python",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Threads مبتكتبش",
+     "why": "بتكتب."
+    }
+   ],
+   "correct": 0,
+   "explanation": "future.result() جوه try."
+  },
+  {
+   "id": "04-python-ch26-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Batch API بيدّيك إيه؟",
+   "options": [
+    {
+     "text": "نص السعر مقابل إن النتيجة تيجي خلال لحد 24 ساعة",
+     "why": "صح."
+    },
+    {
+     "text": "أسرع",
+     "why": "لأ."
+    },
+    {
+     "text": "مجاني",
+     "why": "لأ."
+    },
+    {
+     "text": "Streaming",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "JSONL و custom_id."
+  }
+ ]
+}

@@ -1,0 +1,217 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 7,
+ "chapterFile": "ch07",
+ "title": "الـ Labels والـ Selectors",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch07-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Label شكلها إيه؟",
+   "options": [
+    {
+     "text": "key: value",
+     "why": "صح."
+    },
+    {
+     "text": "رقم",
+     "why": "لأ."
+    },
+    {
+     "text": "ملف",
+     "why": "لأ."
+    },
+    {
+     "text": "URL",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "في metadata.labels."
+  },
+  {
+   "id": "08-kubernetes-ch07-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "اتنين Pods في نفس الـ Namespace بنفس الـ name؟",
+   "options": [
+    {
+     "text": "ينفع",
+     "why": "الـ name فريد."
+    },
+    {
+     "text": "مينفعش",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ Labels تتكرر عادي."
+  },
+  {
+   "id": "08-kubernetes-ch07-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "اتنين Pods عليهم نفس الـ Labels؟",
+   "options": [
+    {
+     "text": "ينفع",
+     "why": "صح، ده الهدف."
+    },
+    {
+     "text": "مينفعش",
+     "why": "ينفع."
+    }
+   ],
+   "correct": 0,
+   "explanation": "التجميع."
+  },
+  {
+   "id": "08-kubernetes-ch07-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Labels بتتكتب جوه الـ spec؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "في metadata."
+    },
+    {
+     "text": "لأ، في metadata.labels، والـ selector في spec",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "فرق مهم."
+  },
+  {
+   "id": "08-kubernetes-ch07-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض الـ Pods مع الـ Labels.",
+   "accepted": [
+    "kubectl get pods --show-labels",
+    "kubectl get po --show-labels"
+   ],
+   "hint": "--show-labels.",
+   "explanation": "كل الـ Labels."
+  },
+  {
+   "id": "08-kubernetes-ch07-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "فلتر الـ Pods اللي app=website.",
+   "accepted": [
+    "kubectl get pods -l app=website",
+    "kubectl get pods --selector app=website",
+    "kubectl get pods --selector=app=website"
+   ],
+   "hint": "-l.",
+   "explanation": "Selector."
+  },
+  {
+   "id": "08-kubernetes-ch07-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ضيف Label tier=backend لـ my-pod.",
+   "accepted": [
+    "kubectl label pod my-pod tier=backend",
+    "kubectl label pods my-pod tier=backend"
+   ],
+   "hint": "kubectl label.",
+   "explanation": "--overwrite لو موجودة."
+  },
+  {
+   "id": "08-kubernetes-ch07-08",
+   "type": "command",
+   "level": "medium",
+   "prompt": "امسح Label tier من my-pod.",
+   "accepted": [
+    "kubectl label pod my-pod tier-",
+    "kubectl label pods my-pod tier-"
+   ],
+   "hint": "شرطة في الآخر.",
+   "explanation": "tier-."
+  },
+  {
+   "id": "08-kubernetes-ch07-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الـ Selector:",
+   "template": "selector: ___: app: website",
+   "blanks": [
+    [
+     "matchLabels"
+    ]
+   ],
+   "hint": "match...",
+   "explanation": "لازم يطابق بالظبط."
+  },
+  {
+   "id": "08-kubernetes-ch07-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "Service مش لاقية أي Pod، والـ Pods عليها app: Website والـ selector app: website.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ Labels حساسة لحالة الحروف، فأوحّدهم",
+     "why": "صح."
+    },
+    {
+     "text": "Service بايظة",
+     "why": "لأ."
+    },
+    {
+     "text": "أعيد الـ Pods",
+     "why": "هيفضل مش مطابق."
+    },
+    {
+     "text": "أغيّر البورت",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "لازم يطابق بالظبط."
+  },
+  {
+   "id": "08-kubernetes-ch07-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب: إزاي Deployment بيلاقي الـ Pods بتاعته:",
+   "items": [
+    "الـ template فيه labels",
+    "الـ Pods بتتعمل بالـ labels دي",
+    "spec.selector بيختار نفس الـ labels"
+   ],
+   "explanation": "لازم يتطابقوا."
+  },
+  {
+   "id": "08-kubernetes-ch07-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "الـ name ضد الـ Label؟",
+   "options": [
+    {
+     "text": "الـ name بيحدد Object واحد بعينه، والـ Labels بتجمع Objects كتير",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Label فريد",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ name للتجميع",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "التصنيف."
+  }
+ ]
+}

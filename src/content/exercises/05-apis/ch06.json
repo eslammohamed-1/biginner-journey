@@ -1,0 +1,240 @@
+{
+ "book": "05-apis",
+ "chapter": 6,
+ "chapterFile": "ch06",
+ "title": "jq على الماك: تفصّص أي JSON من الـ Terminal",
+ "count": 13,
+ "exercises": [
+  {
+   "id": "05-apis-ch06-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الفلتر `.` في jq بيعمل إيه؟",
+   "options": [
+    {
+     "text": "بيرجّع الـ JSON زي ما هو منسق",
+     "why": "صح."
+    },
+    {
+     "text": "بيمسح كل حاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "بيرجّع أول عنصر",
+     "why": "ده .[0]."
+    },
+    {
+     "text": "خطأ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أبسط فلتر."
+  },
+  {
+   "id": "05-apis-ch06-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`//` في jq معناها تعليق؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "معناها قيمة بديلة."
+    },
+    {
+     "text": "لأ، معناها \"لو null أو false خد دي\"",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": ".name // \"unknown\"."
+  },
+  {
+   "id": "05-apis-ch06-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "jq '.nope' على Key مش موجود بيرجّع إيه؟",
+   "options": [
+    {
+     "text": "null",
+     "why": "صح، مش Error."
+    },
+    {
+     "text": "Error",
+     "why": "لأ على Object."
+    },
+    {
+     "text": "فاضي",
+     "why": "null."
+    },
+    {
+     "text": "0",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Cannot index بتطلع لو النوع غلط."
+  },
+  {
+   "id": "05-apis-ch06-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`--arg n 5` بيخلي $n رقم؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "--arg دايماً String."
+    },
+    {
+     "text": "لأ، String، استخدم --argjson للرقم",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "متغيرات آمنة."
+  },
+  {
+   "id": "05-apis-ch06-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "سطّب jq الأحدث على الماك.",
+   "accepted": [
+    "brew install jq"
+   ],
+   "hint": "brew.",
+   "explanation": "الماك فيه نسخة قديمة في /usr/bin."
+  },
+  {
+   "id": "05-apis-ch06-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اطبع name من pika.json كنص من غير علامات تنصيص.",
+   "accepted": [
+    "jq -r '.name' pika.json",
+    "jq -r .name pika.json",
+    "jq -r \".name\" pika.json"
+   ],
+   "hint": "-r.",
+   "explanation": "raw output."
+  },
+  {
+   "id": "05-apis-ch06-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "من users.json (Array) اطبع العنصر اللي id بتاعه 3.",
+   "accepted": [
+    "jq '.[] | select(.id == 3)' users.json",
+    "jq '.[]|select(.id==3)' users.json",
+    "jq 'map(select(.id == 3))' users.json"
+   ],
+   "hint": ".[] و select.",
+   "explanation": "الـ | هنا جوه jq."
+  },
+  {
+   "id": "05-apis-ch06-08",
+   "type": "command",
+   "level": "think",
+   "prompt": "طلّع id و name و email من users.json كسطور CSV.",
+   "accepted": [
+    "jq -r '.[] | [.id, .name, .email] | @csv' users.json",
+    "jq -r '.[]|[.id,.name,.email]|@csv' users.json"
+   ],
+   "hint": "[..] | @csv مع -r.",
+   "explanation": "أو @tsv."
+  },
+  {
+   "id": "05-apis-ch06-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تعدّ عناصر Array:",
+   "template": "jq '___' users.json",
+   "blanks": [
+    [
+     "length"
+    ]
+   ],
+   "hint": "طول.",
+   "explanation": "keys للمفاتيح."
+  },
+  {
+   "id": "05-apis-ch06-10",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تلم ملف JSONL في Array واحدة:",
+   "template": "jq ___ '.' data.jsonl",
+   "blanks": [
+    [
+     "-s"
+    ]
+   ],
+   "hint": "slurp.",
+   "explanation": "-c للعكس: سطر لكل عنصر."
+  },
+  {
+   "id": "05-apis-ch06-11",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "كتبت jq \".name\" بعلامات تنصيص مزدوجة وفيه $ والـ Shell بوّظ الفلتر.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أحط الفلتر بين ' ' علشان الـ Shell ميلمسوش",
+     "why": "صح."
+    },
+    {
+     "text": "أشيل التنصيص",
+     "why": "أسوأ."
+    },
+    {
+     "text": "jq بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "أستخدم sudo",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خلي بالك."
+  },
+  {
+   "id": "05-apis-ch06-12",
+   "type": "order",
+   "level": "medium",
+   "prompt": "اقرا الفلتر `.types[].type.name` بالترتيب:",
+   "items": [
+    ".types (Array)",
+    "[] (كل عنصر)",
+    ".type (Object)",
+    ".name (القيمة)"
+   ],
+   "explanation": "خطوة خطوة."
+  },
+  {
+   "id": "05-apis-ch06-13",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه تستخدم -e في سكريبت Shell مع jq؟",
+   "options": [
+    {
+     "text": "علشان الـ Exit code يبقى غير 0 لو النتيجة null أو false، فتقدر تتصرف",
+     "why": "صح."
+    },
+    {
+     "text": "علشان يبقى أسرع",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان يلوّن",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان يكتب ملف",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "شوف $?."
+  }
+ ]
+}

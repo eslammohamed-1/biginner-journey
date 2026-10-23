@@ -1,0 +1,255 @@
+{
+ "book": "06-frontend",
+ "chapter": 16,
+ "chapterFile": "ch16",
+ "title": "pnpm و Yarn و Bun، وأمان الـ Packages",
+ "count": 13,
+ "exercises": [
+  {
+   "id": "06-frontend-ch16-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "تعرف المشروع بيستخدم أنهي مدير Packages إزاي؟",
+   "options": [
+    {
+     "text": "من الـ Lockfile (package-lock.json أو pnpm-lock.yaml أو yarn.lock أو bun.lock)",
+     "why": "صح."
+    },
+    {
+     "text": "من الـ README بس",
+     "why": "ممكن."
+    },
+    {
+     "text": "من node_modules",
+     "why": "مش أكيد."
+    },
+    {
+     "text": "مش مهم",
+     "why": "مهم."
+    }
+   ],
+   "correct": 0,
+   "explanation": "متخلطش."
+  },
+  {
+   "id": "06-frontend-ch16-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "مشروع فيه pnpm-lock.yaml، تشغّل npm install؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "هتعمل Lockfile تاني."
+    },
+    {
+     "text": "لأ، pnpm install",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "اللي الـ Lockfile بتاعه موجود."
+  },
+  {
+   "id": "06-frontend-ch16-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "npm audit بيكتشف أي كود ملغوم حتى لو لسه نازل؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الثغرات المعروفة بس."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "مش حماية كاملة."
+  },
+  {
+   "id": "06-frontend-ch16-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في npm 12، postinstall بتاع Dependency مش هيشتغل إلا لو في allowScripts؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح."
+    },
+    {
+     "text": "لأ",
+     "why": "ممنوع افتراضياً."
+    }
+   ],
+   "correct": 0,
+   "explanation": "install-scripts approve."
+  },
+  {
+   "id": "06-frontend-ch16-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Typosquatting يعني إيه؟",
+   "options": [
+    {
+     "text": "Package باسم شبه المشهور (reactt) علشان تسطّبه بالغلط",
+     "why": "صح."
+    },
+    {
+     "text": "سرقة حساب",
+     "why": "Account takeover."
+    },
+    {
+     "text": "Script بعد التسطيب",
+     "why": "install scripts."
+    },
+    {
+     "text": "كتابة غلط في الكود",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Supply chain."
+  },
+  {
+   "id": "06-frontend-ch16-06",
+   "type": "command",
+   "level": "easy",
+   "prompt": "سطّب dependencies بـ pnpm.",
+   "accepted": [
+    "pnpm install",
+    "pnpm i"
+   ],
+   "hint": "pnpm.",
+   "explanation": "مخزن واحد + Symlinks."
+  },
+  {
+   "id": "06-frontend-ch16-07",
+   "type": "command",
+   "level": "easy",
+   "prompt": "افحص الثغرات المعروفة.",
+   "accepted": [
+    "npm audit"
+   ],
+   "hint": "audit.",
+   "explanation": "وaudit fix."
+  },
+  {
+   "id": "06-frontend-ch16-08",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعرض الـ Install scripts المستنية موافقة في npm 12.",
+   "accepted": [
+    "npm install-scripts ls"
+   ],
+   "hint": "install-scripts.",
+   "explanation": "بعدين approve و rebuild."
+  },
+  {
+   "id": "06-frontend-ch16-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الترجمة: npm install -D vite في pnpm:",
+   "template": "pnpm ___ -D vite",
+   "blanks": [
+    [
+     "add"
+    ]
+   ],
+   "hint": "زوّد.",
+   "explanation": "yarn add و bun add."
+  },
+  {
+   "id": "06-frontend-ch16-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "npm audit fix --force اقترح يرفع MAJOR لمكتبة أساسية.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "مشغّلهوش غير وانا فاهم التغيير، أقرا الـ Changelog وأجرّب",
+     "why": "صح."
+    },
+    {
+     "text": "أشغّله على طول",
+     "why": "ممكن يكسر."
+    },
+    {
+     "text": "أتجاهل كل الثغرات",
+     "why": "لأ."
+    },
+    {
+     "text": "أمسح المكتبة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "من غير --force إلا وانت فاهم."
+  },
+  {
+   "id": "06-frontend-ch16-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب عادات أمان يومية:",
+   "items": [
+    "Lockfile على Git",
+    "npm ci في الـ CI",
+    "راجع اسم الـ Package قبل التسطيب",
+    "npm audit بانتظام"
+   ],
+   "explanation": "و provenance."
+  },
+  {
+   "id": "06-frontend-ch16-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "pnpm بيمنع Phantom dependencies يعني إيه؟",
+   "options": [
+    {
+     "text": "مش هتقدر تعمل import لـ Package مش مكتوب في package.json حتى لو موجود في الشجرة",
+     "why": "صح."
+    },
+    {
+     "text": "بيمسح Packages",
+     "why": "لأ."
+    },
+    {
+     "text": "بيمنع devDependencies",
+     "why": "لأ."
+    },
+    {
+     "text": "بيسرّع بس",
+     "why": "وبيمنع."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مخزن واحد + Symlinks."
+  },
+  {
+   "id": "06-frontend-ch16-13",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Bun إيه؟",
+   "options": [
+    {
+     "text": "Runtime كامل ومدير Packages سريع",
+     "why": "صح."
+    },
+    {
+     "text": "Framework",
+     "why": "لأ."
+    },
+    {
+     "text": "CSS",
+     "why": "لأ."
+    },
+    {
+     "text": "متصفح",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بيقرا نفس package.json."
+  }
+ ]
+}

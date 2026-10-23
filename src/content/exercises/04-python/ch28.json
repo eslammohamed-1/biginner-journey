@@ -1,0 +1,235 @@
+{
+ "book": "04-python",
+ "chapter": 28,
+ "chapterFile": "ch28",
+ "title": "تطلب من الـ AI اسكريبت صح، وتراجعه قبل ما تشغّله",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "04-python-ch28-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "ليه \"اعملي اسكريبت يلخص الملفات\" طلب ناقص؟",
+   "options": [
+    {
+     "text": "مفيهوش مدخل ومخرج وقيود وأمان، فهترجع اسكريبت شغال بس مش آمن",
+     "why": "صح."
+    },
+    {
+     "text": "علشان قصير",
+     "why": "الطول مش المشكلة."
+    },
+    {
+     "text": "AI مبيفهمش عربي",
+     "why": "بيفهم."
+    },
+    {
+     "text": "علشان مفيهوش اسم موديل بس",
+     "why": "ناقص حاجات كتير."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اكتب Spec."
+  },
+  {
+   "id": "04-python-ch28-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "--dry-run المفروض بيبعت طلبات API؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "المفروض لأ."
+    },
+    {
+     "text": "لأ، المفروض يوريك هيعمل إيه من غير ما يبعت",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ومن غير Key."
+  },
+  {
+   "id": "04-python-ch28-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لو الـ AI اقترح اسم موديل، يبقى أكيد موجود؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ممكن يألّف."
+    },
+    {
+     "text": "لأ، أتأكد من الدوكيومنتيشن",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ممكن يبقى قديم أو مش موجود."
+  },
+  {
+   "id": "04-python-ch28-04",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أول تشغيل آمن:",
+   "items": [
+    "نسخة احتياطية",
+    "--dry-run",
+    "--limit 3 وأراجع",
+    "التشغيل على الكل"
+   ],
+   "explanation": "بأمان."
+  },
+  {
+   "id": "04-python-ch28-05",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أجزاء الـ Spec prompt:",
+   "items": [
+    "الهدف",
+    "المدخل",
+    "المخرج",
+    "الـ AI (موديل وإعدادات)",
+    "الأمان",
+    "التشغيل"
+   ],
+   "explanation": "ومعاها الـ Assumptions."
+  },
+  {
+   "id": "04-python-ch28-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "دوّر في script.py على السطور الحساسة (unlink أو rmtree أو \"w\") بأرقام السطور.",
+   "accepted": [
+    "grep -nE 'unlink|rmtree|\"w\"' script.py",
+    "grep -nE \"unlink|rmtree|\\\"w\\\"\" script.py",
+    "grep -En 'unlink|rmtree|\"w\"' script.py"
+   ],
+   "patterns": [
+    "^grep\\s+-(nE|En)\\s+.*unlink.*rmtree.*\\s+script\\.py$"
+   ],
+   "hint": "grep -nE مع |.",
+   "explanation": "البحث السريع قبل التشغيل."
+  },
+  {
+   "id": "04-python-ch28-07",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: البند اللي بيتأكد إن مفيش Key في الكود في الـ Checklist اسمه:",
+   "template": "___ (Secrets)",
+   "blanks": [
+    [
+     "الأسرار",
+     "secrets"
+    ]
+   ],
+   "hint": "Secrets.",
+   "explanation": "أول بند."
+  },
+  {
+   "id": "04-python-ch28-08",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "اسكريبت من AI فيه `except: pass` حوالين نداء الـ API، و open(path, \"w\") على ملفات الأصل.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "دول أخطر مشكلتين: الأخطاء بتختفي، والملفات الأصلية بتتمسح، فأمسك أخطاء محددة وأكتب في فولدر output",
+     "why": "صح."
+    },
+    {
+     "text": "عادي طالما شغال",
+     "why": "كارثة صامتة."
+    },
+    {
+     "text": "أشيل الـ try كله بس",
+     "why": "لسه الكتابة فوق الأصل."
+    },
+    {
+     "text": "أشغّل على نسخة وخلاص من غير تعديل",
+     "why": "مش كفاية."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الكتابة فوق الأصل هي الأخطر."
+  },
+  {
+   "id": "04-python-ch28-09",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ليه تطلب من AI تاني يراجع الاسكريبت؟",
+   "options": [
+    {
+     "text": "عين تانية بتلاقي مشاكل الأول فاتها، مع Checklist",
+     "why": "صح."
+    },
+    {
+     "text": "علشان الأول غلط دايماً",
+     "why": "مش دايماً."
+    },
+    {
+     "text": "علشان يكتبه تاني",
+     "why": "مش الفكرة."
+    },
+    {
+     "text": "مش مفيد",
+     "why": "مفيد."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مع إنك لسه المسؤول."
+  },
+  {
+   "id": "04-python-ch28-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "إيه أهم سياق تدّيه للـ AI وانت بتطلب اسكريبت؟",
+   "options": [
+    {
+     "text": "عينة حقيقية من المدخل وشكل المخرج المطلوب",
+     "why": "صح."
+    },
+    {
+     "text": "اسمك",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ API key",
+     "why": "أبداً."
+    },
+    {
+     "text": "كل الملفات",
+     "why": "خصوصية وتكلفة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ادّيله سياق حقيقي."
+  },
+  {
+   "id": "04-python-ch28-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Checklist المراجعة كام بند في الكتاب؟",
+   "options": [
+    {
+     "text": "10",
+     "why": "صح."
+    },
+    {
+     "text": "3",
+     "why": "لأ."
+    },
+    {
+     "text": "50",
+     "why": "لأ."
+    },
+    {
+     "text": "1",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الأسرار، والكتابة فوق، والمسح، والمدى، والـ Retries، والـ Resume، والأخطاء، والتكلفة، والخصوصية، والحالات الحدية."
+  }
+ ]
+}

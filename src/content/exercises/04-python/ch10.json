@@ -1,0 +1,227 @@
+{
+ "book": "04-python",
+ "chapter": 10,
+ "chapterFile": "ch10",
+ "title": "JSON و CSV و Excel: لغة البيانات اللي داخلة وخارجة",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch10-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الفرق بين json.loads و json.load؟",
+   "options": [
+    {
+     "text": "loads بتاخد نص، و load بتاخد ملف مفتوح",
+     "why": "صح، s = string."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "loads للملفات",
+     "why": "العكس."
+    },
+    {
+     "text": "load للكتابة",
+     "why": "ده dump."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ونفس الفكرة dumps/dump."
+  },
+  {
+   "id": "04-python-ch10-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لقيت \"\\u0645\\u0631\" في ملف JSON. الملف بايظ؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ده عربي متخزن escaped."
+    },
+    {
+     "text": "لأ، ده عربي، واستخدم ensure_ascii=False علشان يتكتب مقروء",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ensure_ascii=False, indent=2."
+  },
+  {
+   "id": "04-python-ch10-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "JSONL يعني إيه؟",
+   "options": [
+    {
+     "text": "سطر JSON كامل لكل Record",
+     "why": "صح."
+    },
+    {
+     "text": "JSON طويل",
+     "why": "لأ."
+    },
+    {
+     "text": "JSON مضغوط",
+     "why": "لأ."
+    },
+    {
+     "text": "Excel",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مثالي للحفظ أول بأول والـ Resume."
+  },
+  {
+   "id": "04-python-ch10-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "تعديل row[\"x\"] جوه iterrows بيتحفظ في الـ DataFrame؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "row نسخة."
+    },
+    {
+     "text": "لأ، استخدم df.at[i, \"x\"]",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ده فخ مشهور."
+  },
+  {
+   "id": "04-python-ch10-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اكتب data في ملف f كـ JSON بالعربي مقروء ومنسق.",
+   "accepted": [
+    "json.dump(data, f, ensure_ascii=False, indent=2)",
+    "json.dump(data, f, indent=2, ensure_ascii=False)"
+   ],
+   "hint": "ensure_ascii و indent.",
+   "explanation": "dump للملفات."
+  },
+  {
+   "id": "04-python-ch10-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اقرا ملف Excel اسمه data.xlsx بـ pandas في df.",
+   "accepted": [
+    "df = pd.read_excel(\"data.xlsx\")",
+    "df = pd.read_excel('data.xlsx')"
+   ],
+   "hint": "read_excel.",
+   "explanation": "محتاج openpyxl متسطّب."
+  },
+  {
+   "id": "04-python-ch10-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "احفظ df في out.xlsx من غير عمود الـ index.",
+   "accepted": [
+    "df.to_excel(\"out.xlsx\", index=False)",
+    "df.to_excel('out.xlsx', index=False)"
+   ],
+   "hint": "index=False.",
+   "explanation": "من غيرها هيزوّد عمود أرقام."
+  },
+  {
+   "id": "04-python-ch10-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان ملف CSV بالعربي يفتح صح في Excel على الماك:",
+   "template": "open(\"out.csv\", \"w\", encoding=\"___\", newline=\"\")",
+   "blanks": [
+    [
+     "utf-8-sig"
+    ]
+   ],
+   "hint": "utf-8 مع BOM.",
+   "explanation": "الـ BOM بيقول لـ Excel إنه UTF-8."
+  },
+  {
+   "id": "04-python-ch10-09",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تقرا CSV كـ dicts:",
+   "template": "reader = csv.___(f)",
+   "blanks": [
+    [
+     "DictReader"
+    ]
+   ],
+   "hint": "Dict...",
+   "explanation": "DictWriter للكتابة مع fieldnames."
+  },
+  {
+   "id": "04-python-ch10-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "`json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)`.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "النص اللي بتحلّله مش JSON (فاضي أو HTML أو فيه ```json)، فأطبعه الأول وأشوفه",
+     "why": "صح."
+    },
+    {
+     "text": "المكتبة بايظة",
+     "why": "لأ."
+    },
+    {
+     "text": "أستخدم eval",
+     "why": "خطر."
+    },
+    {
+     "text": "أكبّر الملف",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اطبع النص قبل loads."
+  },
+  {
+   "id": "04-python-ch10-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب خطوات تحديث عمود في Excel بـ pandas:",
+   "items": [
+    "df = pd.read_excel(...)",
+    "df[\"body\"] = df[\"body\"].fillna(\"\")",
+    "لف بـ iterrows وحط النتيجة بـ df.at[i, col]",
+    "df.to_excel(..., index=False)"
+   ],
+   "explanation": "fillna علشان الخلايا الفاضية."
+  },
+  {
+   "id": "04-python-ch10-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "إمتى تستخدم openpyxl بدل pandas؟",
+   "options": [
+    {
+     "text": "لما تعدّل الشيت نفسه وتحافظ على التنسيق والألوان",
+     "why": "صح."
+    },
+    {
+     "text": "دايماً",
+     "why": "pandas أسهل للبيانات."
+    },
+    {
+     "text": "لما الملف CSV",
+     "why": "لأ."
+    },
+    {
+     "text": "لما عايز سرعة",
+     "why": "مش السبب."
+    }
+   ],
+   "correct": 0,
+   "explanation": "pandas بيعيد كتابة الملف كبيانات."
+  }
+ ]
+}

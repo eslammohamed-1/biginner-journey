@@ -1,0 +1,239 @@
+{
+ "book": "05-apis",
+ "chapter": 19,
+ "chapterFile": "ch19",
+ "title": "الـ Versioning والـ Rate limits والـ Concurrency",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "05-apis-ch19-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "إيه اللي بيكسر الـ Clients؟",
+   "options": [
+    {
+     "text": "تشيل Field أو تغيّر نوعه أو معناه",
+     "why": "صح."
+    },
+    {
+     "text": "تزوّد Field جديد",
+     "why": "مش كسر."
+    },
+    {
+     "text": "تزوّد Endpoint",
+     "why": "مش كسر."
+    },
+    {
+     "text": "تحسّن السرعة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Versioning آخر حل."
+  },
+  {
+   "id": "05-apis-ch19-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "زوّدت Field جديد في الرد. Breaking change؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لأ."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "زوّد براحتك."
+  },
+  {
+   "id": "05-apis-ch19-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "412 معناها؟",
+   "options": [
+    {
+     "text": "الـ Resource اتغير بعد ما انت قريته (If-Match فشل)",
+     "why": "صح."
+    },
+    {
+     "text": "مش موجود",
+     "why": "ده 404."
+    },
+    {
+     "text": "ممنوع",
+     "why": "ده 403."
+    },
+    {
+     "text": "كتير",
+     "why": "ده 429."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بيمنع الـ Lost update."
+  },
+  {
+   "id": "05-apis-ch19-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "GitHub بيرجّع إيه لنسخة API اتقفلت؟",
+   "options": [
+    {
+     "text": "410 Gone",
+     "why": "صح."
+    },
+    {
+     "text": "404",
+     "why": "لأ."
+    },
+    {
+     "text": "200",
+     "why": "لأ."
+    },
+    {
+     "text": "500",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "و 400 لنسخة مش موجودة."
+  },
+  {
+   "id": "05-apis-ch19-05",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب قفل نسخة API بأدب:",
+   "items": [
+    "أعلن Deprecation header",
+    "حدد Sunset date",
+    "ابعت Link للدوكيومنتيشن",
+    "بعد التاريخ رجّع 410"
+   ],
+   "explanation": "RFC 9745 و RFC 8594."
+  },
+  {
+   "id": "05-apis-ch19-06",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب منع الـ Lost update:",
+   "items": [
+    "GET ياخد ETag",
+    "المستخدم يعدّل",
+    "PATCH مع If-Match: ETag",
+    "لو حد عدّل قبله، 412"
+   ],
+   "explanation": "بدل ما تعديل حد يضيع."
+  },
+  {
+   "id": "05-apis-ch19-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل Header اختيار نسخة GitHub:",
+   "template": "X-GitHub-Api-___: 2026-03-10",
+   "blanks": [
+    [
+     "Version"
+    ]
+   ],
+   "hint": "نسخة.",
+   "explanation": "بتاريخ."
+  },
+  {
+   "id": "05-apis-ch19-08",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ابعت PATCH بـ If-Match \"abc\" وبيانات JSON {\"title\":\"x\"} لـ URL.",
+   "accepted": [
+    "curl -X PATCH -H 'If-Match: \"abc\"' --json '{\"title\":\"x\"}' URL",
+    "curl -X PATCH --json '{\"title\":\"x\"}' -H 'If-Match: \"abc\"' URL"
+   ],
+   "patterns": [
+    "^curl\\s+(?=.*-X\\s+PATCH)(?=.*If-Match:\\s*\\\\?\"abc\\\\?\")(?=.*title).*URL$"
+   ],
+   "hint": "-H 'If-Match: ...'.",
+   "explanation": "الـ ETag بعلامات تنصيص."
+  },
+  {
+   "id": "05-apis-ch19-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ API رجّعلك 429 مع Retry-After: 30.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أستنى 30 ثانية على الأقل وأعيد، وأهدّي الطلبات",
+     "why": "صح."
+    },
+    {
+     "text": "أعيد فوراً",
+     "why": "هتتمنع أكتر."
+    },
+    {
+     "text": "أعمل حساب تاني",
+     "why": "تحايل."
+    },
+    {
+     "text": "أتجاهل",
+     "why": "الطلب فشل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Backoff."
+  },
+  {
+   "id": "05-apis-ch19-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "Versioning بالـ URL (/v1) ولا Header بتاريخ؟",
+   "options": [
+    {
+     "text": "الاتنين شغالين؛ URL أوضح وأسهل، و Header بتاريخ (GitHub/Stripe) بيدّي تغييرات أدق",
+     "why": "صح."
+    },
+    {
+     "text": "URL بس صح",
+     "why": "الاتنين."
+    },
+    {
+     "text": "Header ممنوع",
+     "why": "لأ."
+    },
+    {
+     "text": "مفيش Versioning",
+     "why": "فيه."
+    }
+   ],
+   "correct": 0,
+   "explanation": "3 طرق."
+  },
+  {
+   "id": "05-apis-ch19-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الفرق بين x-ratelimit-reset و RateLimit t=30 (draft)؟",
+   "options": [
+    {
+     "text": "x-ratelimit-reset عند GitHub Unix time، و t في الـ draft عدد ثواني",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "العكس",
+     "why": "لأ."
+    },
+    {
+     "text": "الاتنين تاريخ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اقرا الدوكيومنتيشن."
+  }
+ ]
+}

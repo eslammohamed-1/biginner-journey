@@ -1,0 +1,248 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 5,
+ "chapterFile": "ch05",
+ "title": "الـ Probes: هل الـ Container بخير؟",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch05-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Liveness Probe لو فشلت بيحصل إيه؟",
+   "options": [
+    {
+     "text": "الـ Container بيعمل restart",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Pod بيتشال من الـ Traffic",
+     "why": "ده Readiness."
+    },
+    {
+     "text": "مفيش حاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Node بتقع",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Liveness = عايش؟"
+  },
+  {
+   "id": "08-kubernetes-ch05-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لو الـ Readiness فشلت، الـ Container بيعمل restart؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ده Liveness."
+    },
+    {
+     "text": "لأ، بس مبيوصلوش Traffic",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Readiness = جاهز؟"
+  },
+  {
+   "id": "08-kubernetes-ch05-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ينفع successThreshold: 3 في الـ Liveness؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لازم 1."
+    },
+    {
+     "text": "لأ، في Liveness و Startup لازم 1",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "في Readiness مسموح أكتر."
+  },
+  {
+   "id": "08-kubernetes-ch05-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "طول ما الـ Startup Probe شغالة، الـ Liveness بتشتغل؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بتستنى."
+    },
+    {
+     "text": "لأ",
+     "why": "صح، Startup بتحمي التطبيقات البطيئة."
+    }
+   ],
+   "correct": 1,
+   "explanation": "بعد ما تنجح الباقيين يبدأوا."
+  },
+  {
+   "id": "08-kubernetes-ch05-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Mechanisms التلاتة؟",
+   "options": [
+    {
+     "text": "httpGet و exec و tcpSocket",
+     "why": "صح."
+    },
+    {
+     "text": "ping و curl و ssh",
+     "why": "لأ."
+    },
+    {
+     "text": "GET و POST و PUT",
+     "why": "لأ."
+    },
+    {
+     "text": "logs و events و describe",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "كود الرد / exit code / الاتصال."
+  },
+  {
+   "id": "08-kubernetes-ch05-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الـ Default بتاع periodSeconds:",
+   "template": "periodSeconds: ___",
+   "blanks": [
+    [
+     "10"
+    ]
+   ],
+   "hint": "عشرة.",
+   "explanation": "failureThreshold 3."
+  },
+  {
+   "id": "08-kubernetes-ch05-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل Probe بـ HTTP:",
+   "template": "livenessProbe: ___: path: /healthz port: 8080",
+   "blanks": [
+    [
+     "httpGet"
+    ]
+   ],
+   "hint": "http...",
+   "explanation": "200-399 نجاح."
+  },
+  {
+   "id": "08-kubernetes-ch05-08",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "حطيت check على الـ Database في الـ Liveness، والـ DB وقعت دقيقة، فكل الـ Pods عملت restart.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "متحطش dependencies خارجية في الـ Liveness، خليها في الـ Readiness",
+     "why": "صح."
+    },
+    {
+     "text": "أكبّر الـ timeout بس",
+     "why": "لسه غلط."
+    },
+    {
+     "text": "أشيل الـ Probes",
+     "why": "مش الحل."
+    },
+    {
+     "text": "عادي",
+     "why": "كارثة متسلسلة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ restart مش هيصلّح الـ DB."
+  },
+  {
+   "id": "08-kubernetes-ch05-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "تطبيق بياخد دقيقتين يبدأ والـ Liveness بتقتله قبل ما يجهز.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أضيف Startup Probe بـ failureThreshold × periodSeconds كفاية",
+     "why": "صح."
+    },
+    {
+     "text": "أشيل الـ Liveness",
+     "why": "هتخسر الحماية."
+    },
+    {
+     "text": "أقلل الوقت",
+     "why": "لأ."
+    },
+    {
+     "text": "عادي",
+     "why": "CrashLoop."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Startup بتحمي."
+  },
+  {
+   "id": "08-kubernetes-ch05-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب اللي بيحصل لـ Container بطيء البداية فيه التلات Probes:",
+   "items": [
+    "الـ Container يبدأ والـ Startup Probe بس شغالة",
+    "الـ Startup تنجح",
+    "الـ Liveness والـ Readiness يبدأوا مع بعض",
+    "الـ Readiness تنجح فيبدأ يستقبل Traffic"
+   ],
+   "explanation": "Startup الأول."
+  },
+  {
+   "id": "08-kubernetes-ch05-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "exec Probe بتعتبر ناجحة إمتى؟",
+   "options": [
+    {
+     "text": "لما الأمر يرجّع exit code 0",
+     "why": "صح."
+    },
+    {
+     "text": "لما يطبع OK",
+     "why": "مش المعيار."
+    },
+    {
+     "text": "دايماً",
+     "why": "لأ."
+    },
+    {
+     "text": "لما يرجّع 1",
+     "why": "فشل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مثلاً cat /tmp/healthy."
+  },
+  {
+   "id": "08-kubernetes-ch05-12",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شوف ليه Probe فاشلة في Pod اسمه web.",
+   "accepted": [
+    "kubectl describe pod web",
+    "kubectl describe po web"
+   ],
+   "hint": "describe والـ Events.",
+   "explanation": "Liveness probe failed."
+  }
+ ]
+}

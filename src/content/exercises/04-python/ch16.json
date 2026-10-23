@@ -1,0 +1,240 @@
+{
+ "book": "04-python",
+ "chapter": 16,
+ "chapterFile": "ch16",
+ "title": "الـ OpenAI Python SDK بالتفصيل: Responses API و Chat Completions",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch16-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الطريقة الصح تعمل client في OpenAI SDK؟",
+   "options": [
+    {
+     "text": "client = OpenAI() مرة واحدة في أول الاسكريبت",
+     "why": "صح، وبيقرا OPENAI_API_KEY لوحده."
+    },
+    {
+     "text": "client جديد لكل طلب",
+     "why": "إهدار."
+    },
+    {
+     "text": "تكتب الـ Key جوه OpenAI(\"sk-...\")",
+     "why": "لأ."
+    },
+    {
+     "text": "import client",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "فيه base_url و timeout و max_retries."
+  },
+  {
+   "id": "04-python-ch16-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "response.output[0] دايماً رسالة الموديل؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ممكن يبقى reasoning أو function_call."
+    },
+    {
+     "text": "لأ، استخدم response.output_text أو دوّر على النوع",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "متفترضش [0]."
+  },
+  {
+   "id": "04-python-ch16-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "instructions بتتنقل لوحدها مع previous_response_id؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لازم تبعتها تاني."
+    },
+    {
+     "text": "لأ",
+     "why": "صح حسب الكتاب."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ابعت instructions مع كل طلب."
+  },
+  {
+   "id": "04-python-ch16-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في Chat Completions، finish_reason == \"length\" معناها؟",
+   "options": [
+    {
+     "text": "الرد اتقطع علشان وصل للسقف",
+     "why": "صح."
+    },
+    {
+     "text": "الرد طويل وكامل",
+     "why": "لأ."
+    },
+    {
+     "text": "خطأ في الـ Key",
+     "why": "لأ."
+    },
+    {
+     "text": "الموديل رفض",
+     "why": "ده refusal/content_filter."
+    }
+   ],
+   "correct": 0,
+   "explanation": "كبّر max_tokens."
+  },
+  {
+   "id": "04-python-ch16-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اطلب من gpt-6-luna تلخيص text بتعليمات \"Summarize in Arabic\" وحط الرد في response.",
+   "accepted": [
+    "response = client.responses.create(model=\"gpt-6-luna\", instructions=\"Summarize in Arabic\", input=text)",
+    "response = client.responses.create(model=\"gpt-6-luna\", input=text, instructions=\"Summarize in Arabic\")"
+   ],
+   "hint": "responses.create مع model و instructions و input.",
+   "explanation": "Keyword arguments."
+  },
+  {
+   "id": "04-python-ch16-06",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اطبع نص الرد من Responses API.",
+   "accepted": [
+    "print(response.output_text)"
+   ],
+   "hint": "output_text.",
+   "explanation": "أسهل من اللف على output."
+  },
+  {
+   "id": "04-python-ch16-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل في Chat Completions:",
+   "template": "completion.choices[0].message.___",
+   "blanks": [
+    [
+     "content"
+    ]
+   ],
+   "hint": "محتوى.",
+   "explanation": "الشكل القديم اللي في كل حتة."
+  },
+  {
+   "id": "04-python-ch16-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تعمل محادثة متصلة:",
+   "template": "client.responses.create(model=M, input=\"وكمان؟\", ___=first.id)",
+   "blanks": [
+    [
+     "previous_response_id"
+    ]
+   ],
+   "hint": "previous_...",
+   "explanation": "والا الموديل مش هيفتكر."
+  },
+  {
+   "id": "04-python-ch16-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "عايز الرد يظهر وهو بيتكتب.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أستخدم stream=True وأطبع event.delta لما event.type يبقى response.output_text.delta مع end=\"\" و flush=True",
+     "why": "صح."
+    },
+    {
+     "text": "أطبع response كله في الآخر",
+     "why": "مش Streaming."
+    },
+    {
+     "text": "أكبّر timeout",
+     "why": "مش ده."
+    },
+    {
+     "text": "أستخدم loop مع sleep",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Streaming بالـ Events."
+  },
+  {
+   "id": "04-python-ch16-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Content parts رسالة فيها نص وصورة:",
+   "items": [
+    "\"role\": \"user\"",
+    "\"content\": [ ... ]",
+    "{\"type\": \"input_text\", \"text\": ...}",
+    "{\"type\": \"input_image\", \"image_url\": ...}"
+   ],
+   "explanation": "input كـ List رسايل."
+  },
+  {
+   "id": "04-python-ch16-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إيه اللي بيقولك عدد التوكنز بعد الطلب؟",
+   "options": [
+    {
+     "text": "response.usage",
+     "why": "صح."
+    },
+    {
+     "text": "response.status",
+     "why": "الحالة."
+    },
+    {
+     "text": "response.id",
+     "why": "معرّف."
+    },
+    {
+     "text": "response.model",
+     "why": "الموديل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "input_tokens و output_tokens."
+  },
+  {
+   "id": "04-python-ch16-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه OpenAI بتنصح بـ Responses API بدل Chat Completions للمشاريع الجديدة؟",
+   "options": [
+    {
+     "text": "هي الـ API الأحدث اللي فيه previous_response_id والأدوات والـ Reasoning بشكل موحّد",
+     "why": "صح."
+    },
+    {
+     "text": "Chat Completions اتشالت",
+     "why": "لسه شغّالة."
+    },
+    {
+     "text": "أرخص بالضرورة",
+     "why": "مش ده."
+    },
+    {
+     "text": "أسرع دايماً",
+     "why": "مش ده."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بس هتلاقي Chat Completions في كل حتة."
+  }
+ ]
+}

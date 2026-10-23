@@ -1,0 +1,243 @@
+{
+ "book": "06-frontend",
+ "chapter": 1,
+ "chapterFile": "ch01",
+ "title": "الحكاية من الأول: الفرونت إند يعني إيه، ووصلنا لهنا إزاي؟",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "06-frontend-ch01-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الفرونت إند يعني إيه؟",
+   "options": [
+    {
+     "text": "اللي بيشتغل في المتصفح: HTML و CSS و JS",
+     "why": "صح."
+    },
+    {
+     "text": "اللي على السيرفر",
+     "why": "ده الباك إند."
+    },
+    {
+     "text": "قاعدة البيانات",
+     "why": "باك إند."
+    },
+    {
+     "text": "الراوتر",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "وبيتكلموا بـ HTTP."
+  },
+  {
+   "id": "06-frontend-ch01-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "كود الفرونت إند ممكن يخبي API key لأن المستخدم مش شايفه؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الكود بيوصل للمتصفح وأي حد يقراه."
+    },
+    {
+     "text": "لأ، أي حاجة في الفرونت إند مكشوفة",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الأسرار على السيرفر."
+  },
+  {
+   "id": "06-frontend-ch01-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ SPA بيبعت HTML جديد كامل مع كل ضغطة لينك؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ده المرحلة 2."
+    },
+    {
+     "text": "لأ، JS بيغيّر الصفحة جوه المتصفح",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "التطبيق كله في المتصفح."
+  },
+  {
+   "id": "06-frontend-ch01-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Next.js مبني على إيه؟",
+   "options": [
+    {
+     "text": "React",
+     "why": "صح، Meta-framework."
+    },
+    {
+     "text": "Vue",
+     "why": "ده Nuxt."
+    },
+    {
+     "text": "Angular",
+     "why": "لأ."
+    },
+    {
+     "text": "jQuery",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "رجوع ذكي للسيرفر."
+  },
+  {
+   "id": "06-frontend-ch01-05",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب مراحل الويب:",
+   "items": [
+    "صفحات ثابتة (1991)",
+    "السيرفر يبني الصفحة",
+    "AJAX و jQuery",
+    "SPA",
+    "Meta-frameworks"
+   ],
+   "explanation": "كل مرحلة حلّت مشكلة اللي قبلها."
+  },
+  {
+   "id": "06-frontend-ch01-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "AJAX حل مشكلة إيه؟",
+   "options": [
+    {
+     "text": "الـ Reload الكامل مع كل تغيير صغير",
+     "why": "صح."
+    },
+    {
+     "text": "أول تحميل البطيء",
+     "why": "ده Meta-frameworks."
+    },
+    {
+     "text": "اختلاف المتصفحات",
+     "why": "jQuery."
+    },
+    {
+     "text": "كتابة الصفحات بإيدك",
+     "why": "المرحلة 2."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الصفحة تتغير من جوه."
+  },
+  {
+   "id": "06-frontend-ch01-07",
+   "type": "mcq",
+   "level": "think",
+   "question": "مشكلة الـ SPA اللي الـ Meta-frameworks حلّتها؟",
+   "options": [
+    {
+     "text": "أول تحميل بطيء و SEO ضعيف لأن الـ HTML فاضي",
+     "why": "صح."
+    },
+    {
+     "text": "مفيش JS",
+     "why": "العكس."
+    },
+    {
+     "text": "الـ CSS",
+     "why": "لأ."
+    },
+    {
+     "text": "الـ Database",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "رجوع للسيرفر."
+  },
+  {
+   "id": "06-frontend-ch01-08",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اتأكد إن Node متسطّب على الماك.",
+   "accepted": [
+    "node --version",
+    "node -v"
+   ],
+   "hint": "--version.",
+   "explanation": "Node بيشغّل الأدوات على جهازك."
+  },
+  {
+   "id": "06-frontend-ch01-09",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل: البروتوكول اللي الفرونت والباك بيتكلموا بيه:",
+   "template": "___",
+   "blanks": [
+    [
+     "HTTP",
+     "HTTPS"
+    ]
+   ],
+   "hint": "كتاب الإنترنت.",
+   "explanation": "طلب ورد."
+  },
+  {
+   "id": "06-frontend-ch01-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "صاحبك عايز يحط مفتاح API مدفوع في كود React علشان \"محدش هيشوفه\".",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أقوله إن أي حاجة في المتصفح مكشوفة، ويعمل السيرفر وسيط يحتفظ بالمفتاح",
+     "why": "صح."
+    },
+    {
+     "text": "يعمل له Minify",
+     "why": "لسه مكشوف."
+    },
+    {
+     "text": "يحطه في متغير اسمه غريب",
+     "why": "لأ."
+    },
+    {
+     "text": "عادي",
+     "why": "هيتسرق."
+    }
+   ],
+   "correct": 0,
+   "explanation": "القاعدة الذهبية."
+  },
+  {
+   "id": "06-frontend-ch01-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "jQuery اتعمل علشان إيه أساساً؟",
+   "options": [
+    {
+     "text": "يوحّد الفروق بين المتصفحات ويسهّل التعامل مع الـ DOM",
+     "why": "صح."
+    },
+    {
+     "text": "علشان SSR",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان CSS",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان Database",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "المرحلة 3."
+  }
+ ]
+}

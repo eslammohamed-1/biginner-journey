@@ -1,0 +1,270 @@
+{
+ "book": "07-docker",
+ "chapter": 9,
+ "chapterFile": "ch09",
+ "title": "الـ Dockerfile: وصفة بناء الـ Image",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "07-docker-ch09-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "FROM بيعمل إيه؟",
+   "options": [
+    {
+     "text": "بيحدد الـ Base Image اللي هنبني فوقها",
+     "why": "صح."
+    },
+    {
+     "text": "بينسخ ملفات",
+     "why": "COPY."
+    },
+    {
+     "text": "بيشغّل أوامر",
+     "why": "RUN."
+    },
+    {
+     "text": "بيفتح بورت",
+     "why": "EXPOSE توثيق."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أول سطر."
+  },
+  {
+   "id": "07-docker-ch09-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ENV ضد ARG؟",
+   "options": [
+    {
+     "text": "ENV بيفضل جوه الـ Container وقت التشغيل، و ARG وقت الـ build بس",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "العكس",
+     "why": "لأ."
+    },
+    {
+     "text": "ARG للأسرار",
+     "why": "لأ، بيبان في الـ history."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الفرق."
+  },
+  {
+   "id": "07-docker-ch09-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "EXPOSE 80 بيفتح البورت؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "توثيق بس."
+    },
+    {
+     "text": "لأ، الفتح الحقيقي بـ -p",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "EXPOSE توثيق."
+  },
+  {
+   "id": "07-docker-ch09-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "COPY ولا ADD؟",
+   "options": [
+    {
+     "text": "COPY الافتراضي، و ADD للضرورة (فك ضغط ملف محلي)",
+     "why": "صح."
+    },
+    {
+     "text": "ADD دايماً",
+     "why": "سلوكه سحري."
+    },
+    {
+     "text": "مفيش فرق",
+     "why": "فيه."
+    },
+    {
+     "text": "COPY للـ URLs",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الوضوح."
+  },
+  {
+   "id": "07-docker-ch09-05",
+   "type": "mcq",
+   "level": "think",
+   "question": "CMD ضد ENTRYPOINT؟",
+   "options": [
+    {
+     "text": "ENTRYPOINT البرنامج الثابت، و CMD الـ Arguments الافتراضية اللي تتغير بسهولة",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "CMD ثابت",
+     "why": "العكس."
+    },
+    {
+     "text": "ENTRYPOINT وقت الـ build",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الأحسن الاتنين مع بعض."
+  },
+  {
+   "id": "07-docker-ch09-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تحدد مسار الشغل:",
+   "template": "___ /app",
+   "blanks": [
+    [
+     "WORKDIR"
+    ]
+   ],
+   "hint": "Work...",
+   "explanation": "بدل cd."
+  },
+  {
+   "id": "07-docker-ch09-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان متشغّلش كـ root:",
+   "template": "___ node",
+   "blanks": [
+    [
+     "USER"
+    ]
+   ],
+   "hint": "مستخدم.",
+   "explanation": "أمان."
+  },
+  {
+   "id": "07-docker-ch09-08",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اكتب سطر RUN يسطّب curl على Debian وينضّف في نفس السطر.",
+   "accepted": [
+    "RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*",
+    "RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*"
+   ],
+   "patterns": [
+    "^RUN apt-get update && apt-get install -y .*curl && rm -rf /var/lib/apt/lists/\\*$"
+   ],
+   "hint": "&& ونضّف.",
+   "explanation": "Layer واحدة أصغر."
+  },
+  {
+   "id": "07-docker-ch09-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب Dockerfile لـ Node:",
+   "items": [
+    "FROM node:22-alpine",
+    "WORKDIR /app",
+    "COPY package*.json ./",
+    "RUN npm ci",
+    "COPY . .",
+    "USER node",
+    "CMD [\"node\", \"server.js\"]"
+   ],
+   "explanation": "ترتيب الكاش."
+  },
+  {
+   "id": "07-docker-ch09-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "Dockerfile فيه RUN apt-get update في سطر و RUN apt-get install في سطر تاني، والتسطيب بيفشل بعد فترة.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ update بيتكاش لوحده وبيبقى قديم، فأدمجهم في RUN واحد",
+     "why": "صح."
+    },
+    {
+     "text": "أشيل update",
+     "why": "أسوأ."
+    },
+    {
+     "text": "أمسح الكاش كل مرة",
+     "why": "مش عملي."
+    },
+    {
+     "text": "عادي",
+     "why": "هيفشل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ادمج الأوامر."
+  },
+  {
+   "id": "07-docker-ch09-11",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "حد حط API key في ARG علشان \"مش بيفضل في الـ Container\".",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "ARG بيبان في docker history، فأستخدم Build secrets أو أمرره وقت التشغيل",
+     "why": "صح."
+    },
+    {
+     "text": "ARG آمن",
+     "why": "لأ."
+    },
+    {
+     "text": "ENV أحسن",
+     "why": "بيفضل جوه."
+    },
+    {
+     "text": "عادي",
+     "why": "هيتسرب."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الأسرار."
+  },
+  {
+   "id": "07-docker-ch09-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "صيغة CMD المفضّلة؟",
+   "options": [
+    {
+     "text": "Exec form: CMD [\"node\", \"server.js\"]",
+     "why": "صح."
+    },
+    {
+     "text": "Shell form دايماً",
+     "why": "بيلفّها في sh."
+    },
+    {
+     "text": "من غير أقواس",
+     "why": "Shell form."
+    },
+    {
+     "text": "مش مهم",
+     "why": "مهم للـ Signals."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Signals توصل للـ Process."
+  }
+ ]
+}

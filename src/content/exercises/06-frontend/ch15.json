@@ -1,0 +1,261 @@
+{
+ "book": "06-frontend",
+ "chapter": 15,
+ "chapterFile": "ch15",
+ "title": "الـ ^ والـ ~ والـ Lockfile: «بيشتغل عندي ومش عندك»",
+ "count": 13,
+ "exercises": [
+  {
+   "id": "06-frontend-ch15-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "في 2.4.1، الرقم 4 اسمه؟",
+   "options": [
+    {
+     "text": "MINOR (ميزة جديدة من غير كسر)",
+     "why": "صح."
+    },
+    {
+     "text": "MAJOR",
+     "why": "ده 2."
+    },
+    {
+     "text": "PATCH",
+     "why": "ده 1."
+    },
+    {
+     "text": "BUILD",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بيكسر . ميزة . إصلاح."
+  },
+  {
+   "id": "06-frontend-ch15-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "^2.4.1 بيقبل 2.9.0؟",
+   "options": [
+    {
+     "text": "أيوه، نفس الـ MAJOR",
+     "why": "صح."
+    },
+    {
+     "text": "لأ",
+     "why": "بيقبل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "^ الافتراضي."
+  },
+  {
+   "id": "06-frontend-ch15-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "~2.4.1 بيقبل 2.5.0؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "~ نفس الـ MINOR."
+    },
+    {
+     "text": "لأ، بيقبل 2.4.x بس",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "~ أضيق."
+  },
+  {
+   "id": "06-frontend-ch15-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "npm update بيغيّر الـ Range المكتوب في package.json؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيحدّث جوه الـ Range."
+    },
+    {
+     "text": "لأ، بيحدّث جوه الـ Range والـ Lockfile",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "لـ MAJOR جديد install @latest."
+  },
+  {
+   "id": "06-frontend-ch15-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "npm ci بيشتغل من غير package-lock.json؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "محتاجه."
+    },
+    {
+     "text": "لأ، بيقع",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "صارم."
+  },
+  {
+   "id": "06-frontend-ch15-06",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرف مين محتاج تحديث في المشروع.",
+   "accepted": [
+    "npm outdated"
+   ],
+   "hint": "outdated.",
+   "explanation": "Current و Wanted و Latest."
+  },
+  {
+   "id": "06-frontend-ch15-07",
+   "type": "command",
+   "level": "easy",
+   "prompt": "سطّب بالظبط اللي في الـ Lockfile (زي CI).",
+   "accepted": [
+    "npm ci"
+   ],
+   "hint": "clean install.",
+   "explanation": "بيمسح node_modules."
+  },
+  {
+   "id": "06-frontend-ch15-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل مع 0.x:",
+   "template": "^0.3.1 بيقبل لحد 0.___.x",
+   "blanks": [
+    [
+     "3"
+    ]
+   ],
+   "hint": "أضيق.",
+   "explanation": "الاستثناء بتاع 0.x."
+  },
+  {
+   "id": "06-frontend-ch15-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "\"بيشتغل عندي ومش عندك\" والمشروع مفيهوش package-lock.json.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "كل واحد نزّل نسخ مختلفة جوه الـ Range، فأعمل Lockfile وأرفعه على Git ونستخدم npm ci",
+     "why": "صح."
+    },
+    {
+     "text": "نمسح node_modules عند الكل",
+     "why": "لسه مختلفين."
+    },
+    {
+     "text": "نثبّت كل نسخة يدوي",
+     "why": "مش عملي."
+    },
+    {
+     "text": "عادي",
+     "why": "هيتكرر."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Lockfile هو الحل."
+  },
+  {
+   "id": "06-frontend-ch15-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "زميل بيمسح package-lock.json كل ما يحصل Conflict.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "ده بيلغي الضمان؛ أحل الـ Conflict بـ npm install اللي بيعيد كتابته صح",
+     "why": "صح."
+    },
+    {
+     "text": "عادي",
+     "why": "هتتغير النسخ."
+    },
+    {
+     "text": "أحطه في .gitignore",
+     "why": "أسوأ."
+    },
+    {
+     "text": "أمسح node_modules كمان",
+     "why": "مش الحل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "متمسحوش."
+  },
+  {
+   "id": "06-frontend-ch15-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أسماء أعمدة npm outdated:",
+   "items": [
+    "Current",
+    "Wanted",
+    "Latest"
+   ],
+   "explanation": "Wanted جوه الـ Range."
+  },
+  {
+   "id": "06-frontend-ch15-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "latest مش دايماً أحدث رقم. ليه؟",
+   "options": [
+    {
+     "text": "latest dist-tag ممكن يتحط على نسخة مستقرة، وأرقام أعلى تبقى next أو beta",
+     "why": "صح."
+    },
+    {
+     "text": "Bug في npm",
+     "why": "لأ."
+    },
+    {
+     "text": "latest = أقدم",
+     "why": "لأ."
+    },
+    {
+     "text": "علشان الـ Cache",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "dist-tags."
+  },
+  {
+   "id": "06-frontend-ch15-13",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Lockfile بيسجل إيه لكل Package؟",
+   "options": [
+    {
+     "text": "النسخة و resolved و integrity",
+     "why": "صح."
+    },
+    {
+     "text": "الـ Range بس",
+     "why": "ده package.json."
+    },
+    {
+     "text": "الكود",
+     "why": "لأ."
+    },
+    {
+     "text": "اسم المطور",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "ارفعه على Git."
+  }
+ ]
+}

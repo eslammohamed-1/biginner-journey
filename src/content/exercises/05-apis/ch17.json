@@ -1,0 +1,258 @@
+{
+ "book": "05-apis",
+ "chapter": 17,
+ "chapterFile": "ch17",
+ "title": "شكل الـ Errors: Problem Details (RFC 9457)",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "05-apis-ch17-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Content-Type بتاع Problem Details؟",
+   "options": [
+    {
+     "text": "application/problem+json",
+     "why": "صح."
+    },
+    {
+     "text": "application/json",
+     "why": "الشكل العادي."
+    },
+    {
+     "text": "text/error",
+     "why": "لأ."
+    },
+    {
+     "text": "application/error",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "RFC 9457."
+  },
+  {
+   "id": "05-apis-ch17-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Client يعتمد على نص detail علشان يعرف نوع المشكلة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "detail للإنسان وبيتغير."
+    },
+    {
+     "text": "لأ، يعتمد على type",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "type هو المفتاح."
+  },
+  {
+   "id": "05-apis-ch17-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لو type مش موجود قيمته الافتراضية؟",
+   "options": [
+    {
+     "text": "about:blank",
+     "why": "صح."
+    },
+    {
+     "text": "null",
+     "why": "لأ."
+    },
+    {
+     "text": "error",
+     "why": "لأ."
+    },
+    {
+     "text": "500",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "والـ title بيبقى جملة الكود الرسمية."
+  },
+  {
+   "id": "05-apis-ch17-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "تبعت Stack trace في الـ 500؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيكشف تفاصيل داخلية."
+    },
+    {
+     "text": "لأ، ابعت ID للـ Logs بس",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "التفاصيل في الـ Log."
+  },
+  {
+   "id": "05-apis-ch17-05",
+   "type": "order",
+   "level": "easy",
+   "prompt": "رتّب الـ Fields الخمسة كما في المواصفة:",
+   "items": [
+    "type",
+    "title",
+    "status",
+    "detail",
+    "instance"
+   ],
+   "explanation": "ومعاها Extensions."
+  },
+  {
+   "id": "05-apis-ch17-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل Extension لأخطاء الـ Fields:",
+   "template": "\"errors\": [{ \"___\": \"#/title\", \"detail\": \"is required\" }]",
+   "blanks": [
+    [
+     "pointer"
+    ]
+   ],
+   "hint": "JSON Pointer.",
+   "explanation": "لكل Field."
+  },
+  {
+   "id": "05-apis-ch17-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الـ status جوه Problem لطلب بيانات مش مقبولة:",
+   "template": "\"status\": ___",
+   "blanks": [
+    [
+     "422"
+    ]
+   ],
+   "hint": "Unprocessable.",
+   "explanation": "لازم يطابق الـ HTTP status."
+  },
+  {
+   "id": "05-apis-ch17-08",
+   "type": "command",
+   "level": "medium",
+   "prompt": "في fetch، اقرا Content-Type من res وشوف هل هو Problem (اكتب الشرط).",
+   "accepted": [
+    "res.headers.get(\"content-type\")?.includes(\"application/problem+json\")",
+    "res.headers.get(\"content-type\").includes(\"application/problem+json\")",
+    "res.headers.get('content-type')?.includes('application/problem+json')"
+   ],
+   "hint": "headers.get و includes.",
+   "explanation": "بعدين تقرا type."
+  },
+  {
+   "id": "05-apis-ch17-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ Frontend بيعرض رسالة الخطأ بمقارنة detail بنص معين، والرسالة اتغيرت فاتكسر.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أخلي الكود يقرر بالـ type، و detail للعرض بس",
+     "why": "صح."
+    },
+    {
+     "text": "أثبّت detail للأبد",
+     "why": "مش عملي."
+    },
+    {
+     "text": "أشيل الرسايل",
+     "why": "لأ."
+    },
+    {
+     "text": "أرجّع 200",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "type هو العقد."
+  },
+  {
+   "id": "05-apis-ch17-10",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "حصل 500 والمستخدم بيشتكي.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الرد فيه ID، فأطلبه منه وأدوّر بيه في الـ Logs",
+     "why": "صح."
+    },
+    {
+     "text": "أطلب منه يبعت Stack trace",
+     "why": "مش معاه."
+    },
+    {
+     "text": "أخلي الـ 500 يطلع كل حاجة",
+     "why": "خطر."
+    },
+    {
+     "text": "أتجاهل",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Checklist أي Error."
+  },
+  {
+   "id": "05-apis-ch17-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه RFC 9457 مهم؟",
+   "options": [
+    {
+     "text": "وحّد شكل الأخطاء بدل ما كل API (GitHub و Stripe) بشكل مختلف",
+     "why": "صح."
+    },
+    {
+     "text": "بيمنع الأخطاء",
+     "why": "لأ."
+    },
+    {
+     "text": "بيشفّرها",
+     "why": "لأ."
+    },
+    {
+     "text": "إجباري في HTTP",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "كل API بلغة."
+  },
+  {
+   "id": "05-apis-ch17-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ instance في Problem معناها؟",
+   "options": [
+    {
+     "text": "معرّف الحالة دي بالذات (زي URL للطلب)",
+     "why": "صح."
+    },
+    {
+     "text": "نوع الخطأ",
+     "why": "ده type."
+    },
+    {
+     "text": "رقم الكود",
+     "why": "ده status."
+    },
+    {
+     "text": "اسم السيرفر",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مفيد للـ Logs."
+  }
+ ]
+}

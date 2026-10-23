@@ -14,6 +14,8 @@ export function ChoiceExercise({ exercise, number, state, onChange }: Props) {
 	const solved = Boolean(state?.solved);
 	const checked = Boolean(state?.checked) && choice !== undefined;
 	const selected = checked ? exercise.options[choice!] : undefined;
+	const correctOption = exercise.options[exercise.correct];
+	const missed = checked && choice !== exercise.correct;
 
 	function pick(index: number) {
 		if (solved) return;
@@ -43,10 +45,11 @@ export function ChoiceExercise({ exercise, number, state, onChange }: Props) {
 					const isSelected = checked && choice === index;
 					const isCorrect = isSelected && index === exercise.correct;
 					const isWrong = isSelected && index !== exercise.correct;
+					const isAnswer = missed && index === exercise.correct;
 					return (
 						<label
-							key={option.text}
-							class={`ex-opt${isCorrect ? ' is-correct' : ''}${isWrong ? ' is-wrong' : ''}`}
+							key={`${exercise.id}-${index}`}
+							class={`ex-opt${isCorrect ? ' is-correct' : ''}${isWrong ? ' is-wrong' : ''}${isAnswer ? ' is-answer' : ''}`}
 						>
 							<input
 								type="radio"
@@ -70,6 +73,14 @@ export function ChoiceExercise({ exercise, number, state, onChange }: Props) {
 					<p class="ex-why">
 						<RichText text={selected.why} />
 					</p>
+					{missed && correctOption ? (
+						<p class="ex-why">
+							<strong>الإجابة الصح: </strong>
+							<RichText text={correctOption.text} />
+							<span> — </span>
+							<RichText text={correctOption.why} />
+						</p>
+					) : null}
 					<p class="ex-explain">
 						<strong>الشرح: </strong>
 						<RichText text={exercise.explanation} />

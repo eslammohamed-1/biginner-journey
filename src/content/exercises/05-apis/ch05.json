@@ -1,0 +1,253 @@
+{
+ "book": "05-apis",
+ "chapter": 5,
+ "chapterFile": "ch05",
+ "title": "JSON ضد JS Object، و JSON.parse و stringify، والأخطاء الشائعة",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "05-apis-ch05-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "JSON نص ولا Object؟",
+   "options": [
+    {
+     "text": "نص (String)، والـ Object في الذاكرة",
+     "why": "صح."
+    },
+    {
+     "text": "Object",
+     "why": "لأ."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "ملف بس",
+     "why": "ممكن يبقى في ملف بس هو نص."
+    }
+   ],
+   "correct": 0,
+   "explanation": "parse و stringify المترجمين."
+  },
+  {
+   "id": "05-apis-ch05-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`JSON.stringify({ a: undefined })` بيرجّع إيه؟",
+   "options": [
+    {
+     "text": "'{}'",
+     "why": "صح، undefined بيختفي."
+    },
+    {
+     "text": "'{\"a\":null}'",
+     "why": "ده في Arrays."
+    },
+    {
+     "text": "خطأ",
+     "why": "لأ."
+    },
+    {
+     "text": "'{\"a\":undefined}'",
+     "why": "مش JSON."
+    }
+   ],
+   "correct": 0,
+   "explanation": "خلي بالك: undefined مش null."
+  },
+  {
+   "id": "05-apis-ch05-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`JSON.parse(JSON.stringify(new Date()))` بيرجّع Date؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيرجّع String."
+    },
+    {
+     "text": "لأ، String",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "حوّله بـ reviver."
+  },
+  {
+   "id": "05-apis-ch05-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "package.json ينفع فيه تعليقات //؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "JSON مفيهوش تعليقات."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "JSON صارم."
+  },
+  {
+   "id": "05-apis-ch05-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اطبع obj كـ JSON منسق بمسافتين في JS.",
+   "accepted": [
+    "console.log(JSON.stringify(obj, null, 2))",
+    "JSON.stringify(obj, null, 2)"
+   ],
+   "hint": "replacer null و space 2.",
+   "explanation": "Pretty print."
+  },
+  {
+   "id": "05-apis-ch05-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "طلّع الحقلين id و name بس من user كـ JSON.",
+   "accepted": [
+    "JSON.stringify(user, [\"id\", \"name\"])",
+    "JSON.stringify(user, ['id', 'name'])"
+   ],
+   "hint": "الـ replacer Array.",
+   "explanation": "فلتر Keys."
+  },
+  {
+   "id": "05-apis-ch05-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان تحوّل النص لـ Object:",
+   "template": "const data = JSON.___(text)",
+   "blanks": [
+    [
+     "parse"
+    ]
+   ],
+   "hint": "عكس stringify.",
+   "explanation": "و reviver اختياري."
+  },
+  {
+   "id": "05-apis-ch05-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "`SyntaxError: Unexpected token '<', \"<!DOCTYPE \"... is not valid JSON` من res.json().",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "السيرفر رجّع HTML (صفحة خطأ أو URL غلط)، فأشيك الـ Status والـ Content-Type",
+     "why": "صح."
+    },
+    {
+     "text": "الـ JSON فيه حرف غلط",
+     "why": "ده HTML."
+    },
+    {
+     "text": "أستخدم eval",
+     "why": "خطر."
+    },
+    {
+     "text": "Node بايظ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أشهر غلطة."
+  },
+  {
+   "id": "05-apis-ch05-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب: تبعت Object لـ API وترجع بيانات:",
+   "items": [
+    "JSON.stringify(obj)",
+    "تبعت النص في الـ Body",
+    "الرد نص JSON",
+    "JSON.parse / res.json()"
+   ],
+   "explanation": "المترجمين."
+  },
+  {
+   "id": "05-apis-ch05-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه متكتبش JSON بإيدك كـ String في الكود؟",
+   "options": [
+    {
+     "text": "سهل تنسى \" أو تحط فاصلة أخيرة، فاستخدم stringify",
+     "why": "صح."
+    },
+    {
+     "text": "أبطأ",
+     "why": "لأ."
+    },
+    {
+     "text": "ممنوع",
+     "why": "لأ."
+    },
+    {
+     "text": "مش بيشتغل",
+     "why": "ممكن يشتغل لو مظبوط."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Best Practice."
+  },
+  {
+   "id": "05-apis-ch05-11",
+   "type": "mcq",
+   "level": "medium",
+   "question": "إيه اللي ممنوع في JSON ومسموح في JS Object؟",
+   "options": [
+    {
+     "text": "الفاصلة الأخيرة و ' والتعليقات و Keys من غير تنصيص",
+     "why": "صح."
+    },
+    {
+     "text": "Arrays",
+     "why": "مسموحة."
+    },
+    {
+     "text": "null",
+     "why": "مسموحة."
+    },
+    {
+     "text": "الأرقام",
+     "why": "مسموحة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "7 فروق."
+  },
+  {
+   "id": "05-apis-ch05-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "JSON.stringify على BigInt بيعمل إيه؟",
+   "options": [
+    {
+     "text": "بيرمي TypeError",
+     "why": "صح."
+    },
+    {
+     "text": "بيحوّله String",
+     "why": "لأ."
+    },
+    {
+     "text": "بيحوّله Number",
+     "why": "لأ."
+    },
+    {
+     "text": "بيشيله",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "وMap بيبقى {}."
+  }
+ ]
+}

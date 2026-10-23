@@ -1,0 +1,230 @@
+{
+ "book": "04-python",
+ "chapter": 11,
+ "chapterFile": "ch11",
+ "title": "الكلام مع أي API: requests والـ API keys وملف .env",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch11-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "كل نداء AI من تحت عبارة عن إيه؟",
+   "options": [
+    {
+     "text": "POST لـ URL مع Headers فيها الـ Key و Body JSON",
+     "why": "صح."
+    },
+    {
+     "text": "GET بس",
+     "why": "لأ."
+    },
+    {
+     "text": "ملف بيتنزل",
+     "why": "لأ."
+    },
+    {
+     "text": "سحر جوه الـ SDK",
+     "why": "الـ SDK بيعمل كده."
+    }
+   ],
+   "correct": 0,
+   "explanation": "وبيرجع Status + JSON."
+  },
+  {
+   "id": "04-python-ch11-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "requests من غير timeout ممكن تستنى للأبد؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح، ابعت timeout دايماً."
+    },
+    {
+     "text": "لأ",
+     "why": "مفيش timeout افتراضي."
+    }
+   ],
+   "correct": 0,
+   "explanation": "timeout=60 مثلاً."
+  },
+  {
+   "id": "04-python-ch11-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Gemini بيبعت الـ Key في أنهي Header؟",
+   "options": [
+    {
+     "text": "x-goog-api-key",
+     "why": "صح."
+    },
+    {
+     "text": "Authorization: Bearer",
+     "why": "ده OpenAI."
+    },
+    {
+     "text": "api_key في الـ URL",
+     "why": "مش الطريقة المفضّلة."
+    },
+    {
+     "text": "Cookie",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ SDK بيخبّي الفرق."
+  },
+  {
+   "id": "04-python-ch11-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "مسحت الـ Key من الكود وعملت Commit جديد بعد ما اترفع على GitHub. كده أمان؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لسه في الـ History."
+    },
+    {
+     "text": "لأ، لازم تقفل الـ Key (Revoke) وتعمل واحد جديد فوراً",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "الـ Key المتسرب يتقفل."
+  },
+  {
+   "id": "04-python-ch11-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "حط مفتاح OpenAI في متغير بيئة في الـ Terminal (القيمة sk-xxx).",
+   "accepted": [
+    "export OPENAI_API_KEY=\"sk-xxx\"",
+    "export OPENAI_API_KEY=sk-xxx",
+    "export OPENAI_API_KEY='sk-xxx'"
+   ],
+   "hint": "export.",
+   "explanation": "ده لـ Terminal ده بس."
+  },
+  {
+   "id": "04-python-ch11-06",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اقرا متغير البيئة OPENAI_API_KEY في Python من غير ما ترمي خطأ لو مش موجود.",
+   "accepted": [
+    "os.getenv(\"OPENAI_API_KEY\")",
+    "os.environ.get(\"OPENAI_API_KEY\")",
+    "os.getenv('OPENAI_API_KEY')"
+   ],
+   "hint": "getenv.",
+   "explanation": "os.environ[\"X\"] بترمي KeyError."
+  },
+  {
+   "id": "04-python-ch11-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "ابعت POST لـ url بـ headers و payload كـ JSON و timeout 60 في r.",
+   "accepted": [
+    "r = requests.post(url, headers=headers, json=payload, timeout=60)",
+    "r = requests.post(url, json=payload, headers=headers, timeout=60)"
+   ],
+   "hint": "json= و timeout=.",
+   "explanation": "json= بيحوّل ويحط Content-Type."
+  },
+  {
+   "id": "04-python-ch11-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان ترمي خطأ لو الـ Status مش 2xx:",
+   "template": "r.___()",
+   "blanks": [
+    [
+     "raise_for_status"
+    ]
+   ],
+   "hint": "raise...",
+   "explanation": "بعدين r.json()."
+  },
+  {
+   "id": "04-python-ch11-09",
+   "type": "fill",
+   "level": "easy",
+   "prompt": "كمّل اسم الملف اللي لازم يتحط في .gitignore علشان فيه الـ Keys:",
+   "template": "___",
+   "blanks": [
+    [
+     ".env"
+    ]
+   ],
+   "hint": "نقطة env.",
+   "explanation": "python-dotenv بيقراه."
+  },
+  {
+   "id": "04-python-ch11-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "`load_dotenv()` ومع ذلك الاسكريبت بيستخدم Key قديم.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "فيه متغير بنفس الاسم في الـ Terminal، و load_dotenv مبيكتبش فوقه افتراضياً، فأشيله بـ unset أو أستخدم override=True",
+     "why": "صح."
+    },
+    {
+     "text": "الملف بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "أعيد تشغيل الماك",
+     "why": "مش لازم."
+    },
+    {
+     "text": "أكتب الـ Key في الكود",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "override=False هو الافتراضي."
+  },
+  {
+   "id": "04-python-ch11-11",
+   "type": "scenario",
+   "level": "think",
+   "scenario": "AI كتبلك كود فيه `api_key=\"sk-proj-...\"` جوه الاسكريبت.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشيله وأخلي الـ SDK يقرا من متغير البيئة أو .env",
+     "why": "صح."
+    },
+    {
+     "text": "عادي طالما Private",
+     "why": "هيتسرب مع أول مشاركة."
+    },
+    {
+     "text": "أشفّره بـ base64",
+     "why": "مش تشفير."
+    },
+    {
+     "text": "أحطه في تعليق",
+     "why": "نفس المشكلة."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ Key ميتكتبش في الكود."
+  },
+  {
+   "id": "04-python-ch11-12",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب تجهيز .env صح:",
+   "items": [
+    "أعمل ملف .env فيه OPENAI_API_KEY=...",
+    "أضيف .env لـ .gitignore",
+    "pip install python-dotenv",
+    "load_dotenv() في أول الاسكريبت"
+   ],
+   "explanation": "بعدين الـ SDK يقرا لوحده."
+  }
+ ]
+}

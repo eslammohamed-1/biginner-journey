@@ -1,0 +1,229 @@
+{
+ "book": "04-python",
+ "chapter": 23,
+ "chapterFile": "ch23",
+ "title": "صور وملفات و PDF: تبعت للموديل حاجة غير النص",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "04-python-ch23-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "Base64 بيعمل إيه في الصور؟",
+   "options": [
+    {
+     "text": "بيحوّل الـ bytes لنص يتحط في JSON",
+     "why": "صح."
+    },
+    {
+     "text": "بيصغّر الحجم",
+     "why": "بيكبّره حوالي الثلث."
+    },
+    {
+     "text": "بيشفّر",
+     "why": "مش تشفير."
+    },
+    {
+     "text": "بيحسّن الجودة",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Data URL = data:mime;base64,..."
+  },
+  {
+   "id": "04-python-ch23-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "في Gemini لازم تعمل Base64 بإيدك قبل Part.from_bytes؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "from_bytes بتاخد bytes."
+    },
+    {
+     "text": "لأ، ابعت الـ bytes مباشرة",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "types.Part.from_bytes(data=..., mime_type=...)."
+  },
+  {
+   "id": "04-python-ch23-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الملفات المرفوعة على Gemini Files API بتفضل لحد ما تمسحها؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بتتمسح بعد 48 ساعة."
+    },
+    {
+     "text": "لأ، بتتمسح بعد 48 ساعة",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "client.files.upload للكبير."
+  },
+  {
+   "id": "04-python-ch23-04",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اقرا صورة img.png كـ bytes.",
+   "accepted": [
+    "data = Path(\"img.png\").read_bytes()",
+    "data = Path('img.png').read_bytes()"
+   ],
+   "hint": "read_bytes.",
+   "explanation": "مش read_text."
+  },
+  {
+   "id": "04-python-ch23-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "حوّل data لنص Base64 في b64.",
+   "accepted": [
+    "b64 = base64.b64encode(data).decode(\"utf-8\")",
+    "b64 = base64.b64encode(data).decode()",
+    "b64 = base64.b64encode(data).decode('utf-8')"
+   ],
+   "hint": "b64encode ثم decode.",
+   "explanation": "b64encode بترجّع bytes."
+  },
+  {
+   "id": "04-python-ch23-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الـ Data URL لصورة PNG:",
+   "template": "f\"data:image/png;___,{b64}\"",
+   "blanks": [
+    [
+     "base64"
+    ]
+   ],
+   "hint": "الترميز.",
+   "explanation": "بيتبعت في input_image."
+  },
+  {
+   "id": "04-python-ch23-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل: نوع الـ Content part للـ PDF في OpenAI:",
+   "template": "{\"type\": \"___\", ...}",
+   "blanks": [
+    [
+     "input_file"
+    ]
+   ],
+   "hint": "input_...",
+   "explanation": "بـ file_data أو file_id أو file_url."
+  },
+  {
+   "id": "04-python-ch23-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الاسكريبت وقع على صورة 40MB.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أشيك الحجم بـ path.stat().st_size قبل الإرسال وأتخطّى أو أصغّر الكبير",
+     "why": "صح."
+    },
+    {
+     "text": "أبعتها برضه",
+     "why": "هترفض."
+    },
+    {
+     "text": "أحوّلها Base64 علشان تصغر",
+     "why": "بتكبر."
+    },
+    {
+     "text": "أمسحها",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "اتأكد من النوع والحجم قبل ما تبعت."
+  },
+  {
+   "id": "04-python-ch23-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب اسكريبت Alt text لفولدر صور:",
+   "items": [
+    "لف على الصور وفلتر الامتدادات",
+    "شيك الحجم",
+    "اقرا bytes وابعتها للموديل",
+    "خد (response.text or \"\").strip()",
+    "اكتب في CSV بـ utf-8-sig"
+   ],
+   "explanation": "علشان Excel على الماك."
+  },
+  {
+   "id": "04-python-ch23-10",
+   "type": "mcq",
+   "level": "medium",
+   "question": "detail منخفض في input_image بيفيد في إيه؟",
+   "options": [
+    {
+     "text": "توكنز أقل وتكلفة أقل لما مش محتاج تفاصيل",
+     "why": "صح."
+    },
+    {
+     "text": "جودة أعلى",
+     "why": "العكس."
+    },
+    {
+     "text": "أسرع رفع",
+     "why": "مش الأساس."
+    },
+    {
+     "text": "مجاني",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "low لو كفاية."
+  },
+  {
+   "id": "04-python-ch23-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "إمتى ترفع الملف بـ files.create/files.upload بدل ما تبعته Base64؟",
+   "options": [
+    {
+     "text": "لما الملف كبير أو هتستخدمه في كذا طلب",
+     "why": "صح."
+    },
+    {
+     "text": "دايماً",
+     "why": "للصغير Base64 أسهل."
+    },
+    {
+     "text": "مستحيل في Gemini",
+     "why": "ممكن."
+    },
+    {
+     "text": "للنصوص بس",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "purpose=\"user_data\" في OpenAI."
+  },
+  {
+   "id": "04-python-ch23-12",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اتخطّى الملف لو امتداده مش في EXTS (حروف صغيرة).",
+   "accepted": [
+    "if path.suffix.lower() not in EXTS: continue",
+    "if path.suffix.lower() not in EXTS:"
+   ],
+   "hint": "suffix.lower().",
+   "explanation": ".JPG و .jpg."
+  }
+ ]
+}

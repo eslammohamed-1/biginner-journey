@@ -1,0 +1,202 @@
+{
+ "book": "06-frontend",
+ "chapter": 18,
+ "chapterFile": "ch18",
+ "title": "Vite من جوه: dev و build و preview",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "06-frontend-ch18-01",
+   "type": "command",
+   "level": "easy",
+   "prompt": "شغّل Dev server في مشروع Vite.",
+   "accepted": [
+    "npm run dev"
+   ],
+   "hint": "run dev.",
+   "explanation": "على 5173."
+  },
+  {
+   "id": "06-frontend-ch18-02",
+   "type": "command",
+   "level": "easy",
+   "prompt": "ابني المشروع للنشر.",
+   "accepted": [
+    "npm run build"
+   ],
+   "hint": "run build.",
+   "explanation": "بيطلّع dist."
+  },
+  {
+   "id": "06-frontend-ch18-03",
+   "type": "command",
+   "level": "medium",
+   "prompt": "افتح الـ Dev server للموبايل على نفس الشبكة.",
+   "accepted": [
+    "npm run dev -- --host",
+    "npx vite --host"
+   ],
+   "hint": "-- --host.",
+   "explanation": "بيوريك IP."
+  },
+  {
+   "id": "06-frontend-ch18-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الملفات اللي في public/ بتاخد Hash في الاسم؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "زي ما هي."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "src/assets بـ import و Hash."
+  },
+  {
+   "id": "06-frontend-ch18-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "npm run preview بيعمل HMR؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "بيعرض dist بس."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "على 4173."
+  },
+  {
+   "id": "06-frontend-ch18-06",
+   "type": "mcq",
+   "level": "medium",
+   "question": "تعديل CSS في Vite بيحتفظ بحالة الصفحة؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "صح، HMR."
+    },
+    {
+     "text": "لأ",
+     "why": "بيحتفظ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "لو مفيش accept بيعمل Reload."
+  },
+  {
+   "id": "06-frontend-ch18-07",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ملف البداية في مشروع Vite؟",
+   "options": [
+    {
+     "text": "index.html في جذر المشروع",
+     "why": "صح."
+    },
+    {
+     "text": "src/main.jsx لوحده",
+     "why": "index.html هو البداية."
+    },
+    {
+     "text": "public/index.html",
+     "why": "ده CRA قديم."
+    },
+    {
+     "text": "vite.config.js",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بيحمّل main.jsx."
+  },
+  {
+   "id": "06-frontend-ch18-08",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان النشر على GitHub Pages تحت /repo/:",
+   "template": "export default defineConfig({ ___: \"/repo/\" })",
+   "blanks": [
+    [
+     "base"
+    ]
+   ],
+   "hint": "الأساس.",
+   "explanation": "من غيرها صفحة بيضا."
+  },
+  {
+   "id": "06-frontend-ch18-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "Dev server شغّال تمام لكن بعد Build الصور اللي في src/assets مش ظاهرة.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أتأكد إني بعمل import للصورة (فتاخد Hash) أو أحطها في public/ وأستخدم مسار مطلق",
+     "why": "صح."
+    },
+    {
+     "text": "أمسح dist",
+     "why": "مش الحل."
+    },
+    {
+     "text": "أرجع للـ dev",
+     "why": "مش نشر."
+    },
+    {
+     "text": "أغيّر الامتداد",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "public ولا src/assets؟"
+  },
+  {
+   "id": "06-frontend-ch18-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب الأوامر من التطوير للتجربة:",
+   "items": [
+    "npm run dev",
+    "npm run build",
+    "npm run preview"
+   ],
+   "explanation": "preview يجرّب dist."
+  },
+  {
+   "id": "06-frontend-ch18-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "الـ Dev server مش بيعمل Bundle. بيعمل إيه؟",
+   "options": [
+    {
+     "text": "بيقدّم ملف ملف ويعدّل المسارات ويحقن /@vite/client",
+     "why": "صح."
+    },
+    {
+     "text": "بيعمل Bundle كامل",
+     "why": "ده build."
+    },
+    {
+     "text": "بيعمل SSR",
+     "why": "لأ."
+    },
+    {
+     "text": "مبيعملش حاجة",
+     "why": "بيعمل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "علشان كده سريع."
+  }
+ ]
+}

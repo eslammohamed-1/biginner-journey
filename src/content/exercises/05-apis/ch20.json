@@ -1,0 +1,242 @@
+{
+ "book": "05-apis",
+ "chapter": 20,
+ "chapterFile": "ch20",
+ "title": "الـ Webhooks: لما الـ API هو اللي يكلمك",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "05-apis-ch20-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Webhook بيوفّر إيه مقارنة بالـ Polling؟",
+   "options": [
+    {
+     "text": "الـ Provider بيبعتلك لما الحدث يحصل بدل ما تسأل كل شوية",
+     "why": "صح."
+    },
+    {
+     "text": "أمان أكتر بالضرورة",
+     "why": "محتاج توقيع."
+    },
+    {
+     "text": "مفيش سيرفر",
+     "why": "محتاج Endpoint."
+    },
+    {
+     "text": "أسرع للـ Provider بس",
+     "why": "الاتنين."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الحسبة."
+  },
+  {
+   "id": "05-apis-ch20-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Parse ثم Stringify للـ JSON بيطلع نفس التوقيع؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "البايتات ممكن تتغير."
+    },
+    {
+     "text": "لأ، التوقيع على البايتات الأصلية",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "استخدم express.raw()."
+  },
+  {
+   "id": "05-apis-ch20-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "=== لمقارنة التوقيعات آمن تماماً؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "Timing attack."
+    },
+    {
+     "text": "لأ، استخدم timingSafeEqual",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "وقت المقارنة ممكن يكشف."
+  },
+  {
+   "id": "05-apis-ch20-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Webhook endpoint يخلّص كل الشغل قبل ما يرد؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الـ Provider ممكن يعمل Timeout."
+    },
+    {
+     "text": "لأ، يرد بسرعة (أقل من 10 ثواني) والشغل في Queue",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "ويتجاهل المكرر بالـ ID."
+  },
+  {
+   "id": "05-apis-ch20-05",
+   "type": "command",
+   "level": "medium",
+   "prompt": "احسب HMAC-SHA256 لـ payload.json بسر dev-secret من الـ Terminal.",
+   "accepted": [
+    "openssl dgst -sha256 -hmac 'dev-secret' -hex < payload.json",
+    "openssl dgst -sha256 -hmac \"dev-secret\" payload.json",
+    "openssl dgst -sha256 -hmac dev-secret payload.json"
+   ],
+   "hint": "openssl dgst -hmac.",
+   "explanation": "قارنه بالتوقيع."
+  },
+  {
+   "id": "05-apis-ch20-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل في Node:",
+   "template": "createHmac(\"sha256\", secret).update(___).digest(\"hex\")",
+   "blanks": [
+    [
+     "rawBody"
+    ]
+   ],
+   "hint": "البايتات الخام.",
+   "explanation": "مش JSON.stringify(req.body)."
+  },
+  {
+   "id": "05-apis-ch20-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل الـ Middleware الصح لـ Webhook في Express:",
+   "template": "express.___({ type: \"application/json\" })",
+   "blanks": [
+    [
+     "raw"
+    ]
+   ],
+   "hint": "خام.",
+   "explanation": "قبل express.json()."
+  },
+  {
+   "id": "05-apis-ch20-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "التوقيع بيفشل دايماً مع إن السر صح.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "express.json() عمل Parse قبل التحقق، فبحسب على JSON متغير؛ أستخدم express.raw للمسار ده",
+     "why": "صح."
+    },
+    {
+     "text": "السر غلط أكيد",
+     "why": "مش أكيد."
+    },
+    {
+     "text": "GitHub بايظ",
+     "why": "لأ."
+    },
+    {
+     "text": "أشيل التحقق",
+     "why": "خطر."
+    }
+   ],
+   "correct": 0,
+   "explanation": "شفناه في التجربة."
+  },
+  {
+   "id": "05-apis-ch20-09",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ Provider بعت نفس الحدث مرتين.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أخزّن الـ Delivery ID وأتجاهل المكرر",
+     "why": "صح."
+    },
+    {
+     "text": "أنفّذ مرتين",
+     "why": "ممكن تدفع مرتين."
+    },
+    {
+     "text": "أرجّع 500",
+     "why": "هيعيد تاني."
+    },
+    {
+     "text": "أقفل الـ Webhook",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Idempotent receiver."
+  },
+  {
+   "id": "05-apis-ch20-10",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب الـ Receiver:",
+   "items": [
+    "اقرا الـ Raw body",
+    "اتحقق من التوقيع بـ timingSafeEqual",
+    "اتجاهل لو الـ ID متكرر",
+    "حط الشغل في Queue",
+    "رد 2xx بسرعة"
+   ],
+   "explanation": "Best Practice."
+  },
+  {
+   "id": "05-apis-ch20-11",
+   "type": "mcq",
+   "level": "think",
+   "question": "إزاي تجرّب Webhooks على جهازك؟",
+   "options": [
+    {
+     "text": "بأداة زي smee.io أو stripe listen توصّل الحدث لـ localhost",
+     "why": "صح."
+    },
+    {
+     "text": "مستحيل",
+     "why": "ممكن."
+    },
+    {
+     "text": "أفتح Port على الراوتر للنت",
+     "why": "مش لازم وخطر."
+    },
+    {
+     "text": "أستنى Production",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "تجرّب على جهازك."
+  },
+  {
+   "id": "05-apis-ch20-12",
+   "type": "mcq",
+   "level": "medium",
+   "question": "GitHub بيعيد الـ Webhook لوحده لو فشل؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مش لوحده."
+    },
+    {
+     "text": "لأ، و Stripe بيعيد لحد 3 أيام",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "كل Provider مختلف."
+  }
+ ]
+}

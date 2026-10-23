@@ -1,0 +1,259 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 13,
+ "chapterFile": "ch13",
+ "title": "الـ Services: عنوان ثابت للـ Pods",
+ "count": 13,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch13-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ Service بتحل إيه؟",
+   "options": [
+    {
+     "text": "عنوان واسم ثابتين قدام Pods بتتغير",
+     "why": "صح."
+    },
+    {
+     "text": "بتبني Pods",
+     "why": "لأ."
+    },
+    {
+     "text": "بتخزّن بيانات",
+     "why": "لأ."
+    },
+    {
+     "text": "بتعمل Scaling",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "بالـ selector."
+  },
+  {
+   "id": "08-kubernetes-ch13-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لو مكتبتش type، الـ Service بتبقى؟",
+   "options": [
+    {
+     "text": "NodePort",
+     "why": "لأ."
+    },
+    {
+     "text": "ClusterIP",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "داخلي."
+  },
+  {
+   "id": "08-kubernetes-ch13-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "nodePort ممكن يبقى 8080؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "المدى 30000-32767."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "افتراضياً."
+  },
+  {
+   "id": "08-kubernetes-ch13-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "Pod مش Ready بيتحط في الـ Endpoints؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "الجاهزة بس."
+    },
+    {
+     "text": "لأ",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Readiness Probe."
+  },
+  {
+   "id": "08-kubernetes-ch13-05",
+   "type": "mcq",
+   "level": "medium",
+   "question": "port ضد targetPort؟",
+   "options": [
+    {
+     "text": "port بتاع الـ Service، و targetPort البورت اللي التطبيق بيسمع عليه جوه الـ Pod",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "ممكن يختلفوا."
+    },
+    {
+     "text": "العكس",
+     "why": "لأ."
+    },
+    {
+     "text": "targetPort على الـ Node",
+     "why": "ده nodePort."
+    }
+   ],
+   "correct": 0,
+   "explanation": "أشهر غلطة."
+  },
+  {
+   "id": "08-kubernetes-ch13-06",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أنواع الـ Service من الأضيق للأوسع:",
+   "items": [
+    "ClusterIP",
+    "NodePort",
+    "LoadBalancer"
+   ],
+   "explanation": "ExternalName alias."
+  },
+  {
+   "id": "08-kubernetes-ch13-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اعمل Service لـ deployment webapp على بورت 80 للتطبيق على 8080 بنوع NodePort.",
+   "accepted": [
+    "kubectl expose deployment webapp --port=80 --target-port=8080 --type=NodePort",
+    "kubectl expose deploy webapp --port=80 --target-port=8080 --type=NodePort",
+    "kubectl expose deploy/webapp --port=80 --target-port=8080 --type=NodePort"
+   ],
+   "hint": "expose مع --target-port و --type.",
+   "explanation": "أو YAML."
+  },
+  {
+   "id": "08-kubernetes-ch13-08",
+   "type": "command",
+   "level": "medium",
+   "prompt": "وصّل بورت 8080 على جهازك لـ svc/web-service بورت 80.",
+   "accepted": [
+    "kubectl port-forward svc/web-service 8080:80",
+    "kubectl port-forward service/web-service 8080:80"
+   ],
+   "hint": "port-forward.",
+   "explanation": "localhost:8080."
+  },
+  {
+   "id": "08-kubernetes-ch13-09",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض الـ Endpoints.",
+   "accepted": [
+    "kubectl get endpoints",
+    "kubectl get ep",
+    "kubectl get endpointslices"
+   ],
+   "hint": "endpoints.",
+   "explanation": "IPs الـ Pods الجاهزة."
+  },
+  {
+   "id": "08-kubernetes-ch13-10",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل اسم الـ DNS لـ Service اسمها api في Namespace اسمها shop:",
+   "template": "api.shop.svc.cluster.___",
+   "blanks": [
+    [
+     "local"
+    ]
+   ],
+   "hint": "محلي.",
+   "explanation": "في نفس الـ Namespace الاسم كفاية."
+  },
+  {
+   "id": "08-kubernetes-ch13-11",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ Service مش بتروّح لأي Pod والـ Endpoints فاضية.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ selector مش مطابق لـ Labels الـ Pods (أو الـ Pods مش Ready)",
+     "why": "صح."
+    },
+    {
+     "text": "البورت غلط",
+     "why": "كانت هتبقى Endpoints موجودة."
+    },
+    {
+     "text": "الـ DNS واقع",
+     "why": "مش أول احتمال."
+    },
+    {
+     "text": "أعيد الـ Cluster",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "describe service | grep Selector."
+  },
+  {
+   "id": "08-kubernetes-ch13-12",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ Endpoints موجودة بس الطلبات بتفشل connection refused.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ targetPort غلط، مش البورت اللي التطبيق بيسمع عليه",
+     "why": "صح."
+    },
+    {
+     "text": "الـ selector",
+     "why": "كانت Endpoints فاضية."
+    },
+    {
+     "text": "الـ Pods مش موجودة",
+     "why": "موجودة."
+    },
+    {
+     "text": "DNS",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "الـ targetPort غلط."
+  },
+  {
+   "id": "08-kubernetes-ch13-13",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه NodePort مش مناسب للإنتاج غالباً؟",
+   "options": [
+    {
+     "text": "بورتات غريبة (30000+) على كل Node ومفيش Load balancing خارجي حقيقي",
+     "why": "صح."
+    },
+    {
+     "text": "مش بيشتغل",
+     "why": "بيشتغل."
+    },
+    {
+     "text": "أغلى",
+     "why": "لأ."
+    },
+    {
+     "text": "ممنوع",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "للتجربة."
+  }
+ ]
+}

@@ -121,7 +121,9 @@ export function TextExercise({ exercise, number, state, onChange }: Props) {
 			{(checked || solved) && (
 				<div class="ex-feedback" aria-live="polite">
 					<p class={solved ? 'ex-verdict is-correct' : 'ex-verdict is-wrong'}>{solved ? 'صح' : 'غلط'}</p>
-					{!solved ? <p class="ex-why">راجع المسافات وعلامات التنصيص، وجرّب تاني.</p> : null}
+					{!solved ? (
+						<p class="ex-why">راجع المسافات. لو نسخت الأمر، شيّل `$` أو `%` من الأول والفاصلة المنقوطة من الآخر.</p>
+					) : null}
 				</div>
 			)}
 			{revealed ? (

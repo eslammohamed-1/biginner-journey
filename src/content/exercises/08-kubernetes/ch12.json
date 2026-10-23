@@ -1,0 +1,233 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 12,
+ "chapterFile": "ch12",
+ "title": "الـ Jobs والـ CronJobs: شغل يخلص ويقفل",
+ "count": 12,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch12-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الفرق بين Job و Deployment؟",
+   "options": [
+    {
+     "text": "الـ Job لحاجة تخلص وتقفل، والـ Deployment لحاجة تفضل شغالة",
+     "why": "صح."
+    },
+    {
+     "text": "نفس الحاجة",
+     "why": "لأ."
+    },
+    {
+     "text": "Job أبطأ",
+     "why": "مش الفرق."
+    },
+    {
+     "text": "Deployment مرة واحدة",
+     "why": "العكس."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Backup أو Migration = Job."
+  },
+  {
+   "id": "08-kubernetes-ch12-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ينفع restartPolicy: Always في Job؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "ممنوع."
+    },
+    {
+     "text": "لأ، OnFailure أو Never",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "Always للـ Deployments."
+  },
+  {
+   "id": "08-kubernetes-ch12-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "`*/5 * * * *` معناها؟",
+   "options": [
+    {
+     "text": "كل 5 دقايق",
+     "why": "صح."
+    },
+    {
+     "text": "كل 5 ساعات",
+     "why": "لأ."
+    },
+    {
+     "text": "الساعة 5",
+     "why": "لأ."
+    },
+    {
+     "text": "5 مرات",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "دقيقة ساعة يوم شهر يوم-أسبوع."
+  },
+  {
+   "id": "08-kubernetes-ch12-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ Pod بتاع Job خلص STATUS بتاعه؟",
+   "options": [
+    {
+     "text": "Completed",
+     "why": "صح."
+    },
+    {
+     "text": "Running",
+     "why": "خلص."
+    },
+    {
+     "text": "Terminated",
+     "why": "مش اللي بيظهر."
+    },
+    {
+     "text": "Error",
+     "why": "لو فشل."
+    }
+   ],
+   "correct": 0,
+   "explanation": "مش بيتمسح لوحده."
+  },
+  {
+   "id": "08-kubernetes-ch12-05",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل schedule الساعة 2 الفجر كل يوم:",
+   "template": "schedule: \"0 ___ * * *\"",
+   "blanks": [
+    [
+     "2"
+    ]
+   ],
+   "hint": "الساعة.",
+   "explanation": "صيغة cron."
+  },
+  {
+   "id": "08-kubernetes-ch12-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل علشان الـ CronJob ميشغّلش اتنين مع بعض:",
+   "template": "concurrencyPolicy: ___",
+   "blanks": [
+    [
+     "Forbid"
+    ]
+   ],
+   "hint": "ممنوع.",
+   "explanation": "يمنع التداخل."
+  },
+  {
+   "id": "08-kubernetes-ch12-07",
+   "type": "command",
+   "level": "medium",
+   "prompt": "شغّل Job تجريبي من CronJob اسمه nightly-backup دلوقتي.",
+   "accepted": [
+    "kubectl create job test-run --from=cronjob/nightly-backup"
+   ],
+   "hint": "--from=cronjob/.",
+   "explanation": "من غير ما تستنى الموعد."
+  },
+  {
+   "id": "08-kubernetes-ch12-08",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض logs بتاعة Job اسمه db-backup.",
+   "accepted": [
+    "kubectl logs job/db-backup"
+   ],
+   "hint": "job/.",
+   "explanation": "بيختار الـ Pod."
+  },
+  {
+   "id": "08-kubernetes-ch12-09",
+   "type": "command",
+   "level": "medium",
+   "prompt": "اوقف CronJob nightly-backup مؤقتاً.",
+   "accepted": [
+    "kubectl patch cronjob nightly-backup -p '{\"spec\":{\"suspend\":true}}'",
+    "kubectl patch cronjob nightly-backup -p '{\"spec\": {\"suspend\": true}}'"
+   ],
+   "hint": "patch و suspend.",
+   "explanation": "false للرجوع."
+  },
+  {
+   "id": "08-kubernetes-ch12-10",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "الـ Job بيفشل ويعيد كتير وبيستهلك موارد.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "أحدد backoffLimit لعدد المحاولات وأشوف logs السبب",
+     "why": "صح."
+    },
+    {
+     "text": "أخلي restartPolicy Always",
+     "why": "ممنوع."
+    },
+    {
+     "text": "أسيبه",
+     "why": "هيفضل يحاول."
+    },
+    {
+     "text": "أمسح الـ Cluster",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "backoffLimit."
+  },
+  {
+   "id": "08-kubernetes-ch12-11",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أجزاء Job spec:",
+   "items": [
+    "completions (كام مرة لازم تنجح)",
+    "parallelism (كام في نفس الوقت)",
+    "backoffLimit (كام محاولة فشل)",
+    "template بـ restartPolicy: OnFailure"
+   ],
+   "explanation": "الإعدادات."
+  },
+  {
+   "id": "08-kubernetes-ch12-12",
+   "type": "mcq",
+   "level": "think",
+   "question": "Jobs قديمة متكومة في الـ Cluster. الحل؟",
+   "options": [
+    {
+     "text": "ttlSecondsAfterFinished يمسحها لوحده بعد ما تخلص",
+     "why": "صح."
+    },
+    {
+     "text": "أسيبها",
+     "why": "بتتكوم."
+    },
+    {
+     "text": "أمسح الـ Namespace",
+     "why": "مبالغة."
+    },
+    {
+     "text": "restartPolicy Never",
+     "why": "مش بيمسح."
+    }
+   ],
+   "correct": 0,
+   "explanation": "التنضيف."
+  }
+ ]
+}

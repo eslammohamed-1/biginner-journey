@@ -1,0 +1,215 @@
+{
+ "book": "08-kubernetes",
+ "chapter": 8,
+ "chapterFile": "ch08",
+ "title": "الـ ReplicaSets: عدد ثابت من النسخ",
+ "count": 11,
+ "exercises": [
+  {
+   "id": "08-kubernetes-ch08-01",
+   "type": "mcq",
+   "level": "easy",
+   "question": "الـ ReplicaSet بتعمل إيه؟",
+   "options": [
+    {
+     "text": "تضمن عدد ثابت من نسخ نفس الـ Pod شغال",
+     "why": "صح."
+    },
+    {
+     "text": "تبني Images",
+     "why": "لأ."
+    },
+    {
+     "text": "توزّع Traffic",
+     "why": "Service."
+    },
+    {
+     "text": "تحدّث الـ image",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "replicas."
+  },
+  {
+   "id": "08-kubernetes-ch08-02",
+   "type": "mcq",
+   "level": "medium",
+   "question": "ينفع replicas جوه kind: Pod؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "لأ."
+    },
+    {
+     "text": "لأ، replicas في ReplicaSet/Deployment",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "غلطة شائعة."
+  },
+  {
+   "id": "08-kubernetes-ch08-03",
+   "type": "mcq",
+   "level": "medium",
+   "question": "لو فيه Pods زيادة عن المطلوب؟",
+   "options": [
+    {
+     "text": "الـ ReplicaSet بتمسح الزيادة",
+     "why": "صح."
+    },
+    {
+     "text": "بتسيبها",
+     "why": "لأ."
+    },
+    {
+     "text": "بتعمل أكتر",
+     "why": "لأ."
+    },
+    {
+     "text": "Error",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "والناقص بتعمله."
+  },
+  {
+   "id": "08-kubernetes-ch08-04",
+   "type": "mcq",
+   "level": "medium",
+   "question": "الـ ReplicaSet بتحدّث الـ Pods القديمة لو غيّرت الـ image في الـ template؟",
+   "options": [
+    {
+     "text": "أيوه",
+     "why": "مش بتحدّث."
+    },
+    {
+     "text": "لأ، الجديدة بس هتاخد الـ image الجديدة",
+     "why": "صح."
+    }
+   ],
+   "correct": 1,
+   "explanation": "علشان كده Deployment."
+  },
+  {
+   "id": "08-kubernetes-ch08-05",
+   "type": "command",
+   "level": "easy",
+   "prompt": "اعرض الـ ReplicaSets.",
+   "accepted": [
+    "kubectl get rs",
+    "kubectl get replicasets",
+    "kubectl get replicaset"
+   ],
+   "hint": "rs.",
+   "explanation": "DESIRED و CURRENT و READY."
+  },
+  {
+   "id": "08-kubernetes-ch08-06",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل:",
+   "template": "kind: ___",
+   "blanks": [
+    [
+     "ReplicaSet"
+    ]
+   ],
+   "hint": "Replica...",
+   "explanation": "apiVersion: apps/v1."
+  },
+  {
+   "id": "08-kubernetes-ch08-07",
+   "type": "fill",
+   "level": "medium",
+   "prompt": "كمّل:",
+   "template": "spec: ___: 3",
+   "blanks": [
+    [
+     "replicas"
+    ]
+   ],
+   "hint": "نسخ.",
+   "explanation": "العدد المطلوب."
+  },
+  {
+   "id": "08-kubernetes-ch08-08",
+   "type": "scenario",
+   "level": "medium",
+   "scenario": "مسحت Pod تبع ReplicaSet فيها replicas: 3.",
+   "question": "تعمل إيه؟",
+   "options": [
+    {
+     "text": "الـ ReplicaSet هتعمل Pod جديدة فوراً علشان يرجع 3",
+     "why": "صح."
+    },
+    {
+     "text": "هيفضلوا 2",
+     "why": "لأ."
+    },
+    {
+     "text": "الكل هيتمسح",
+     "why": "لأ."
+    },
+    {
+     "text": "Error",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "Self-healing."
+  },
+  {
+   "id": "08-kubernetes-ch08-09",
+   "type": "order",
+   "level": "medium",
+   "prompt": "رتّب أجزاء spec الـ ReplicaSet:",
+   "items": [
+    "replicas",
+    "selector",
+    "template (metadata.labels و spec)"
+   ],
+   "explanation": "الـ YAML الصح."
+  },
+  {
+   "id": "08-kubernetes-ch08-10",
+   "type": "mcq",
+   "level": "think",
+   "question": "ليه نشغّل كذا نسخة؟",
+   "options": [
+    {
+     "text": "لو نسخة وقعت الباقي يكمّل، ونقدر نوزّع الحمل",
+     "why": "صح."
+    },
+    {
+     "text": "أرخص",
+     "why": "أغلى."
+    },
+    {
+     "text": "إجباري",
+     "why": "لأ."
+    },
+    {
+     "text": "أبطأ",
+     "why": "لأ."
+    }
+   ],
+   "correct": 0,
+   "explanation": "High availability."
+  },
+  {
+   "id": "08-kubernetes-ch08-11",
+   "type": "command",
+   "level": "medium",
+   "prompt": "امسح Pod اسمها web-abc12 وشوف الجديدة بتتعمل.",
+   "accepted": [
+    "kubectl delete pod web-abc12",
+    "kubectl delete po web-abc12"
+   ],
+   "hint": "delete pod.",
+   "explanation": "بعدين get pods."
+  }
+ ]
+}
