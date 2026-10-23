@@ -46,6 +46,20 @@ export function resetChapter(book: string, chapterFile: string): void {
 	writeProgress(store);
 }
 
+/** Clears only unsolved/revealed items in a chapter so solved items remain intact. */
+export function resetUnsolvedInChapter(book: string, chapterFile: string): void {
+	const store = readProgress();
+	const key = chapterKey(book, chapterFile);
+	const chapter = store[key];
+	if (!chapter?.items) return;
+	const kept: Record<string, ItemState> = {};
+	for (const [id, item] of Object.entries(chapter.items)) {
+		if (item?.solved) kept[id] = item;
+	}
+	store[key] = { items: kept };
+	writeProgress(store);
+}
+
 type ProgressFile = {
 	app: 'biginner-journey';
 	version: 1;
@@ -117,27 +131,71 @@ export type BookStat = {
 	total: number;
 	chaptersDone: number;
 	chaptersWith: number;
+	weakCount: number;
 };
 
 export function bookStats(chapters: readonly ChapterRef[], store: ProgressStore = readProgress()): BookStat {
 	const solved = new Set<string>();
+	const weak = new Set<string>();
 	for (const chapter of Object.values(store)) {
 		if (!chapter?.items) continue;
 		for (const [id, item] of Object.entries(chapter.items)) {
 			if (item?.solved) solved.add(id);
+			if (item?.revealed || (item?.attempts ?? 0) > 0) weak.add(id);
 		}
 	}
 	const withExercises = chapters.filter((chapter) => chapter.ids.length > 0);
 	let done = 0;
 	let total = 0;
 	let chaptersDone = 0;
+	let weakCount = 0;
 	for (const chapter of withExercises) {
 		total += chapter.ids.length;
 		const chapterDone = chapter.ids.filter((id) => solved.has(id)).length;
+		const chapterWeak = chapter.ids.filter((id) => weak.has(id)).length;
 		done += chapterDone;
+		weakCount += chapterWeak;
 		if (chapterDone === chapter.ids.length) chaptersDone += 1;
 	}
-	return { done, total, chaptersDone, chaptersWith: withExercises.length };
+	return { done, total, chaptersDone, chaptersWith: withExercises.length, weakCount };
+}
+
+export type ChapterProgressDetail = {
+	file: string;
+	done: number;
+	total: number;
+	revealed: number;
+	retried: number;
+	complete: boolean;
+};
+
+export function perChapterStats(
+	bookSlug: string,
+	chapters: readonly ChapterRef[],
+	store: ProgressStore = readProgress(),
+): Record<string, ChapterProgressDetail> {
+	const result: Record<string, ChapterProgressDetail> = {};
+	for (const chapter of chapters) {
+		const state = store[chapterKey(bookSlug, chapter.file)]?.items ?? {};
+		let done = 0;
+		let revealed = 0;
+		let retried = 0;
+		for (const id of chapter.ids) {
+			const item = state[id];
+			if (item?.solved) done += 1;
+			if (!item?.solved && item?.revealed) revealed += 1;
+			if ((item?.attempts ?? 0) > 0) retried += 1;
+		}
+		result[chapter.file] = {
+			file: chapter.file,
+			done,
+			total: chapter.ids.length,
+			revealed,
+			retried,
+			complete: chapter.ids.length > 0 && done === chapter.ids.length,
+		};
+	}
+	return result;
 }
 
 export function percent(done: number, total: number): number {

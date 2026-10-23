@@ -1,6 +1,6 @@
 import type { ItemState, McqExercise, ScenarioExercise } from '../../lib/types';
 import { seededShuffle } from '../../lib/grade';
-import { LevelBadge } from './LevelBadge';
+import { LevelBadge, TypeBadge } from './LevelBadge';
 import { RichText } from './RichText';
 
 type Props = {
@@ -10,6 +10,8 @@ type Props = {
 	state: ItemState | undefined;
 	onChange: (state: ItemState) => void;
 };
+
+const ARABIC_LETTERS = ['أ', 'ب', 'ج', 'د', 'هـ', 'و'];
 
 /** Wrong picks allowed before the answer shows. Two options leave nothing to retry. */
 function maxAttempts(optionCount: number): number {
@@ -52,26 +54,39 @@ export function ChoiceExercise({ exercise, number, salt, state, onChange }: Prop
 	}
 
 	return (
-		<article class="ex-card" id={exercise.id} data-exercise-type={exercise.type}>
+		<article
+			class={`ex-card${solved ? ' is-card-solved' : ''}${revealed && !solved ? ' is-card-revealed' : ''}`}
+			id={exercise.id}
+			data-exercise-type={exercise.type}
+		>
 			<header class="ex-card-head">
-				<span class="ex-num">{number}</span>
-				<LevelBadge level={exercise.level} />
+				<div class="ex-card-meta">
+					<span class="ex-num">{number}</span>
+					<LevelBadge level={exercise.level} />
+					<TypeBadge type={exercise.type} />
+				</div>
+				{solved && <span class="ex-status-pill is-solved">✓ محلول</span>}
+				{!solved && revealed && <span class="ex-status-pill is-revealed">اتكشفت الإجابة</span>}
 			</header>
 			{exercise.type === 'scenario' && (
-				<p class="ex-scenario">
-					<RichText text={exercise.scenario} />
-				</p>
+				<div class="ex-scenario">
+					<span class="ex-scenario-label">الموقف:</span>
+					<p>
+						<RichText text={exercise.scenario} />
+					</p>
+				</div>
 			)}
 			<h3 class="ex-prompt">
 				<RichText text={exercise.question} />
 			</h3>
 			<div class="ex-options" role="radiogroup" aria-label={exercise.question}>
-				{order.map((index) => {
+				{order.map((index, displayIndex) => {
 					const option = exercise.options[index]!;
 					const isSelected = checked && choice === index;
 					const isCorrect = isSelected && index === exercise.correct;
 					const isWrong = isSelected && index !== exercise.correct;
 					const isAnswer = revealed && index === exercise.correct;
+					const letter = ARABIC_LETTERS[displayIndex] ?? String(displayIndex + 1);
 					return (
 						<label
 							key={`${exercise.id}-${index}`}
@@ -84,10 +99,18 @@ export function ChoiceExercise({ exercise, number, salt, state, onChange }: Prop
 								disabled={locked}
 								onChange={() => pick(index)}
 							/>
-							<span>
+							<span class="ex-opt-letter" aria-hidden="true">
+								{letter}
+							</span>
+							<span class="ex-opt-body">
 								<RichText text={option.text} />
 								{isSelected && (
-									<strong class="ex-verdict">{isCorrect ? 'صح' : 'غلط'}</strong>
+									<strong class={`ex-verdict ${isCorrect ? 'is-correct' : 'is-wrong'}`}>
+										{isCorrect ? '✓ صح' : '✗ غلط'}
+									</strong>
+								)}
+								{isAnswer && !isSelected && (
+									<strong class="ex-verdict is-correct">✓ الإجابة الصحيحة</strong>
 								)}
 							</span>
 						</label>
@@ -110,7 +133,7 @@ export function ChoiceExercise({ exercise, number, salt, state, onChange }: Prop
 					) : null}
 					{wrongNow && !revealed ? (
 						<p class="ex-why ex-retry">
-							جرّب تاني. {triesLeft === 1 ? 'فاضلك محاولة واحدة' : `فاضلك ${triesLeft} محاولات`} قبل ما الإجابة تظهر.
+							جرّب تاني — {triesLeft === 1 ? 'فاضلك محاولة واحدة' : `فاضلك ${triesLeft} محاولات`} قبل ما الإجابة تظهر.
 						</p>
 					) : null}
 					{revealed && correctOption ? (
@@ -121,7 +144,9 @@ export function ChoiceExercise({ exercise, number, salt, state, onChange }: Prop
 								<span> — </span>
 								<RichText text={correctOption.why} />
 							</p>
-							<p class="ex-locked">السؤال ده مش هيتحسب في النتيجة. امسح تقدّم الفصل لو عايز تحاول تاني.</p>
+							<p class="ex-locked">
+								السؤال ده مش هيتحسب في النتيجة. تقدر تضغط «أعد محاولة الأسئلة غير المحلولة» في آخر الفصل للمحاولة من جديد.
+							</p>
 						</>
 					) : null}
 					{solved || revealed ? (

@@ -2,10 +2,13 @@ import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import {
+	diagnoseCommand,
+	diagnoseFill,
 	matchesAccepted,
 	matchesCommand,
 	matchesFill,
 	normalizeAnswer,
+	orderItemStatus,
 	sameOrder,
 	seededShuffle,
 } from '../src/lib/grade.ts';
@@ -18,10 +21,29 @@ assert.equal(matchesAccepted('type -a echo;;', ['type -a echo;;']), true);
 assert.equal(matchesAccepted(`git config --global user.name 'Sara Ahmed'`, ['git config --global user.name "Sara Ahmed"']), false);
 assert.equal(matchesAccepted('ls', ['pwd']), false);
 
+// Smart diagnostics tests
+assert.ok(
+	diagnoseCommand(`git config --global user.name 'Sara Ahmed'`, ['git config --global user.name "Sara Ahmed"'])?.includes(
+		'علامات التنصيص',
+	),
+);
+assert.ok(
+	diagnoseCommand('response = client.responses.create(model = "gpt-6-luna")', [
+		'response = client.responses.create(model="gpt-6-luna")',
+	])?.includes('المسافات'),
+);
+assert.ok(diagnoseCommand('TYPE -a echo', ['type -a echo'])?.includes('حالة الحروف'));
+assert.ok(diagnoseCommand('typ -a echo', ['type -a echo'])?.includes('حرفاً بحرف'));
+assert.equal(diagnoseCommand('completely unrelated command', ['type -a echo']), null);
+
 assert.equal(matchesFill(['  ppid '], [['ppid']]), true);
 assert.equal(matchesFill(['PPID'], [['ppid']]), false);
 assert.equal(matchesFill(['كِتاب'], [['كتاب']]), true);
 assert.equal(matchesFill(['Closes'], [['Fixes', 'closes', 'Closes']]), true);
+
+assert.ok(diagnoseFill(['PPID'], [['ppid']])?.includes('حالة الحروف'));
+assert.ok(diagnoseFill(['"ppid"'], [['ppid']])?.includes('علامات تنصيص'));
+assert.ok(diagnoseFill(['ppd'], [['ppid']])?.includes('إملاء'));
 
 const lsPattern = String.raw`^ls\s+-(?=[lahG]*l)(?=[lahG]*a)(?=[lahG]*h)[lahG]+$`;
 assert.equal(matchesCommand('$ ls   -lah;', ['ls -lah'], [lsPattern]), true);
@@ -36,6 +58,7 @@ assert.equal(shuffled.length, items.length);
 assert.equal(new Set(shuffled).size, items.length);
 assert.equal(sameOrder(shuffled, items), false);
 assert.equal(sameOrder(items, items), true);
+assert.deepEqual(orderItemStatus(['أ', 'ج', 'ب', 'د'], items), [true, false, false, true]);
 
 type Exercise = {
 	type: string;

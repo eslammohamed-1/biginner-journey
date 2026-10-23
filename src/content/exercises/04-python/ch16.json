@@ -13,23 +13,23 @@
    "options": [
     {
      "text": "client = OpenAI() مرة واحدة في أول الاسكريبت",
-     "why": "صح، وبيقرا OPENAI_API_KEY لوحده."
+     "why": "صح، وبيقرا متغير البيئة OPENAI_API_KEY لوحده من غير ما تكتبه في الكود."
     },
     {
      "text": "client جديد لكل طلب",
-     "why": "إهدار."
+     "why": "إهدار للموارد وبيمنع إعادة استخدام اتصالات الشبكة (Connection Pooling)."
     },
     {
      "text": "تكتب الـ Key جوه OpenAI(\"sk-...\")",
-     "why": "لأ."
+     "why": "خطر أمني كبير لأن الـ API Key هيتسرب لو رفعت الكود على GitHub."
     },
     {
      "text": "import client",
-     "why": "لأ."
+     "why": "مفيش موديول اسمه client؛ بنستورد الكلاس `from openai import OpenAI`."
     }
    ],
    "correct": 0,
-   "explanation": "فيه base_url و timeout و max_retries."
+   "explanation": "أنشئ `client = OpenAI()` مرة واحدة، وتقدر تضبط فيه `base_url` و `timeout` و `max_retries`."
   },
   {
    "id": "04-python-ch16-02",
@@ -39,15 +39,15 @@
    "options": [
     {
      "text": "أيوه",
-     "why": "ممكن يبقى reasoning أو function_call."
+     "why": "مش دايماً؛ العنصر الأول في `output` ممكن يكون خطوة `reasoning` أو `function_call` قبل الرسالة النصية."
     },
     {
      "text": "لأ، استخدم response.output_text أو دوّر على النوع",
-     "why": "صح."
+     "why": "صح، الخاصية المختصرة `response.output_text` بتجمّع النص النهائي بأمان."
     }
    ],
    "correct": 1,
-   "explanation": "متفترضش [0]."
+   "explanation": "متفترضش إن `output[0]` هو النص؛ استخدم `response.output_text` أو افحص `item.type`."
   },
   {
    "id": "04-python-ch16-03",
@@ -57,15 +57,15 @@
    "options": [
     {
      "text": "أيوه",
-     "why": "لازم تبعتها تاني."
+     "why": "الـ `instructions` في Responses API بتتطبق على الطلب الحالي بس ومش بتتورث تلقائياً."
     },
     {
      "text": "لأ",
-     "why": "صح حسب الكتاب."
+     "why": "صح، لازم تبعت `instructions` مع كل طلب جديد حتى لو مستخدم `previous_response_id`."
     }
    ],
    "correct": 1,
-   "explanation": "ابعت instructions مع كل طلب."
+   "explanation": "ابعت `instructions` مع كل طلب في المحادثة علشان الموديل يلتزم بنفس التعليمات."
   },
   {
    "id": "04-python-ch16-04",
@@ -75,23 +75,23 @@
    "options": [
     {
      "text": "الرد اتقطع علشان وصل للسقف",
-     "why": "صح."
+     "why": "صح، الموديل وقف لأن عدد التوكنز وصل للحد الأقصى (`max_tokens` أو `max_completion_tokens`)."
     },
     {
      "text": "الرد طويل وكامل",
-     "why": "لأ."
+     "why": "لما الرد يكتمل طبيعياً بيكون السبب `stop` مش `length`."
     },
     {
      "text": "خطأ في الـ Key",
-     "why": "لأ."
+     "why": "خطأ الـ Key بيرمي استثناء `AuthenticationError` (كود 401) قبل ما يرجع رد."
     },
     {
      "text": "الموديل رفض",
-     "why": "ده refusal/content_filter."
+     "why": "الرفض بسبب سياسات الأمان بيظهر كـ `content_filter` أو في حقل `refusal`."
     }
    ],
    "correct": 0,
-   "explanation": "كبّر max_tokens."
+   "explanation": "لما تشوف `length` اعرف إن الإجابة ناقصة، فكبّر حد التوكنز أو اطلب إجابة أخصر."
   },
   {
    "id": "04-python-ch16-05",
@@ -103,7 +103,7 @@
     "response = client.responses.create(model=\"gpt-6-luna\", input=text, instructions=\"Summarize in Arabic\")"
    ],
    "hint": "responses.create مع model و instructions و input.",
-   "explanation": "Keyword arguments."
+   "explanation": "استخدم Keyword arguments في `client.responses.create(...)`."
   },
   {
    "id": "04-python-ch16-06",
@@ -114,7 +114,7 @@
     "print(response.output_text)"
    ],
    "hint": "output_text.",
-   "explanation": "أسهل من اللف على output."
+   "explanation": "`response.output_text` أسهل وأضمن من اللف اليدوي على مصفوفة `output`."
   },
   {
    "id": "04-python-ch16-07",
@@ -128,7 +128,7 @@
     ]
    ],
    "hint": "محتوى.",
-   "explanation": "الشكل القديم اللي في كل حتة."
+   "explanation": "`choices[0].message.content` هو الشكل التقليدي في Chat Completions API."
   },
   {
    "id": "04-python-ch16-08",
@@ -142,7 +142,7 @@
     ]
    ],
    "hint": "previous_...",
-   "explanation": "والا الموديل مش هيفتكر."
+   "explanation": "تمرير `previous_response_id` بيخلّي الموديل يكمل على سياق الرد اللي قبله."
   },
   {
    "id": "04-python-ch16-09",
@@ -153,23 +153,23 @@
    "options": [
     {
      "text": "أستخدم stream=True وأطبع event.delta لما event.type يبقى response.output_text.delta مع end=\"\" و flush=True",
-     "why": "صح."
+     "why": "صح، ده بيطبع كل جزء نصي أول ما يوصل من السيرفر فوراً."
     },
     {
      "text": "أطبع response كله في الآخر",
-     "why": "مش Streaming."
+     "why": "ده هيخلي المستخدم يستنى لحد ما الرد كله يخلص مرة واحدة."
     },
     {
      "text": "أكبّر timeout",
-     "why": "مش ده."
+     "why": "الـ `timeout` بيمنع قطع الاتصال الطويل بس مش بيعرض الكلام تدريجياً."
     },
     {
      "text": "أستخدم loop مع sleep",
-     "why": "لأ."
+     "why": "`sleep` هيعطّل الاسكريبت على الفاضي ومش هيفعّل الـ Server-Sent Events."
     }
    ],
    "correct": 0,
-   "explanation": "الـ Streaming بالـ Events."
+   "explanation": "الـ Streaming في Responses API بيعتمد على استقبال الـ Events وطباعة `event.delta`."
   },
   {
    "id": "04-python-ch16-10",
@@ -182,7 +182,7 @@
     "{\"type\": \"input_text\", \"text\": ...}",
     "{\"type\": \"input_image\", \"image_url\": ...}"
    ],
-   "explanation": "input كـ List رسايل."
+   "explanation": "الرسالة بيكون ليها `role` وجواها `content` عبارة عن List بتضم عناصر النص والصورة."
   },
   {
    "id": "04-python-ch16-11",
@@ -192,23 +192,23 @@
    "options": [
     {
      "text": "response.usage",
-     "why": "صح."
+     "why": "صح، جواه `input_tokens` و `output_tokens` و `total_tokens`."
     },
     {
      "text": "response.status",
-     "why": "الحالة."
+     "why": "`status` بيوضح حالة الطلب (زي `completed`) مش استهلاك التوكنز."
     },
     {
      "text": "response.id",
-     "why": "معرّف."
+     "why": "`id` هو المعرّف الفريد للرد علشان ترجعله أو تربطه بـ `previous_response_id`."
     },
     {
      "text": "response.model",
-     "why": "الموديل."
+     "why": "`model` بيرجع اسم ونسخة الموديل اللي نفّذ الطلب."
     }
    ],
    "correct": 0,
-   "explanation": "input_tokens و output_tokens."
+   "explanation": "راجع `response.usage` دايماً لحساب التكلفة ومراقبة `input_tokens` و `output_tokens`."
   },
   {
    "id": "04-python-ch16-12",
@@ -218,23 +218,23 @@
    "options": [
     {
      "text": "هي الـ API الأحدث اللي فيه previous_response_id والأدوات والـ Reasoning بشكل موحّد",
-     "why": "صح."
+     "why": "صح، بتجمع النصوص والصور والـ Tools والـ Reasoning في واجهة واحدة أبسط."
     },
     {
      "text": "Chat Completions اتشالت",
-     "why": "لسه شغّالة."
+     "why": "Chat Completions لسه شغّالة ومدعومة لأن ملايين المشاريع مبنية عليها."
     },
     {
      "text": "أرخص بالضرورة",
-     "why": "مش ده."
+     "why": "التسعير بيعتمد على الموديل وعدد التوكنز، مش اسم الـ Endpoint."
     },
     {
      "text": "أسرع دايماً",
-     "why": "مش ده."
+     "why": "السرعة مرتبطة بحجم الموديل وإعدادات الـ Reasoning مش مجرد استخدام Responses API."
     }
    ],
    "correct": 0,
-   "explanation": "بس هتلاقي Chat Completions في كل حتة."
+   "explanation": "استخدم Responses API في شغلك الجديد، وخليك فاهم Chat Completions لأنك هتشوفها في الكود القديم ومع OpenRouter."
   }
  ]
 }

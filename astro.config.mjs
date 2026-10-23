@@ -34,6 +34,7 @@ export default defineConfig({
 			},
 			sidebar: books.map((book) => ({
 				label: book.sidebarLabel,
+				collapsed: true,
 				items: [{ autogenerate: { directory: book.slug } }],
 			})),
 		}),

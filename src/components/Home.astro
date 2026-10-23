@@ -9,13 +9,14 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <div class="home-intro">
-	<p class="home-tagline">كتب المسارات الجانبية</p>
+	<div class="home-hero-badge">مسار تأسيسي تفاعلي بالعربية · 8 كتب · 175 فصلاً · 2,069 تمريناً</div>
+	<p class="home-tagline">كتب المسارات الجانبية — افهم اللي بيحصل تحت الغطاء وجرّب بإيدك</p>
 	<p class="study-order">
-		الترتيب مهم. ابدأ من الكتاب 01 وكمّل بالترتيب لحد 08، لأن كل كتاب بيبني على اللي قبله.
+		<strong>الترتيب مهم:</strong> ابدأ من الكتاب <strong>01 (الـ Terminal)</strong> وكمّل بالترتيب لحد <strong>08 (Kubernetes)</strong>، لأن كل كتاب بيبني على المفاهيم والأدوات اللي اتعلمتها في اللي قبله.
 	</p>
-	<p>
+	<div class="home-cta-row">
 		<ResumeLink client:load base={base} />
-	</p>
+	</div>
 </div>
 <HomeGrid
 	client:load

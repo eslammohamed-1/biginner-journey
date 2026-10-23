@@ -1,6 +1,13 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 import type { ChapterExercises, ItemState } from '../../lib/types';
-import { chapterKey, percent, readProgress, resetChapter, updateItem } from '../../lib/progress';
+import {
+	chapterKey,
+	percent,
+	readProgress,
+	resetChapter,
+	resetUnsolvedInChapter,
+	updateItem,
+} from '../../lib/progress';
 import { ChoiceExercise } from './ChoiceExercise';
 import { OrderExercise } from './OrderExercise';
 import { TextExercise } from './TextExercise';
@@ -9,12 +16,15 @@ type Props = {
 	data: ChapterExercises;
 };
 
+type FilterMode = 'all' | 'unsolved' | 'review';
+
 export default function ExerciseSection({ data }: Props) {
 	const key = chapterKey(data.book, data.chapterFile);
 	const [items, setItems] = useState<Record<string, ItemState>>({});
 	const [ready, setReady] = useState(false);
 	const [salt, setSalt] = useState(0);
 	const [armed, setArmed] = useState(false);
+	const [filter, setFilter] = useState<FilterMode>('all');
 	const dirty = useRef(false);
 
 	useEffect(() => {
@@ -30,7 +40,7 @@ export default function ExerciseSection({ data }: Props) {
 		setItems((prev) => ({ ...prev, [id]: item }));
 	}
 
-	function reset() {
+	function resetAll() {
 		if (!armed) {
 			setArmed(true);
 			return;
@@ -40,31 +50,64 @@ export default function ExerciseSection({ data }: Props) {
 		setItems({});
 		setSalt((value) => value + 1);
 		setArmed(false);
+		setFilter('all');
 		setReady(true);
 	}
 
+	function retryUnsolved() {
+		resetUnsolvedInChapter(data.book, data.chapterFile);
+		dirty.current = false;
+		setItems(readProgress()[key]?.items ?? {});
+		setSalt((value) => value + 1);
+		setArmed(false);
+		setReady(true);
+	}
+
+	const total = data.exercises.length;
 	const solvedCount = data.exercises.filter((exercise) => items[exercise.id]?.solved).length;
 	const revealedCount = data.exercises.filter(
 		(exercise) => !items[exercise.id]?.solved && items[exercise.id]?.revealed,
 	).length;
-	const pct = ready ? percent(solvedCount, data.exercises.length) : 0;
+	const unsolvedCount = total - solvedCount;
+	const reviewCount = data.exercises.filter((exercise) => {
+		const st = items[exercise.id];
+		return Boolean(st && (!st.solved && (st.revealed || (st.attempts ?? 0) > 0)));
+	}).length;
+	const pct = ready ? percent(solvedCount, total) : 0;
+
+	const visibleExercises = data.exercises
+		.map((exercise, index) => ({ exercise, number: index + 1 }))
+		.filter(({ exercise }) => {
+			if (filter === 'all') return true;
+			const st = items[exercise.id];
+			if (filter === 'unsolved') return !st?.solved;
+			if (filter === 'review') return Boolean(st && !st.solved && (st.revealed || (st.attempts ?? 0) > 0));
+			return true;
+		});
 
 	return (
 		<section class="ex-section" dir="rtl" lang="ar" aria-label="اتدرّب">
 			<header class="ex-head">
 				<div>
-					<h2>اتدرّب</h2>
-					<p class="ex-lead">حلّ التمارين بعد الفصل. النتيجة بتتحفظ في المتصفح على الجهاز ده.</p>
+					<div class="ex-title-row">
+						<h2>اتدرّب على الفصل</h2>
+						{ready && solvedCount === total && total > 0 && (
+							<span class="ex-complete-badge">🎉 أتقنت الفصل بالكامل!</span>
+						)}
+					</div>
+					<p class="ex-lead">طبّق اللي قريته عملياً. تقدّمك بيتحفظ تلقائياً في المتصفح على جهازك.</p>
 				</div>
-				<p class="ex-score" aria-live="polite">
-					النتيجة: {ready ? solvedCount : '…'} من {data.exercises.length}
+				<div class="ex-score-box" aria-live="polite">
+					<p class="ex-score">
+						النتيجة: <strong>{ready ? solvedCount : '…'}</strong> من <strong>{total}</strong> ({pct}%)
+					</p>
 					{ready && revealedCount > 0 ? (
-						<span class="ex-score-note"> · {revealedCount} اتكشفت إجابتهم</span>
+						<p class="ex-score-note">{revealedCount} أسئلة اتكشفت إجابتها ومحتاجة إعادة</p>
 					) : null}
-				</p>
+				</div>
 			</header>
 			<div
-				class="prog-track"
+				class="prog-track ex-prog-track"
 				role="progressbar"
 				aria-valuemin={0}
 				aria-valuemax={100}
@@ -73,14 +116,72 @@ export default function ExerciseSection({ data }: Props) {
 			>
 				<span style={{ width: `${pct}%` }} />
 			</div>
+
+			{ready && (
+				<div class="ex-filter-bar" role="toolbar" aria-label="فلترة التمارين">
+					<button
+						type="button"
+						class={`ex-filter-pill${filter === 'all' ? ' is-active' : ''}`}
+						onClick={() => setFilter('all')}
+					>
+						الكل ({total})
+					</button>
+					<button
+						type="button"
+						class={`ex-filter-pill${filter === 'unsolved' ? ' is-active' : ''}`}
+						onClick={() => setFilter('unsolved')}
+					>
+						لسه متحلتش ({unsolvedCount})
+					</button>
+					{reviewCount > 0 && (
+						<button
+							type="button"
+							class={`ex-filter-pill is-review-pill${filter === 'review' ? ' is-active' : ''}`}
+							onClick={() => setFilter('review')}
+						>
+							للمراجعة والإعادة ({reviewCount})
+						</button>
+					)}
+				</div>
+			)}
+
 			<div class="ex-list">
-				{data.exercises.map((exercise, index) => {
-					const number = index + 1;
-					const state = items[exercise.id];
-					const itemKey = `${exercise.id}-${salt}`;
-					if (exercise.type === 'mcq' || exercise.type === 'scenario') {
+				{visibleExercises.length === 0 ? (
+					<div class="ex-empty-filter">
+						<p>مفيش تمارين في الفلتر ده حالياً.</p>
+						<button type="button" class="ex-btn secondary" onClick={() => setFilter('all')}>
+							اعرض كل التمارين
+						</button>
+					</div>
+				) : (
+					visibleExercises.map(({ exercise, number }) => {
+						const state = items[exercise.id];
+						const itemKey = `${exercise.id}-${salt}`;
+						if (exercise.type === 'mcq' || exercise.type === 'scenario') {
+							return (
+								<ChoiceExercise
+									key={itemKey}
+									exercise={exercise}
+									number={number}
+									salt={salt}
+									state={state}
+									onChange={(next) => onChange(exercise.id, next)}
+								/>
+							);
+						}
+						if (exercise.type === 'command' || exercise.type === 'fill') {
+							return (
+								<TextExercise
+									key={itemKey}
+									exercise={exercise}
+									number={number}
+									state={state}
+									onChange={(next) => onChange(exercise.id, next)}
+								/>
+							);
+						}
 						return (
-							<ChoiceExercise
+							<OrderExercise
 								key={itemKey}
 								exercise={exercise}
 								number={number}
@@ -89,33 +190,20 @@ export default function ExerciseSection({ data }: Props) {
 								onChange={(next) => onChange(exercise.id, next)}
 							/>
 						);
-					}
-					if (exercise.type === 'command' || exercise.type === 'fill') {
-						return (
-							<TextExercise
-								key={itemKey}
-								exercise={exercise}
-								number={number}
-								state={state}
-								onChange={(next) => onChange(exercise.id, next)}
-							/>
-						);
-					}
-					return (
-						<OrderExercise
-							key={itemKey}
-							exercise={exercise}
-							number={number}
-							salt={salt}
-							state={state}
-							onChange={(next) => onChange(exercise.id, next)}
-						/>
-					);
-				})}
+					})
+				)}
 			</div>
-			<button class="ex-btn secondary ex-reset" type="button" onClick={reset}>
-				{armed ? 'متأكد؟ اضغط تاني عشان تمسح تقدّم الفصل' : 'امسح تقدّمي في الفصل ده'}
-			</button>
+
+			<footer class="ex-footer-actions">
+				{ready && reviewCount > 0 && (
+					<button class="ex-btn" type="button" onClick={retryUnsolved}>
+						أعد محاولة الأسئلة غير المحلولة فقط ({reviewCount})
+					</button>
+				)}
+				<button class="ex-btn secondary ex-reset" type="button" onClick={resetAll}>
+					{armed ? 'متأكد؟ اضغط تاني عشان تمسح تقدّم الفصل كله' : 'امسح تقدّمي في الفصل ده'}
+				</button>
+			</footer>
 		</section>
 	);
 }

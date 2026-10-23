@@ -13,23 +13,23 @@
    "options": [
     {
      "text": "الـ app شغال على جهازك ومش شغال على السيرفر لأن الـ dependencies والـ versions مختلفة",
-     "why": "صح."
+     "why": "صح، اختلاف إصدارات اللغات والمكتبات بين جهاز المطور والسيرفر هو أصل المشكلة."
     },
     {
      "text": "الجهاز بطيء",
-     "why": "مش المشكلة."
+     "why": "بطء الجهاز بيأثر على السرعة بس مش بيخلي الكود يشتغل في مكان ويقع في مكان تاني."
     },
     {
      "text": "الكود فيه Syntax error",
-     "why": "كان هيقع عندك برضه."
+     "why": "لو فيه Syntax error في الكود مكنش هيشتغل على جهاز المطور أصلاً."
     },
     {
      "text": "الإنترنت فاصل",
-     "why": "لأ."
+     "why": "المقصود بالجملة اختلاف بيئة التشغيل والمكتبات مش اتصال الشبكة."
     }
    ],
    "correct": 0,
-   "explanation": "Docker بيشيل البيئة كلها مع الـ app."
+   "explanation": "Docker بيحل المشكلة دي بإنه يحزم الـ app مع كل الـ dependencies والـ versions بتاعته جوه Image واحدة."
   },
   {
    "id": "07-docker-ch01-02",
@@ -39,23 +39,23 @@
    "options": [
     {
      "text": "الـ VM فيها Guest OS كامل فوق Hypervisor، والـ Container Process معزولة بتشارك Kernel الـ Host",
-     "why": "صح."
+     "why": "صح، علشان كده الـ Container أخف بكتير وبيشتغل في ثواني."
     },
     {
      "text": "الاتنين فيهم OS كامل",
-     "why": "الـ Container لأ."
+     "why": "الـ Container مفيهوش نظام تشغيل كامل ولا Kernel مستقل؛ هو بيشارك Kernel الـ Host."
     },
     {
      "text": "الـ Container أتقل",
-     "why": "العكس."
+     "why": "العكس تماماً؛ الـ Container بالميجات، بينما الـ VM بتشيل Guest OS كامل بالجيجات."
     },
     {
      "text": "الـ VM مبتعزلش",
-     "why": "بتعزل."
+     "why": "الـ VM بتقدم عزل قوي جداً على مستوى الهاردوير عن طريق الـ Hypervisor."
     }
    ],
    "correct": 0,
-   "explanation": "علشان كده الـ Container أخف وأسرع."
+   "explanation": "مشاركة الـ Kernel هي اللي بتخلّي الـ Containers خفيفة وسريعة مقارنة بالـ Virtual Machines."
   },
   {
    "id": "07-docker-ch01-03",
@@ -65,23 +65,23 @@
    "options": [
     {
      "text": "العزل بالـ Namespaces، والموارد بالـ cgroups",
-     "why": "صح."
+     "why": "صح، الـ Namespaces بتعزل الرؤية (PID, Network, Filesystem) والـ cgroups بتحكم الـ CPU والـ RAM."
     },
     {
      "text": "العزل بالـ cgroups",
-     "why": "العكس."
+     "why": "العكس؛ الـ cgroups (Control Groups) شغلها تحديد سقف استهلاك الموارد مش العزل."
     },
     {
      "text": "بالـ Hypervisor",
-     "why": "ده الـ VMs."
+     "why": "الـ Hypervisor خاص بالـ Virtual Machines مش الـ Linux Containers."
     },
     {
      "text": "بالـ Firewall",
-     "why": "لأ."
+     "why": "الـ Firewall بيتحكم في ترافيك الشبكة بس، مش في عزل العمليات والملفات والذاكرة."
     }
    ],
    "correct": 0,
-   "explanation": "ودول من Kernel Linux."
+   "explanation": "الـ Namespaces والـ cgroups هما الميزتين الأساسيتين في Linux Kernel اللي اتبنت عليهم الـ Containers."
   },
   {
    "id": "07-docker-ch01-04",
@@ -91,23 +91,23 @@
    "options": [
     {
      "text": "chroot",
-     "why": "صح."
+     "why": "صح، `chroot` كانت أول خطوة لتغيير مجلد الـ root اللي العملية شايفاه."
     },
     {
      "text": "Docker",
-     "why": "جه بعدين."
+     "why": "Docker ظهر بعد عقود واستفاد من تطور أفكار العزل اللي سبقته في Linux."
     },
     {
      "text": "Kubernetes",
-     "why": "بعدين خالص."
+     "why": "Kubernetes أداة لإدارة وتنسيق الـ Containers بعد ما Docker انتشر."
     },
     {
      "text": "VirtualBox",
-     "why": "VM."
+     "why": "VirtualBox برنامج لتشغيل Virtual Machines كاملة مش أول فكرة لعزل المسارات."
     }
    ],
    "correct": 0,
-   "explanation": "الأساس للـ VMs والـ Containers."
+   "explanation": "فكرة `chroot` مع `ulimit` كانت البذرة الأولى اللي تطورت منها حلول العزل الحديثة."
   },
   {
    "id": "07-docker-ch01-05",
@@ -121,7 +121,7 @@
     "Guest OS",
     "التطبيق"
    ],
-   "explanation": "الـ Container مفيهوش Guest OS."
+   "explanation": "في الـ VM فيه طبقة Hypervisor وفوقها Guest OS كامل لكل VM، بينما الـ Container بيستغنى عن الـ Guest OS."
   },
   {
    "id": "07-docker-ch01-06",
@@ -132,23 +132,23 @@
    "options": [
     {
      "text": "أشغّل كل app في Container ليه بيئته المعزولة",
-     "why": "صح."
+     "why": "صح، كل Container هيكون جواه نسخة Python الخاصة بيه من غير أي تعارض."
     },
     {
      "text": "أسطب نسخة واحدة وأتمنى",
-     "why": "هيبوظوا."
+     "why": "تطبيق منهم هيضرب أو يتصرف غلط بسبب اختلاف الإصدار."
     },
     {
      "text": "سيرفر لكل app",
-     "why": "غالي."
+     "why": "تشتري أو تأجر سيرفر كامل لكل تطبيق تكلفة عالية وإهدار للموارد."
     },
     {
      "text": "أعدّل الكود",
-     "why": "مش عملي."
+     "why": "إعادة كتابة مشروع كامل أو مكتباته علشان يوافق نسخة تانية تضييع وقت ومخاطرة."
     }
    ],
    "correct": 0,
-   "explanation": "مشكلة التعارض والعزل."
+   "explanation": "الـ Containers بتحل تعارض الـ dependencies بإن كل تطبيق يشوف ملفاته وإصداراته بس على نفس السيرفر."
   },
   {
    "id": "07-docker-ch01-07",
@@ -158,23 +158,23 @@
    "options": [
     {
      "text": "الـ Container مجرد Process، والـ VM لازم تشغّل OS كامل",
-     "why": "صح."
+     "why": "صح، الـ Container بيشتغل فوراً كـ Process على Kernel موجود، إنما الـ VM بتعمل Boot لنظام تشغيل من الأول."
     },
     {
      "text": "الـ Container أصغر في الكود بس",
-     "why": "مش السبب."
+     "why": "كود التطبيق نفسه هو هو؛ الفرق في غياب خطوة الـ Boot لنظام تشغيل كامل."
     },
     {
      "text": "الـ VM بتنزل من النت",
-     "why": "لأ."
+     "why": "حتى لو صورة الـ VM موجودة محلياً على الديسك، خطوة الـ Boot للـ Guest OS بتاخد وقت."
     },
     {
      "text": "صدفة",
-     "why": "لأ."
+     "why": "ده فرق معماري أساسي بين العزل على مستوى الهاردوير والعزل على مستوى نظام التشغيل."
     }
    ],
    "correct": 0,
-   "explanation": "Process معزولة."
+   "explanation": "تشغيل Container هو فعلياً تشغيل Process معزولة على Kernel شغّال بالفعل."
   },
   {
    "id": "07-docker-ch01-08",
@@ -189,7 +189,7 @@
     ]
    ],
    "hint": "Hyper...",
-   "explanation": "زي VirtualBox و VMware."
+   "explanation": "الـ Hypervisor (زي VirtualBox و VMware و KVM) هو اللي بيقسّم الهاردوير ويدير الـ VMs."
   },
   {
    "id": "07-docker-ch01-09",
@@ -204,7 +204,7 @@
     ]
    ],
    "hint": "نواة النظام.",
-   "explanation": "علشان كده خفيف."
+   "explanation": "كل الـ Containers على نفس الجهاز بتتشارك Kernel نظام التشغيل الأساسي."
   },
   {
    "id": "07-docker-ch01-10",
@@ -217,7 +217,7 @@
     "docker -v"
    ],
    "hint": "--version.",
-   "explanation": "Docker Desktop على الماك."
+   "explanation": "أمر `docker --version` بيطبع رقم إصدار Docker المتسطب."
   },
   {
    "id": "07-docker-ch01-11",
@@ -227,23 +227,23 @@
    "options": [
     {
      "text": "خلّاها Platform سهلة وموحّدة وقابلة للتوزيع (Images و Registry)",
-     "why": "صح."
+     "why": "صح، قدّم الـ Dockerfile والـ Images والـ Registry بواجهة أوامر بسيطة لأي مطور."
     },
     {
      "text": "اخترع العزل",
-     "why": "كان موجود."
+     "why": "العزل بالـ Namespaces والـ cgroups كان موجود في Linux Kernel قبل Docker."
     },
     {
      "text": "اخترع Linux",
-     "why": "لأ."
+     "why": "Linux موجود من 1991، و Docker اتبنى فوق مميزاته."
     },
     {
      "text": "عمل VM أسرع",
-     "why": "مش VM."
+     "why": "Docker بيستخدم Containers مش Virtual Machines."
     }
    ],
    "correct": 0,
-   "explanation": "السهولة والتوزيع."
+   "explanation": "قوة Docker الحقيقية إنه حوّل تقنية معقدة في Linux لتجربة مطور قياسية وسهلة البناء والمشاركة."
   },
   {
    "id": "07-docker-ch01-12",
@@ -254,23 +254,23 @@
    "options": [
     {
      "text": "Docker Desktop بيشغّل Linux VM خفيفة والـ Containers جواها",
-     "why": "صح."
+     "why": "صح، لأن الـ Linux Containers محتاجة Linux Kernel، فـ Docker Desktop بيعمل VM خفيفة في الخلفية."
     },
     {
      "text": "الماك Linux",
-     "why": "لأ، macOS."
+     "why": "الماك مبني على نُواة XNU/Darwin (عائلة Unix/BSD) مش Linux Kernel."
     },
     {
      "text": "مبتشتغلش",
-     "why": "بتشتغل."
+     "why": "بتشتغل بكفاءة على الماك عن طريق الـ Linux VM الخفيفة اللي بيديرها Docker Desktop."
     },
     {
      "text": "بتتحول لـ macOS apps",
-     "why": "لأ."
+     "why": "الـ Image فيها ثنائيات Linux ومش بتتحول لبرامج macOS."
     }
    ],
    "correct": 0,
-   "explanation": "علشان الـ Container محتاج Kernel Linux."
+   "explanation": "بما إن الـ Container بيحتاج Linux Kernel، فـ Docker Desktop (أو OrbStack) بيشغّل Linux VM خفيفة جداً في الخلفية."
   }
  ]
 }

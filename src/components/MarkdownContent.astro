@@ -27,11 +27,23 @@ const lastVisited = chapterMatch
 			bookTitle: chapterBook?.title ?? '',
 		}
 	: null;
+
+const chapterTotals: Record<string, number> = {};
+for (const book of catalog.books) {
+	for (const ch of book.chapters) {
+		chapterTotals[`${book.slug}/${ch.file}`] = ch.ids.length;
+	}
+}
 ---
 
 {
 	bookEntry && (
-		<BookProgress client:load title={bookEntry.title} chapters={bookEntry.chapters} />
+		<BookProgress
+			client:load
+			slug={bookEntry.slug}
+			title={bookEntry.title}
+			chapters={bookEntry.chapters}
+		/>
 	)
 }
 <Default><slot /></Default>
@@ -62,3 +74,49 @@ const lastVisited = chapterMatch
 		</script>
 	)
 }
+<script is:inline define:vars={{ chapterTotals }}>
+	function decorateSidebarAndReview() {
+		try {
+			const raw = localStorage.getItem('bj-progress-v1');
+			const store = raw ? JSON.parse(raw) : {};
+			const sidebarLinks = document.querySelectorAll('nav.sidebar a[href], .sidebar-content a[href]');
+			sidebarLinks.forEach((link) => {
+				const href = link.getAttribute('href') || '';
+				const m = href.match(/\/(\d{2}-[a-z0-9-]+)\/(ch\d+)\/?$/);
+				if (!m) return;
+				const key = m[1] + '/' + m[2];
+				const total = chapterTotals[key] || 0;
+				if (!total) return;
+				const items = (store[key] && store[key].items) || {};
+				let solved = 0;
+				for (const id in items) {
+					if (items[id] && items[id].solved) solved++;
+				}
+				let badge = link.querySelector('.sb-ch-badge');
+				if (solved >= total) {
+					if (!badge) {
+						badge = document.createElement('span');
+						badge.className = 'sb-ch-badge is-done';
+						link.appendChild(badge);
+					}
+					badge.className = 'sb-ch-badge is-done';
+					badge.textContent = '✓';
+					badge.title = 'مكتمل (' + solved + '/' + total + ')';
+				} else if (solved > 0) {
+					if (!badge) {
+						badge = document.createElement('span');
+						badge.className = 'sb-ch-badge is-part';
+						link.appendChild(badge);
+					}
+					badge.className = 'sb-ch-badge is-part';
+					badge.textContent = solved + '/' + total;
+				} else if (badge) {
+					badge.remove();
+				}
+			});
+		} catch {}
+	}
+	decorateSidebarAndReview();
+	window.addEventListener('bj-progress', decorateSidebarAndReview);
+	window.addEventListener('storage', decorateSidebarAndReview);
+</script>
